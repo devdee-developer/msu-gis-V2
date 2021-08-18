@@ -3,6 +3,16 @@
     padding: 0;
     margin: 0;
 }
+#visit_page .content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 60px;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: #F7F5FC;
+}
 .visit-title {
     background-color: #1abc9c;
   }
@@ -296,7 +306,8 @@
     position: fixed;
     border-radius: 18px;
     top: 10%;
-    margin: 0 auto;
+    left: 50%;
+    transform:translateX(-50%);
     background-color: #ffffff;
     height: 30%;
     width: 92%;
@@ -316,18 +327,18 @@
     align-items: center;
     color: #97989b;
   }
-  #modal-visit-detail  .container img.thumbnail {
+  #modal-visit-detail  .modal-container img.thumbnail {
     border-radius: 16px;
     width: 50%;
     margin-bottom: 5%;
   }
-  #modal-visit-detail  .container .name {
+  #modal-visit-detail  .modal-container .name {
     color: #010979;
   }
-  #modal-visit-detail  .container .age {
+  #modal-visit-detail  .modal-container .age {
     color: #010979;
   }
-  #modal-visit-detail  .container .distant {
+  #modal-visit-detail  .modal-container .distant {
     color: #010979;
   }
   
