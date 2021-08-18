@@ -103,10 +103,12 @@
   .list-header h4 {
     color: #e31a2a;
   }
-  .list-body {
+  .list-header h4.visited {
+    color: #08776F;
   }
   
-  .card {
+
+  .contact_items li {
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
@@ -115,36 +117,36 @@
     border-radius: 0.8em;
     box-shadow: 0px 2px 10px #c9c9e273;
   }
-  
-  .card .card-body {
+
+  .contact_items li .card-body {
     display: flex;
     flex-direction: row;
     padding: 0.8em 1em;
     position: relative;
   }
-  
-  .card .card-body .card-body-thumbnail {
+
+  .contact_items li .card-body .card-body-thumbnail {
     width: 66px;
     height: 66px;
   }
   
-  .card .card-body .card-body-content {
+  .contact_items li .card-body .card-body-content {
     padding-left: 15px;
   }
   
-  .card .card-body .card-body-content .name {
+  .contact_items li .card-body .card-body-content .name {
     color: #010979;
   }
   
-  .card .card-body .card-body-content .age {
+  .contact_items li .card-body .card-body-content .age {
     color: #010979;
   }
   
-  .card .card-body .card-body-content .address {
+  .contact_items li .card-body .card-body-content .address {
     color: #3b3d48;
     font-size: 14px;
   }
-  .card .card-body .right-icon {
+  .contact_items li .card-body .right-icon {
     color: #c9b8f7;
     position: absolute;
     top: 50%;
@@ -152,14 +154,14 @@
     transform: translateY(-50%);
   }
   
-  .card .card-footer {
+  .contact_items li .card-footer {
     border-top: 1px solid #e4e1f0;
     padding: 0 0.5em 0.8em 0.5em;
     display: flex;
     flex-wrap: wrap;
   }
   
-  .card .card-footer .status {
+  .contact_items li .card-footer .status {
     margin-top: 0.8em;
     padding: 0.1em 0.5em;
     border-radius: 1em;
@@ -172,20 +174,20 @@
     position: relative;
     margin-right: 7px;
   }
-  .card .card-footer:last-child{
+  .contact_items li .card-footer:last-child{
     margin-right:0px
   }
-  .card .card-footer .status:last-child {
+  .contact_items li .card-footer .status:last-child {
     margin-right: 0px;
   }
   
-  .card .card-footer .status img.left-icon {
+  .contact_items li .card-footer .status img.left-icon {
     width: 13px;
     object-fit: contain;
     position: absolute;
     left: 8px;
   }
-  .card .card-footer .status img.right-icon {
+  .contact_items li .card-footer .status img.right-icon {
     width: 16;
   
     object-fit: contain;
@@ -193,68 +195,68 @@
     right: 8px;
   }
   
-  .card .card-footer .status.healthy {
+  .contact_items li .card-footer .status.healthy {
     color: #ffffff;
     background-color: #010979;
   }
   
-  .card .card-footer .status.patient-in-bed {
+  .contact_items li .card-footer .status.patient-in-bed {
     color: #fcdde1;
     background-color: #010979;
   }
   
-  .card .card-footer .status .b {
+  .contact_items li .card-footer .status .b {
     fill: #fff;
   }
   
-  .card .card-footer .status.patient-in-bed .a {
+  .contact_items li .card-footer .status.patient-in-bed .a {
     fill: #f296a3;
   }
   
-  .card .card-footer .status.healthy .a {
+  .contact_items li .card-footer .status.healthy .a {
     fill: #08776f;
   }
   
-  .card .card-footer .status.inprogress-evaluate {
+  .contact_items li .card-footer .status.inprogress-evaluate {
     background-color: #fcdde1;
     color: #0d0e12;
     min-width: 115px;
   }
   
-  .card .card-footer .status.wait-for-evaluate {
+  .contact_items li .card-footer .status.wait-for-evaluate {
     background-color: #f296a3;
     color: #0d0e12;
     min-width: 115px;
   }
   
-  .card .card-footer .status.evaluated {
+  .contact_items li .card-footer .status.evaluated {
     background-color: #ecf8f7;
     color: #08776f;
     min-width: 115px;
   }
   
-  .card .card-footer .status.inprogress-evaluate img.left-icon {
+  .contact_items li .card-footer .status.inprogress-evaluate img.left-icon {
     width: 9.63px;
     height: 11px;
   }
   
-  .card .card-footer .status.wait-for-evaluate img.left-icon {
+  .contact_items li .card-footer .status.wait-for-evaluate img.left-icon {
     width: 9.63px;
     height: 11px;
   }
   
-  .card .card-footer .status.evaluated img.left-icon {
+  .contact_items li .card-footer .status.evaluated img.left-icon {
     width: 9.63px;
     height: 11px;
   }
   
-  .card .card-footer .status.wait-for-visit {
+  .contact_items li .card-footer .status.wait-for-visit {
     background-color: #f296a3;
     color: #0d0e12;
     min-width: 140px;
   }
   
-  .card .card-footer .status.visited {
+  .contact_items li .card-footer .status.visited {
     background-color: #ecf8f7;
     color: #08776f;
     min-width: 140px;
@@ -309,10 +311,10 @@
     left: 50%;
     transform:translateX(-50%);
     background-color: #ffffff;
-    height: 30%;
+    /* height: 30%; */
     width: 92%;
     max-width: 384px;
-    min-height: 450px;
+    /* min-height: 450px; */
     padding: 38px 13px 13px 15px;
     text-align: center;
   }
@@ -329,8 +331,8 @@
   }
   #modal-visit-detail  .modal-container img.thumbnail {
     border-radius: 16px;
-    width: 50%;
-    margin-bottom: 5%;
+    width: 55%;
+    margin-bottom: 32px;
   }
   #modal-visit-detail  .modal-container .name {
     color: #010979;
@@ -343,12 +345,10 @@
   }
   
   .status-card {
-    position: absolute;
+    margin-top: 32px;
     border-radius: 10px;
     height: 27%;
-    left: 3%;
-    right: 3%;
-    bottom: 3%;
+
     overflow: hidden;
   }
   .status-card .status-card-header {
@@ -389,19 +389,22 @@
   }
   .status-card .status-card-body .status-card-body-btn {
      position: absolute;
-     right: 10px;
+    right:25px;
     background-color: #54d5bb;
     width: 35px;
     height: 70px;
-    line-height: 70px;
     box-shadow: 0px 2px 8px #01097973;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .sort-header{
     margin-left:29px;
   }
   ul.sort-list{
-   margin-top: 20px;
+   margin-top: 30px;
+   margin-bottom:60px;
   }
   ul.sort-list li{
     list-style-type: none;
@@ -480,4 +483,7 @@
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
+  }
+  #visit_recommend{
+    color: #1BC3A2;margin-bottom: 32px;font-size: 30px;display: none;
   }

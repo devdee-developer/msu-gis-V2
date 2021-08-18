@@ -548,6 +548,16 @@ div{
   background-position: center;
   background-size: 25px;
 }
+.map_header_btn{
+  width:60px;
+  height:60px;
+  float:right;
+  background:url(../img/map_purple.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+  margin-right: 10px;
+}
 #map {
   height: 100%;
 }

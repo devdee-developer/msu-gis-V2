@@ -6,27 +6,40 @@ $(function () {
       setTimeout(function () {
         loading.hide();
         changePage("visit_page", function () {
-          initialPage()
+          initialPageFunc();
         });
       }, 500);
     });
-    function initialPage (){
-      $(".collapse-filter .collapse-filter-header").click(function () {
+  function initialPageFunc() {
+    $(".collapse-filter .collapse-filter-header").click(function () {
+      $header = $(this);
+      $content = $header.next();
+      $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
+      $content.slideToggle(200, function () {
 
-        $header = $(this);
-        $content = $header.next();
-        $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
-        $content.slideToggle(200, function () {
-
-        });
+      });
     });
-    $('.btn-sort').click(function(){
-           showModal('modal-sort')
-    })
-    $(".list-body").find(".card").each(function (index) {
+    $(".btn-sort").on("click",function () {
+      showModal("modal-sort-visit");
+    });
+    $(".contact_items")
+      .find("li")
+      .each(function (index) {
         $(this).click(function () {
-            showModal('modal-visit-detail')
+          $('#visit_recommend').hide();
+          showModal("modal-visit-detail");
         });
+      });
+     
+    $("#visit_page .header .back_header_btn").on("click", function () {
+      changePage("home_page", function () {});
     });
-    }
+    setTimeout(function () {
+      $('#visit_recommend').show();
+      showModal("modal-visit-detail");
+    }, 500);
+    // $(".ready-for-visit").on("click",function () {
+    //   changePage("visit_detail_page");
+    // });
+  }
 });

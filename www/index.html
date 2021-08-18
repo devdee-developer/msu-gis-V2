@@ -321,7 +321,11 @@
     </div>
     <div class="pages" id="visit_page">
         <div class="header">
+            <div class="back_header_btn">
 
+            </div>
+            <div class="map_header_btn">
+            </div>
         </div>
         <div class="content">
             <div class="title-bar visit-title">
@@ -341,7 +345,7 @@
                         <input type="text" class="input-form lock" value="จังหวัด มหาสารคาม" readonly>
                         <i class="fa fas fa-lock icons-in-input" ></i>
                     </div>
-                
+
                     <div style="display: flex;">
                         <div class="input-group" style="width: 50%;margin-right: 0.5em">
                             <input type="text" class="input-form lock"  value="อบต. สันป่าตอง" readonly>
@@ -352,9 +356,8 @@
                             <i class="fa fa-chevron-down icons-in-input" ></i>
                         </div>
                     </div>
-                    
                 </div>
-        
+
             </div>
             <div class="sort-bar">
                 <h4>จำนวนทั้งหมด <span style="color:#6F63FD">18 คน</span></h4>
@@ -365,8 +368,8 @@
                 <h2><i class="fa fa-suitcase" style="font-size: 18px;"></i> &nbsp;รอการออกเยี่ยม</h2>
                 <h4>...กำลังรอยู่ 8 คน</h4>
             </div>
-            <div class="list-body">
-                <div class="card">
+            <ul class="contact_items">
+                <li>
                     <div class="card-body">
                         <img class="card-body-thumbnail" src="img/older.png">
                         <div class="card-body-content">
@@ -381,8 +384,8 @@
                         <span class="status inprogress-evaluate"><img class="left-icon"  src="img/doc_icon_black.png" ><p>&nbsp;กำลังประเมิน...</p></span>
                         <span class="status wait-for-visit"><img class="left-icon"  src="img/visit_icon_black.png" ><p>&nbsp;รอออกเยี่ยม...</p></span>
                     </div>
-                </div>
-                <div class="card">
+                </li>
+                <li >
                     <div class="card-body">
                         <img class="card-body-thumbnail" src="img/older.png">
                         <div class="card-body-content">
@@ -395,10 +398,48 @@
                     <div class="card-footer">
                         <span class="status status1 healthy"><svg width="14.677" height="11.81" viewBox="0 0 14.677 11.81"><defs></defs><g transform="translate(-3679.791 -2226.496)"><path class="a" d="M3685.43,2232.97a4.213,4.213,0,0,1,4.166-4.165,4.066,4.066,0,0,1,3.436,1.882,3.88,3.88,0,0,0-6.613-3.056h0a3.884,3.884,0,0,0-5.492,5.492l.634.634h0l4.33,4.329a.747.747,0,0,0,1.056,0l1.211-1.211A4.345,4.345,0,0,1,3685.43,2232.97Z" transform="translate(0)"/><g transform="translate(3686.35 2229.625)"><g transform="translate(0 0)"><path class="b" d="M3718.151,2250.04a3.444,3.444,0,1,1,3.444-3.444A3.448,3.448,0,0,1,3718.151,2250.04Zm0-5.961a2.517,2.517,0,1,0,2.517,2.517A2.52,2.52,0,0,0,3718.151,2244.079Z" transform="translate(-3714.706 -2243.151)"/></g><g transform="translate(4.97 5.202)"><path class="b" d="M3743.848,2273.991a.464.464,0,0,1-.329-.136l-2.22-2.22a.464.464,0,0,1,.656-.656l2.22,2.22a.464.464,0,0,1-.327.792Z" transform="translate(-3741.164 -2270.843)"/></g></g></g></svg><p>&nbsp; แข็งแรง</p> </span>
                         <span class="status wait-for-evaluate"><img  class="left-icon" src="img/doc_icon_black.png" ><p>&nbsp;รอประเมิน...</p></span>
+                        <span class="status wait-for-visit"><img class="left-icon"  src="img/visit_icon_black.png" ><p>&nbsp;รอออกเยี่ยม...</p></span>
+                    </div>
+                </li>
+                <li >
+                    <div class="card-body">
+                        <img class="card-body-thumbnail" src="img/older.png">
+                        <div class="card-body-content">
+                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+                        </div>
+                        <i class="right-icon fa fa-chevron-right" ></i>
+                    </div>
+                    <div class="card-footer">
+                        <span class="status status1 healthy"><svg width="14.677" height="11.81" viewBox="0 0 14.677 11.81"><defs></defs><g transform="translate(-3679.791 -2226.496)"><path class="a" d="M3685.43,2232.97a4.213,4.213,0,0,1,4.166-4.165,4.066,4.066,0,0,1,3.436,1.882,3.88,3.88,0,0,0-6.613-3.056h0a3.884,3.884,0,0,0-5.492,5.492l.634.634h0l4.33,4.329a.747.747,0,0,0,1.056,0l1.211-1.211A4.345,4.345,0,0,1,3685.43,2232.97Z" transform="translate(0)"/><g transform="translate(3686.35 2229.625)"><g transform="translate(0 0)"><path class="b" d="M3718.151,2250.04a3.444,3.444,0,1,1,3.444-3.444A3.448,3.448,0,0,1,3718.151,2250.04Zm0-5.961a2.517,2.517,0,1,0,2.517,2.517A2.52,2.52,0,0,0,3718.151,2244.079Z" transform="translate(-3714.706 -2243.151)"/></g><g transform="translate(4.97 5.202)"><path class="b" d="M3743.848,2273.991a.464.464,0,0,1-.329-.136l-2.22-2.22a.464.464,0,0,1,.656-.656l2.22,2.22a.464.464,0,0,1-.327.792Z" transform="translate(-3741.164 -2270.843)"/></g></g></g></svg><p>&nbsp; แข็งแรง</p> </span>
+                        <span class="status evaluated"><img class="left-icon" src="img/doc_icon_green.png" ><p>ประเมินแล้ว</p><img class="right-icon" src="img/check_icon.png" ></span>
+                        <span class="status wait-for-visit"><img class="left-icon"  src="img/visit_icon_black.png" ><p>&nbsp;รอออกเยี่ยม...</p></span>
+                    </div>
+                </li>
+            </ul>
+            <div class="list-header">
+                <h2><i class="fa fa-suitcase" style="font-size: 18px;"></i> &nbsp;ออกเยี่ยมแล้ว</h2>
+                <h4 class="visited">จำนวน 3 คน</h4>
+            </div>
+            <ul class="contact_items">
+                <li >
+                    <div class="card-body">
+                        <img class="card-body-thumbnail" src="img/older.png">
+                        <div class="card-body-content">
+                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+                        </div>
+                        <i class="right-icon fa fa-chevron-right" ></i>
+                    </div>
+                    <div class="card-footer">
+                        <span class="status patient-in-bed"><svg width="14.677" height="11.81" viewBox="0 0 14.677 11.81"><defs></defs><g transform="translate(-3679.791 -2226.496)"><path class="a" d="M3685.43,2232.97a4.213,4.213,0,0,1,4.166-4.165,4.066,4.066,0,0,1,3.436,1.882,3.88,3.88,0,0,0-6.613-3.056h0a3.884,3.884,0,0,0-5.492,5.492l.634.634h0l4.33,4.329a.747.747,0,0,0,1.056,0l1.211-1.211A4.345,4.345,0,0,1,3685.43,2232.97Z" transform="translate(0)"/><g transform="translate(3686.35 2229.625)"><g transform="translate(0 0)"><path class="b" d="M3718.151,2250.04a3.444,3.444,0,1,1,3.444-3.444A3.448,3.448,0,0,1,3718.151,2250.04Zm0-5.961a2.517,2.517,0,1,0,2.517,2.517A2.52,2.52,0,0,0,3718.151,2244.079Z" transform="translate(-3714.706 -2243.151)"/></g><g transform="translate(4.97 5.202)"><path class="b" d="M3743.848,2273.991a.464.464,0,0,1-.329-.136l-2.22-2.22a.464.464,0,0,1,.656-.656l2.22,2.22a.464.464,0,0,1-.327.792Z" transform="translate(-3741.164 -2270.843)"/></g></g></g></svg><p>&nbsp; ติดเตียง</p> </span>
+                        <span class="status evaluated"><img class="left-icon" src="img/doc_icon_green.png" ><p>ประเมินแล้ว</p><img class="right-icon" src="img/check_icon.png" ></span>
                         <span class="status visited"><img class="left-icon"  src="img/visit_icon_green.png" ><p>&nbsp;ออกเยี่ยมแล้ว</p><img class="right-icon" src="img/check_icon.png" ></span>
                     </div>
-                </div>
-                <div class="card">
+                </li>
+                <li >
                     <div class="card-body">
                         <img class="card-body-thumbnail" src="img/older.png">
                         <div class="card-body-content">
@@ -413,19 +454,36 @@
                         <span class="status evaluated"><img class="left-icon" src="img/doc_icon_green.png" ><p>ประเมินแล้ว</p><img class="right-icon" src="img/check_icon.png" ></span>
                         <span class="status visited"><img class="left-icon"  src="img/visit_icon_green.png" ><p>&nbsp;ออกเยี่ยมแล้ว</p><img class="right-icon" src="img/check_icon.png" ></span>
                     </div>
-                </div>
-            </div>
+                </li>
+                <li >
+                    <div class="card-body">
+                        <img class="card-body-thumbnail" src="img/older.png">
+                        <div class="card-body-content">
+                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+                        </div>
+                        <i class="right-icon fa fa-chevron-right" ></i>
+                    </div>
+                    <div class="card-footer">
+                        <span class="status status1 healthy"><svg width="14.677" height="11.81" viewBox="0 0 14.677 11.81"><defs></defs><g transform="translate(-3679.791 -2226.496)"><path class="a" d="M3685.43,2232.97a4.213,4.213,0,0,1,4.166-4.165,4.066,4.066,0,0,1,3.436,1.882,3.88,3.88,0,0,0-6.613-3.056h0a3.884,3.884,0,0,0-5.492,5.492l.634.634h0l4.33,4.329a.747.747,0,0,0,1.056,0l1.211-1.211A4.345,4.345,0,0,1,3685.43,2232.97Z" transform="translate(0)"/><g transform="translate(3686.35 2229.625)"><g transform="translate(0 0)"><path class="b" d="M3718.151,2250.04a3.444,3.444,0,1,1,3.444-3.444A3.448,3.448,0,0,1,3718.151,2250.04Zm0-5.961a2.517,2.517,0,1,0,2.517,2.517A2.52,2.52,0,0,0,3718.151,2244.079Z" transform="translate(-3714.706 -2243.151)"/></g><g transform="translate(4.97 5.202)"><path class="b" d="M3743.848,2273.991a.464.464,0,0,1-.329-.136l-2.22-2.22a.464.464,0,0,1,.656-.656l2.22,2.22a.464.464,0,0,1-.327.792Z" transform="translate(-3741.164 -2270.843)"/></g></g></g></svg><p>&nbsp; แข็งแรง</p> </span>
+                        <span class="status evaluated"><img class="left-icon" src="img/doc_icon_green.png" ><p>ประเมินแล้ว</p><img class="right-icon" src="img/check_icon.png" ></span>
+                        <span class="status visited"><img class="left-icon"  src="img/visit_icon_green.png" ><p>&nbsp;ออกเยี่ยมแล้ว</p><img class="right-icon" src="img/check_icon.png" ></span>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div id="modal-visit-detail" class="modal">
             <div class="modal-container">
                 <div class="modal-dismiss">  <i  class="fa fa-times"></i></div>
+                <h1 id="visit_recommend" >รายชื่อแนะนำ</h1>
                 <img class="thumbnail" src="img/older.png">
                 <h3 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h3>
                 <h5 class="age"><i class="fa fa-user-o"></i> อายุ 65 ปี, 3 เดือน</h5>
                 <p  class="distant"><i class="fa fa-flag-o"></i> ระยะห่างจากคุณ <span style="color: #6F63FD;">0.8 กิโลเมตร</span></p>
                 <div class="status-card">
                     <div class="status-card-header">
-                        <p> <b>สถานะออกเยี่ยม</b> : **จำเป็นต้องประเมินก่อน</p>
+                        <p> <b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
                     </div>
                     <div class="status-card-body ready-for-visit">
                         <div class="status-card-body-thumbnail">
@@ -444,7 +502,7 @@
                 </div>
             </div>
         </div>
-        <div id="modal-sort" class="modal">
+        <div id="modal-sort-visit" class="modal">
             <div class="modal-container" style="text-align: left">
                 <div class="modal-dismiss">  <i  class="fa fa-times"></i></div>
                 <div class="sort-header">
