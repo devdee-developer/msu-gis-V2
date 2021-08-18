@@ -1,6 +1,6 @@
 $(function () {
   //contact list
-  changePage("visit_detail_page")
+  // changePage("visit_detail_page")
   $(".main_home_menu_item_wrapper img")
     .eq(2)
     .on("click", function () {
