@@ -41,3 +41,9 @@ function calHomeButtonPosition(){
   $(".main_home_menu_item_wrapper img").eq(1).css("margin-left","10px");
   $(".main_home_menu_item_wrapper img").eq(3).css("margin-left","10px");
 }
+function showModal(_modal, _callback = function () {}) {
+  $("#"+_modal).fadeIn(200,()=>{
+    $('body').addClass('modal-open')
+});
+  _callback();
+}

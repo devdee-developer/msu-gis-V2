@@ -125,6 +125,10 @@ $(function () {
     initSlideHomePage();
     calHomeButtonPosition();
   });
+  $('.modal-dismiss').on('click',function () {
+    $(".modal").hide()
+    $('body').removeClass('modal-open')
+})
 });
 
 document.addEventListener("deviceready", onDeviceReady, false);
