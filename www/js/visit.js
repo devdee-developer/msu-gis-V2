@@ -1,4 +1,6 @@
 $(function () {
+  //contact list
+  changePage("visit_detail_page")
   $(".main_home_menu_item_wrapper img")
     .eq(2)
     .on("click", function () {
@@ -32,14 +34,27 @@ $(function () {
       });
      
     $("#visit_page .header .back_header_btn").on("click", function () {
-      changePage("home_page", function () {});
+      $(".menu_home_page").click()
+    });
+    $("#visit_detail_page .header .back_header_btn").on("click", function () {
+      changePage("visit_page", function () {
+      });
     });
     setTimeout(function () {
       $('#visit_recommend').show();
       showModal("modal-visit-detail");
     }, 500);
-    // $(".ready-for-visit").on("click",function () {
-    //   changePage("visit_detail_page");
-    // });
+
+    //visit detail
+    $(".ready-for-visit")
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("visit_detail_page", function () {
+
+        });
+      }, 500);
+    });
   }
 });
