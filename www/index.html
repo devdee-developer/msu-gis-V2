@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/visit.css">
+
     <title>VHV</title>
 </head>
 
@@ -743,6 +744,119 @@
             </div>
            
         </div>
+        <div class="footer">
+            <div class="footerbar"></div>
+            <button class="btn_create_visit">ออกเยี่ยมใหม่</button>
+        </div>
+    </div>
+    <div class="pages step-app" id="visit_form_page">
+        <div class="header">
+            <div class="back_header_btn white" >
+                
+            </div>
+            <ul class="step-steps">
+               <p>สถานะ&nbsp;
+                <li data-step-target="step1"></li>
+                <li data-step-target="step2"></li>
+                <li data-step-target="step3"></li>
+                <li data-step-target="step4"></li>
+                <li data-step-target="step5"></li>
+                <li data-step-target="step6"></li>
+                &nbsp; <span class="current_step_index_visit_form">1</span>/6
+            </p>
+            </ul>
+        </div>
+        <div class="content">
+                <div class="step-content">
+                    <div class="step-tab-panel" data-step="step1">
+                        <div class="visit_section_title">
+                            <div class="index_title"> 1 </div>
+                            <div class="section_label">สอบถามโรคประจำตัว ของผู้สูงอายุ มีหรือไม่ ?</div>
+                        </div>
+                        <div class="visit_content">
+                            <ul class="visit_form">
+                                <li>
+                                    <input type="radio" name="visit_section1" class="visit_section1" id="visit_section1_0" value="0">
+                                    <label for="visit_section1_0">ไม่มี</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="visit_section1" class="visit_section1" id="visit_section1_1" value="1">
+                                    <label for="visit_section1_1">มี (โปรดระบุ)</label>
+                                </li>
+                             
+                            </ul>
+                            <input type="text" class="visit_form focus" id="visit_section1_1_input" placeholder="ระบุชื่อโรค">
+                        </div>
+                    </div>
+                    <div class="step-tab-panel" data-step="step2">
+                        <div class="visit_section_title">
+                            <div class="index_title"> 2 </div>
+                            <div class="section_label">ผู้ที่คอยดูแล และครอบครัว ของผู้สูงอายุ</div>
+                        </div>
+                    </div>
+                    <div class="step-tab-panel" data-step="step3">
+                        <div class="visit_section_title">
+                            <div class="index_title"> 3 </div>
+                            <div class="section_label">สภาพร่างกาย และการ ใช้ชีวิตของผู้สูงอายุ</div>
+                        </div>
+                    </div>
+                    <div class="step-tab-panel" data-step="step4">
+                        <div class="visit_section_title">
+                            <div class="index_title"> 4 </div>
+                            <div class="section_label">ประเมิน สภาพ จิตสังคม จิตวิญญาณของผู้สูงอายุ</div>
+                        </div>
+                    </div>
+                    <div class="step-tab-panel" data-step="step5">
+                        <div class="visit_section_title">
+                            <div class="index_title"> 5 </div>
+                            <div class="section_label">ประเมินสภาพแวดล้อม ของผู้สูงอายุ</div>
+                        </div>
+                    </div>
+                    <div class="step-tab-panel" data-step="step6">
+                        <div class="visit_section_title">
+                            <div class="index_title"> 6 </div>
+                            <div class="section_label">อสม. ให้คำแนะนำ หรือช่วยเหลือผู้สูงอายุ</div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="step-footer">
+           <div class="btn_group">
+            <button class="step-btn cancel">ยกเลิก</button>
+            <button data-step-action="prev" class="step-btn prev"><span class="prev_step_index_visit_form"></span><img src="img/back_icon_white.png" ></button>
+            <div class="footer_index">
+
+                        <svg
+                            class="progress-ring"
+                            width="60"
+                            height="60">
+                            <circle
+                            stroke="#E4E1F0"
+                            stroke-width="8"
+                            fill="transparent"
+                            r="25"
+                            cx="30"
+                            cy="30"
+                            />
+                            <circle
+                            class="progress_ring_circle_visit"
+                            stroke="#7676FF"
+                            stroke-width="8"
+                            fill="transparent"
+                            r="25"
+                            cx="30"
+                            cy="30"
+                            />
+                        </svg>
+                <span class="current_step_index_visit_form">1</span>
+            </div>
+            
+            <button data-step-action="next" class="step-btn next"><img src="img/next_icon_white.png" ><span class="next_step_index_visit_form"></span></button>
+            <button data-step-action="finish" class="step-btn">สรุป</button>
+           </div>
+           
+              
+        </div>
     </div>
     <div class="loader_wrapper">
         <div class="loader"></div>
@@ -765,6 +879,7 @@
     ></script>
     <script src="cordova.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-steps.min.js"></script>
     <script src="js/fastclick.js"></script>
     <script src="js/redux.min.js"></script>
     <script src="js/websql.js"></script>
