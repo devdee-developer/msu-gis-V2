@@ -5,13 +5,6 @@
 }
 
 #visit_page .content {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  top: 60px;
-  overflow: hidden;
-  overflow-y: scroll;
   background-color: #f7f5fc;
 }
 #visit_detail_page .header {
@@ -231,23 +224,22 @@
 
 .contact_items li .card-footer {
   border-top: 1px solid #e4e1f0;
-  padding: 0 0.5em 0.8em 0.5em;
-  display: flex;
-  flex-wrap: wrap;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+
 }
 
 .contact_items li .card-footer .status {
-  margin-top: 0.8em;
-  padding: 0.1em 0.5em;
+  font-size: 14px;
+  float: left;
   border-radius: 1em;
   min-height: 27px;
-  min-width: 100px;
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin-right: 7px;
+  line-height: 27px;
+  padding-left: 25px;
+  padding-right: 10px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 8px;
+  margin-right: 4px;
 }
 .contact_items li .card-footer:last-child {
   margin-right: 0px;
@@ -273,41 +265,34 @@
 .contact_items li .card-footer .status.healthy {
   color: #ffffff;
   background-color: #010979;
+  background-image: url(../img/health_2_icon.png) ;
 }
 
 .contact_items li .card-footer .status.patient-in-bed {
   color: #fcdde1;
   background-color: #010979;
-}
-
-.contact_items li .card-footer .status .b {
-  fill: #fff;
-}
-
-.contact_items li .card-footer .status.patient-in-bed .a {
-  fill: #f296a3;
-}
-
-.contact_items li .card-footer .status.healthy .a {
-  fill: #08776f;
+  background-image: url(../img/health_1_icon.png) ;
 }
 
 .contact_items li .card-footer .status.inprogress-evaluate {
   background-color: #fcdde1;
   color: #0d0e12;
-  min-width: 115px;
+  background-image: url(../img/doc_icon_black.png);
+  background-size:11px 13.5px ;
 }
 
 .contact_items li .card-footer .status.wait-for-evaluate {
   background-color: #f296a3;
   color: #0d0e12;
-  min-width: 115px;
+  background-image: url(../img/doc_icon_black.png);
+  background-size:11px 13.5px ;
 }
 
 .contact_items li .card-footer .status.evaluated {
   background-color: #ecf8f7;
   color: #08776f;
-  min-width: 115px;
+  background-image: url(../img/doc_icon_green.png);
+  background-size:11px 13.5px ;
 }
 
 .contact_items li .card-footer .status.inprogress-evaluate img.left-icon {
@@ -328,13 +313,15 @@
 .contact_items li .card-footer .status.wait-for-visit {
   background-color: #f296a3;
   color: #0d0e12;
-  min-width: 140px;
+  background-image: url(../img/visit_icon_black.png);
+  background-size: 14px 11px
 }
 
 .contact_items li .card-footer .status.visited {
   background-color: #ecf8f7;
   color: #08776f;
-  min-width: 140px;
+  background-image: url(../img/visit_icon_green.png);
+  background-size: 14px 11px
 }
 input.input-form {
   height: 40px;
@@ -442,10 +429,17 @@ input.input-form.lock:read-only {
   background-color: #fff4f5;
   display: flex;
   padding-top: 7px;
+  background-repeat: no-repeat;
+  background-size: 71.69px 61.71px;
+  background-position-y: center;
+  background-position-x:23px ;
+  padding-left:120px;
+  background-image: url(../img/menu_button_visit.png);
 }
 .status-card .status-card-body.ready-for-visit {
   background-color: #1bc3a2;
   color: #ffffff;
+  background-image: url(../img/menu_button_visit.png);
 }
 .status-card .status-card-body .status-card-body-thumbnail {
   width: 120px;
@@ -594,11 +588,11 @@ ul.sort-list li:last-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 17px 12px 17px 17px;
+  padding: 17px 12px 17px 12px;
   background-color: #ddd8f0;
 }
 .visit_card .card_body .card_body_center {
-  padding-left: 17px;
+  padding-left: 13px;
 }
 .visit_card .alert_message {
   display: flex;
@@ -671,6 +665,7 @@ ul.sort-list li:last-child {
 .visit_card .card_body .card_body_center p:nth-child(2) {
   color: #7f7fa8;
   font-size: 14px;
+  text
 }
 .visit_card.current .card_body .card_body_center p:nth-child(1) {
   color: #ffffff;
