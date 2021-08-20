@@ -1,885 +1,1333 @@
-
 <!DOCTYPE html>
-<html> 
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="white">
-    <meta name="apple-mobile-web-app-title" content="VHVAPP">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="apple-mobile-web-app-title" content="VHVAPP" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <script src="js/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/visit.css">
-
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+    <link rel="stylesheet" href="css/visit.css" />
+    <link rel="stylesheet" href="css/evaluate.css" />
     <title>VHV</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="pages" id="template_page">
-        <div class="header">
-            <img src="img/logo_header.png" class="logo_header" />
-            <div class="profile_header_wrapper">
-                <img src="img/profile.jpg" />
-                <div class="header_notification">
-                    <i class="fa fa-bell" id="notification_icon"></i>
-                </div>
-            </div>
+      <div class="header">
+        <img src="img/logo_header.png" class="logo_header" />
+        <div class="profile_header_wrapper">
+          <img src="img/profile.jpg" />
+          <div class="header_notification">
+            <i class="fa fa-bell" id="notification_icon"></i>
+          </div>
         </div>
-        <div class="content">
-
+      </div>
+      <div class="content"></div>
+      <div class="footer">
+        <div class="footer_item active menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
         </div>
-        <div class="footer">
-            <div class="footer_item active menu_home_page"><i
-                    class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span></div>
-            <div class="footer_item menu_contact_page"><i class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span>
-            </div>
-            <div class="footer_item menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span></div>
-            <div class="footer_item menu_news_page"><i class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span>
-            </div>
-            <div class="footer_item menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
+        <div class="footer_item menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
         </div>
+        <div class="footer_item menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
     </div>
     <div class="pages" id="splash_page">
-        <img class="bg_absolute_splash" src="img/bg_splash.jpg" />
-        <div class="btn_splash">
-        </div>
+      <img class="bg_absolute_splash" src="img/bg_splash.jpg" />
+      <div class="btn_splash"></div>
     </div>
     <div class="pages" id="login_page">
-        <img class="header_login" src="img/header_bg_login.jpg" />
-        <div class="form_login">
-            <div style="max-width:400px;margin:auto">
-                <div class="input-icons">
-                    <i class="fa fa-user icon" style="top:5px;left:5px;"></i>
-                    <input class="input-field" type="text">
-                    <i class="fa fa-lock icon" style="left:5px;top:77px;"></i>
-                    <input class="input-field" type="text">
-                </div>
-                <div class="btn_submit_login">Login</div>
-            </div>
+      <img class="header_login" src="img/header_bg_login.jpg" />
+      <div class="form_login">
+        <div style="max-width: 400px; margin: auto">
+          <div class="input-icons">
+            <i class="fa fa-user icon" style="top: 5px; left: 5px"></i>
+            <input class="input-field" type="text" />
+            <i class="fa fa-lock icon" style="left: 5px; top: 77px"></i>
+            <input class="input-field" type="text" />
+          </div>
+          <div class="btn_submit_login">Login</div>
         </div>
-        <img class="footer_login" src="img/footer_bg_login.jpg" />
+      </div>
+      <img class="footer_login" src="img/footer_bg_login.jpg" />
     </div>
     <div class="pages" id="home_page">
-        <div class="header">
-            <img src="img/logo_header.png" class="logo_header" />
-            <div class="profile_header_wrapper">
-                <img src="img/profile.jpg" />
-                <div class="header_notification">
-                    <i class="fa fa-bell" id="notification_icon"></i>
-                </div>
-            </div>
+      <div class="header">
+        <img src="img/logo_header.png" class="logo_header" />
+        <div class="profile_header_wrapper">
+          <img src="img/profile.jpg" />
+          <div class="header_notification">
+            <i class="fa fa-bell" id="notification_icon"></i>
+          </div>
         </div>
-        <div class="content">
-            <div class="home_slider_wrapper">
-                <div class="swiper-container mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="img/slide1.jpg" /></div>
-                        <div class="swiper-slide"><img src="img/slide2.jpg" /></div>
-                        <div class="swiper-slide"><img src="img/slide3.jpg" /></div>
-                    </div>
-                    <!-- <div class="swiper-button-next"></div>
+      </div>
+      <div class="content">
+        <div class="home_slider_wrapper">
+          <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="img/slide1.jpg" /></div>
+              <div class="swiper-slide"><img src="img/slide2.jpg" /></div>
+              <div class="swiper-slide"><img src="img/slide3.jpg" /></div>
+            </div>
+            <!-- <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div> -->
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-            <div class="home_knowledge_base_wrapper">
-
-                <div class="home_knowledge_base">
-                    <i class="fa fa-comment-alt comment_icon_home"></i>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever
-                </div>
-            </div>
-            <div class="main_home_menu_wrapper">
-                <div class="main_home_menu_item_wrapper">
-                    <img src="img/main_home_menu1.jpg"/>
-                    <img src="img/main_home_menu2.jpg"/>
-                    <img src="img/main_home_menu3.jpg"/>
-                    <img src="img/main_home_menu4.jpg"/>
-                </div>
-              
-            </div>
+          </div>
+          <div class="swiper-pagination"></div>
         </div>
-        <div class="footer">
-            <div class="footer_item active menu_home_page"><i
-                    class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span></div>
-            <div class="footer_item menu_contact_page"><i class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span>
-            </div>
-            <div class="footer_item menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span></div>
-            <div class="footer_item menu_news_page"><i class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span>
-            </div>
-            <div class="footer_item menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
+        <div class="home_knowledge_base_wrapper">
+          <div class="home_knowledge_base">
+            <i class="fa fa-comment-alt comment_icon_home"></i>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever
+          </div>
         </div>
+        <div class="main_home_menu_wrapper">
+          <div class="main_home_menu_item_wrapper">
+            <img src="img/main_home_menu1.jpg" />
+            <img src="img/main_home_menu2.jpg" />
+            <img src="img/main_home_menu3.jpg" />
+            <img src="img/main_home_menu4.jpg" />
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="footer_item active menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
+        </div>
+        <div class="footer_item menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
+        </div>
+        <div class="footer_item menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
     </div>
     <div class="pages" id="contact_page">
-        <div class="header">
-            <img src="img/logo_header.png" class="logo_header" />
-            <div class="profile_header_wrapper">
-                <img src="img/profile.jpg" />
-                <div class="header_notification">
-                    <i class="fa fa-bell" id="notification_icon"></i>
-                </div>
-            </div>
+      <div class="header">
+        <img src="img/logo_header.png" class="logo_header" />
+        <div class="profile_header_wrapper">
+          <img src="img/profile.jpg" />
+          <div class="header_notification">
+            <i class="fa fa-bell" id="notification_icon"></i>
+          </div>
         </div>
-        <div class="content">
-           
+      </div>
+      <div class="content"></div>
+      <div class="footer">
+        <div class="footer_item menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
         </div>
-        <div class="footer">
-            <div class="footer_item menu_home_page"><i class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span>
-            </div>
-            <div class="footer_item active menu_contact_page"><i
-                    class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span></div>
-            <div class="footer_item menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span></div>
-            <div class="footer_item menu_news_page"><i class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span>
-            </div>
-            <div class="footer_item menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
+        <div class="footer_item active menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
         </div>
+        <div class="footer_item menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
     </div>
     <div class="pages" id="map_page">
-        <div class="header">
-            <img src="img/logo_header.png" class="logo_header" />
-            <div class="profile_header_wrapper">
-                <img src="img/profile.jpg" />
-                <div class="header_notification">
-                    <i class="fa fa-bell" id="notification_icon"></i>
-                </div>
-            </div>
+      <div class="header">
+        <img src="img/logo_header.png" class="logo_header" />
+        <div class="profile_header_wrapper">
+          <img src="img/profile.jpg" />
+          <div class="header_notification">
+            <i class="fa fa-bell" id="notification_icon"></i>
+          </div>
         </div>
-        <div class="content">
-            <div id="map"></div>
+      </div>
+      <div class="content">
+        <div id="map"></div>
+      </div>
+      <div class="footer">
+        <div class="footer_item menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
         </div>
-        <div class="footer">
-            <div class="footer_item menu_home_page"><i class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span>
-            </div>
-            <div class="footer_item menu_contact_page"><i class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span>
-            </div>
-            <div class="footer_item active menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span>
-            </div>
-            <div class="footer_item menu_news_page"><i class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span>
-            </div>
-            <div class="footer_item menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
+        <div class="footer_item menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
         </div>
+        <div class="footer_item active menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
     </div>
     <div class="pages" id="news_page">
-        <div class="header">
-            <img src="img/logo_header.png" class="logo_header" />
-            <div class="profile_header_wrapper">
-                <img src="img/profile.jpg" />
-                <div class="header_notification">
-                    <i class="fa fa-bell" id="notification_icon"></i>
-                </div>
-            </div>
+      <div class="header">
+        <img src="img/logo_header.png" class="logo_header" />
+        <div class="profile_header_wrapper">
+          <img src="img/profile.jpg" />
+          <div class="header_notification">
+            <i class="fa fa-bell" id="notification_icon"></i>
+          </div>
         </div>
-        <div class="content">
-            <h1 class="news_title_page">ข่าวสารและกิจกรรม</h1>
-            <p class="news_description_page">แจ้งข่าว กิจกรรมและการปฏิบัติหน้าที่อาสาสมัครชุมชน</p>
-            <div class="news_slider_wrapper">
-                <div class="swiper-container mySwiper2">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="img/slide1.jpg" /></div>
-                        <div class="swiper-slide"><img src="img/slide2.jpg" /></div>
-                        <div class="swiper-slide"><img src="img/slide3.jpg" /></div>
-                    </div>
-                    <!-- <div class="swiper-button-next2"></div>
+      </div>
+      <div class="content">
+        <h1 class="news_title_page">ข่าวสารและกิจกรรม</h1>
+        <p class="news_description_page">
+          แจ้งข่าว กิจกรรมและการปฏิบัติหน้าที่อาสาสมัครชุมชน
+        </p>
+        <div class="news_slider_wrapper">
+          <div class="swiper-container mySwiper2">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="img/slide1.jpg" /></div>
+              <div class="swiper-slide"><img src="img/slide2.jpg" /></div>
+              <div class="swiper-slide"><img src="img/slide3.jpg" /></div>
+            </div>
+            <!-- <div class="swiper-button-next2"></div>
                     <div class="swiper-button-prev2"></div> -->
-                </div>
-                <div class="swiper-pagination2"></div>
-            </div>
-            <div class="news_content_wrapper">
-                <div class="filter_wrapper">
-                    <h1 class="news_title_page" style="margin-top:0px;">ข่าวทั้งหมด</h1>
-                    <p class="news_description_page">เพื่อไม่พลาดทุกเรื่องราวที่เกิดขึ้น</p>
-                    <div class="filter_news_btn"></div>
-                </div>
-                <ul class="news_item">
-                    
-                    <li>
-                        <img class="news_thumbnail" src="img/news_thumbnail.png" />
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever<br>
-                    <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-                        </p>
-                        <img class="news_detail_btn" src="img/news_detail_btn.png"/>
-                    </li>
-                    <li>
-                        <img class="news_thumbnail" src="img/news_thumbnail.png" />
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever<br>
-                    <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-                        </p>
-                        <img class="news_detail_btn" src="img/news_detail_btn.png"/>
-                    </li>
-                    <li>
-                        <img class="news_thumbnail" src="img/news_thumbnail.png" />
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever<br>
-                    <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-                        </p>
-                        <img class="news_detail_btn" src="img/news_detail_btn.png"/>
-                    </li>
-                   
-                    <li>
-                        <img class="news_thumbnail" src="img/news_thumbnail.png" />
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever<br>
-                    <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-                        </p>
-                        <img class="news_detail_btn" src="img/news_detail_btn.png"/>
-                    </li>
-                   
-                    <li>
-                        <img class="news_thumbnail" src="img/news_thumbnail.png" />
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever<br>
-                    <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-                        </p>
-                        <img class="news_detail_btn" src="img/news_detail_btn.png"/>
-                    </li>
-                   
-                   
-                   
-                </ul>
-            </div>
+          </div>
+          <div class="swiper-pagination2"></div>
         </div>
-        <div class="footer">
+        <div class="news_content_wrapper">
+          <div class="filter_wrapper">
+            <h1 class="news_title_page" style="margin-top: 0px">ข่าวทั้งหมด</h1>
+            <p class="news_description_page">
+              เพื่อไม่พลาดทุกเรื่องราวที่เกิดขึ้น
+            </p>
+            <div class="filter_news_btn"></div>
+          </div>
+          <ul class="news_item">
+            <li>
+              <img class="news_thumbnail" src="img/news_thumbnail.png" />
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever<br />
+                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+              </p>
+              <img class="news_detail_btn" src="img/news_detail_btn.png" />
+            </li>
+            <li>
+              <img class="news_thumbnail" src="img/news_thumbnail.png" />
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever<br />
+                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+              </p>
+              <img class="news_detail_btn" src="img/news_detail_btn.png" />
+            </li>
+            <li>
+              <img class="news_thumbnail" src="img/news_thumbnail.png" />
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever<br />
+                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+              </p>
+              <img class="news_detail_btn" src="img/news_detail_btn.png" />
+            </li>
 
-            <div class="footer_item menu_home_page"><i class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span>
-            </div>
-            <div class="footer_item menu_contact_page"><i class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span>
-            </div>
-            <div class="footer_item menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span></div>
-            <div class="footer_item active menu_news_page"><i
-                    class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span></div>
-            <div class="footer_item menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
+            <li>
+              <img class="news_thumbnail" src="img/news_thumbnail.png" />
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever<br />
+                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+              </p>
+              <img class="news_detail_btn" src="img/news_detail_btn.png" />
+            </li>
+
+            <li>
+              <img class="news_thumbnail" src="img/news_thumbnail.png" />
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever<br />
+                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+              </p>
+              <img class="news_detail_btn" src="img/news_detail_btn.png" />
+            </li>
+          </ul>
         </div>
+      </div>
+      <div class="footer">
+        <div class="footer_item menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
+        </div>
+        <div class="footer_item menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
+        </div>
+        <div class="footer_item menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item active menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
     </div>
     <div class="pages" id="news_detail_page">
-        <div class="header">
-           <div class="back_header_btn">
-
-           </div>
-            <div class="profile_header_wrapper">
-                <img src="img/profile.jpg" />
-                <div class="header_notification">
-                    <i class="fa fa-bell" id="notification_icon"></i>
-                </div>
-            </div>
+      <div class="header">
+        <div class="back_header_btn"></div>
+        <div class="profile_header_wrapper">
+          <img src="img/profile.jpg" />
+          <div class="header_notification">
+            <i class="fa fa-bell" id="notification_icon"></i>
+          </div>
         </div>
-        <div class="content">
+      </div>
+      <div class="content"></div>
+      <div class="footer">
+        <div class="footer_item menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
         </div>
-        <div class="footer">
-
-            <div class="footer_item menu_home_page"><i class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span>
-            </div>
-            <div class="footer_item menu_contact_page"><i class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span>
-            </div>
-            <div class="footer_item menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span></div>
-            <div class="footer_item active menu_news_page"><i
-                    class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span></div>
-            <div class="footer_item menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
+        <div class="footer_item menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
         </div>
+        <div class="footer_item menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item active menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
     </div>
     <div class="pages" id="analytics_page">
-        <div class="header">
-            <img src="img/logo_header.png" class="logo_header" />
-            <div class="profile_header_wrapper">
-                <img src="img/profile.jpg" />
-                <div class="header_notification">
-                    <i class="fa fa-bell" id="notification_icon"></i>
-                </div>
-            </div>
+      <div class="header">
+        <img src="img/logo_header.png" class="logo_header" />
+        <div class="profile_header_wrapper">
+          <img src="img/profile.jpg" />
+          <div class="header_notification">
+            <i class="fa fa-bell" id="notification_icon"></i>
+          </div>
         </div>
-        <div class="content">
+      </div>
+      <div class="content"></div>
+      <div class="footer">
+        <div class="footer_item menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
         </div>
-        <div class="footer">
-            <div class="footer_item menu_home_page"><i class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span>
-            </div>
-            <div class="footer_item menu_contact_page"><i class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span>
-            </div>
-            <div class="footer_item menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span></div>
-            <div class="footer_item menu_news_page"><i class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span>
-            </div>
-            <div class="footer_item active menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
+        <div class="footer_item menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
         </div>
+        <div class="footer_item menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item active menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
     </div>
     <div class="pages" id="visit_page">
-        <div class="header">
-            <div class="back_header_btn">
+      <div class="header">
+        <div class="back_header_btn"></div>
+        <div class="map_header_btn"></div>
+      </div>
+      <div class="content">
+        <div class="title-bar visit-title">
+          <img class="img-title" src="img/menu_button_visit.png" />
+          <div>
+            <h2>ออกเยี่ยม</h2>
+            <p>ติดตามสุขภาพของผู้สูงอายุ</p>
+          </div>
+        </div>
+        <div class="collapse-filter">
+          <div class="collapse-filter-header">
+            <p>
+              <img src="img/contact_icon_head.png" width="20" height="20" />
+              &nbsp; ตรวจสอบพื้นที่ดูแล เพื่อเลือกรายชื่อ
+            </p>
+            <i class="fa fa-chevron-down toggle"></i>
+          </div>
+          <div class="collapse-filter-content">
+            <div class="input-group">
+              <input
+                type="text"
+                class="input-form lock"
+                value="จังหวัด มหาสารคาม"
+                readonly
+              />
+              <i class="fa fas fa-lock icons-in-input"></i>
+            </div>
 
+            <div style="display: flex">
+              <div class="input-group" style="width: 50%; margin-right: 0.5em">
+                <input
+                  type="text"
+                  class="input-form lock"
+                  value="อบต. สันป่าตอง"
+                  readonly
+                />
+                <i class="fa fas fa-lock icons-in-input"></i>
+              </div>
+              <div class="input-group" style="width: 50%">
+                <input
+                  type="text"
+                  class="input-form select"
+                  value="หมู่ที่ 5"
+                  readonly
+                />
+                <i class="fa fa-chevron-down icons-in-input"></i>
+              </div>
             </div>
-            <div class="map_header_btn">
-            </div>
+          </div>
         </div>
-        <div class="content">
-            <div class="title-bar visit-title">
-                <img  class="img-title" src="img/menu_button_visit.png">
-                <div>
-                    <h2>ออกเยี่ยม</h2>
-                    <p>ติดตามสุขภาพของผู้สูงอายุ</p>
-                </div>
+        <div class="sort-bar">
+          <h4>จำนวนทั้งหมด <span style="color: #6f63fd">18 คน</span></h4>
+          <button class="btn-sort">
+            <p>
+              จัดเรียง &nbsp;
+              <img src="img/icon_sort.png" width="13" height="19" alt="" />
+            </p>
+          </button>
+        </div>
+        <div class="list-header">
+          <h2>
+            <i class="fa fa-suitcase" style="font-size: 18px"></i>
+            &nbsp;รอการออกเยี่ยม
+          </h2>
+          <h4>...กำลังรอยู่ 8 คน</h4>
+        </div>
+        <ul class="contact_items">
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
             </div>
-            <div class="collapse-filter">
-                <div class="collapse-filter-header">
-                    <p> <img src="img/contact_icon_head.png" width="20" height="20" >   &nbsp; ตรวจสอบพื้นที่ดูแล เพื่อเลือกรายชื่อ </p>
-                    <i class="fa fa-chevron-down toggle"></i>
-                </div>
-                <div class="collapse-filter-content">
-                    <div class="input-group">
-                        <input type="text" class="input-form lock" value="จังหวัด มหาสารคาม" readonly>
-                        <i class="fa fas fa-lock icons-in-input" ></i>
-                    </div>
+            <div class="card-footer">
+              <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
+              <span class="status inprogress-evaluate"
+                ><p>กำลังประเมิน...</p></span
+              >
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status wait-for-evaluate"><p>รอประเมิน...</p></span>
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+        </ul>
+        <div class="list-header">
+          <h2>
+            <i class="fa fa-suitcase" style="font-size: 18px"></i>
+            &nbsp;ออกเยี่ยมแล้ว
+          </h2>
+          <h4 class="visited">จำนวน 3 คน</h4>
+        </div>
+        <ul class="contact_items">
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="footer">
+        <div class="footer_item active menu_home_page">
+          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
+        </div>
+        <div class="footer_item menu_contact_page">
+          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
+        </div>
+        <div class="footer_item menu_map_page">
+          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
+        </div>
+        <div class="footer_item menu_news_page">
+          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
+        </div>
+        <div class="footer_item menu_analytics_page">
+          <i class="fa fa-database footer_menu"></i><br /><span
+            >สถิติสำรวจ</span
+          >
+        </div>
+      </div>
+      <div id="modal-visit-detail" class="modal">
+        <div class="modal-container">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <h1 id="visit_recommend">รายชื่อแนะนำ</h1>
+          <img class="thumbnail" src="img/older.png" />
+          <h3 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h3>
+          <h5 class="age"><i class="fa fa-user-o"></i> อายุ 65 ปี, 3 เดือน</h5>
+          <p class="distant">
+            <i class="fa fa-flag-o"></i> ระยะห่างจากคุณ
+            <span style="color: #6f63fd">0.8 กิโลเมตร</span>
+          </p>
+          <div class="status-card">
+            <div class="status-card-header">
+              <p><b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
+            </div>
+            <div class="status-card-body ready-for-visit">
+              <div class="status-card-body-content">
+                <h3>เริ่มออกเยี่ยม</h3>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  ยังไม่มีข้อมูล
+                </p>
+              </div>
+              <div class="status-card-body-btn">
+                <i class="fa fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="modal-sort-visit" class="modal">
+        <div class="modal-container" style="text-align: left">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <div class="sort-header">
+            <h1 style="color: #010979">การเรียงรายชื่อ</h1>
+            <p style="font-size: 20px; color: #3b3d48">
+              ท่านสามารถเลือกได้ตามต้องการ
+            </p>
+          </div>
+          <ul class="sort-list">
+            <li>
+              <input type="radio" name="visit-sort" id="visit-sort-1" checked />
 
-                    <div style="display: flex;">
-                        <div class="input-group" style="width: 50%;margin-right: 0.5em">
-                            <input type="text" class="input-form lock"  value="อบต. สันป่าตอง" readonly>
-                            <i class="fa fas fa-lock icons-in-input"></i>
-                        </div>
-                        <div class="input-group" style="width: 50%;">
-                            <input type="text" class="input-form select" value="หมู่ที่ 5" readonly>
-                            <i class="fa fa-chevron-down icons-in-input" ></i>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="sort-bar">
-                <h4>จำนวนทั้งหมด <span style="color:#6F63FD">18 คน</span></h4>
-                <button class="btn-sort"><p>จัดเรียง &nbsp; <img src="img/icon_sort.png" width="13" height="19" alt=""></p>
-                </button>
-            </div>
-            <div class="list-header">
-                <h2><i class="fa fa-suitcase" style="font-size: 18px;"></i> &nbsp;รอการออกเยี่ยม</h2>
-                <h4>...กำลังรอยู่ 8 คน</h4>
-            </div>
-            <ul class="contact_items">
-                <li>
-                    <div class="card-body">
-                        <img class="card-body-thumbnail" src="img/older.png">
-                        <div class="card-body-content">
-                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
-                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
-                        </div>
-                        <i class="right-icon fa fa-chevron-right" ></i>
-                    </div>
-                    <div class="card-footer">
-                        <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
-                        <span class="status inprogress-evaluate"><p>กำลังประเมิน...</p></span>
-                        <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
-                    </div>
-                </li>
-                <li >
-                    <div class="card-body">
-                        <img class="card-body-thumbnail" src="img/older.png">
-                        <div class="card-body-content">
-                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
-                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
-                        </div>
-                        <i class="right-icon fa fa-chevron-right" ></i>
-                    </div>
-                    <div class="card-footer">
-                        <span class="status status1 healthy"><p>แข็งแรง</p> </span>
-                        <span class="status wait-for-evaluate"><p>รอประเมิน...</p></span>
-                        <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
-                    </div>
-                </li>
-                <li >
-                    <div class="card-body">
-                        <img class="card-body-thumbnail" src="img/older.png">
-                        <div class="card-body-content">
-                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
-                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
-                        </div>
-                        <i class="right-icon fa fa-chevron-right" ></i>
-                    </div>
-                    <div class="card-footer">
-                        <span class="status status1 healthy"><p>แข็งแรง</p> </span>
-                        <span class="status evaluated"><p>ประเมินแล้ว</p></span>
-                        <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
-                    </div>
-                </li>
-            </ul>
-            <div class="list-header">
-                <h2><i class="fa fa-suitcase" style="font-size: 18px;"></i> &nbsp;ออกเยี่ยมแล้ว</h2>
-                <h4 class="visited">จำนวน 3 คน</h4>
-            </div>
-            <ul class="contact_items">
-                <li >
-                    <div class="card-body">
-                        <img class="card-body-thumbnail" src="img/older.png">
-                        <div class="card-body-content">
-                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
-                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
-                        </div>
-                        <i class="right-icon fa fa-chevron-right" ></i>
-                    </div>
-                    <div class="card-footer">
-                        <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
-                        <span class="status evaluated"><p>ประเมินแล้ว</p></span>
-                        <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
-                    </div>
-                </li>
-                <li >
-                    <div class="card-body">
-                        <img class="card-body-thumbnail" src="img/older.png">
-                        <div class="card-body-content">
-                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
-                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
-                        </div>
-                        <i class="right-icon fa fa-chevron-right" ></i>
-                    </div>
-                    <div class="card-footer">
-                        <span class="status status1 healthy"><p>แข็งแรง</p> </span>
-                        <span class="status evaluated"><p>ประเมินแล้ว</p></span>
-                        <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
-                    </div>
-                </li>
-                <li >
-                    <div class="card-body">
-                        <img class="card-body-thumbnail" src="img/older.png">
-                        <div class="card-body-content">
-                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                            <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
-                            <p  class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
-                        </div>
-                        <i class="right-icon fa fa-chevron-right" ></i>
-                    </div>
-                    <div class="card-footer">
-                        <span class="status status1 healthy"><p>แข็งแรง</p> </span>
-                        <span class="status evaluated"><p>ประเมินแล้ว</p></span>
-                        <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
-                    </div>
-                </li>
-            </ul>
+              <label for="visit-sort-1">แสดงรายชื่อทั้งหมด</label>
+            </li>
+            <li>
+              <input type="radio" name="visit-sort" id="visit-sort-2" />
+              <label for="visit-sort-2">รายชื่อที่ยังไม่ออกเยี่ยม</label>
+            </li>
+            <li>
+              <input type="radio" name="visit-sort" id="visit-sort-3" />
+              <label for="visit-sort-3">รายชื่อที่ออกเยี่ยมแล้ว</label>
+            </li>
+            <li>
+              <input type="radio" name="visit-sort" id="visit-sort-4" />
+              <label for="visit-sort-4">แสดงตามระยะทางใกล้สุด</label>
+            </li>
+          </ul>
         </div>
-        <div class="footer">
-            <div class="footer_item active menu_home_page"><i
-                    class="fa fa-home footer_menu"></i><br><span>หน้าหลัก</span></div>
-            <div class="footer_item menu_contact_page"><i class="fa fa-user footer_menu"></i><br><span>รายชื่อ</span>
-            </div>
-            <div class="footer_item menu_map_page"><i class="fa fa-map footer_menu"></i><br><span>แผนที่</span></div>
-            <div class="footer_item menu_news_page"><i class="fa fa-newspaper footer_menu"></i><br><span>ข่าวสาร</span>
-            </div>
-            <div class="footer_item menu_analytics_page"><i
-                    class="fa fa-database footer_menu"></i><br><span>สถิติสำรวจ</span></div>
-        </div>
-        <div id="modal-visit-detail" class="modal">
-            <div class="modal-container">
-                <div class="modal-dismiss">  <i  class="fa fa-times"></i></div>
-                <h1 id="visit_recommend" >รายชื่อแนะนำ</h1>
-                <img class="thumbnail" src="img/older.png">
-                <h3 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h3>
-                <h5 class="age"><i class="fa fa-user-o"></i> อายุ 65 ปี, 3 เดือน</h5>
-                <p  class="distant"><i class="fa fa-flag-o"></i> ระยะห่างจากคุณ <span style="color: #6F63FD;">0.8 กิโลเมตร</span></p>
-                <div class="status-card">
-                    <div class="status-card-header">
-                        <p> <b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
-                    </div>
-                    <div class="status-card-body ready-for-visit">
-    
-                        <div class="status-card-body-content">
-                            <h3>เริ่มออกเยี่ยม</h3>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> ยังไม่มีข้อมูล</p>
-                           
-                        </div>
-                        <div class="status-card-body-btn">
-                            <i class="fa fa-chevron-right" ></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="modal-sort-visit" class="modal">
-            <div class="modal-container" style="text-align: left">
-                <div class="modal-dismiss">  <i  class="fa fa-times"></i></div>
-                <div class="sort-header">
-                    <h1 style="color: #010979;">การเรียงรายชื่อ</h1>
-                    <p style="font-size:20px;color: #3B3D48">ท่านสามารถเลือกได้ตามต้องการ</p>
-                </div>
-                <ul class="sort-list">
-                    <li>
-                        <input type="radio" name="visit-sort" id="visit-sort-1" checked>
-                      
-                        <label for="visit-sort-1">แสดงรายชื่อทั้งหมด</label>
-                   
-                    </li>
-                    <li>
-                        <input type="radio" name="visit-sort" id="visit-sort-2">
-                        <label for="visit-sort-2">รายชื่อที่ยังไม่ออกเยี่ยม</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="visit-sort" id="visit-sort-3">
-                        <label for="visit-sort-3">รายชื่อที่ออกเยี่ยมแล้ว</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="visit-sort" id="visit-sort-4">
-                        <label for="visit-sort-4">แสดงตามระยะทางใกล้สุด</label>
-                    </li>
-                </ul>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="pages" id="visit_detail_page">
-        <div class="header visit_detail">
-            <div class="back_header_btn white" >
-                
-            </div>
-            <div class="title">
-                ออกเยี่ยม
-            </div>
-            <div class="map_header_btn white">
-            </div>
+      <div class="header visit_detail">
+        <div class="back_header_btn white"></div>
+        <div class="title">ออกเยี่ยม</div>
+        <div class="map_header_btn white"></div>
+      </div>
+
+      <div class="content">
+        <div class="visit_status_bar">
+          สถานะสุขภาพปัจจุบัน : &nbsp;
+          <i class="fa fa-heart" style="color: #f5c761"></i
+          ><span style="color: #fdebc1"> &nbsp; "ติดบ้าน" </span>
         </div>
-       
-        <div class="content">
-            <div class="visit_status_bar">
-                สถานะสุขภาพปัจจุบัน :    &nbsp; <i class="fa fa-heart" style="color: #F5C761;"></i><span style="color: #FDEBC1;"> &nbsp;  "ติดบ้าน" </span>
+        <div style="height: 39px"></div>
+        <ul class="contact_items">
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">
+                  <i class="fa fa-user-o"></i> อายุ 65 ปี, 3 เดือน
+                </h5>
+                <p class="address">
+                  <i class="fa fa-user-o"></i> 99/8 หมู่ 5 ตำบลสันป่าตอง
+                </p>
+              </div>
             </div>
-            <div style="height: 39px;"></div>
-            <ul class="contact_items">
-                <li>
-                    <div class="card-body">
-                        <img class="card-body-thumbnail" src="img/older.png">
-                        <div class="card-body-content">
-                            <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                            <h5 class="age"><i class="fa fa-user-o"></i> อายุ 65 ปี, 3 เดือน</h5>
-                            <p  class="address"><i class="fa fa-user-o"></i> 99/8 หมู่ 5 ตำบลสันป่าตอง</p>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="status status1 healthy"><p>แข็งแรง</p> </span>
-                        <span class="status evaluated"><p>ประเมินแล้ว</p></span>
-                        <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
-                    </div>
-                </li>
-            </ul>
-            <div class="list_item_group">
-                <div class="history_month_label">
-                    <svg  width="15.177" height="20.546" viewBox="0 0 15.177 20.546"><defs><style>.a{fill:#3b3d48;}</style></defs><g transform="translate(-1267.095 -933.068)"><g transform="translate(1267.095 933.068)"><path class="a" d="M1281.239,945.79h-3.564a1.648,1.648,0,0,1,0,2.065h2.532v13.112h-11.047V947.855h2.222a1.648,1.648,0,0,1,0-2.065h-3.254a1.032,1.032,0,0,0-1.032,1.033V962a1.032,1.032,0,0,0,1.032,1.032h13.112a1.032,1.032,0,0,0,1.033-1.032V946.823A1.032,1.032,0,0,0,1281.239,945.79Z" transform="translate(-1267.095 -942.486)"/><path class="a" d="M1284.627,940.089h-3.717a2.684,2.684,0,0,1-.62-5.3V934.1a1.032,1.032,0,0,1,1.032-1.033h3.3a1.033,1.033,0,0,1,1.032,1.033v.826a2.685,2.685,0,0,1-1.032,5.162Zm-3.717-3.3a.619.619,0,1,0,0,1.239h3.717a.619.619,0,0,0,0-1.239,1.032,1.032,0,0,1-1.033-1.032v-.62h-1.239v.62a1.032,1.032,0,0,1-1.032,1.032Z" transform="translate(-1275.335 -933.068)"/></g><g transform="translate(1270.708 944.633)"><g transform="translate(0 3.376)"><path class="a" d="M1287.823,992.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z" transform="translate(-1281.009 -990.599)"/></g><g transform="translate(0 0)"><path class="a" d="M1287.823,979.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z" transform="translate(-1281.009 -977.599)"/></g></g></g></svg>
-                    &nbsp; ประวัติ เดือนมิถุนายน
-                </div>
-                <div class="visit_card current">
-                    <div class="card_header">
-                        <p> <b>สถานะออกเยี่ยม :</b> ครั้งที่ 3 (มิถุนายน 2564)</p>
-                    </div>
-                    <div class="card_body">
-                        <div class="card_body_left">
-                            <div class="circle1">
-                                <div class="circle2">
-                                    <div class="circle3">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_body_center">
-                            <p>ออกเยี่ยมสำเร็จ (ล่าสุด)</p>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
-                            <div class="alert_message">
-                                <svg  width="9" height="14" viewBox="0 0 15.177 20.546"><defs></defs><g transform="translate(-1267.095 -933.068)"><g transform="translate(1267.095 933.068)"><path class="fill" d="M1281.239,945.79h-3.564a1.648,1.648,0,0,1,0,2.065h2.532v13.112h-11.047V947.855h2.222a1.648,1.648,0,0,1,0-2.065h-3.254a1.032,1.032,0,0,0-1.032,1.033V962a1.032,1.032,0,0,0,1.032,1.032h13.112a1.032,1.032,0,0,0,1.033-1.032V946.823A1.032,1.032,0,0,0,1281.239,945.79Z" transform="translate(-1267.095 -942.486)"/><path class="fill" d="M1284.627,940.089h-3.717a2.684,2.684,0,0,1-.62-5.3V934.1a1.032,1.032,0,0,1,1.032-1.033h3.3a1.033,1.033,0,0,1,1.032,1.033v.826a2.685,2.685,0,0,1-1.032,5.162Zm-3.717-3.3a.619.619,0,1,0,0,1.239h3.717a.619.619,0,0,0,0-1.239,1.032,1.032,0,0,1-1.033-1.032v-.62h-1.239v.62a1.032,1.032,0,0,1-1.032,1.032Z" transform="translate(-1275.335 -933.068)"/></g><g transform="translate(1270.708 944.633)"><g transform="translate(0 3.376)"><path class="fill" d="M1287.823,992.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z" transform="translate(-1281.009 -990.599)"/></g><g transform="translate(0 0)"><path class="fill" d="M1287.823,979.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z" transform="translate(-1281.009 -977.599)"/></g></g></g></svg>
-                                มีปัญหาที่ต้องการแก้ไข
-                            </div>
-                        </div>
-                        <div class="card_body_right">
-                            <div class="status-card-body-btn">
-                                <i class="fa fa-chevron-right" ></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="visit_card">
-                    <div class="card_header">
-                        <p> <b>สถานะออกเยี่ยม :</b> ครั้งที่ 2 (มิถุนายน 2564)</p>
-                    </div>
-                    <div class="card_body">
-                        <div class="card_body_left">
-                            <div class="circle1">
-                                <div class="circle2">
-                                    <div class="circle3">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_body_center">
-                            <p>ออกเยี่ยมสำเร็จ</p>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
-                            
-                        </div>
-                        <div class="card_body_right">
-                            <div class="status-card-body-btn">
-                                <i class="fa fa-chevron-right" ></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="visit_card">
-                    <div class="card_header">
-                        <p> <b>สถานะออกเยี่ยม :</b> ครั้งที่ 1 (มิถุนายน 2564)</p>
-                    </div>
-                    <div class="card_body">
-                        <div class="card_body_left">
-                            <div class="circle1">
-                                <div class="circle2">
-                                    <div class="circle3">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_body_center">
-                            <p>ออกเยี่ยมสำเร็จ</p>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
-                            
-                        </div>
-                        <div class="card_body_right">
-                            
-                                <i class="fa fa-chevron-right" ></i>
-                            
-                        </div>
-                    </div>
-                </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
             </div>
-            <div class="list_item_group">
-                <div class="history_month_label">
-                    <svg  width="15.177" height="20.546" viewBox="0 0 15.177 20.546"><defs><style>.a{fill:#3b3d48;}</style></defs><g transform="translate(-1267.095 -933.068)"><g transform="translate(1267.095 933.068)"><path class="a" d="M1281.239,945.79h-3.564a1.648,1.648,0,0,1,0,2.065h2.532v13.112h-11.047V947.855h2.222a1.648,1.648,0,0,1,0-2.065h-3.254a1.032,1.032,0,0,0-1.032,1.033V962a1.032,1.032,0,0,0,1.032,1.032h13.112a1.032,1.032,0,0,0,1.033-1.032V946.823A1.032,1.032,0,0,0,1281.239,945.79Z" transform="translate(-1267.095 -942.486)"/><path class="a" d="M1284.627,940.089h-3.717a2.684,2.684,0,0,1-.62-5.3V934.1a1.032,1.032,0,0,1,1.032-1.033h3.3a1.033,1.033,0,0,1,1.032,1.033v.826a2.685,2.685,0,0,1-1.032,5.162Zm-3.717-3.3a.619.619,0,1,0,0,1.239h3.717a.619.619,0,0,0,0-1.239,1.032,1.032,0,0,1-1.033-1.032v-.62h-1.239v.62a1.032,1.032,0,0,1-1.032,1.032Z" transform="translate(-1275.335 -933.068)"/></g><g transform="translate(1270.708 944.633)"><g transform="translate(0 3.376)"><path class="a" d="M1287.823,992.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z" transform="translate(-1281.009 -990.599)"/></g><g transform="translate(0 0)"><path class="a" d="M1287.823,979.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z" transform="translate(-1281.009 -977.599)"/></g></g></g></svg>
-                    &nbsp; ประวัติ เดือนพฤษภาคม
-                </div>
-                <div class="visit_card">
-                    <div class="card_header">
-                        <p> <b>สถานะออกเยี่ยม :</b> ครั้งที่ 3 (มิถุนายน 2564)</p>
-                    </div>
-                    <div class="card_body">
-                        <div class="card_body_left">
-                            <div class="circle1">
-                                <div class="circle2">
-                                    <div class="circle3">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_body_center">
-                            <p>ออกเยี่ยมสำเร็จ (ล่าสุด)</p>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
-                            
-                        </div>
-                        <div class="card_body_right">
-                            <div class="status-card-body-btn">
-                                <i class="fa fa-chevron-right" ></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="visit_card">
-                    <div class="card_header">
-                        <p> <b>สถานะออกเยี่ยม :</b> ครั้งที่ 2 (มิถุนายน 2564)</p>
-                    </div>
-                    <div class="card_body">
-                        <div class="card_body_left">
-                            <div class="circle1">
-                                <div class="circle2">
-                                    <div class="circle3">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_body_center">
-                            <p>ออกเยี่ยมสำเร็จ</p>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
-                            
-                        </div>
-                        <div class="card_body_right">
-                            <div class="status-card-body-btn">
-                                <i class="fa fa-chevron-right" ></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="visit_card">
-                    <div class="card_header">
-                        <p> <b>สถานะออกเยี่ยม :</b> ครั้งที่ 1 (มิถุนายน 2564)</p>
-                    </div>
-                    <div class="card_body">
-                        <div class="card_body_left">
-                            <div class="circle1">
-                                <div class="circle2">
-                                    <div class="circle3">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_body_center">
-                            <p>ออกเยี่ยมสำเร็จ</p>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
-                            
-                        </div>
-                        <div class="card_body_right">
-                            
-                                <i class="fa fa-chevron-right" ></i>
-                            
-                        </div>
-                    </div>
-                </div>
+          </li>
+        </ul>
+        <div class="list_item_group">
+          <div class="history_month_label">
+            <svg width="15.177" height="20.546" viewBox="0 0 15.177 20.546">
+              <defs>
+                <style>
+                  .a {
+                    fill: #3b3d48;
+                  }
+                </style>
+              </defs>
+              <g transform="translate(-1267.095 -933.068)">
+                <g transform="translate(1267.095 933.068)">
+                  <path
+                    class="a"
+                    d="M1281.239,945.79h-3.564a1.648,1.648,0,0,1,0,2.065h2.532v13.112h-11.047V947.855h2.222a1.648,1.648,0,0,1,0-2.065h-3.254a1.032,1.032,0,0,0-1.032,1.033V962a1.032,1.032,0,0,0,1.032,1.032h13.112a1.032,1.032,0,0,0,1.033-1.032V946.823A1.032,1.032,0,0,0,1281.239,945.79Z"
+                    transform="translate(-1267.095 -942.486)"
+                  />
+                  <path
+                    class="a"
+                    d="M1284.627,940.089h-3.717a2.684,2.684,0,0,1-.62-5.3V934.1a1.032,1.032,0,0,1,1.032-1.033h3.3a1.033,1.033,0,0,1,1.032,1.033v.826a2.685,2.685,0,0,1-1.032,5.162Zm-3.717-3.3a.619.619,0,1,0,0,1.239h3.717a.619.619,0,0,0,0-1.239,1.032,1.032,0,0,1-1.033-1.032v-.62h-1.239v.62a1.032,1.032,0,0,1-1.032,1.032Z"
+                    transform="translate(-1275.335 -933.068)"
+                  />
+                </g>
+                <g transform="translate(1270.708 944.633)">
+                  <g transform="translate(0 3.376)">
+                    <path
+                      class="a"
+                      d="M1287.823,992.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z"
+                      transform="translate(-1281.009 -990.599)"
+                    />
+                  </g>
+                  <g transform="translate(0 0)">
+                    <path
+                      class="a"
+                      d="M1287.823,979.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z"
+                      transform="translate(-1281.009 -977.599)"
+                    />
+                  </g>
+                </g>
+              </g>
+            </svg>
+            &nbsp; ประวัติ เดือนมิถุนายน
+          </div>
+          <div class="visit_card current">
+            <div class="card_header">
+              <p><b>สถานะออกเยี่ยม :</b> ครั้งที่ 3 (มิถุนายน 2564)</p>
             </div>
-           
+            <div class="card_body">
+              <div class="card_body_left">
+                <div class="circle1">
+                  <div class="circle2">
+                    <div class="circle3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card_body_center">
+                <p>ออกเยี่ยมสำเร็จ (ล่าสุด)</p>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                  18 ม.ค. 64, เวลา 14:28 น.
+                </p>
+                <div class="alert_message">
+                  <svg width="9" height="14" viewBox="0 0 15.177 20.546">
+                    <defs></defs>
+                    <g transform="translate(-1267.095 -933.068)">
+                      <g transform="translate(1267.095 933.068)">
+                        <path
+                          class="fill"
+                          d="M1281.239,945.79h-3.564a1.648,1.648,0,0,1,0,2.065h2.532v13.112h-11.047V947.855h2.222a1.648,1.648,0,0,1,0-2.065h-3.254a1.032,1.032,0,0,0-1.032,1.033V962a1.032,1.032,0,0,0,1.032,1.032h13.112a1.032,1.032,0,0,0,1.033-1.032V946.823A1.032,1.032,0,0,0,1281.239,945.79Z"
+                          transform="translate(-1267.095 -942.486)"
+                        />
+                        <path
+                          class="fill"
+                          d="M1284.627,940.089h-3.717a2.684,2.684,0,0,1-.62-5.3V934.1a1.032,1.032,0,0,1,1.032-1.033h3.3a1.033,1.033,0,0,1,1.032,1.033v.826a2.685,2.685,0,0,1-1.032,5.162Zm-3.717-3.3a.619.619,0,1,0,0,1.239h3.717a.619.619,0,0,0,0-1.239,1.032,1.032,0,0,1-1.033-1.032v-.62h-1.239v.62a1.032,1.032,0,0,1-1.032,1.032Z"
+                          transform="translate(-1275.335 -933.068)"
+                        />
+                      </g>
+                      <g transform="translate(1270.708 944.633)">
+                        <g transform="translate(0 3.376)">
+                          <path
+                            class="fill"
+                            d="M1287.823,992.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z"
+                            transform="translate(-1281.009 -990.599)"
+                          />
+                        </g>
+                        <g transform="translate(0 0)">
+                          <path
+                            class="fill"
+                            d="M1287.823,979.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z"
+                            transform="translate(-1281.009 -977.599)"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  มีปัญหาที่ต้องการแก้ไข
+                </div>
+              </div>
+              <div class="card_body_right">
+                <div class="status-card-body-btn">
+                  <i class="fa fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="visit_card">
+            <div class="card_header">
+              <p><b>สถานะออกเยี่ยม :</b> ครั้งที่ 2 (มิถุนายน 2564)</p>
+            </div>
+            <div class="card_body">
+              <div class="card_body_left">
+                <div class="circle1">
+                  <div class="circle2">
+                    <div class="circle3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card_body_center">
+                <p>ออกเยี่ยมสำเร็จ</p>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                  18 ม.ค. 64, เวลา 14:28 น.
+                </p>
+              </div>
+              <div class="card_body_right">
+                <div class="status-card-body-btn">
+                  <i class="fa fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="visit_card">
+            <div class="card_header">
+              <p><b>สถานะออกเยี่ยม :</b> ครั้งที่ 1 (มิถุนายน 2564)</p>
+            </div>
+            <div class="card_body">
+              <div class="card_body_left">
+                <div class="circle1">
+                  <div class="circle2">
+                    <div class="circle3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card_body_center">
+                <p>ออกเยี่ยมสำเร็จ</p>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                  18 ม.ค. 64, เวลา 14:28 น.
+                </p>
+              </div>
+              <div class="card_body_right">
+                <i class="fa fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="footer">
-            <div class="footerbar"></div>
-            <button class="btn_create_visit">ออกเยี่ยมใหม่</button>
+        <div class="list_item_group">
+          <div class="history_month_label">
+            <svg width="15.177" height="20.546" viewBox="0 0 15.177 20.546">
+              <defs>
+                <style>
+                  .a {
+                    fill: #3b3d48;
+                  }
+                </style>
+              </defs>
+              <g transform="translate(-1267.095 -933.068)">
+                <g transform="translate(1267.095 933.068)">
+                  <path
+                    class="a"
+                    d="M1281.239,945.79h-3.564a1.648,1.648,0,0,1,0,2.065h2.532v13.112h-11.047V947.855h2.222a1.648,1.648,0,0,1,0-2.065h-3.254a1.032,1.032,0,0,0-1.032,1.033V962a1.032,1.032,0,0,0,1.032,1.032h13.112a1.032,1.032,0,0,0,1.033-1.032V946.823A1.032,1.032,0,0,0,1281.239,945.79Z"
+                    transform="translate(-1267.095 -942.486)"
+                  />
+                  <path
+                    class="a"
+                    d="M1284.627,940.089h-3.717a2.684,2.684,0,0,1-.62-5.3V934.1a1.032,1.032,0,0,1,1.032-1.033h3.3a1.033,1.033,0,0,1,1.032,1.033v.826a2.685,2.685,0,0,1-1.032,5.162Zm-3.717-3.3a.619.619,0,1,0,0,1.239h3.717a.619.619,0,0,0,0-1.239,1.032,1.032,0,0,1-1.033-1.032v-.62h-1.239v.62a1.032,1.032,0,0,1-1.032,1.032Z"
+                    transform="translate(-1275.335 -933.068)"
+                  />
+                </g>
+                <g transform="translate(1270.708 944.633)">
+                  <g transform="translate(0 3.376)">
+                    <path
+                      class="a"
+                      d="M1287.823,992.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z"
+                      transform="translate(-1281.009 -990.599)"
+                    />
+                  </g>
+                  <g transform="translate(0 0)">
+                    <path
+                      class="a"
+                      d="M1287.823,979.677h-5.782a1.039,1.039,0,0,1,0-2.078h5.782a1.039,1.039,0,0,1,0,2.078Z"
+                      transform="translate(-1281.009 -977.599)"
+                    />
+                  </g>
+                </g>
+              </g>
+            </svg>
+            &nbsp; ประวัติ เดือนพฤษภาคม
+          </div>
+          <div class="visit_card">
+            <div class="card_header">
+              <p><b>สถานะออกเยี่ยม :</b> ครั้งที่ 3 (มิถุนายน 2564)</p>
+            </div>
+            <div class="card_body">
+              <div class="card_body_left">
+                <div class="circle1">
+                  <div class="circle2">
+                    <div class="circle3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card_body_center">
+                <p>ออกเยี่ยมสำเร็จ (ล่าสุด)</p>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                  18 ม.ค. 64, เวลา 14:28 น.
+                </p>
+              </div>
+              <div class="card_body_right">
+                <div class="status-card-body-btn">
+                  <i class="fa fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="visit_card">
+            <div class="card_header">
+              <p><b>สถานะออกเยี่ยม :</b> ครั้งที่ 2 (มิถุนายน 2564)</p>
+            </div>
+            <div class="card_body">
+              <div class="card_body_left">
+                <div class="circle1">
+                  <div class="circle2">
+                    <div class="circle3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card_body_center">
+                <p>ออกเยี่ยมสำเร็จ</p>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                  18 ม.ค. 64, เวลา 14:28 น.
+                </p>
+              </div>
+              <div class="card_body_right">
+                <div class="status-card-body-btn">
+                  <i class="fa fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="visit_card">
+            <div class="card_header">
+              <p><b>สถานะออกเยี่ยม :</b> ครั้งที่ 1 (มิถุนายน 2564)</p>
+            </div>
+            <div class="card_body">
+              <div class="card_body_left">
+                <div class="circle1">
+                  <div class="circle2">
+                    <div class="circle3">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card_body_center">
+                <p>ออกเยี่ยมสำเร็จ</p>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                  18 ม.ค. 64, เวลา 14:28 น.
+                </p>
+              </div>
+              <div class="card_body_right">
+                <i class="fa fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_visit">ออกเยี่ยมใหม่</button>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page">
+      <div class="header">
+        <div class="back_header_btn"></div>
+        <div class="map_header_btn"></div>
+      </div>
+      <div class="content">
+        <div class="title-bar evaluate-title">
+          <img class="img-title" src="img/menu_button_evaluate.png" />
+          <div>
+            <h2>ประเมินสุขภาพ</h2>
+            <p>ติดตามสุขภาพของผู้สูงอายุ</p>
+          </div>
+        </div>
+        <div class="collapse-filter">
+          <div class="collapse-filter-header">
+            <p>
+              <img src="img/contact_icon_head.png" width="20" height="20" />
+              &nbsp; ตรวจสอบพื้นที่ดูแล เพื่อเลือกรายชื่อ
+            </p>
+            <i class="fa fa-chevron-down toggle"></i>
+          </div>
+          <div class="collapse-filter-content">
+            <div class="input-group">
+              <input
+                type="text"
+                class="input-form lock"
+                value="จังหวัด มหาสารคาม"
+                readonly
+              />
+              <i class="fa fas fa-lock icons-in-input"></i>
+            </div>
+
+            <div style="display: flex">
+              <div class="input-group" style="width: 50%; margin-right: 0.5em">
+                <input
+                  type="text"
+                  class="input-form lock"
+                  value="อบต. สันป่าตอง"
+                  readonly
+                />
+                <i class="fa fas fa-lock icons-in-input"></i>
+              </div>
+              <div class="input-group" style="width: 50%">
+                <input
+                  type="text"
+                  class="input-form select"
+                  value="หมู่ที่ 5"
+                  readonly
+                />
+                <i class="fa fa-chevron-down icons-in-input"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sort-bar">
+          <h4>จำนวนทั้งหมด <span style="color: #6f63fd">18 คน</span></h4>
+          <button class="btn-sort">
+            <p>
+              จัดเรียง &nbsp;
+              <img src="img/icon_sort.png" width="13" height="19" alt="" />
+            </p>
+          </button>
+        </div>
+        <div class="list-header">
+          <h2>
+            <i class="fa fa-calendar-o" style="font-size: 18px"></i>
+            &nbsp;รอประเมินสุขภาพ
+          </h2>
+          <h4>...กำลังรอยู่ 5 คน</h4>
+        </div>
+        <ul class="contact_items">
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
+              <span class="status inprogress-evaluate"
+                ><p>กำลังประเมิน...</p></span
+              >
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
+              <span class="status inprogress-evaluate"
+                ><p>กำลังประเมิน...</p></span
+              >
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status wait-for-evaluate"><p>รอประเมิน...</p></span>
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+        </ul>
+        <div class="list-header">
+          <h2>
+            <i class="fa fa-calendar-o" style="font-size: 18px"></i>
+            &nbsp;ประเมินแล้ว
+          </h2>
+          <h4 class="visited">จำนวน 3 คน</h4>
+        </div>
+        <ul class="contact_items">
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status visited"><p>ออกเยี่ยมแล้ว</p></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="modal-sort-evaluate" class="modal">
+        <div class="modal-container" style="text-align: left">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <div class="sort-header">
+            <h1 style="color: #010979">การเรียงรายชื่อ</h1>
+            <p style="font-size: 20px; color: #3b3d48">
+              ท่านสามารถเลือกได้ตามต้องการ
+            </p>
+          </div>
+          <ul class="sort-list">
+            <li>
+              <input
+                type="radio"
+                name="evaluate-sort"
+                id="evaluate-sort-1"
+                checked
+              />
+
+              <label for="evaluate-sort-1">แสดงรายชื่อทั้งหมด</label>
+            </li>
+            <li>
+              <input type="radio" name="evaluate-sort" id="evaluate-sort-2" />
+              <label for="evaluate-sort-2">รายชื่อที่ยังไม่ประเมิน</label>
+            </li>
+            <li>
+              <input type="radio" name="evaluate-sort" id="evaluate-sort-3" />
+              <label for="evaluate-sort-3">รายชื่อที่ประเมินแล้ว</label>
+            </li>
+            <li>
+              <input type="radio" name="evaluate-sort" id="evaluate-sort-4" />
+              <label for="evaluate-sort-4">แสดงตามระยะทางใกล้สุด</label>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="pages step-app" id="visit_form_page">
-        <div class="header">
-            <div class="back_header_btn white" >
-                
+      <div class="header">
+        <div class="back_header_btn white"></div>
+        <ul class="step-steps">
+          <p>
+            สถานะ&nbsp;
+            <li data-step-target="step1"></li>
+            <li data-step-target="step2"></li>
+            <li data-step-target="step3"></li>
+            <li data-step-target="step4"></li>
+            <li data-step-target="step5"></li>
+            <li data-step-target="step6"></li>
+            &nbsp; <span class="current_step_index_visit_form">1</span>/6
+          </p>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="step-content">
+          <div class="step-tab-panel" data-step="step1">
+            <div class="visit_section_title">
+              <div class="index_title">1</div>
+              <div class="section_label">
+                สอบถามโรคประจำตัว ของผู้สูงอายุ มีหรือไม่ ?
+              </div>
             </div>
-            <ul class="step-steps">
-               <p>สถานะ&nbsp;
-                <li data-step-target="step1"></li>
-                <li data-step-target="step2"></li>
-                <li data-step-target="step3"></li>
-                <li data-step-target="step4"></li>
-                <li data-step-target="step5"></li>
-                <li data-step-target="step6"></li>
-                &nbsp; <span class="current_step_index_visit_form">1</span>/6
-            </p>
-            </ul>
+            <div class="visit_content">
+              <ul class="visit_form">
+                <li>
+                  <input
+                    type="radio"
+                    name="visit_section1"
+                    class="visit_section1"
+                    id="visit_section1_0"
+                    value="0"
+                  />
+                  <label for="visit_section1_0">ไม่มี</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="visit_section1"
+                    class="visit_section1"
+                    id="visit_section1_1"
+                    value="1"
+                  />
+                  <label for="visit_section1_1">มี (โปรดระบุ)</label>
+                </li>
+              </ul>
+              <input
+                type="text"
+                class="visit_form focus"
+                id="visit_section1_1_input"
+                placeholder="ระบุชื่อโรค"
+              />
+            </div>
+          </div>
+          <div class="step-tab-panel" data-step="step2">
+            <div class="visit_section_title">
+              <div class="index_title">2</div>
+              <div class="section_label">
+                ผู้ที่คอยดูแล และครอบครัว ของผู้สูงอายุ
+              </div>
+            </div>
+          </div>
+          <div class="step-tab-panel" data-step="step3">
+            <div class="visit_section_title">
+              <div class="index_title">3</div>
+              <div class="section_label">
+                สภาพร่างกาย และการ ใช้ชีวิตของผู้สูงอายุ
+              </div>
+            </div>
+          </div>
+          <div class="step-tab-panel" data-step="step4">
+            <div class="visit_section_title">
+              <div class="index_title">4</div>
+              <div class="section_label">
+                ประเมิน สภาพ จิตสังคม จิตวิญญาณของผู้สูงอายุ
+              </div>
+            </div>
+          </div>
+          <div class="step-tab-panel" data-step="step5">
+            <div class="visit_section_title">
+              <div class="index_title">5</div>
+              <div class="section_label">ประเมินสภาพแวดล้อม ของผู้สูงอายุ</div>
+            </div>
+          </div>
+          <div class="step-tab-panel" data-step="step6">
+            <div class="visit_section_title">
+              <div class="index_title">6</div>
+              <div class="section_label">
+                อสม. ให้คำแนะนำ หรือช่วยเหลือผู้สูงอายุ
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="content">
-                <div class="step-content">
-                    <div class="step-tab-panel" data-step="step1">
-                        <div class="visit_section_title">
-                            <div class="index_title"> 1 </div>
-                            <div class="section_label">สอบถามโรคประจำตัว ของผู้สูงอายุ มีหรือไม่ ?</div>
-                        </div>
-                        <div class="visit_content">
-                            <ul class="visit_form">
-                                <li>
-                                    <input type="radio" name="visit_section1" class="visit_section1" id="visit_section1_0" value="0">
-                                    <label for="visit_section1_0">ไม่มี</label>
-                                </li>
-                                <li>
-                                    <input type="radio" name="visit_section1" class="visit_section1" id="visit_section1_1" value="1">
-                                    <label for="visit_section1_1">มี (โปรดระบุ)</label>
-                                </li>
-                             
-                            </ul>
-                            <input type="text" class="visit_form focus" id="visit_section1_1_input" placeholder="ระบุชื่อโรค">
-                        </div>
-                    </div>
-                    <div class="step-tab-panel" data-step="step2">
-                        <div class="visit_section_title">
-                            <div class="index_title"> 2 </div>
-                            <div class="section_label">ผู้ที่คอยดูแล และครอบครัว ของผู้สูงอายุ</div>
-                        </div>
-                    </div>
-                    <div class="step-tab-panel" data-step="step3">
-                        <div class="visit_section_title">
-                            <div class="index_title"> 3 </div>
-                            <div class="section_label">สภาพร่างกาย และการ ใช้ชีวิตของผู้สูงอายุ</div>
-                        </div>
-                    </div>
-                    <div class="step-tab-panel" data-step="step4">
-                        <div class="visit_section_title">
-                            <div class="index_title"> 4 </div>
-                            <div class="section_label">ประเมิน สภาพ จิตสังคม จิตวิญญาณของผู้สูงอายุ</div>
-                        </div>
-                    </div>
-                    <div class="step-tab-panel" data-step="step5">
-                        <div class="visit_section_title">
-                            <div class="index_title"> 5 </div>
-                            <div class="section_label">ประเมินสภาพแวดล้อม ของผู้สูงอายุ</div>
-                        </div>
-                    </div>
-                    <div class="step-tab-panel" data-step="step6">
-                        <div class="visit_section_title">
-                            <div class="index_title"> 6 </div>
-                            <div class="section_label">อสม. ให้คำแนะนำ หรือช่วยเหลือผู้สูงอายุ</div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        <div class="step-footer">
-           <div class="btn_group">
-            <button class="step-btn cancel">ยกเลิก</button>
-            <button data-step-action="prev" class="step-btn prev"><span class="prev_step_index_visit_form"></span><img src="img/back_icon_white.png" ></button>
-            <div class="footer_index">
+      </div>
+      <div class="step-footer">
+        <div class="btn_group">
+          <button class="step-btn cancel">ยกเลิก</button>
+          <button data-step-action="prev" class="step-btn prev">
+            <span class="prev_step_index_visit_form"></span
+            ><img src="img/back_icon_white.png" />
+          </button>
+          <div class="footer_index">
+            <svg class="progress-ring" width="60" height="60">
+              <circle
+                stroke="#E4E1F0"
+                stroke-width="8"
+                fill="transparent"
+                r="25"
+                cx="30"
+                cy="30"
+              />
+              <circle
+                class="progress_ring_circle_visit"
+                stroke="#7676FF"
+                stroke-width="8"
+                fill="transparent"
+                r="25"
+                cx="30"
+                cy="30"
+              />
+            </svg>
+            <span class="current_step_index_visit_form">1</span>
+          </div>
 
-                        <svg
-                            class="progress-ring"
-                            width="60"
-                            height="60">
-                            <circle
-                            stroke="#E4E1F0"
-                            stroke-width="8"
-                            fill="transparent"
-                            r="25"
-                            cx="30"
-                            cy="30"
-                            />
-                            <circle
-                            class="progress_ring_circle_visit"
-                            stroke="#7676FF"
-                            stroke-width="8"
-                            fill="transparent"
-                            r="25"
-                            cx="30"
-                            cy="30"
-                            />
-                        </svg>
-                <span class="current_step_index_visit_form">1</span>
-            </div>
-            
-            <button data-step-action="next" class="step-btn next"><img src="img/next_icon_white.png" ><span class="next_step_index_visit_form"></span></button>
-            <button data-step-action="finish" class="step-btn">สรุป</button>
-           </div>
-           
-              
+          <button data-step-action="next" class="step-btn next">
+            <img src="img/next_icon_white.png" /><span
+              class="next_step_index_visit_form"
+            ></span>
+          </button>
+          <button data-step-action="finish" class="step-btn">สรุป</button>
         </div>
+      </div>
     </div>
     <div class="loader_wrapper">
-        <div class="loader"></div>
+      <div class="loader"></div>
     </div>
     <div class="top_menu_wrapper">
-        <div class="top_menu_item_wrapper">
-            <div class="close_top_menu">X</div>
-            <ul>
-                <li>ข้อมูลผู้ใช้งาน</li>
-                <li>การแจ้งเตือน</li>
-                <li>ตั้งค่าการใช้งาน</li>
-                <li id="logout">ออกจากระบบ</li>
-
-            </ul>
-        </div>
+      <div class="top_menu_item_wrapper">
+        <div class="close_top_menu">X</div>
+        <ul>
+          <li>ข้อมูลผู้ใช้งาน</li>
+          <li>การแจ้งเตือน</li>
+          <li>ตั้งค่าการใช้งาน</li>
+          <li id="logout">ออกจากระบบ</li>
+        </ul>
+      </div>
     </div>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi3TWM-jofH90T6GMpFFemQ8kUXJdEFz0&callback=initMap&libraries=&v=weekly"
@@ -896,6 +1344,6 @@
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
     <script src="js/visit.js"></script>
-</body>
-
+    <script src="js/evaluate.js"></script>
+  </body>
 </html>
