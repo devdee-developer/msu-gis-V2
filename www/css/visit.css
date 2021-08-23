@@ -37,10 +37,16 @@
   height: 39px;
   color: #ffffff;
   z-index: 2;
+
 }
-.visit_status_bar label {
-  font-size: 16;
+.homebody {
+  background-image: url(../img/health_3_icon.png);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  color: #fdebc1;
+  padding-left: 20px;
 }
+
 #visit_detail_page .title {
   font-size: 23px;
 }
@@ -717,6 +723,10 @@ ul.step-steps li {
   border-radius: 5px;
   margin-left: 3px;
 }
+ul.step-steps li.summarize_tab {
+  display: none;
+}
+
 ul.step-steps li.active {
   background-color: #08776f;
 }
@@ -758,22 +768,40 @@ button.step-btn {
   font-family: Prompt;
   padding: 0 18.5px;
   position: relative;
-}
-button.step-btn.next {
-  background-color: #6f63fd;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: center;
 }
+button.step-btn.next ,button.step-btn.finish{
+  background-color: #6f63fd;
+ 
+}
+button.step-btn.next.arrow{
+ background-image: url('../img/next_icon_white.png');
+ background-repeat: no-repeat;
+ background-position-y: center;
+ background-position-x: center;
+ justify-content: flex-end;
+ background-size:  22px 17.31px;
+}
+button.step-btn.prev.arrow{
+  background-image: url('../img/back_icon_white.png');
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+  background-size:  22px 17.31px;
+  justify-content: flex-start;
+ }
 button.step-btn.next:disabled {
   background-color: #E4E1F0;
   box-shadow:none;
 }
 button.step-btn.prev {
   display: flex;
-  justify-content: flex-start;
+ 
   align-items: center;
 }
+
 button.step-btn img {
   position: absolute;
   left: 50%;
@@ -783,6 +811,7 @@ button.step-btn img {
 }
 .step-footer .footer_index {
   font-size: 23px;
+  position: relative;
 }
 .step-footer .footer_index svg{
   position: absolute;
@@ -803,11 +832,19 @@ button.step-btn img {
   flex-direction: row;
   align-items: center;
 }
+.visit_section_title.no_border{
+ border-width: 0;
+}
 .visit_section_title .section_label {
   color: #3b3d48;
   font-size: 23px;
   font-weight: bold;
   line-height: 28px;
+}
+.visit_section_title .section_label .parentheses{
+  color: #08776F;
+  font-size: 16px;
+  font-weight: 400;
 }
 .visit_section_title .index_title{
   height: 58px;
@@ -822,7 +859,7 @@ button.step-btn img {
   font-size: 35px;
   font-weight: bold;
 }
-.visit_content{
+.visit_choice{
   margin: 0 30px 0 30px;
 }
 ul.visit_form{
@@ -830,11 +867,20 @@ margin: 20px 0 0 0;
 }
 ul.visit_form li {
   list-style-type: none;
-  padding: 20px 0;
+  padding: 15px 0;
   border-bottom: 1px solid #e4e1f0;
 
   font-size: 20px;
 }
+ul.visit_form li input.visit_form{
+
+ margin: 8px 0;
+}
+ul.visit_form li .toggle_input_group{
+
+  display: none;
+}
+
 ul.visit_form  li:last-child {
   border-width: 0;
 }
@@ -885,21 +931,90 @@ input.visit_form {
   padding-left: 30px;
   font-size: 18px;
   font-family: Prompt;
-}
-input.visit_form.focus,input.visit_form:focus{
+  color: #08776F;
+  background-color: #ECF8F7;
   border: 2px solid #1BC3A2;
+}
+input.visit_form:focus{
+
   box-shadow: 0px 2px 15px #9595F273;
   color: #08776F;
+  background-color: #FFFFFF;
 }
-input.visit_form:focus::placeholder{
+input.visit_form:read-only{
+
+  border-width: 0;
+  color: #97A3A3;
+  background-color: #F4F8F8;
+}
+input.visit_form:disabled{
+  color: #08776F;
+  background-color: #ECF8F7;
+  border: 2px solid #1BC3A2;
+}
+input.visit_form::placeholder{
   color: #08776F;
 }
-#visit_section1_1_input{
-  display: none;
-}
+
 .progress_ring_circle_visit {
   transition: 0.35s stroke-dashoffset;
 
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+}
+.question_wrapper{
+  margin: 10px 0 40px 0;
+}
+.question_box{
+  padding: 16px 20px 16px 20px;
+  color: #08776F;
+  font-size: 20px;
+  border: 2px solid #08776F;
+  border-radius: 24px;
+  margin: 10px 10px 0 10px;
+}
+.question_number{
+  color:#FFFFFF;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background-color: #08776F;
+  text-align: center;
+  float: left;
+}
+.question_label{
+  padding-left:40px
+}
+.question_label .parentheses{
+color: #F26E4F;
+font-size: 16px;
+}
+.step-tab-panel{
+  padding-bottom: 122px;
+}
+.visit_form .input_inline label{
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 69px;
+}
+.visit_form .input_inline input{
+ width: 60%;
+}
+.footer_index .progress_complete {
+  display: none;
+
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  background-color: #010979;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
 }

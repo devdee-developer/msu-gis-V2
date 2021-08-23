@@ -52,15 +52,34 @@ $(function () {
     $(".visit_section1").on("click", function () {
       var selected = $(this).val();
       if (selected == "0") {
-        $("#visit_section1_1_input").hide();
         disableNextVisit(false);
       } else {
         disableNextVisit(true);
-        $("#visit_section1_1_input").val("");
-        $("#visit_section1_1_input").show();
-        $("#visit_section1_1_input").focus();
       }
     });
+    $('ul.visit_form li').each(function(i, obj) {
+        $(this).children("input[type='radio']").on("click", function () {
+          $(this).parent().parent().children('li').each(function(){
+            $(this).children(".toggle_input_group").hide()
+          })
+          var selected = $(this).val();
+          $(this).siblings('.toggle_input_group').show();
+          $(this).siblings('.toggle_input_group').children("input").val("")
+          $(this).siblings('.toggle_input_group').children("input").first().focus()
+          
+        });
+        $(this).children("input[type='checkbox']").on("change", function () {
+          if(this.checked) {
+            $(this).siblings("input[type='text']").prop('disabled', false);
+            $(this).siblings("input[type='text']").val("")
+            $(this).siblings("input[type='text']").first().focus()
+          }else{
+            $(this).siblings("input[type='text']").prop('disabled', true);
+            $(this).siblings("input[type='text']").val("")
+          }
+         
+        })
+    })
     $("#visit_section1_1_input").on("change paste keyup", function () {
       if ($(this).val().length != 0) {
         disableNextVisit(false);
@@ -74,18 +93,35 @@ $(function () {
         alert("complete");
       },
       onChange: function (currentIndex, newIndex, stepDirection) {
-        // disableNextVisit(true);
-        $(".current_step_index_visit_form").text(newIndex + 1);
-        $(".next_step_index_visit_form").text(newIndex + 2);
-        $(".prev_step_index_visit_form").text(newIndex);
-        if (currentIndex == 0) {
-          $(".step-btn.cancel").show();
-          $(".step-btn.prev").hide();
-        } else {
-          $(".step-btn.cancel").hide();
-          $(".step-btn.prev").show();
+        $(".progress_complete").hide()
+        $(".step-btn.next").addClass('arrow');
+        $(".step-btn.prev").addClass('arrow');
+        if(newIndex<6){
+          $(".current_step_index_visit_form").text(newIndex + 1);
+          if(newIndex==5){
+            $(".next_step_index_visit_form").text('สรุป')
+            $(".step-btn.next").removeClass('arrow');
+          }else{
+            $(".next_step_index_visit_form").text(newIndex+2);
+          }
+         
+          $(".prev_step_index_visit_form").text(newIndex);
+          if (currentIndex == 0) {
+            $(".step-btn.cancel").show();
+            $(".step-btn.prev").hide();
+          } else if(currentIndex<6) {
+            $(".step-btn.cancel").hide();
+            $(".step-btn.prev").show();
+          }
+          setProgressVisit(currentIndex+1);
         }
-        setProgressVisit(currentIndex+1);
+        if(newIndex==6){
+          $(".progress_complete").show()
+          
+          $(".prev_step_index_visit_form").text('แก้ไข');
+          $(".step-btn.prev").removeClass('arrow');
+        }
+      
         return true;
       },
     });

@@ -639,8 +639,7 @@
       <div class="content">
         <div class="visit_status_bar">
           สถานะสุขภาพปัจจุบัน : &nbsp;
-          <i class="fa fa-heart" style="color: #f5c761"></i
-          ><span style="color: #fdebc1"> &nbsp; "ติดบ้าน" </span>
+         <div class="homebody">  "ติดบ้าน" </div>
         </div>
         <div style="height: 39px"></div>
         <ul class="contact_items">
@@ -1192,6 +1191,7 @@
             <li data-step-target="step4"></li>
             <li data-step-target="step5"></li>
             <li data-step-target="step6"></li>
+            <li data-step-target="summarize" class="summarize_tab"></li>
             &nbsp; <span class="current_step_index_visit_form">1</span>/6
           </p>
         </ul>
@@ -1205,7 +1205,7 @@
                 สอบถามโรคประจำตัว ของผู้สูงอายุ มีหรือไม่ ?
               </div>
             </div>
-            <div class="visit_content">
+            <div class="visit_choice">
               <ul class="visit_form">
                 <li>
                   <input
@@ -1226,14 +1226,17 @@
                     value="1"
                   />
                   <label for="visit_section1_1">มี (โปรดระบุ)</label>
+                  <div class="toggle_input_group">
+                    <input
+                    type="text"
+                    class="visit_form"
+                    id="visit_section1_1_input"
+                    placeholder="ระบุชื่อโรค"
+                  />
+                  </div>
                 </li>
               </ul>
-              <input
-                type="text"
-                class="visit_form focus"
-                id="visit_section1_1_input"
-                placeholder="ระบุชื่อโรค"
-              />
+             
             </div>
           </div>
           <div class="step-tab-panel" data-step="step2">
@@ -1243,12 +1246,406 @@
                 ผู้ที่คอยดูแล และครอบครัว ของผู้สูงอายุ
               </div>
             </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">1</div>
+                <div class="question_label">ผู้สูงอายุอาศัยอยู่กับใคร?<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section2_1"
+                      class="visit_section2_1"
+                      id="visit_section2_1_0"
+                      value="0"
+                    />
+                    <label for="visit_section2_1_0">อยู่คนเดียว</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section2_1"
+                      class="visit_section2_1"
+                      id="visit_section2_1_1"
+                      value="1"
+                    />
+                    <label for="visit_section2_1_1">อยู่กับสามีหรือภรรยาเพียง 2 คน</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section2_1"
+                      class="visit_section2_1"
+                      id="visit_section2_1_2"
+                      value="1"
+                    />
+                    <label for="visit_section2_1_2">อยู่กับลูกหลานที่ให้การดูแลช่วยเหลือได้</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+           <div class="question_wrapper">
+            <div class="question_box">
+              <div class="question_number">2</div>
+              <div class="question_label">ผู้สูงอายุมีผู้ดูแลหรือไม่?<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+            </div>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input
+                    type="radio"
+                    name="visit_section2_2"
+                    class="visit_section2_2"
+                    id="visit_section2_2_0"
+                    value="0"
+                  />
+                  <label for="visit_section2_2_0">ไม่มีผู้ดูแล</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="visit_section2_2"
+                    class="visit_section2_2"
+                    id="visit_section2_2_1"
+                    value="1"
+                  />
+                  <label for="visit_section2_2_1">มี และอยู่บ้านเดียวกัน</label>
+                  <div class="toggle_input_group">
+                    <input
+                   type="text"
+                    class="visit_form"
+                    id="visit_section2_2_1_input1"
+                    placeholder="ระบุชื่อผู้ดูแล"
+                   />
+                    <input
+                      type="text"
+                      class="visit_form"
+                      id="visit_section2_2_1_input2"
+                      placeholder="ระบุเบอร์ติดต่อ"
+                    />
+                  </div>
+                  
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="visit_section2_2"
+                    class="visit_section2_2"
+                    id="visit_section2_2_2"
+                    value="2"
+                  />
+                  <label for="visit_section2_2_2">มี แต่อยู่บ้านใกล้กัน</label>
+                  <div class="toggle_input_group">
+                    <input
+                    type="text"
+                     class="visit_form"
+                     id="visit_section2_2_2_input1"
+                     placeholder="ระบุชื่อผู้ดูแล"
+                    />
+                    <input
+                     type="text"
+                     class="visit_form"
+                     id="visit_section2_2_2_input2"
+                     placeholder="ระบุเบอร์ติดต่อ"
+                    />
+                  </div>
+                  
+                </li>
+              </ul>
+              
+            </div>
+           </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">3</div>
+                <div class="question_label">ระยะเวลาในการดูแลผู้สูงอายุ<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section2_3"
+                      class="visit_section2_3"
+                      id="visit_section2_3_0"
+                      value="0"
+                    />
+                    <label for="visit_section2_3_0">ดูแลได้ตลอด</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section2_3"
+                      class="visit_section2_3"
+                      id="visit_section2_3_1"
+                      value="1"
+                    />
+                    <label for="visit_section2_3_1">ดูแลได้เฉพาะกลางคืน</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">4</div>
+                <div class="question_label">พบผู้ดูแลขณะไปเยี่ยมหรือไม่?<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section2_4"
+                      class="visit_section2_4"
+                      id="visit_section2_4_0"
+                      value="0"
+                    />
+                    <label for="visit_section2_4_0">ไม่พบ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section2_4"
+                      class="visit_section2_4"
+                      id="visit_section2_4_1"
+                      value="1"
+                    />
+                    <label for="visit_section2_4_1">พบ</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+           
+            
+            
           </div>
           <div class="step-tab-panel" data-step="step3">
             <div class="visit_section_title">
               <div class="index_title">3</div>
               <div class="section_label">
                 สภาพร่างกาย และการ ใช้ชีวิตของผู้สูงอายุ
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">1</div>
+                <div class="question_label">สภาพร่างกาย</div>
+              </div>
+              <div class="visit_choice">
+               
+                <ul class="visit_form">
+                  <li>
+                    <label>น้ำหนัก</label>
+                    <div class="input_inline">
+                      <input type="text" class="visit_form" placeholder="ใส่ตัวเลข">
+                      <label >กิโลกรัม</label>
+                    </div>
+                   
+                  
+                  </li>
+                  <li>
+                    <label>ส่วนสูง</label>
+                    <div class="input_inline">
+                      <input type="text" class="visit_form" placeholder="ใส่ตัวเลข">
+                      <label >เซนติเมตร</label>
+                    </div>
+                  </li>
+                  <li>
+                    <p>ความดันโลหิต</p>
+                    <input type="text" class="visit_form" placeholder="ใส่ตัวเลข" style="width: 45%;"> / <input type="text" class="visit_form" placeholder="ใส่ตัวเลข" style="width: 45%;">
+                    <label>ชีพจร</label>
+                    <div class="input_inline">
+                     <input type="text" class="visit_form" placeholder="ใส่ตัวเลข">
+                     <label >ครั้งต่อนาที</label> 
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">2</div>
+                <div class="question_label">การทำกิจวัตรประจำวัน<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_2"
+                      class="visit_section3_2"
+                      id="visit_section3_2_0"
+                      value="0"
+                    />
+                    <label for="visit_section3_2_0">ทำได้เองทั้งหมด</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_2"
+                      class="visit_section3_2"
+                      id="visit_section3_2_1"
+                      value="1"
+                    />
+                    <label for="visit_section3_2_1">ทำได้บางอย่าง</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_2"
+                      class="visit_section3_2"
+                      id="visit_section3_2_2"
+                      value="1"
+                    />
+                    <label for="visit_section3_2_2">ทำเองไม่ได้เลย</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">3</div>
+                <div class="question_label">การทำกิจวัตรอื่นๆ ที่ใช้แรงมากขึ้น เช่น ทำงานบ้านจ่ายตลาด ทำอาหาร รับโทรศัพท์ จัดยากินเอง<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_3"
+                      class="visit_section3_3"
+                      id="visit_section3_3_0"
+                      value="0"
+                    />
+                    <label for="visit_section3_3_0">ทำได้</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_3"
+                      class="visit_section3_3"
+                      id="visit_section3_3_1"
+                      value="1"
+                    />
+                    <label for="visit_section3_3_1">ทำไม่ได้</label>
+                  </li>
+                
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">4</div>
+                <div class="question_label">ปัญหาสุขภาพร่างกาย</div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section3_4"
+                      class="visit_section3_4"
+                      id="visit_section3_4_0"
+                    />
+                    <label for="visit_section3_4_0">วิงเวียน เบื่ออาหาร อ่อนเพลีย</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section3_4"
+                      class="visit_section3_4"
+                      id="visit_section3_4_1"
+                    />
+                    <label for="visit_section3_4_1">ปวดข้อ ข้อเสื่อม</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section3_4"
+                      class="visit_section3_4"
+                      id="visit_section3_4_2"
+                    />
+                    <label for="visit_section3_4_2">อาการอื่นๆ</label>
+                    <input
+                      type="text"
+                      class="visit_form"
+                      id="visit_section3_4_2_input1"
+                      placeholder="ระบุอาการ"
+                      disabled
+                    />
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">5</div>
+                <div class="question_label">การปฏิบัติเมื่อเจ็บป่วย</div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section3_5"
+                      class="visit_section3_5"
+                      id="visit_section3_5_0"
+                    />
+                    <label for="visit_section3_5_0">ซื้อยาจากร้าน</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section3_5"
+                      class="visit_section3_5"
+                      id="visit_section3_5_1"
+                    />
+                    <label for="visit_section3_5_1">คลินิกแพทย์</label>
+                  </li>
+                
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">6</div>
+                <div class="question_label">การกินยา<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_6"
+                      class="visit_section3_6"
+                      id="visit_section3_6_0"
+                      value="0"
+                    />
+                    <label for="visit_section3_6_0">กินถูกต้องตามคำแนะนำข้างซองยา</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_6"
+                      class="visit_section3_6"
+                      id="visit_section3_6_1"
+                      value="1"
+                    />
+                    <label for="visit_section3_6_1">กินไม่ถูกต้องตามคำแนะนำข้างซองยา</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section3_6"
+                      class="visit_section3_6"
+                      id="visit_section3_6_2"
+                      value="2"
+                    />
+                    <label for="visit_section3_6_2">กินยาจากหลายแหล่งการรักษา</label>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -1259,18 +1656,509 @@
                 ประเมิน สภาพ จิตสังคม จิตวิญญาณของผู้สูงอายุ
               </div>
             </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">1</div>
+                <div class="question_label">ถามว่า “ในสองอาทิตย์ที่ผ่านมารวมทั้ง วันนี้ ท่านรู้สึกหดหู่ เศร้า หรือท้อแท้ สิ้นหวังหรือไม่”<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_1"
+                      class="visit_section4_1"
+                      id="visit_section4_1_0"
+                      value="0"
+                    />
+                    <label for="visit_section4_1_0">มี</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_1"
+                      class="visit_section4_1"
+                      id="visit_section4_1_1"
+                      value="1"
+                    />
+                    <label for="visit_section4_1_1">ไม่มี</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">2</div>
+                <div class="question_label">ถามว่า “ในสองอาทิตย์ที่ผ่านมารวมทั้ง วันนี้ท่านรู้สึกเบื่อ ทำอะไรก็ไม่สบายใจ ไม่เพลินหรือไม่”<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_2"
+                      class="visit_section4_2"
+                      id="visit_section4_2_0"
+                      value="0"
+                    />
+                    <label for="visit_section4_2_0">มี</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_2"
+                      class="visit_section4_2"
+                      id="visit_section4_2_1"
+                      value="1"
+                    />
+                    <label for="visit_section4_2_1">ไม่มี</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">3</div>
+                <div class="question_label">ถามว่า “ความสัมพันธ์กับเพื่อนบ้าน เป็นอย่างไรบ้าง”<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_3"
+                      class="visit_section4_3"
+                      id="visit_section4_3_0"
+                      value="0"
+                    />
+                    <label for="visit_section4_3_0">ช่วยเหลือกันดี</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_3"
+                      class="visit_section4_3"
+                      id="visit_section4_3_1"
+                      value="1"
+                    />
+                    <label for="visit_section4_3_1">ไม่ดี</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">4</div>
+                <div class="question_label">ความเชื่อ หรือ สิ่งยึดเหนี่ยวจิตใจ</div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section4_4"
+                      class="visit_section4_4"
+                      id="visit_section4_4_0"
+                    />
+                    <label for="visit_section4_4_0">ใช้หนังสือสวดมนต์/ธรรมะ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section4_4"
+                      class="visit_section4_4"
+                      id="visit_section4_4_1"
+                    />
+                    <label for="visit_section4_4_1">อื่นๆ</label>
+                    <input
+                    type="text"
+                    class="visit_form"
+                    id="visit_section4_4_1_input1"
+                    placeholder="ระบุ"
+                    disabled
+                  />
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">5</div>
+                <div class="question_label">สวัสดิการผู้สูงอายุ<p class="parentheses">(เลือกได้เพียง 1 ข้อ)</p></div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_5"
+                      class="visit_section4_5"
+                      id="visit_section4_5_0"
+                      value="0"
+                    />
+                    <label for="visit_section4_5_0">ไม่มี</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="visit_section4_5"
+                      class="visit_section4_5"
+                      id="visit_section4_5_1"
+                      value="1"
+                    />
+                    <label for="visit_section4_5_1">มี (โปรดระบุ)</label>
+                    <div class="toggle_input_group">
+                      <input
+                      type="text"
+                      class="visit_form"
+                      id="visit_section4_5_1_input1"
+                      placeholder="ระบุ"
+                      />
+                    </div>
+                  
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="step-tab-panel" data-step="step5">
             <div class="visit_section_title">
               <div class="index_title">5</div>
               <div class="section_label">ประเมินสภาพแวดล้อม ของผู้สูงอายุ</div>
             </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">1</div>
+                <div class="question_label">ความเสี่ยงต่ออุบัติเหตุของผู้สูงอายุ</div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_1"
+                      class="visit_section5_1"
+                      id="visit_section5_1_0"
+                      value="0"
+                    />
+                    <label for="visit_section5_1_0">มีแหล่งน้ำในบริเวณบ้าน</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_1"
+                      class="visit_section5_1"
+                      id="visit_section5_1_1"
+                    />
+                    <label for="visit_section5_1_1">พื้นทางเดินลื่นหรือไม่สม่ำเสมอ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_1"
+                      class="visit_section5_1"
+                      id="visit_section5_1_2"
+                    />
+                    <label for="visit_section5_1_2">ห้องน้ำลื่น/ไม่มีที่เกาะยึด</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_1"
+                      class="visit_section5_1"
+                      id="visit_section5_1_3"
+                    />
+                    <label for="visit_section5_1_3">ไม่มีความเสี่ยงใด ๆ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_1"
+                      class="visit_section5_1"
+                      id="visit_section5_1_4"
+                    />
+                    <label for="visit_section5_1_4">บันใดสูงชันไม่มีราวเกาะ</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">2</div>
+                <div class="question_label">สภาพภายในบ้าน</div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_2"
+                      class="visit_section5_2"
+                      id="visit_section5_2_0"
+                    />
+                    <label for="visit_section5_2_0">แออัด ไม่สะอาด ระบายอากาศไม่ดี</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_2"
+                      class="visit_section5_2"
+                      id="visit_section5_2_1"
+                    />
+                    <label for="visit_section5_2_1">แสงสว่างไม่เพียงพอ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_2"
+                      class="visit_section5_2"
+                      id="visit_section5_2_2"
+                    />
+                    <label for="visit_section5_2_2">ปลอดโปร่งสะอาดดี</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_2"
+                      class="visit_section5_2"
+                      id="visit_section5_2_3"
+                    />
+                    <label for="visit_section5_2_3">มีวิทยุ/โทรทัศน์</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="question_box">
+                <div class="question_number">3</div>
+                <div class="question_label">สภาพภายนอกบ้าน</div>
+              </div>
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_3"
+                      class="visit_section5_3"
+                      id="visit_section5_3_0"
+                    />
+                    <label for="visit_section5_3_0">ร่มรื่นสบาย</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_3"
+                      class="visit_section5_3"
+                      id="visit_section5_3_1"
+                    />
+                    <label for="visit_section5_3_1">รกรุงรังไม่ร่มรื่น</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_3"
+                      class="visit_section5_3"
+                      id="visit_section5_3_2"
+                    />
+                    <label for="visit_section5_3_2">มีรั้วรอบขอบชิด</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section5_3"
+                      class="visit_section5_3"
+                      id="visit_section5_3_3"
+                    />
+                    <label for="visit_section5_3_3">ทะลุถึงกันกับบ้านข้างเคียง</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="step-tab-panel" data-step="step6">
-            <div class="visit_section_title">
+            <div class="visit_section_title no_border">
               <div class="index_title">6</div>
               <div class="section_label">
                 อสม. ให้คำแนะนำ หรือช่วยเหลือผู้สูงอายุ
+                <p class="parentheses">(เลือก เพื่อทำเครื่องหมายข้อที่ทำแล้ว)</p>
+              </div>
+            </div>
+            <div class="question_wrapper">
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_1"
+                      class="visit_section6_1"
+                      id="visit_section6_1"
+                    />
+                    <label for="visit_section6_1">การปฏิบัติกิจวัตรประจำวันด้วยตัวเอง</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_2"
+                      class="visit_section6_2"
+                      id="visit_section6_2"
+                    />
+                    <label for="visit_section6_2">การจัดสิ่งอำนวยความสะดวก</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_3"
+                      class="visit_section6_3"
+                      id="visit_section6_3"
+                    />
+                    <label for="visit_section6_3">การจัดสิ่งแวดล้อมเอื้อต่อผู้สูงอายุ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_4"
+                      class="visit_section6_4"
+                      id="visit_section6_4"
+                    />
+                    <label for="visit_section6_4">การดูแลของญาติ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_5"
+                      class="visit_section6_5"
+                      id="visit_section6_5"
+                    />
+                    <label for="visit_section6_5">การปฏิบัติตัวให้เหมาะสมกับสภาพร่างกาย</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_6"
+                      class="visit_section6_6"
+                      id="visit_section6_6"
+                    />
+                    <label for="visit_section6_6">การบริหารร่างกาย/กายภาพบำบัด</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_7"
+                      class="visit_section6_7"
+                      id="visit_section6_7"
+                    />
+                    <label for="visit_section6_7">การใช้ยาถูกชนิด ถูกขนาดและถูกทาง</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_8"
+                      class="visit_section6_8"
+                      id="visit_section6_8"
+                    />
+                    <label for="visit_section6_8">การใช้ยา/อาหารเสริมที่เหมาะสม</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_9"
+                      class="visit_section6_9"
+                      id="visit_section6_9"
+                    />
+                    <label for="visit_section6_9">วิธีการดูยาหมดอายุ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_10"
+                      class="visit_section6_10"
+                      id="visit_section6_10"
+                    />
+                    <label for="visit_section6_10">วิธีเก็บรักษายา</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_11"
+                      class="visit_section6_11"
+                      id="visit_section6_11"
+                    />
+                    <label for="visit_section6_11">การดูแลยาให้ผู้สูงบอายุ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_12"
+                      class="visit_section6_12"
+                      id="visit_section6_12"
+                    />
+                    <label for="visit_section6_12">การรับบริการที่สถานีอนามัยใกล้บ้าน</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_13"
+                      class="visit_section6_13"
+                      id="visit_section6_13"
+                    />
+                    <label for="visit_section6_13">การระวังอุบัติเหตุ</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_14"
+                      class="visit_section6_14"
+                      id="visit_section6_14"
+                    />
+                    <label for="visit_section6_14">การจัดปรับสภาพในบ้านให้เหมาะสม</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_15"
+                      class="visit_section6_15"
+                      id="visit_section6_15"
+                    />
+                    <label for="visit_section6_15">การจัดปรับสภาพนอกบ้านให้เหมาะสม</label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="visit_section6_16"
+                      class="visit_section6_16"
+                      id="visit_section6_16"
+                    />
+                    <label for="visit_section6_16">ให้กำลังใจผู้สูงอายุและผู้ดูแล</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="step-tab-panel" data-step="summarize">
+            <div class="question_wrapper">
+              <div class="visit_choice">
+                <ul class="visit_form">
+                  <li>
+                    <input
+                      type="radio"
+                      name="summarize_1"
+                      class="summarize_1"
+                      id="summarize_1"
+                      value="0"
+                    />
+                    <label for="summarize_1">ไม่มี</label>
+                  </li>
+                  <li>
+                    <input
+                      type="radio"
+                      name="summarize_2"
+                      class="summarize_2"
+                      id="summarize_2"
+                      value="1"
+                    />
+                    <label for="summarize_2">มี (โปรดระบุ)</label>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -1279,9 +2167,9 @@
       <div class="step-footer">
         <div class="btn_group">
           <button class="step-btn cancel">ยกเลิก</button>
-          <button data-step-action="prev" class="step-btn prev">
+          <button data-step-action="prev" class="step-btn prev arrow">
             <span class="prev_step_index_visit_form"></span
-            ><img src="img/back_icon_white.png" />
+            >
           </button>
           <div class="footer_index">
             <svg class="progress-ring" width="60" height="60">
@@ -1304,14 +2192,15 @@
               />
             </svg>
             <span class="current_step_index_visit_form">1</span>
+            <span class="progress_complete"><i class="fa fa-check" aria-hidden="true"></i></span>
           </div>
 
-          <button data-step-action="next" class="step-btn next">
-            <img src="img/next_icon_white.png" /><span
+          <button data-step-action="next" class="step-btn next arrow">
+           <span
               class="next_step_index_visit_form"
             ></span>
           </button>
-          <button data-step-action="finish" class="step-btn">สรุป</button>
+          <button data-step-action="finish" class="step-btn finish">บันทึก</button>
         </div>
       </div>
     </div>
