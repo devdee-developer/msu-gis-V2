@@ -201,7 +201,7 @@ $(function () {
   $("#visit_form_page .header .back_header_btn,.step-footer .step-btn.cancel").on("click", function () {
     changePage("visit_detail_page", function () {});
   });
-  $(".visit_card").on("click", function () {
+  $("#visit_detail_page .visit_card").on("click", function () {
     $('.step-footer .btn_group.add').hide()
     $('.step-footer .btn_group.read').css('display', 'flex')
     initialVisitFormPage();
