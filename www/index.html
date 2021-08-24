@@ -1570,10 +1570,9 @@
                     <label for="visit_section3_4_2">อาการอื่นๆ</label>
                     <input
                       type="text"
-                      class="visit_form"
+                      class="visit_form input_from_checkbox"
                       id="visit_section3_4_2_input1"
                       placeholder="ระบุอาการ"
-                      disabled
                     />
                   </li>
                 </ul>
@@ -1772,10 +1771,9 @@
                     <label for="visit_section4_4_1">อื่นๆ</label>
                     <input
                     type="text"
-                    class="visit_form"
+                    class="visit_form input_from_checkbox"
                     id="visit_section4_4_1_input1"
                     placeholder="ระบุ"
-                    disabled
                   />
                   </li>
                 </ul>
@@ -1980,7 +1978,8 @@
               <div class="index_title">6</div>
               <div class="section_label">
                 อสม. ให้คำแนะนำ หรือช่วยเหลือผู้สูงอายุ
-                <p class="parentheses">(เลือก เพื่อทำเครื่องหมายข้อที่ทำแล้ว)</p>
+                <div class="parentheses">(เลือก <img src="./img/check_icon.png" style="width: 15px;
+                  height: 15px;"> เพื่อทำเครื่องหมายข้อที่ทำแล้ว)</div>
               </div>
             </div>
             <div class="question_wrapper">
@@ -2083,7 +2082,7 @@
                       class="visit_section6_11"
                       id="visit_section6_11"
                     />
-                    <label for="visit_section6_11">การดูแลยาให้ผู้สูงบอายุ</label>
+                    <label for="visit_section6_11">การดูแลยาให้ผู้สูงอายุ</label>
                   </li>
                   <li>
                     <input
@@ -2134,38 +2133,89 @@
               </div>
             </div>
           </div>
-          <div class="step-tab-panel" data-step="summarize">
+          <div class="step-tab-panel summarize" data-step="summarize">
+            <div class="summarize_header">
+              สรุปผลออกการเยี่ยม
+              <div class="summarize_section">
+                พบปัญหา หรือสิ่งที่ต้องการ การแก้ไขเร่งด่วนหรือไม่?
+              </div>
+            </div>
             <div class="question_wrapper">
+              <div style="height:160px;"></div>
               <div class="visit_choice">
                 <ul class="visit_form">
                   <li>
                     <input
                       type="radio"
-                      name="summarize_1"
-                      class="summarize_1"
-                      id="summarize_1"
+                      name="summarize"
+                      class="summarize_radio"
+                      id="summarize_radio1"
                       value="0"
                     />
-                    <label for="summarize_1">ไม่มี</label>
+                    <label for="summarize_radio1">ไม่มี</label>
                   </li>
                   <li>
                     <input
                       type="radio"
-                      name="summarize_2"
-                      class="summarize_2"
-                      id="summarize_2"
+                      name="summarize"
+                      class="summarize_radio"
+                      id="summarize_radio2"
                       value="1"
                     />
-                    <label for="summarize_2">มี (โปรดระบุ)</label>
+                    <label for="summarize_radio2">มี (โปรดระบุ)    <i class="fa fa-angle-down" aria-hidden="true"></i></label>
+                    
                   </li>
+                 
                 </ul>
+             
+              </div>
+              <div class="toggle_input_group summarize">
+                <div class="title">
+                  <label>รายการปัญหาเร่งด่วน (จากการออกเยี่ยม)  <i class="fa fa-angle-down" aria-hidden="true" style="float: right;margin: 5px;"></i></label>
+                 
+                 
+                </div>
+              
+                <hr>
+                <div class="content_toggle_input_group">
+                  <div class="problem_list">
+                    <div class="problem_wrapper">
+                      <div class="problem_index">
+                        1
+                      </div>
+                      <label> ที่พักไม่เหมาะสมกับการอยู่อาศัย</label>
+                      <div class="problem_dismiss">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class="problem_wrapper">
+                      <div class="problem_index">
+                        2
+                      </div>
+                      <label>ผู้สูงอายุอยู่เพียงลำพังเนื่องจาก ไม่มีญาติและคนที่จะค่อยดูแล อย่างใกล้ชิด</label>
+                      <div class="problem_dismiss">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <input
+                  type="text"
+                    class="visit_form"
+                    id="summarize_input1"
+                    placeholder="ระบุหาที่พบ"
+                    style="width: 82%;"
+                  />
+                  <button class="btn_add_problem"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+              
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="step-footer">
-        <div class="btn_group">
+        <div class="btn_group add">
           <button class="step-btn cancel">ยกเลิก</button>
           <button data-step-action="prev" class="step-btn prev arrow">
             <span class="prev_step_index_visit_form"></span
@@ -2201,6 +2251,17 @@
             ></span>
           </button>
           <button data-step-action="finish" class="step-btn finish">บันทึก</button>
+        </div>
+        <div class="btn_group read">
+          <button class="step-btn cancel">ออก</button>
+          <button data-step-action="prev" class="step-btn prev">
+            ย้อนกลับ
+          </button>
+
+          <button data-step-action="next" class="step-btn next" >
+            ถัดไป
+          </button>
+          <button data-step-action="finish" class="step-btn finish">ออก</button>
         </div>
       </div>
     </div>

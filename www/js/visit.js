@@ -80,6 +80,15 @@ $(function () {
          
         })
     })
+    $(".summarize_radio").on("click", function () {
+      if ($(this).val()== 1) {
+        $('.toggle_input_group.summarize').show()
+        $('.toggle_input_group.summarize').find('input').first().focus();
+      }else{
+        $('.toggle_input_group.summarize').hide()
+      }
+    });
+    
     $("#visit_section1_1_input").on("change paste keyup", function () {
       if ($(this).val().length != 0) {
         disableNextVisit(false);
@@ -90,13 +99,14 @@ $(function () {
     setProgressVisit(1);
     var steps = $("#visit_form_page").steps({
       onFinish: function () {
-        alert("complete");
+        $("#visit_form_page .header .back_header_btn,.step-footer .step-btn.cancel").click();
       },
       onChange: function (currentIndex, newIndex, stepDirection) {
         $(".progress_complete").hide()
         $(".step-btn.next").addClass('arrow');
         $(".step-btn.prev").addClass('arrow');
         if(newIndex<6){
+          showSummarizeHeader(false)
           $(".current_step_index_visit_form").text(newIndex + 1);
           if(newIndex==5){
             $(".next_step_index_visit_form").text('สรุป')
@@ -116,10 +126,12 @@ $(function () {
           setProgressVisit(currentIndex+1);
         }
         if(newIndex==6){
+          showSummarizeHeader(true)
           $(".progress_complete").show()
           
           $(".prev_step_index_visit_form").text('แก้ไข');
           $(".step-btn.prev").removeClass('arrow');
+         
         }
       
         return true;
@@ -128,6 +140,42 @@ $(function () {
     steps_api = steps.data("plugin_Steps");
     steps_api.setStepIndex(0);
     
+  }
+  function showSummarizeHeader(show){
+    if(show){
+      $('.step-app .header').hide()
+      $('#visit_form_page .content').addClass('top0')
+    }else{
+      $('.step-app .header').show()
+      $('#visit_form_page .content').removeClass('top0')
+    }
+   
+  }
+  $('.btn_add_problem').on('click',function(){
+   
+    let value =$('#summarize_input1').val()
+    if(value.length!=0){
+      pushProblem(value)
+    }
+    
+  })
+  $('.toggle_input_group.summarize.add .problem_dismiss').on('click',function(){
+    $(this).parent().remove()
+  })
+  function pushProblem(value){;
+    let index =  $('#visit_form_page .content_toggle_input_group .problem_list').children().length+1
+    let element = `<div class="problem_wrapper">
+    <div class="problem_index">
+      ${index}
+    </div>
+    <label>${value}</label>
+    <div class="problem_dismiss">
+      <i class="fa fa-minus" aria-hidden="true"></i>
+    </div>
+  </div>`
+    $('#visit_form_page .content_toggle_input_group .problem_list').append(element)
+    $('#summarize_input1').val('')
+    $('#summarize_input1').focus();
   }
   function setProgressVisit(percent) {
     var circle = document.querySelector('.progress_ring_circle_visit');
@@ -153,8 +201,38 @@ $(function () {
   $("#visit_form_page .header .back_header_btn,.step-footer .step-btn.cancel").on("click", function () {
     changePage("visit_detail_page", function () {});
   });
-  $(".btn_create_visit").on("click", function () {
+  $(".visit_card").on("click", function () {
+    $('.step-footer .btn_group.add').hide()
+    $('.step-footer .btn_group.read').css('display', 'flex')
     initialVisitFormPage();
+    $('#visit_form_page input[type="text"]').prop('readonly', true);
+    $('#visit_form_page input[type="radio"]').prop('disabled', true);
+    $('#visit_form_page input[type="checkbox"]').prop('disabled', true);
+    
+    $('.toggle_input_group.summarize').removeClass('add') 
+    $('.toggle_input_group.summarize').addClass('read') 
+    $('.toggle_input_group.summarize').show()
+   
+  
+    changePage("visit_form_page", function () {});
+
+  });
+  $(".btn_create_visit").on("click", function () {
+  
+    $('.step-footer .btn_group.add').css('display', 'flex')
+    $('.step-footer .btn_group.read').hide()
+    initialVisitFormPage();
+    $('#visit_form_page input[type="text"]').prop('readonly', false);
+    $('#visit_form_page input[type="radio"]').prop('disabled', false);
+    $('#visit_form_page input[type="checkbox"]').prop('disabled', false);
+
+    $('#visit_form_page input[type="text"]').val('');
+    $('#visit_form_page input[type="radio"]').prop('checked', false);
+    $('#visit_form_page input[type="checkbox"]').prop('checked', false);
+    $('.input_from_checkbox').prop('disabled', true);
+    $('.toggle_input_group.summarize').hide()
+    $('.toggle_input_group.summarize').removeClass('read') 
+    $('.toggle_input_group.summarize').addClass('add') 
     changePage("visit_form_page", function () {});
   });
 });
