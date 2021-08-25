@@ -231,8 +231,30 @@ $(function () {
       });
     }
   );
-
   /* ----------------------------------------------------------------------------- end : evaluate_page_2 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_3
+  $(".visit_card.current .card_body.evaluate")
+    .eq(2)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_3", function () {
+          $("#evaluate_page_3 .step-footer").hide();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_3 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      changePage("evaluate_detail_page", function () {});
+    }
+  );
+  /* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */
+
   function setProgressevaluate(percent) {
     var circle = document.querySelector(".progress_ring_circle_evaluate");
     var radius = circle.r.baseVal.value;
