@@ -462,10 +462,24 @@ input.input-DTX:focus {
 #evaluate_page_1 .content .backgroundwhite .form .input_inline input {
   width: 60%;
 }
-#evaluate_page_1 .content.eva1 {
-  height: 1205px;
+.backgroundwhite.eva1 {
+  height: 780px;
 }
 /* ----------------------------------------------------------------------------- end : evaluate_page_1 ----------------------------------------------------------------------------- */
 
 /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
+#evaluate_page_3 .content .backgroundwhite .form .input_inline label {
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 95px;
+  margin-left: 15px;
+}
+#evaluate_page_3 .content .backgroundwhite .form .input_inline input {
+  width: 60%;
+}
+.backgroundwhite.eva3 {
+  height: 900px;
+}
 /* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */
