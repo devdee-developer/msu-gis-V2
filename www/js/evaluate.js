@@ -131,31 +131,31 @@ $(function () {
   );
   /* ----------------------------------------------------------------------------- end : evaluate_page_1 ----------------------------------------------------------------------------- */
 
-  /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
-  // เปลี่ยนหน้าไป evaluate_page_3
+  /* ----------------------------------------------------------------------------- start : evaluate_page_2 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_2
   $(".visit_card.current .card_body.evaluate")
-    .eq(2)
+    .eq(1)
     .on("click", function () {
       loading.show();
       setTimeout(function () {
         loading.hide();
-        changePage("evaluate_page_3", function () {
+        changePage("evaluate_page_2", function () {
           $("#blood_pressure_up").prop("disabled", true);
           $("#blood_pressure_down").prop("disabled", true);
-          $("#evaluate_page_3 .step-footer").hide();
+          $("#evaluate_page_2 .step-footer").hide();
         });
       }, 500);
     });
   // ปุ่ม back
-  $("#evaluate_page_3 .evaluate_page_header .back_header_btn").on(
+  $("#evaluate_page_2 .evaluate_page_header .back_header_btn").on(
     "click",
     function () {
       changePage("evaluate_detail_page", function () {});
     }
   );
   // ปุ่ม เริ่มประเมินใหม่
-  $("#evaluate_page_3 .footer .btn_create_evaluate").on("click", function () {
-    $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
+  $("#evaluate_page_2 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
       "disabled",
       true
     );
@@ -164,9 +164,9 @@ $(function () {
     $("#blood_pressure_up").focus();
     $("#blood_pressure_up").val("");
     $("#blood_pressure_down").val("");
-    $("#evaluate_page_3 .evaluate_page_status ").hide();
-    $("#evaluate_page_3 .footer").hide();
-    $("#evaluate_page_3 .step-footer").show();
+    $("#evaluate_page_2 .evaluate_page_status ").hide();
+    $("#evaluate_page_2 .footer").hide();
+    $("#evaluate_page_2 .step-footer").show();
   });
   // เช็คค่าใน input
   $("#blood_pressure_up").on("change paste keyup", function () {
@@ -174,17 +174,17 @@ $(function () {
       $("#blood_pressure_up").val().length != 0 &&
       $("#blood_pressure_down").val().length != 0
     ) {
-      $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
+      $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
         "disabled",
         false
       );
-      $("#evaluate_page_3 .evaluate_page_status ").show();
+      $("#evaluate_page_2 .evaluate_page_status ").show();
     } else {
-      $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
+      $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
         "disabled",
         true
       );
-      $("#evaluate_page_3 .evaluate_page_status ").hide();
+      $("#evaluate_page_2 .evaluate_page_status ").hide();
     }
   });
   // เช็คค่าใน input
@@ -193,34 +193,34 @@ $(function () {
       $("#blood_pressure_up").val().length != 0 &&
       $("#blood_pressure_down").val().length != 0
     ) {
-      $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
+      $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
         "disabled",
         false
       );
-      $("#evaluate_page_3 .evaluate_page_status ").show();
+      $("#evaluate_page_2 .evaluate_page_status ").show();
     } else {
-      $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
+      $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
         "disabled",
         true
       );
-      $("#evaluate_page_3 .evaluate_page_status ").hide();
+      $("#evaluate_page_2 .evaluate_page_status ").hide();
     }
   });
   // ปุ่ม ยกเลิก
-  $("#evaluate_page_3 .step-footer .btn_group .cancel").on(
+  $("#evaluate_page_2 .step-footer .btn_group .cancel").on(
     "click",
     function () {
       $("#blood_pressure_up").prop("disabled", true);
       $("#blood_pressure_down").prop("disabled", true);
       $("#blood_pressure_up").val("75");
       $("#blood_pressure_down").val("75");
-      $("#evaluate_page_3 .evaluate_page_status ").show();
-      $("#evaluate_page_3 .footer").show();
-      $("#evaluate_page_3 .step-footer").hide();
+      $("#evaluate_page_2 .evaluate_page_status ").show();
+      $("#evaluate_page_2 .footer").show();
+      $("#evaluate_page_2 .step-footer").hide();
     }
   );
   // ปุ่ม บันทึก
-  $("#evaluate_page_3 .step-footer .btn_group .submit").on(
+  $("#evaluate_page_2 .step-footer .btn_group .submit").on(
     "click",
     function () {
       $("#evaluate_detail_page .footer.evaluate-success").show();
@@ -232,7 +232,7 @@ $(function () {
     }
   );
 
-  /* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */
+  /* ----------------------------------------------------------------------------- end : evaluate_page_2 ----------------------------------------------------------------------------- */
   function setProgressevaluate(percent) {
     var circle = document.querySelector(".progress_ring_circle_evaluate");
     var radius = circle.r.baseVal.value;
