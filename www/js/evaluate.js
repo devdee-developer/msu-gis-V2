@@ -47,24 +47,96 @@ $(function () {
     $("#evaluate_detail_page .header .back_header_btn").on(
       "click",
       function () {
-        changePage("evaluate_page", function () {
-          // $("#evaluate_form_page").destroy();
+        changePage("evaluate_page", function () {});
+      }
+    );
+    // evaluate_page_1
+    $("#evaluate_page_1 .evaluate_page_header .back_header_btn").on(
+      "click",
+      function () {
+        changePage("evaluate_detail_page", function () {});
+      }
+    );
+    $("#evaluate_page_1 .footer .btn_create_evaluate").on("click", function () {
+      $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#DTX").prop("disabled", false);
+      $("#DTX").focus();
+      $("#DTX").val("");
+      $("#evaluate_page_1 .evaluate_page_status ").hide();
+      $("#evaluate_page_1 .footer").hide();
+      $("#evaluate_page_1 .step-footer").show();
+    });
+    $("#evaluate_page_1 .step-footer .btn_group .cancel").on(
+      "click",
+      function () {
+        $("#DTX").prop("disabled", true);
+        $("#DTX").val("75");
+        $("#evaluate_page_1 .evaluate_page_status ").show();
+        $("#evaluate_page_1 .footer").show();
+        $("#evaluate_page_1 .step-footer").hide();
+      }
+    );
+    $("#evaluate_page_1 .step-footer .btn_group .submit").on(
+      "click",
+      function () {
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
         });
       }
     );
-    $("#evaluate_page_1 .header .back_header_btn").on("click", function () {
-      changePage("evaluate_detail_page", function () {
-        // $("#evaluate_form_page").destroy();
-      });
+    $("#DTX").on("change paste keyup", function () {
+      if ($("#DTX").val().length != 0) {
+        $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
+          "disabled",
+          false
+        );
+        $("#evaluate_page_1 .evaluate_page_status ").show();
+      } else {
+        $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
+          "disabled",
+          true
+        );
+        $("#evaluate_page_1 .evaluate_page_status ").hide();
+      }
     });
+    // evaluate_page_3
+    $("#evaluate_page_3 .evaluate_page_header .back_header_btn").on(
+      "click",
+      function () {
+        changePage("evaluate_detail_page", function () {});
+      }
+    );
   }
+  // evaluate_page_1
   $(".visit_card.current .card_body.evaluate")
     .eq(0)
     .on("click", function () {
       loading.show();
       setTimeout(function () {
         loading.hide();
-        changePage("evaluate_page_1", function () {});
+        changePage("evaluate_page_1", function () {
+          $("#DTX").prop("disabled", true);
+          $("#evaluate_page_1 .step-footer").hide();
+          $("#DTX").val("75");
+        });
+      }, 500);
+    });
+  // evaluate_page_3
+  $(".visit_card.current .card_body.evaluate")
+    .eq(2)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_3", function () {
+          $("#evaluate_page_3 .step-footer").hide();
+        });
       }, 500);
     });
   function setProgressevaluate(percent) {
