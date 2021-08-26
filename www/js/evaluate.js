@@ -242,6 +242,12 @@ $(function () {
       setTimeout(function () {
         loading.hide();
         changePage("evaluate_page_3", function () {
+          $("#evaluate_page_3 .content .form button").prop("disabled", true);
+          $("#CVD1N").addClass("btnSelector");
+          $("#CVD1N").addClass("btnDisabled");
+          $("#CVD1N").prepend(
+            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
+          );
           $("#evaluate_page_3 .step-footer").hide();
         });
       }, 500);
@@ -253,6 +259,74 @@ $(function () {
       changePage("evaluate_detail_page", function () {});
     }
   );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_3 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_3 .content .form img").remove();
+    $("#evaluate_page_3 .content .form button").removeClass("btnSelector");
+    $("#evaluate_page_3 .content .form button").removeClass("btnDisabled");
+    $("#evaluate_page_3 .content .form button").prop("disabled", false);
+    $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+    $("#evaluate_page_3 .evaluate_page_status ").hide();
+    $("#evaluate_page_3 .footer").hide();
+    $("#evaluate_page_3 .step-footer").show();
+  });
+  // answer CVD1
+  $("#CVD1N").on("click", function () {
+    toggleBtnAnsEva("CVD1", "CVD1N");
+  });
+  $("#CVD1Y").on("click", function () {
+    toggleBtnAnsEva("CVD1", "CVD1Y");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  // $("#evaluate_page_3 .content .form button").on(
+  //   "change paste keyup",
+  //   function () {
+  //     if (
+  //       $("#blood_pressure_up").val().length != 0 &&
+  //       $("#blood_pressure_down").val().length != 0
+  //     ) {
+  //       $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
+  //         "disabled",
+  //         false
+  //       );
+  //       $("#evaluate_page_2 .evaluate_page_status ").show();
+  //     } else {
+  //       $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
+  //         "disabled",
+  //         true
+  //       );
+  //       $("#evaluate_page_2 .evaluate_page_status ").hide();
+  //     }
+  //   }
+  // );
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_3 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#evaluate_page_3 .content .form img").remove();
+      $("#evaluate_page_3 .content .form button").removeClass("btnSelector");
+      $("#evaluate_page_3 .content .form button").prop("disabled", true);
+      $("#evaluate_page_3 .evaluate_page_status ").show();
+      $("#evaluate_page_3 .footer").show();
+      $("#evaluate_page_3 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_3 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+
   /* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */
 
   function setProgressevaluate(percent) {

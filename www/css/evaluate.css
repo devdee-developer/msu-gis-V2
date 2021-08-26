@@ -297,12 +297,26 @@ button.btn_create_evaluate {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 480px;
+  top: 500px;
   width: 100%;
   justify-content: flex-start;
   align-items: center;
   color: #000000;
   padding-left: 40px;
+  padding-right: 40px;
+}
+.backgroundwhite .form .question {
+  color: #000000;
+  background-color: #f7f5fc;
+  border-color: #7f7fa8;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 27px;
+  padding: 20px;
+}
+.backgroundwhite .form .answer {
+  width: 100%;
+  padding: 25px;
 }
 .step-footer.evaluate_page_step-footer .btn_group {
   height: 85px;
@@ -326,6 +340,109 @@ button.btn_create_evaluate {
   margin-top: 20px;
   height: 50px;
   float: left;
+}
+.btnYesSelector {
+  min-width: 100px;
+  height: 40px;
+  background: #7676ff;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #ffffff;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #54d5bb;
+  border-style: solid;
+  float: right;
+}
+button.yes {
+  min-width: 100px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #7f7fa8;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #ddd8f0;
+  border-style: solid;
+  float: right;
+}
+button.yes.btnSelector {
+  min-width: 100px;
+  height: 40px;
+  background: #7676ff;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #ffffff;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #54d5bb;
+  border-style: solid;
+  float: right;
+}
+button.yes.btnSelector.btnDisabled {
+  min-width: 100px;
+  height: 40px;
+  background: #7f7fa8;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #ffffff;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #ddd8f0;
+  border-style: solid;
+  float: right;
+}
+button.no {
+  min-width: 100px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #7f7fa8;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #ddd8f0;
+  border-style: solid;
+  float: left;
+}
+button.no.btnSelector {
+  min-width: 100px;
+  height: 40px;
+  background: #7676ff;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #ffffff;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #54d5bb;
+  border-style: solid;
+  float: left;
+}
+button.no.btnSelector.btnDisabled {
+  min-width: 100px;
+  height: 40px;
+  background: #7f7fa8;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #ffffff;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #ddd8f0;
+  border-style: solid;
+  float: left;
+}
+.btnIconSelector {
+  position: absolute;
+  top: -3px;
+  right: -3px;
 }
 button.cancel {
   min-width: 130px;
