@@ -315,8 +315,10 @@ button.btn_create_evaluate {
   padding: 20px;
 }
 .backgroundwhite .form .answer {
+  position: relative;
   width: 100%;
   padding: 25px;
+  height: 90px;
 }
 .step-footer.evaluate_page_step-footer .btn_group {
   height: 85px;
@@ -500,6 +502,67 @@ input.input-DTX:focus {
   color: #08776f;
   background-color: #ffffff;
 }
+.modal .modal-container-evaluate-alert {
+  position: fixed;
+  border-radius: 18px;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  width: 92%;
+  max-width: 384px;
+  padding: 38px 13px 13px 15px;
+  text-align: center;
+}
+.modal .modal-container-evaluate-alert .modal-dismiss {
+  height: 10%;
+  width: 15%;
+  position: absolute;
+  right: 0px;
+  top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #97989b;
+}
+.modal .modal-container-evaluate-alert img {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.modal .modal-container-evaluate-alert .btn_group {
+  height: 85px;
+  width: 95%;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 49px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4%;
+}
+button.cancel_alret {
+  min-width: 130px;
+  height: 53px;
+  background: #6f63fd 0% 0% no-repeat padding-box;
+  border-radius: 27px;
+  font-size: 20px;
+  color: #ffffff;
+  border-width: 0;
+  font-family: Prompt;
+  padding: 0 18.5px;
+  position: relative;
+}
+button.submit_alret {
+  min-width: 130px;
+  height: 53px;
+  background: #ffffff;
+  border-radius: 27px;
+  font-size: 20px;
+  color: #f26e4f;
+  border-width: 2px;
+  font-family: Prompt;
+  border-style: solid;
+  border-color: #f26e4f;
+}
 
 /* ----------------------------------------------------------------------------- start : evaluate_detail_page ----------------------------------------------------------------------------- */
 #evaluate_detail_page .content {
@@ -604,6 +667,6 @@ input.input-DTX:focus {
 
 /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
 .backgroundwhite.eva3 {
-  height: 900px;
+  height: 2000px;
 }
 /* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */

@@ -3066,6 +3066,55 @@
               <button class="no" id="CVD1N">ไม่ใช่</button>
               <button class="yes" id="CVD1Y">ใช่</button>
             </div>
+            <div class="question">
+              <p><b>2. </b>ระดับความดันโลหิตตั้งแต่ 130 มม.ปรอท ขึ้นไป</p>
+            </div>
+            <div class="answer" id="CVD2">
+              <button class="no" id="CVD2N">ไม่ใช่</button>
+              <button class="yes" id="CVD2Y">ใช่</button>
+            </div>
+            <div class="question">
+              <p><b>3. </b>ระดับน้ำตาลในเลือด ตั้งแต่ 100 มก./ดล.</p>
+            </div>
+            <div class="answer" id="CVD3">
+              <button class="no" id="CVD3N">ไม่ใช่</button>
+              <button class="yes" id="CVD3Y">ใช่</button>
+            </div>
+            <div class="question">
+              <p>
+                <b>4. </b>เคยได้รับการวินิจฉัยจากแพทย์ว่ามีภาวะไขมันเลือดผิดปกติ
+              </p>
+            </div>
+            <div class="answer" id="CVD4">
+              <button class="no" id="CVD4N">ไม่ใช่</button>
+              <button class="yes" id="CVD4Y">ใช่</button>
+            </div>
+            <div class="question">
+              <p>
+                <b>5. </b>เคยได้รับการวินิจฉัยจากแพทย์ว่าเป็นโรคหัวใจขาดเลือด
+              </p>
+            </div>
+            <div class="answer" id="CVD5">
+              <button class="no" id="CVD5N">ไม่ใช่</button>
+              <button class="yes" id="CVD5Y">ใช่</button>
+            </div>
+            <div class="question">
+              <p>
+                <b>6. </b>ผู้สูงอายุมีเส้นรอบเอวมากกว่าส่วนสูง
+                (วัดเป็นเซนติเมตร)
+              </p>
+            </div>
+            <div class="answer" id="CVD6">
+              <button class="no" id="CVD6N">ไม่ใช่</button>
+              <button class="yes" id="CVD6Y">ใช่</button>
+            </div>
+            <div class="question">
+              <p><b>7. </b>มี พ่อ แม่ พี่ น้อง เป็นโรคหัวใจขาดเลือด</p>
+            </div>
+            <div class="answer" id="CVD7">
+              <button class="no" id="CVD7N">ไม่ใช่</button>
+              <button class="yes" id="CVD7Y">ใช่</button>
+            </div>
           </div>
         </div>
       </div>
@@ -3090,6 +3139,22 @@
         </div>
       </div>
     </div>
+    <div id="modal-evaluate-alert" class="modal">
+      <div class="modal-container-evaluate-alert">
+        <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+        <p style="font-size: 30px; color: #f26e4f">
+          <b>แบบประเมินไม่สมบูรณ์</b>
+        </p>
+        <p style="font-size: 20px; color: #3b3d48">
+          ต้องการออกจากการประเมินหรือไม่?
+        </p>
+        <img src="img/evaluate_alret.png" />
+        <div class="btn_group">
+          <button class="cancel_alret">ยกเลิก</button>
+          <button class="submit_alret">ยืนยัน</button>
+        </div>
+      </div>
+    </div>
     <div class="loader_wrapper">
       <div class="loader"></div>
     </div>
@@ -3108,7 +3173,9 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi3TWM-jofH90T6GMpFFemQ8kUXJdEFz0&callback=initMap&libraries=&v=weekly"
       async
     ></script>
+
     <script src="cordova.js"></script>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-steps.min.js"></script>
     <script src="js/fastclick.js"></script>
