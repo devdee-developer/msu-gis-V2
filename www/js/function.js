@@ -47,13 +47,3 @@ function showModal(_modal, _callback = function () {}) {
   });
   _callback();
 }
-
-function toggleBtnAnsEva(_elem_id, _btn_id) {
-  $("#" + _elem_id + " button").removeClass("btnSelector");
-  $("#" + _elem_id + " button").removeClass("btnDisabled");
-  $("#" + _elem_id + " img").remove();
-  $("#" + _btn_id).addClass("btnSelector");
-  $("#" + _btn_id).prepend(
-    '<img class="btnIconSelector" src="img/check_icon.png" />'
-  );
-}

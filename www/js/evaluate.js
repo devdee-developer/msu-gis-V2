@@ -248,12 +248,6 @@ $(function () {
       });
     }
   );
-  // $("#evaluate_detail_page .footer .btn_create_evaluate").on(
-  //   "click",
-  //   function () {
-  //     showModal("modal-evaluate-alert");
-  //   }
-  // );
   /* ----------------------------------------------------------------------------- end : evaluate_page_2 ----------------------------------------------------------------------------- */
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
@@ -265,46 +259,14 @@ $(function () {
       setTimeout(function () {
         loading.hide();
         changePage("evaluate_page_3", function () {
-          $("#evaluate_page_3 .content .form img").remove();
-          $("#evaluate_page_3 .content .form button").removeClass(
-            "btnSelector"
-          );
-          $("#evaluate_page_3 .content .form button").prop("disabled", true);
-          $("#CVD1N").addClass("btnSelector");
-          $("#CVD1N").addClass("btnDisabled");
-          $("#CVD1N").prepend(
-            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-          );
-          $("#CVD2N").addClass("btnSelector");
-          $("#CVD2N").addClass("btnDisabled");
-          $("#CVD2N").prepend(
-            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-          );
-          $("#CVD3N").addClass("btnSelector");
-          $("#CVD3N").addClass("btnDisabled");
-          $("#CVD3N").prepend(
-            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-          );
-          $("#CVD4N").addClass("btnSelector");
-          $("#CVD4N").addClass("btnDisabled");
-          $("#CVD4N").prepend(
-            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-          );
-          $("#CVD5N").addClass("btnSelector");
-          $("#CVD5N").addClass("btnDisabled");
-          $("#CVD5N").prepend(
-            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-          );
-          $("#CVD6N").addClass("btnSelector");
-          $("#CVD6N").addClass("btnDisabled");
-          $("#CVD6N").prepend(
-            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-          );
-          $("#CVD7N").addClass("btnSelector");
-          $("#CVD7N").addClass("btnDisabled");
-          $("#CVD7N").prepend(
-            '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-          );
+          $("#CVD1N").addClass("active");
+          $("#CVD2N").addClass("active");
+          $("#CVD3N").addClass("active");
+          $("#CVD4N").addClass("active");
+          $("#CVD5N").addClass("active");
+          $("#CVD6N").addClass("active");
+          $("#CVD7N").addClass("active");
+          $("#evaluate_page_3 button.choice").prop("disabled", true);
           $("#evaluate_page_3 .evaluate_page_status ").show();
           $("#evaluate_page_3 .footer").show();
           $("#evaluate_page_3 .step-footer").hide();
@@ -320,10 +282,8 @@ $(function () {
   );
   // ปุ่ม เริ่มประเมินใหม่
   $("#evaluate_page_3 .footer .btn_create_evaluate").on("click", function () {
-    $("#evaluate_page_3 .content .form img").remove();
-    $("#evaluate_page_3 .content .form button").removeClass("btnSelector");
-    $("#evaluate_page_3 .content .form button").removeClass("btnDisabled");
-    $("#evaluate_page_3 .content .form button").prop("disabled", false);
+    $("#evaluate_page_3 button.choice").prop("disabled", false);
+    $("#evaluate_page_3 button.choice").removeClass("active");
     $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
       "disabled",
       true
@@ -332,73 +292,13 @@ $(function () {
     $("#evaluate_page_3 .footer").hide();
     $("#evaluate_page_3 .step-footer").show();
   });
-  // answer CVD1
-  $("#CVD1N").on("click", function () {
-    toggleBtnAnsEva("CVD1", "CVD1N");
-  });
-  $("#CVD1Y").on("click", function () {
-    toggleBtnAnsEva("CVD1", "CVD1Y");
-  });
-  // answer CVD2
-  $("#CVD2N").on("click", function () {
-    toggleBtnAnsEva("CVD2", "CVD2N");
-  });
-  $("#CVD2Y").on("click", function () {
-    toggleBtnAnsEva("CVD2", "CVD2Y");
-  });
-  // answer CVD3
-  $("#CVD3N").on("click", function () {
-    toggleBtnAnsEva("CVD3", "CVD3N");
-  });
-  $("#CVD3Y").on("click", function () {
-    toggleBtnAnsEva("CVD3", "CVD3Y");
-  });
-  // answer CVD4
-  $("#CVD4N").on("click", function () {
-    toggleBtnAnsEva("CVD4", "CVD4N");
-  });
-  $("#CVD4Y").on("click", function () {
-    toggleBtnAnsEva("CVD4", "CVD4Y");
-  });
-  // answer CVD5
-  $("#CVD5N").on("click", function () {
-    toggleBtnAnsEva("CVD5", "CVD5N");
-  });
-  $("#CVD5Y").on("click", function () {
-    toggleBtnAnsEva("CVD5", "CVD5Y");
-  });
-  // answer CVD6
-  $("#CVD6N").on("click", function () {
-    toggleBtnAnsEva("CVD6", "CVD6N");
-  });
-  $("#CVD6Y").on("click", function () {
-    toggleBtnAnsEva("CVD6", "CVD6Y");
-  });
-  // answer CVD7
-  $("#CVD7N").on("click", function () {
-    toggleBtnAnsEva("CVD7", "CVD7N");
-  });
-  $("#CVD7Y").on("click", function () {
-    toggleBtnAnsEva("CVD7", "CVD7Y");
+  $("#evaluate_page_3 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  $(".answer button").on("click", function () {
-    if (
-      $("#CVD1Y").hasClass("btnSelector") ||
-      $("#CVD1N").hasClass("btnSelector") ||
-      $("#CVD2Y").hasClass("btnSelector") ||
-      $("#CVD2N").hasClass("btnSelector") ||
-      $("#CVD3Y").hasClass("btnSelector") ||
-      $("#CVD3N").hasClass("btnSelector") ||
-      $("#CVD4Y").hasClass("btnSelector") ||
-      $("#CVD4N").hasClass("btnSelector") ||
-      $("#CVD5Y").hasClass("btnSelector") ||
-      $("#CVD5N").hasClass("btnSelector") ||
-      $("#CVD6Y").hasClass("btnSelector") ||
-      $("#CVD6N").hasClass("btnSelector") ||
-      $("#CVD7Y").hasClass("btnSelector") ||
-      $("#CVD7N").hasClass("btnSelector")
-    ) {
+  $("#evaluate_page_3 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_3 button.choice").hasClass("active")) {
       $("#evaluate_page_3 .step-footer .btn_group .submit").prop(
         "disabled",
         false
@@ -416,44 +316,15 @@ $(function () {
   $("#evaluate_page_3 .step-footer .btn_group .cancel").on(
     "click",
     function () {
-      $("#evaluate_page_3 .content .form img").remove();
-      $("#evaluate_page_3 .content .form button").removeClass("btnSelector");
-      $("#evaluate_page_3 .content .form button").prop("disabled", true);
-      $("#CVD1N").addClass("btnSelector");
-      $("#CVD1N").addClass("btnDisabled");
-      $("#CVD1N").prepend(
-        '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-      );
-      $("#CVD2N").addClass("btnSelector");
-      $("#CVD2N").addClass("btnDisabled");
-      $("#CVD2N").prepend(
-        '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-      );
-      $("#CVD3N").addClass("btnSelector");
-      $("#CVD3N").addClass("btnDisabled");
-      $("#CVD3N").prepend(
-        '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-      );
-      $("#CVD4N").addClass("btnSelector");
-      $("#CVD4N").addClass("btnDisabled");
-      $("#CVD4N").prepend(
-        '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-      );
-      $("#CVD5N").addClass("btnSelector");
-      $("#CVD5N").addClass("btnDisabled");
-      $("#CVD5N").prepend(
-        '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-      );
-      $("#CVD6N").addClass("btnSelector");
-      $("#CVD6N").addClass("btnDisabled");
-      $("#CVD6N").prepend(
-        '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-      );
-      $("#CVD7N").addClass("btnSelector");
-      $("#CVD7N").addClass("btnDisabled");
-      $("#CVD7N").prepend(
-        '<img class="btnIconSelector" src="img/check_icon_disabled.png" />'
-      );
+      $("#evaluate_page_3 button.choice").removeClass("active");
+      $("#CVD1N").addClass("active");
+      $("#CVD2N").addClass("active");
+      $("#CVD3N").addClass("active");
+      $("#CVD4N").addClass("active");
+      $("#CVD5N").addClass("active");
+      $("#CVD6N").addClass("active");
+      $("#CVD7N").addClass("active");
+      $("#evaluate_page_3 button.choice").prop("disabled", true);
       $("#evaluate_page_3 .evaluate_page_status ").show();
       $("#evaluate_page_3 .footer").show();
       $("#evaluate_page_3 .step-footer").hide();
@@ -474,6 +345,975 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */
 
+  /* ----------------------------------------------------------------------------- start : evaluate_page_4 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_4
+  $(".visit_card.current .card_body.evaluate")
+    .eq(3)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_4", function () {
+          checkImg();
+          $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
+            "disabled",
+            true
+          );
+          $(".image_upload_preview").attr("disabled", "disabled");
+          $("button.camera").hide();
+
+          $("#evaluate_page_4 input[type='checkbox']").prop("disabled", true);
+          $("#evaluate_page_4 button.choice").prop("disabled", true);
+          $("#evaluate_page_4 .step-footer").hide();
+
+          $("#evaluate_page_4 .evaluate_page_status ").show();
+          $("#evaluate_page_4 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  //add img
+  $("button.camera").on("click", function () {
+    showModal("modal-img-eva4");
+  });
+  $("#evaluate_page_4 .on_camera").on("click", function () {
+    $(".image_upload_preview").append('<img  src="img/1.jpg"/>');
+
+    checkImg();
+    $(".modal-dismiss").click();
+  });
+  $("#evaluate_page_4 .on_gallery").on("click", function () {
+    $(".image_upload_preview").append('<img  src="img/1.jpg"/>');
+
+    checkImg();
+    $(".modal-dismiss").click();
+  });
+
+  //remove img
+
+  $(".image_upload_preview .dismiss").on("click", function () {
+    console.log($(".image_upload_preview").attr("disabled"));
+    if ($(".image_upload_preview").attr("disabled") == "disabled") {
+      return false;
+    } else {
+      $(".image_upload_preview img").remove();
+      $(".image_upload_preview").hide();
+      $("button.camera").show();
+    }
+  });
+  // ปุ่ม back
+  $("#evaluate_page_4 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_4 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_4 input[type='checkbox']").prop("disabled", false);
+    $("#evaluate_page_4 input[type='radio']").prop("disabled", false);
+    $("#evaluate_page_4 button.choice").prop("disabled", false);
+    $(".image_upload_preview").removeAttr("disabled");
+    checkImg();
+    $("#evaluate_page_4 .evaluate_page_status ").hide();
+    $("#evaluate_page_4 .footer").hide();
+    $("#evaluate_page_4 .step-footer").show();
+  });
+  $("#evaluate_page_4 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_4 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_4 button.choice").hasClass("active")) {
+      $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_4 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_4 .evaluate_page_status ").hide();
+    }
+  });
+  $('input[type="checkbox"]').change(function () {
+    $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
+      "disabled",
+      false
+    );
+    $("#evaluate_page_5 .evaluate_page_status ").show();
+  });
+  $(".image_upload_preview img").click(function () {
+    var src = $(this).attr("src");
+    var modal;
+
+    function removeModal() {
+      modal.remove();
+      $("body").off("keyup.modal-close");
+    }
+    modal = $("<div>")
+      .css({
+        background: "RGBA(0,0,0,1) url(" + src + ") no-repeat center",
+        backgroundSize: "contain",
+        width: "100%",
+        height: "100%",
+        position: "fixed",
+        zIndex: "10000",
+        top: "0",
+        left: "0",
+        cursor: "zoom-out",
+      })
+      .click(function () {
+        removeModal();
+      })
+      .appendTo("body");
+    //handling ESC
+    $("body").on("keyup.modal-close", function (e) {
+      if (e.key === "Escape") {
+        removeModal();
+      }
+    });
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_4 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $(".image_upload_preview").attr("disabled", "disabled");
+      $("#evaluate_page_4 input[type='checkbox']").prop("disabled", true);
+      $("#evaluate_page_4 button.choice").prop("disabled", true);
+      $("#evaluate_page_4 .evaluate_page_status ").show();
+      $("#evaluate_page_4 .footer").show();
+      $("#evaluate_page_4 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_4 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  /* ----------------------------------------------------------------------------- end : evaluate_page_4 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_5 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_5
+  $(".visit_card.current .card_body.evaluate")
+    .eq(4)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_5", function () {
+          $("#P9Q1_0").prop("checked", true);
+          $("#P9Q2_0").prop("checked", true);
+          $("#P9Q3_0").prop("checked", true);
+          $("#P9Q4_0").prop("checked", true);
+          $("#P9Q5_0").prop("checked", true);
+          $("#P9Q6_0").prop("checked", true);
+          $("#P9Q7_0").prop("checked", true);
+          $("#P9Q8_0").prop("checked", true);
+          $("#P9Q9_0").prop("checked", true);
+          $('#evaluate_page_5 input[type="radio"]').prop("disabled", true);
+          $("#evaluate_page_5 button.choice").removeClass("active");
+          $("#P2Q1N").addClass("active");
+          $("#P2Q2N").addClass("active");
+          $("#evaluate_page_5 button.choice").prop("disabled", true);
+          $("#evaluate_page_5 .evaluate_page_status ").show();
+          $("#evaluate_page_5 .footer").show();
+          $("#evaluate_page_5 .step-footer").hide();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_5 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_5 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_5 button.choice").prop("disabled", false);
+    $('#evaluate_page_5 input[type="radio"]').prop("disabled", false);
+    $('#evaluate_page_5 input[type="radio"]').prop("checked", false);
+    $("#evaluate_page_5 button.choice").removeClass("active");
+    $("#evaluate_page_5 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+    $("#evaluate_page_5 .evaluate_page_status ").hide();
+    $("#evaluate_page_5 .footer").hide();
+    $("#evaluate_page_5 .step-footer").show();
+  });
+  $("#evaluate_page_5 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_5 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_5 button.choice").hasClass("active")) {
+      $("#evaluate_page_5 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_5 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_5 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_5 .evaluate_page_status ").hide();
+    }
+  });
+  $('input[type="radio"]').change(function () {
+    $("#evaluate_page_5 .step-footer .btn_group .submit").prop(
+      "disabled",
+      false
+    );
+    $("#evaluate_page_5 .evaluate_page_status ").show();
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_5 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#P9Q1_0").prop("checked", true);
+      $("#P9Q2_0").prop("checked", true);
+      $("#P9Q3_0").prop("checked", true);
+      $("#P9Q4_0").prop("checked", true);
+      $("#P9Q5_0").prop("checked", true);
+      $("#P9Q6_0").prop("checked", true);
+      $("#P9Q7_0").prop("checked", true);
+      $("#P9Q8_0").prop("checked", true);
+      $("#P9Q9_0").prop("checked", true);
+      $('#evaluate_page_5 input[type="radio"]').prop("disabled", true);
+      $("#evaluate_page_5 button.choice").removeClass("active");
+      $("#P2Q1N").addClass("active");
+      $("#P2Q2N").addClass("active");
+      $("#evaluate_page_5 button.choice").prop("disabled", true);
+      $("#evaluate_page_5 .evaluate_page_status ").show();
+      $("#evaluate_page_5 .footer").show();
+      $("#evaluate_page_5 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_5 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  /* ----------------------------------------------------------------------------- end : evaluate_page_5 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_6 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_6
+  $(".visit_card.current .card_body.evaluate")
+    .eq(5)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_6", function () {
+          $("#evaluate_page_6 button.choice").prop("disabled", true);
+          $("#evaluate_page_6 .step-footer").hide();
+          $("#evaluate_page_6 .evaluate_page_status ").show();
+          $("#evaluate_page_6 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_6 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_6 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_6 button.choice").prop("disabled", false);
+    $("#evaluate_page_6 .evaluate_page_status ").hide();
+    $("#evaluate_page_6 .footer").hide();
+    $("#evaluate_page_6 .step-footer").show();
+    $("#evaluate_page_6 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+  });
+  $("#evaluate_page_6 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_6 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_6 button.choice").hasClass("active")) {
+      $("#evaluate_page_6 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_6 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_6 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_6 .evaluate_page_status ").hide();
+    }
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_6 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#evaluate_page_6 button.choice").prop("disabled", true);
+      $("#evaluate_page_6 .evaluate_page_status ").show();
+      $("#evaluate_page_6 .footer").show();
+      $("#evaluate_page_6 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_6 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  /* ----------------------------------------------------------------------------- end : evaluate_page_6 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_7 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_7
+  $(".visit_card.current .card_body.evaluate")
+    .eq(6)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_7", function () {
+          $("#evaluate_page_7 .run_time button.btn_reset").prop(
+            "disabled",
+            true
+          );
+          $("#evaluate_page_7 .run_time button.play_stop").prop(
+            "disabled",
+            true
+          );
+          $("#evaluate_page_7 .step-footer").hide();
+          $("#evaluate_page_7 .evaluate_page_status ").show();
+          $("#evaluate_page_7 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_7 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_7 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_7 .run_time button.play_stop").prop("disabled", false);
+    $("#evaluate_page_7 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+    $("#evaluate_page_7 .evaluate_page_status ").hide();
+    $("#evaluate_page_7 .footer").hide();
+    $("#evaluate_page_7 .step-footer").show();
+  });
+  // ปุ่ม เริ่มนับเวลา
+  $("#evaluate_page_7 .run_time button.play_stop").on("click", function () {
+    if ($("#evaluate_page_7 .run_time button.play_stop").hasClass("active")) {
+      $("#evaluate_page_7 .run_time button.play_stop").removeClass("active");
+      $("#evaluate_page_7 .run_time button.btn_reset").prop("disabled", false);
+      $("#evaluate_page_7 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_7 .step-footer .btn_group .cancel").prop(
+        "disabled",
+        false
+      );
+      runTimeEva_7(true);
+    } else {
+      $("#evaluate_page_7 .run_time button.btn_reset").prop("disabled", true);
+      $("#evaluate_page_7 .run_time button.play_stop").addClass("active");
+      $("#evaluate_page_7 .run_time .time").addClass("active");
+      runTimeEva_7(false);
+      $("#evaluate_page_7 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_7 .step-footer .btn_group .cancel").prop(
+        "disabled",
+        true
+      );
+    }
+  });
+  // ปุ่ม รีเซ็ต
+  $("#evaluate_page_7 .run_time button.btn_reset").on("click", function () {
+    _timeEva7 = "00";
+    _countEva7 = 0;
+    runTimeEva_7(true);
+    $("#evaluate_page_7 .run_time button.play_stop").removeClass("active");
+    $("#evaluate_page_7 .run_time .time").removeClass("active");
+    $("#evaluate_page_7 .run_time button.btn_reset").prop("disabled", true);
+    $("#evaluate_page_7 .run_time .time p").text(_timeEva7);
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_7 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      _timeEva7 = "00";
+      _countEva7 = 0;
+      runTimeEva_7(true);
+      $("#evaluate_page_7 .run_time button.play_stop").removeClass("active");
+      $("#evaluate_page_7 .run_time .time").removeClass("active");
+      $("#evaluate_page_7 .run_time .time p").text(_timeEva7);
+      $("#evaluate_page_7 .run_time button.btn_reset").prop("disabled", true);
+      $("#evaluate_page_7 .run_time button.play_stop").prop("disabled", true);
+      $("#evaluate_page_7 .step-footer").hide();
+      $("#evaluate_page_7 .evaluate_page_status ").show();
+      $("#evaluate_page_7 .footer.evaluate_page_footer ").show();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_7 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  var _addIntervalTimeEva7;
+  var _timeEva7 = "00";
+  var _countEva7 = 0;
+  function runTimeEva_7(stop) {
+    if (stop) {
+      clearInterval(_addIntervalTimeEva7);
+    } else {
+      _addIntervalTimeEva7 = setInterval(function () {
+        _countEva7++;
+        if (_countEva7 == 180) {
+          clearInterval(_addInterval);
+        }
+        if (_countEva7 < 10) {
+          _timeEva7 = "0" + _countEva7;
+        } else {
+          _timeEva7 = _countEva7.toString();
+        }
+        $("#evaluate_page_7 .run_time .time p").text(_timeEva7);
+      }, 1000);
+    }
+  }
+  /* ----------------------------------------------------------------------------- end : evaluate_page_7 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_8 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_8
+  $(".visit_card.current .card_body.evaluate")
+    .eq(7)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_8", function () {
+          $("#evaluate_page_8 button.choice").prop("disabled", true);
+          $("#evaluate_page_8 .step-footer").hide();
+          $("#evaluate_page_8 .evaluate_page_status ").show();
+          $("#evaluate_page_8 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_8 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_8 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_8 button.choice").prop("disabled", false);
+    $("#evaluate_page_8 .evaluate_page_status ").hide();
+    $("#evaluate_page_8 .footer").hide();
+    $("#evaluate_page_8 .step-footer").show();
+    $("#evaluate_page_8 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+  });
+  $("#evaluate_page_8 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_8 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_8 button.choice").hasClass("active")) {
+      $("#evaluate_page_8 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_8 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_8 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_8 .evaluate_page_status ").hide();
+    }
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_8 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#evaluate_page_8 button.choice").prop("disabled", true);
+      $("#evaluate_page_8 .evaluate_page_status ").show();
+      $("#evaluate_page_8 .footer").show();
+      $("#evaluate_page_8 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_8 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  /* ----------------------------------------------------------------------------- end : evaluate_page_8 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_9 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_9
+  $(".visit_card.current .card_body.evaluate")
+    .eq(8)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_9", function () {
+          $("#evaluate_page_9 button.choice").prop("disabled", true);
+          $("#evaluate_page_9 .step-footer").hide();
+          $("#evaluate_page_9 .evaluate_page_status ").show();
+          $("#evaluate_page_9 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_9 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_9 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_9 button.choice").prop("disabled", false);
+    $("#evaluate_page_9 .evaluate_page_status ").hide();
+    $("#evaluate_page_9 .footer").hide();
+    $("#evaluate_page_9 .step-footer").show();
+    $("#evaluate_page_9 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+  });
+  $("#evaluate_page_9 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_9 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_9 button.choice").hasClass("active")) {
+      $("#evaluate_page_9 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_9 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_9 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_9 .evaluate_page_status ").hide();
+    }
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_9 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#evaluate_page_9 button.choice").prop("disabled", true);
+      $("#evaluate_page_9 .evaluate_page_status ").show();
+      $("#evaluate_page_9 .footer").show();
+      $("#evaluate_page_9 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_9 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  /* ----------------------------------------------------------------------------- end : evaluate_page_9 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_10 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_10
+  $(
+    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
+  )
+    .eq(9)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_10", function () {
+          $("#evaluate_page_10 button.choice").prop("disabled", true);
+          $("#evaluate_page_10 .step-footer").hide();
+          $("#evaluate_page_10 .evaluate_page_status ").show();
+          $("#evaluate_page_10 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_10 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_10 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_10 button.choice").prop("disabled", false);
+    $("#evaluate_page_10 .evaluate_page_status ").hide();
+    $("#evaluate_page_10 .footer").hide();
+    $("#evaluate_page_10 .step-footer").show();
+    $("#evaluate_page_10 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+  });
+  $("#evaluate_page_10 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_10 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_10 button.choice").hasClass("active")) {
+      $("#evaluate_page_10 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_10 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_10 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_10 .evaluate_page_status ").hide();
+    }
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_10 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#evaluate_page_10 button.choice").prop("disabled", true);
+      $("#evaluate_page_10 .evaluate_page_status ").show();
+      $("#evaluate_page_10 .footer").show();
+      $("#evaluate_page_10 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_10 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  /* ----------------------------------------------------------------------------- end : evaluate_page_10 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_11 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_11
+  $(
+    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
+  )
+    .eq(10)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_11", function () {
+          $("#evaluate_page_11 button.choice").prop("disabled", true);
+          $("#evaluate_page_11 .step-footer").hide();
+          $("#evaluate_page_11 .evaluate_page_status ").show();
+          $("#evaluate_page_11 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_11 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_11 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_11 button.choice").prop("disabled", false);
+    $("#evaluate_page_11 .evaluate_page_status ").hide();
+    $("#evaluate_page_11 .footer").hide();
+    $("#evaluate_page_11 .step-footer").show();
+    $("#evaluate_page_11 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+  });
+  $("#evaluate_page_11 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_11 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_11 button.choice").hasClass("active")) {
+      $("#evaluate_page_11 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_11 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_11 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_11 .evaluate_page_status ").hide();
+    }
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_11 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#evaluate_page_11 button.choice").prop("disabled", true);
+      $("#evaluate_page_11 .evaluate_page_status ").show();
+      $("#evaluate_page_11 .footer").show();
+      $("#evaluate_page_11 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_11 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  $("#evaluate_page_11 .choice").click(function () {
+    if ($(this).attr("value") == "0" && $(this).attr("target")) {
+      $("#eva11_sub_" + $(this).attr("target")).hide();
+    } else if ($(this).attr("value") == "1" && $(this).attr("target")) {
+      $("#eva11_sub_" + $(this).attr("target")).show();
+    }
+  });
+  /* ----------------------------------------------------------------------------- end : evaluate_page_11 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_12 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_12
+  $(
+    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
+  )
+    .eq(11)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_12", function () {
+          $("#evaluate_page_12 button.choice").prop("disabled", true);
+          $("#evaluate_page_12 .step-footer").hide();
+          $("#evaluate_page_12 .evaluate_page_status ").show();
+          $("#evaluate_page_12 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_12 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_12 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_12 button.choice").prop("disabled", false);
+    $("#evaluate_page_12 .evaluate_page_status ").hide();
+    $("#evaluate_page_12 .footer").hide();
+    $("#evaluate_page_12 .step-footer").show();
+    $("#evaluate_page_12 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+  });
+  $("#evaluate_page_12 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $("#evaluate_page_12 .btn-group button").on("click", function () {
+    if ($("#evaluate_page_12 button.choice").hasClass("active")) {
+      $("#evaluate_page_12 .step-footer .btn_group .submit").prop(
+        "disabled",
+        false
+      );
+      $("#evaluate_page_12 .evaluate_page_status ").show();
+    } else {
+      $("#evaluate_page_12 .step-footer .btn_group .submit").prop(
+        "disabled",
+        true
+      );
+      $("#evaluate_page_12 .evaluate_page_status ").hide();
+    }
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_12 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $("#evaluate_page_12 button.choice").prop("disabled", true);
+      $("#evaluate_page_12 .evaluate_page_status ").show();
+      $("#evaluate_page_12 .footer").show();
+      $("#evaluate_page_12 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_12 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  $("#evaluate_page_12 .choice").click(function () {
+    if ($(this).attr("value") == "0" && $(this).attr("target")) {
+      $("#eva12_sub_" + $(this).attr("target")).hide();
+    } else if ($(this).attr("value") == "1" && $(this).attr("target")) {
+      $("#eva12_sub_" + $(this).attr("target")).show();
+    }
+  });
+  /* ----------------------------------------------------------------------------- end : evaluate_page_12 ----------------------------------------------------------------------------- */
+
+  /* ----------------------------------------------------------------------------- start : evaluate_page_13 ----------------------------------------------------------------------------- */
+  // เปลี่ยนหน้าไป evaluate_page_13
+  $(
+    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
+  )
+    .eq(12)
+    .on("click", function () {
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_page_13", function () {
+          $('#evaluate_page_13 input[type="radio"]').prop("disabled", true);
+          $("#evaluate_page_13 .step-footer").hide();
+          $("#evaluate_page_13 .evaluate_page_status ").show();
+          $("#evaluate_page_13 .footer.evaluate_page_footer ").show();
+        });
+      }, 500);
+    });
+  // ปุ่ม back
+  $("#evaluate_page_13 .evaluate_page_header .back_header_btn").on(
+    "click",
+    function () {
+      showModal("modal-evaluate-alert");
+    }
+  );
+  // ปุ่ม เริ่มประเมินใหม่
+  $("#evaluate_page_13 .footer .btn_create_evaluate").on("click", function () {
+    $('#evaluate_page_13 input[type="radio"]').prop("disabled", false);
+    $("#evaluate_page_13 .evaluate_page_status ").hide();
+    $("#evaluate_page_13 .footer").hide();
+    $("#evaluate_page_13 .step-footer").show();
+    $("#evaluate_page_13 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+  });
+  $("#evaluate_page_13 button.choice").on("click", function () {
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  });
+  // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
+  $('input[type="radio"]').change(function () {
+    $("#evaluate_page_13 .step-footer .btn_group .submit").prop(
+      "disabled",
+      false
+    );
+    $("#evaluate_page_13 .evaluate_page_status ").show();
+  });
+  // ปุ่ม ยกเลิก
+  $("#evaluate_page_13 .step-footer .btn_group .cancel").on(
+    "click",
+    function () {
+      $('#evaluate_page_13 input[type="radio"]').prop("disabled", true);
+      $("#evaluate_page_13 .evaluate_page_status ").show();
+      $("#evaluate_page_13 .footer").show();
+      $("#evaluate_page_13 .step-footer").hide();
+    }
+  );
+  // ปุ่ม บันทึก
+  $("#evaluate_page_13 .step-footer .btn_group .submit").on(
+    "click",
+    function () {
+      $("#evaluate_detail_page .footer.evaluate-success").show();
+      changePage("evaluate_detail_page", function () {
+        setTimeout(function () {
+          $("#evaluate_detail_page .footer.evaluate-success").hide();
+        }, 1000);
+      });
+    }
+  );
+  $("#evaluate_page_13 .choice").click(function () {
+    if ($(this).attr("value") == "0" && $(this).attr("target")) {
+      $("#eva13_sub_" + $(this).attr("target")).hide();
+    } else if ($(this).attr("value") == "1" && $(this).attr("target")) {
+      $("#eva13_sub_" + $(this).attr("target")).show();
+    }
+  });
+  /* ----------------------------------------------------------------------------- end : evaluate_page_13 ----------------------------------------------------------------------------- */
   function setProgressevaluate(percent) {
     var circle = document.querySelector(".progress_ring_circle_evaluate");
     var radius = circle.r.baseVal.value;
@@ -484,5 +1324,16 @@ $(function () {
     const offset =
       circumference - ((percent * (100 / 13)) / 100) * circumference;
     circle.style.strokeDashoffset = offset;
+  }
+  //check img
+  function checkImg() {
+    let img = $(".image_upload_preview img");
+    if (img.length == 0) {
+      $(".image_upload_preview").hide();
+      $("button.camera").show();
+    } else {
+      $(".image_upload_preview").show();
+      $("button.camera").hide();
+    }
   }
 });

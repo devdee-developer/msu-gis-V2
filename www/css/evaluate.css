@@ -330,6 +330,11 @@ button.btn_create_evaluate {
   align-items: center;
   padding: 0 4%;
 }
+.input_eva {
+  width: 100%;
+  padding: 20px 40px;
+  display: inline-block;
+}
 .input-DTX {
   width: 50%;
   padding: 15px;
@@ -343,6 +348,7 @@ button.btn_create_evaluate {
   height: 50px;
   float: left;
 }
+
 .btnYesSelector {
   min-width: 100px;
   height: 40px;
@@ -356,6 +362,59 @@ button.btn_create_evaluate {
   border-color: #54d5bb;
   border-style: solid;
   float: right;
+}
+button.selector {
+  min-width: 100px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 27px;
+  font-size: 16px;
+  color: #7f7fa8;
+  border-width: 2px;
+  font-family: Prompt;
+  position: relative;
+  border-color: #ddd8f0;
+  border-style: solid;
+}
+button.selector.active:disabled {
+  background-color: #7f7fa8;
+  color: #ffffff;
+  border: 3px solid #ddd8f0;
+}
+button.selector.active:before {
+  content: "";
+  clear: both;
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, -70%);
+  background-color: #54d5bb;
+  background-image: url(../img/check_icon.png);
+  background-position-x: center;
+  background-position-y: center;
+}
+button.selector.active:disabled:before {
+  content: "";
+  clear: both;
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, -70%);
+  background-color: #ddd8f0;
+  background-image: url(../img/check_icon_disabled.png);
+  background-position-x: center;
+  background-position-y: center;
+}
+button.selector.active {
+  background-color: #7676ff;
+  color: #ffffff;
+  border: 3px solid #54d5bb;
 }
 button.yes {
   min-width: 100px;
@@ -488,7 +547,7 @@ button.submit:disabled {
 }
 input.input-DTX {
   height: 53px;
-  width: 100%;
+  width: 60%;
   border-radius: 13px;
   padding-left: 30px;
   font-size: 18px;
@@ -496,11 +555,18 @@ input.input-DTX {
   color: #08776f;
   background-color: #ecf8f7;
   border: 2px solid #1bc3a2;
+  margin-right: 20px;
+}
+.blood_pressure_unit {
+  font-size: 20px;
+  color: #0d0e12;
+  margin: 40px 0px 10px 0px;
 }
 input.input-DTX:focus {
   box-shadow: 0px 2px 15px #9595f273;
   color: #08776f;
   background-color: #ffffff;
+  margin-right: 20px;
 }
 .modal .modal-container-evaluate-alert {
   position: fixed;
@@ -563,7 +629,378 @@ button.submit_alret {
   border-style: solid;
   border-color: #f26e4f;
 }
+button.play_stop {
+  width: 40px;
+  height: 40px;
+  background-image: url(../img/play_icon.png);
+  background-position-x: left;
+  background-position-y: center;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  background-color: #7676ff;
+  position: absolute;
+  transform: translate(0%, 50%);
+  border-width: 0px;
+}
+button.play_stop.active {
+  width: 40px;
+  height: 40px;
+  background-image: url(../img/stop_icon.png);
+  background-position-x: left;
+  background-position-y: center;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  background-color: #7676ff;
+  position: absolute;
+  transform: translate(0%, 50%);
+  border-width: 0px;
+}
+#evaluate_page_7 .run_time {
+  min-width: 130px;
+  height: 110px;
+  background: #7676ff;
+  border-radius: 60px;
+  font-size: 20px;
+  color: #f26e4f;
+  border-width: 2px;
+  font-family: Prompt;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+#evaluate_page_7 .time {
+  width: 120px;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 50px;
+  color: #ddd8f0;
+}
+#evaluate_page_7 .time.active {
+  width: 120px;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 50px;
+  color: #010979;
+}
+#evaluate_page_7 .btn_reset {
+  width: 75px;
+  height: 45px;
+  background: #9595f2;
+  color: #ddd8f0;
+  border-radius: 36px;
+  font-family: Prompt;
+  font-size: 16px;
+  position: absolute;
+  left: 77%;
+  border-width: 0px;
+  transform: translate(-43%, 40%);
+}
+.backgroundwhite2 {
+  top: 15px;
+  width: 100%;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 0px -3px 15px #7f7fa873;
+  border-width: 0;
+}
+.content .backgroundwhite2 .eva_header_title {
+  color: #010979;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 25px 0;
+  text-align: center;
+}
+.backgroundwhite2 .eva_banner {
+  height: 225px;
+}
+.bold {
+  font-weight: bold;
+}
+.no_p {
+  padding: 0 !important;
+}
+.no_p_bot {
+  padding-bottom: 0px !important;
+}
+.eva_form {
+  text-align: left;
+  padding: 25px 25px;
+  border-bottom: 1px solid #ede7fe;
+}
+.no_p_v {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.eva_form .eva_title {
+  font-size: 20px;
+  color: #0d0e12;
+  margin: 30px 0 10px 0;
+}
+.eva_form .eva_description {
+  font-size: 18px;
+  color: #3b3d48;
+}
+.eva_form_box {
+  border: 3px solid #7f7fa8;
+  border-radius: 22px;
+  padding: 18px;
+  text-align: left;
+  margin: 20px 10px 0 10px;
+  font-size: 20px;
+  color: #0d0e12;
+  background-color: #f7f5fc;
+}
+button.camera {
+  background-color: #010979;
+  height: 63px;
+  width: 100%;
+  border-radius: 11px;
+  border-width: 0;
+  color: #ffffff;
+  font-size: 18px;
+  margin: 20px 0;
+}
+.eva_form input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+.eva_form input[type="checkbox"]:checked {
+  background-color: #1bc3a2;
+  background-image: url(../img/check_icon.png);
+  background-position-x: center;
+  background-position-y: center;
+  background-size: 22px 22px;
+  border-width: 0;
+}
+.eva_form input[type="checkbox"]:disabled:checked {
+  background-color: #97a3a3;
+  background-image: url(../img/check_disabled.png);
+  background-position-x: center;
+  background-position-y: center;
+  background-size: 22px 22px;
+  border-width: 0;
+}
+.eva_form [type="checkbox"]:checked + label {
+  position: relative;
+  cursor: pointer;
+  line-height: 22px;
+  color: #1bc3a2;
+}
+.eva_form [type="checkbox"]:disabled:checked + label {
+  position: relative;
+  cursor: pointer;
+  line-height: 22px;
+  color: #7f7fa8;
+}
+.eva_form [type="checkbox"]:disabled:not(:checked) + label {
+  position: relative;
+  cursor: pointer;
+  line-height: 22px;
+  color: #ddd8f0;
+}
+.eva_form li {
+  list-style-type: none;
+  padding: 15px 0;
+  border-bottom: 1px solid #e4eceb;
+  font-size: 20px;
+}
+.eva_form ul li:last-child {
+  border-width: 0;
+}
+.eva_form ul {
+  margin-bottom: 10px;
+}
+.no_border {
+  border-width: 0;
+}
+.image_upload_preview {
+  width: 63px;
+  height: 63px;
+  border-radius: 11px;
+  border: 1px solid #7f7fa8;
+  margin: 20px 0;
+  position: relative;
+}
+.image_upload_preview img {
+  width: 63px;
+  height: 63px;
+  border-radius: 11px;
+}
+.image_upload_preview .dismiss {
+  background-color: #f53f4d;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(15%, -50%);
+  border-radius: 50%;
+  color: #ffffff;
 
+  text-align: center;
+  line-height: 19px;
+  font-size: 13px;
+}
+.image_upload_preview[disabled="disabled"] .dismiss {
+  background-color: #7f7fa8;
+}
+
+.backgroundwhite2 .eva_form .answer {
+  width: 100%;
+  padding: 25px 40px;
+}
+.eva_form .btn-group {
+  width: 100%;
+  padding: 20px 40px;
+  display: inline-block;
+}
+.eva_form .btn-group button.choice {
+  background-color: #ffffff;
+  border: 3px solid #ddd8f0;
+  color: #7f7fa8;
+  width: 101px;
+  height: 46px;
+  font-size: 18px;
+  font-family: Prompt;
+  border-radius: 36px;
+  cursor: pointer;
+  position: relative;
+}
+.eva_form .btn-group button.choice.active:disabled {
+  background-color: #7f7fa8;
+  color: #ffffff;
+  border: 3px solid #ddd8f0;
+}
+.eva_form .btn-group button.choice.active:before {
+  content: "";
+  clear: both;
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, -70%);
+  background-color: #54d5bb;
+  background-image: url(../img/check_icon.png);
+  background-position-x: center;
+  background-position-y: center;
+}
+.eva_form .btn-group button.choice.active:disabled:before {
+  content: "";
+  clear: both;
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, -70%);
+  background-color: #ddd8f0;
+  background-image: url(../img/check_icon_disabled.png);
+  background-position-x: center;
+  background-position-y: center;
+}
+.eva_form .btn-group button.choice.active {
+  background-color: #7676ff;
+  color: #ffffff;
+  border: 3px solid #54d5bb;
+}
+.eva_img {
+  max-width: 100%;
+  width: 352px;
+  margin: 15px auto;
+  display: block;
+  border-radius: 11px;
+}
+.eva_form [type="radio"]:checked + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #1bc3a2;
+}
+.eva_form [type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #3b3d48;
+}
+.eva_form [type="radio"]:disabled:not(:checked) + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #ddd8f0;
+}
+.eva_form [type="radio"]:disabled:checked + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #7f7fa8;
+}
+.eva_form [type="radio"]:checked + label:after,
+.eva_form [type="radio"]:not(:checked) + label:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #1bc3a2;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.eva_form [type="radio"]:disabled:checked + label:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #7f7fa8;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.eva_form [type="radio"]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #ddd8f0;
+  border-radius: 100%;
+  background: #ffffff;
+}
 /* ----------------------------------------------------------------------------- start : evaluate_detail_page ----------------------------------------------------------------------------- */
 #evaluate_detail_page .content {
   position: absolute;
@@ -668,5 +1105,46 @@ button.submit_alret {
 /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
 .backgroundwhite.eva3 {
   height: 2000px;
+}
+/* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------- start : evaluate_page_4 ----------------------------------------------------------------------------- */
+
+#modal-img-eva4 .modal_img_title {
+  margin-bottom: 20px;
+}
+#modal-img-eva4 .modal_img_title p:nth-child(1) {
+  color: #010979;
+  font-size: 30px;
+  font-weight: bold;
+}
+#modal-img-eva4 .modal_img_title p:nth-child(2) {
+  color: #f53f4d;
+  font-size: 20px;
+}
+#modal-img-eva4 button {
+  height: 53px;
+  width: 259px;
+  border-radius: 27px;
+  color: #ffffff;
+  border-width: -0;
+  font-size: 20px;
+  font-weight: 500;
+  box-shadow: 0px 8px 12px #9595f273;
+  font-family: Prompt;
+  margin: 10px 0;
+}
+#modal-img-eva4 button.on_camera {
+  background-color: #7676ff;
+}
+#modal-img-eva4 button.on_gallery {
+  background-color: #010979;
+}
+
+/* ----------------------------------------------------------------------------- end : evaluate_page_4 ----------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
+.backgroundwhite.eva5 {
+  height: 4100px;
 }
 /* ----------------------------------------------------------------------------- end : evaluate_page_3 ----------------------------------------------------------------------------- */

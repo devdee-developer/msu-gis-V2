@@ -2748,35 +2748,6 @@
           </div>
           <hr />
           <div class="visit_card current">
-            <div class="card_header_evaluate">
-              <p><b>สถานะ :</b> ผ่านการประเมินแล้ว</p>
-              <div class="space"></div>
-              <div class="qty_evaluate">ประเมินแล้ว 5 ครั้ง</div>
-            </div>
-            <div class="card_body evaluate">
-              <div class="card_body_left">
-                <p><b class="no_evaluate">8</b></p>
-              </div>
-              <div class="card_body_center">
-                <p>สุขภาวะทางตา</p>
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
-                  18 ม.ค. 64, เวลา 14:28 น.
-                </p>
-              </div>
-
-              <div class="status-card-body-btn-evaluate">
-                <i class="fa fa-chevron-right"></i>
-              </div>
-            </div>
-            <div class="card-footer evaluate">
-              <p style="color: #ffffff">**คำแนะนำล่าสุด</p>
-              <div class="space"></div>
-              <div class="recommend"><p>ปรกติ</p></div>
-            </div>
-          </div>
-          <hr />
-          <div class="visit_card current">
             <div class="card_header_evaluating">
               <p><b>สถานะ :</b> กำลังประเมิน</p>
             </div>
@@ -2916,32 +2887,30 @@
       </div>
       <div class="content">
         <div class="backgroundblue"></div>
-        <div class="backgroundwhite eva1">
+        <div class="backgroundwhite2 eva2 no_p">
           <div class="bar"></div>
-          <div class="disease"><p>1. การคัดกรองโรคเบาหวาน</p></div>
-          <div class="tutorialImg"><img src="img/diabetes.png" /></div>
-          <div class="tutorial">
-            <p><b>วิธีทดสอบ</b></p>
-            <p>
+          <div class="eva_header_title">1. การคัดกรองโรคเบาหวาน</div>
+          <img class="eva_banner" src="img/cardiovascular_disease.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
               การตรวจเลือดโดยการตรวจระดับน้ําตาลในเลือด
               โดยให้ตรวจผู้สูงอายุขณะอดอาหาร
             </p>
-            <p><b>แบบบันทึกผล</b></p>
-            <div class="tagHr"></div>
+            <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
-          <div class="form">
-            <p>การตรวจระดับน้ำตาลในเลือด (DTX)</p>
-            <div class="input_inline">
-              <input
-                type="text"
-                class="input-DTX"
-                id="DTX"
-                placeholder="ใส่ตัวเลข"
-                value="75"
-              />
-              <label>มก.ดล</label>
-            </div>
+          <div class="eva_form no_p_v" style="border-width: 0px">
+            <p class="eva_title">การตรวจระดับน้ำตาลในเลือด (DTX)</p>
+            <input
+              type="text"
+              class="input-DTX"
+              id="DTX"
+              placeholder="ใส่ตัวเลข"
+              value="75"
+            />
+            <p class="blood_pressure_unit">มก.ดล</p>
           </div>
+          <div style="height: 225px"></div>
         </div>
       </div>
       <div class="evaluate_page_status">
@@ -2973,45 +2942,40 @@
       </div>
       <div class="content">
         <div class="backgroundblue"></div>
-        <div class="backgroundwhite eva2">
+        <div class="backgroundwhite2 eva2 no_p">
           <div class="bar"></div>
-          <div class="disease"><p>2. การคัดกรองโรคความดันโลหิตสูง</p></div>
-          <div class="tutorialImg">
-            <img src="img/high_blood_pressure.png" />
-          </div>
-          <div class="tutorial">
-            <p><b>วิธีทดสอบ</b></p>
-            <p>
+          <div class="eva_header_title">2. การคัดกรองโรคความดันโลหิตสูง</div>
+          <img class="eva_banner" src="img/cardiovascular_disease.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
               สวมผ้าพันแขนที่ต้นแขน และโดยให้ผู้สูงอายุผาย มือขึ้นและผ่อนคลาย
               จากนั้นจึงเริ่มเปิดเครื่องวัด
             </p>
-            <p><b>แบบบันทึกผล</b></p>
-            <div class="tagHr"></div>
+            <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
-          <div class="form">
-            <p>ระดับความดันโลหิตตัวบน</p>
-            <div class="input_inline">
-              <input
-                type="text"
-                class="input-DTX"
-                id="blood_pressure_up"
-                placeholder="ใส่ตัวเลข"
-                value="75"
-              />
-              <label>มม.ปรอท</label>
-            </div>
-            <p>ระดับความดันโลหิตตัวล่าง</p>
-            <div class="input_inline">
-              <input
-                type="text"
-                class="input-DTX"
-                id="blood_pressure_down"
-                placeholder="ใส่ตัวเลข"
-                value="75"
-              />
-              <label>มม.ปรอท</label>
-            </div>
+          <div class="eva_form no_p_v" style="border-width: 0px">
+            <p class="eva_title">ระดับความดันโลหิตตัวบน</p>
+            <input
+              type="text"
+              class="input-DTX"
+              id="blood_pressure_up"
+              placeholder="ใส่ตัวเลข"
+              value="75"
+            />
+            <p class="blood_pressure_unit">มม.ปรอท</p>
+            <br />
+            <p class="eva_title">ระดับความดันโลหิตตัวล่าง</p>
+            <input
+              type="text"
+              class="input-DTX"
+              id="blood_pressure_down"
+              placeholder="ใส่ตัวเลข"
+              value="75"
+            />
+            <p class="blood_pressure_unit">มม.ปรอท</p>
           </div>
+          <div style="height: 225px"></div>
         </div>
       </div>
       <div class="evaluate_page_status">
@@ -3043,79 +3007,110 @@
       </div>
       <div class="content">
         <div class="backgroundblue"></div>
-        <div class="backgroundwhite eva3">
+        <div class="backgroundwhite2 eva3 no_p">
           <div class="bar"></div>
-          <div class="disease"><p>3. โรคหัวใจและหลอดเลือด</p></div>
-          <div class="tutorialImg">
-            <img src="img/cardiovascular_disease.png" />
-          </div>
-          <div class="tutorial">
-            <p><b>วิธีทดสอบ</b></p>
-            <p>
+          <div class="eva_header_title">3. โรคหัวใจและหลอดเลือด</div>
+          <img class="eva_banner" src="img/cardiovascular_disease.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
               พูดคุยกับผู้สูงเรื่องปัญหาสุขภาพ และอาการที่มี โดยมีคำถามจำนวน 7
               ข้อ
             </p>
-            <p><b>แบบบันทึกผล</b></p>
-            <div class="tagHr"></div>
+            <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
-          <div class="form">
-            <div class="question">
-              <p><b>1. </b>ผู้สูงอายุสูบบุหรี่ หรือหยุดสูบมาแล้วไม่เกิน 1 ปี</p>
-            </div>
-            <div class="answer" id="CVD1">
-              <button class="no" id="CVD1N">ไม่ใช่</button>
-              <button class="yes" id="CVD1Y">ใช่</button>
-            </div>
-            <div class="question">
-              <p><b>2. </b>ระดับความดันโลหิตตั้งแต่ 130 มม.ปรอท ขึ้นไป</p>
-            </div>
-            <div class="answer" id="CVD2">
-              <button class="no" id="CVD2N">ไม่ใช่</button>
-              <button class="yes" id="CVD2Y">ใช่</button>
-            </div>
-            <div class="question">
-              <p><b>3. </b>ระดับน้ำตาลในเลือด ตั้งแต่ 100 มก./ดล.</p>
-            </div>
-            <div class="answer" id="CVD3">
-              <button class="no" id="CVD3N">ไม่ใช่</button>
-              <button class="yes" id="CVD3Y">ใช่</button>
-            </div>
-            <div class="question">
-              <p>
-                <b>4. </b>เคยได้รับการวินิจฉัยจากแพทย์ว่ามีภาวะไขมันเลือดผิดปกติ
-              </p>
-            </div>
-            <div class="answer" id="CVD4">
-              <button class="no" id="CVD4N">ไม่ใช่</button>
-              <button class="yes" id="CVD4Y">ใช่</button>
-            </div>
-            <div class="question">
-              <p>
-                <b>5. </b>เคยได้รับการวินิจฉัยจากแพทย์ว่าเป็นโรคหัวใจขาดเลือด
-              </p>
-            </div>
-            <div class="answer" id="CVD5">
-              <button class="no" id="CVD5N">ไม่ใช่</button>
-              <button class="yes" id="CVD5Y">ใช่</button>
-            </div>
-            <div class="question">
-              <p>
-                <b>6. </b>ผู้สูงอายุมีเส้นรอบเอวมากกว่าส่วนสูง
-                (วัดเป็นเซนติเมตร)
-              </p>
-            </div>
-            <div class="answer" id="CVD6">
-              <button class="no" id="CVD6N">ไม่ใช่</button>
-              <button class="yes" id="CVD6Y">ใช่</button>
-            </div>
-            <div class="question">
-              <p><b>7. </b>มี พ่อ แม่ พี่ น้อง เป็นโรคหัวใจขาดเลือด</p>
-            </div>
-            <div class="answer" id="CVD7">
-              <button class="no" id="CVD7N">ไม่ใช่</button>
-              <button class="yes" id="CVD7Y">ใช่</button>
+          <div class="eva_form_box bold">
+            1. ผู้สูงอายุสูบบุหรี่ หรือหยุดสูบมาแล้วไม่เกิน 1 ปี
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="CVD1N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="CVD1Y">
+                ใช่
+              </button>
             </div>
           </div>
+          <div class="eva_form_box bold">
+            2. ระดับความดันโลหิตตั้งแต่ 130 มม.ปรอท ขึ้นไป
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="CVD2N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="CVD2Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            3. ระดับน้ำตาลในเลือด ตั้งแต่ 100 มก./ดล.
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="CVD3N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="CVD3Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            4. เคยได้รับการวินิจฉัยจากแพทย์ว่ามีภาวะไขมันเลือดผิดปกติ
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="CVD4N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="CVD4Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            5. เคยได้รับการวินิจฉัยจากแพทย์ว่าเป็นโรคหัวใจขาดเลือด
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="CVD5N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="CVD5Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            6. ผู้สูงอายุมีเส้นรอบเอวมากกว่าส่วนสูง
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="CVD6N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="CVD6Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            7. มี พ่อ แม่ พี่ น้อง เป็นโรคหัวใจขาดเลือด
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="CVD7N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="CVD7Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div style="height: 225px"></div>
         </div>
       </div>
       <div class="evaluate_page_status">
@@ -3139,6 +3134,2123 @@
         </div>
       </div>
     </div>
+    <div class="pages" id="evaluate_page_4">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva4 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">4. สมองเสื่อม (MINI-COG)</div>
+          <img class="eva_banner" src="img/dementia_banner.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              ผู้ทดสอบบอกผู้ถูกทดสอบว่า ให้ตั้งใจฟังดีๆ เดี๋ยว จะบอกคํา 3 คํา
+              คือคําว่า “หลานสาว สวรรค์ ภูเขา” เมื่อพูดจบให้พูดตามและจําไว้
+              จะกลับมาถามซ้ํา
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">
+            1. ให้ผู้ทดสอบวาดรูปนาฬิาโดยใส่ตัวเลขและเข็มนาฬิกาที่เวลา 11.10
+            นาทีให้ถูกต้อง
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">1.1 เขียนเลขในหน้าปัดนาฬิกา ถูกต้องหรือไม่</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left" id="COG1AY">
+                ถูก
+              </button>
+              <button class="choice" style="float: right" id="COG1AN">
+                ไม่ถูก
+              </button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">1.2 วาดต่ำแหน่งเข็มนาฬิกา ได้หรือไม่</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left" id="COG1BY">
+                ถูก
+              </button>
+              <button class="choice" style="float: right" id="COG1BN">
+                ไม่ถูก
+              </button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">1.3 ถ่ายรูป ที่ผู้สูงอายุวาดไว้</p>
+            <button class="camera">
+              <i class="fa fa-camera" aria-hidden="true"></i>
+            </button>
+            <div class="image_upload_preview">
+              <img src="img/1.jpg" />
+              <div class="dismiss">
+                <i class="fa fa-minus" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            2. อสม. อ่านชุดคำพูดทีละข้อให้ผู้สูงอายุ พูดตาม
+            แล้วทำเครื่องหมายในข้อที่ผู้สูงอายุ สามารถทวนคำพูดได้ถูกต้อง ดังนี้
+            <br />
+            <br />&nbsp; A : “หลานสาว สวรรค์ ภูเขา” <br />&nbsp; B : “พี่น้อง
+            พัดลม หมอนข้าง” <br />&nbsp; C : “ปากกา สีแดง กระต่าย”
+          </div>
+          <div class="eva_form no_border">
+            <ui>
+              <li>
+                <input
+                  type="checkbox"
+                  name="COG2A"
+                  class="eve_4_2"
+                  id="eve_check_4_2_1"
+                />
+                <label for="eve_check_4_2_1">“หลานสาว สวรรค์ ภูเขา”</label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="COG2B"
+                  class="eve_4_2"
+                  id="eve_check_4_2_2"
+                />
+                <label for="eve_check_4_2_2">“พี่น้อง พัดลม หมอนข้าง”</label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  name="COG2C"
+                  class="eve_4_2"
+                  id="eve_check_4_2_3"
+                />
+                <label for="eve_check_4_2_3">“ปากกา สีแดง กระต่าย”</label>
+              </li>
+            </ui>
+          </div>
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+      <div id="modal-img-eva4" class="modal">
+        <div class="modal-container" style="padding-bottom: 60px">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <div class="modal_img_title">
+            <p>เลือกวิธีเพิ่มรูป</p>
+            <p>*สามารถเพิ่มได้ 1 รูป</p>
+          </div>
+          <button class="on_camera">ถ่ายรูปใหม่</button>
+          <button class="on_gallery">เลือกจากในเครื่อง</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_5">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva6 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">5. โรคซึมเศร้า</div>
+          <img class="eva_banner" src="img/depression.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              พูดคุยกับผู้สูงอายุเรื่องการใช้ชีวิต และความรู้สึกที่ เกิดขึ้
+              โดยมีคำถามจำนวน 2 ส่วน
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">1. แบบประเมินความเสี่ยง</div>
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title">
+              1.1 ในช่วง 2 สัปดาห์ที่ผ่านมา ท่านรู้สึก หดหู่ เศร้า
+              หรือท้อแท้สิ้นหวัง หรือไม่
+            </p>
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="P2Q1N">
+                ไม่มี
+              </button>
+              <button class="choice" style="float: right" id="P2Q1Y">มี</button>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title">
+              1.2. ในช่วง 2 สัปดาห์ที่ผ่านมา ท่านรู้สึกเบื่อ
+              ทำอะไรก็ไม่เพลิดเพลิน หรือไม่
+            </p>
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" id="P2Q2N">
+                ไม่มี
+              </button>
+              <button class="choice" style="float: right" id="P2Q2Y">
+                ไม่มี
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">2. แบบประเมินโรคซึมเศร้า</div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">2.1. เบื่อ ไม่สนใจอยากทําอะไร</p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q1" id="P9Q1_0" value="0" />
+                  <label for="P9Q1_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q1" id="P9Q1_1" value="1" />
+                  <label for="P9Q1_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q1" id="P9Q1_2" value="2" />
+                  <label for="P9Q1_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q1" id="P9Q1_3" value="3" />
+                  <label for="P9Q1_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">2.2. ไม่สบายใจ ซึมเศร้า ท้อแท</p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q2" id="P9Q2_0" value="0" />
+                  <label for="P9Q2_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q2" id="P9Q2_1" value="1" />
+                  <label for="P9Q2_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q2" id="P9Q2_2" value="2" />
+                  <label for="P9Q2_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q2" id="P9Q2_3" value="3" />
+                  <label for="P9Q2_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">
+              2.3. หลับยาก หรือ หลับๆ ตื่นๆ หรือ หลับมากไป
+            </p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q3" id="P9Q3_0" value="0" />
+                  <label for="P9Q3_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q3" id="P9Q3_1" value="1" />
+                  <label for="P9Q3_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q3" id="P9Q3_2" value="2" />
+                  <label for="P9Q3_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q3" id="P9Q3_3" value="3" />
+                  <label for="P9Q3_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">2.4. เหนื่อยง่าย หรือ ไม่ค่อยมีแรง</p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q4" id="P9Q4_0" value="0" />
+                  <label for="P9Q4_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q4" id="P9Q4_1" value="1" />
+                  <label for="P9Q4_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q4" id="P9Q4_2" value="2" />
+                  <label for="P9Q4_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q4" id="P9Q4_3" value="3" />
+                  <label for="P9Q4_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">2.5. เบื่ออาหาร หรือ กินมากเกินไป</p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q5" id="P9Q5_0" value="0" />
+                  <label for="P9Q5_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q5" id="P9Q5_1" value="1" />
+                  <label for="P9Q5_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q5" id="P9Q5_2" value="2" />
+                  <label for="P9Q5_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q5" id="P9Q5_3" value="3" />
+                  <label for="P9Q5_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">
+              2.6. รู้สึกไม่ดีกับตัวเอง คิดว่าตัวเองล้มเหลว หรือทำให้ตัวเอง
+              หรือครอบครับผิดหวัง
+            </p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q6" id="P9Q6_0" value="0" />
+                  <label for="P9Q6_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q6" id="P9Q6_1" value="1" />
+                  <label for="P9Q6_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q6" id="P9Q6_2" value="2" />
+                  <label for="P9Q6_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q6" id="P9Q6_3" value="3" />
+                  <label for="P9Q6_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">
+              2.7. สมาธิไม่ดีเวลาทําอะไร เช่น ดูโทรทัศน์ ฟังวิทยุ หรือ
+              ทํางานที่ต้องใช้ความตั้งใจ
+            </p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q7" id="P9Q7_0" value="0" />
+                  <label for="P9Q7_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q7" id="P9Q7_1" value="1" />
+                  <label for="P9Q7_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q7" id="P9Q7_2" value="2" />
+                  <label for="P9Q7_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q7" id="P9Q7_3" value="3" />
+                  <label for="P9Q7_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">
+              2.8. พูดช้า ทําอะไรช้าลงจนคนอื่นสังเกตเห็น หรือ
+              กระสับกระส่ายไม่สามารถอยู่นิ่งได้
+            </p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q8" id="P9Q8_0" value="0" />
+                  <label for="P9Q8_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q8" id="P9Q8_1" value="1" />
+                  <label for="P9Q8_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q8" id="P9Q8_2" value="2" />
+                  <label for="P9Q8_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q8" id="P9Q8_3" value="3" />
+                  <label for="P9Q8_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="eva_form no_p_v no_border" style="margin: 20px 0">
+            <p class="eva_title">
+              2.9. คิดทําร้ายตนเอง หรือคิดว่าถ้าตายไป คงจะดี
+            </p>
+            <div class="visit_choice">
+              <ul class="visit_form">
+                <li>
+                  <input type="radio" name="P9Q9" id="P9Q9_0" value="0" />
+                  <label for="P9Q9_0">ไม่มีเลย</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q9" id="P9Q9_1" value="1" />
+                  <label for="P9Q9_1">เป็นบางวัน 1 – 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q9" id="P9Q9_2" value="2" />
+                  <label for="P9Q9_2">เป็นบ่อย มากกว่า 7 วัน</label>
+                </li>
+                <li>
+                  <input type="radio" name="P9Q9" id="P9Q9_3" value="3" />
+                  <label for="P9Q9_3">เป็นทุกวัน</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_6">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva6 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">6. โรคข้อเข่าเสื่อม</div>
+          <img class="eva_banner" src="img/osteoarthritis_banner.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              ประเมินผู้สูงอายุที่มีอาการปวดเข่า เพื่อค้นหาโอกาส
+              ที่จะเป็นโรคข้อเข่าเสื่อมและส่งต่อแพทย์เพื่อ
+              ตรวจวินิจฉัยและทําการรักษา
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">
+            1. ข้อเข่าฝืดตึงหลังตื่นนอนตอนเช้า โดยมีอาการมากกว่า 30 นาที
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left" id="OST1N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="OST1Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            2. เสียงดังกรปบแกรบในข้อเข่า ซึ่งเป็นขณะ เคลื่อนไหว
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left" id="OST2N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="OST2Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            3. เมื่อกดเข่า จะมีอาการเจ็บที่กระดูกข้อเข่า
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left" id="OST3N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="OST3Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">4. มีลักษณะข้อใหญ่ผิดรูป</div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left" id="OST4N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="OST4Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">5. ไม่พบข้ออุ่น</div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left" id="OST5N">
+                ไม่ใช่
+              </button>
+              <button class="choice" style="float: right" id="OST5Y">
+                ใช่
+              </button>
+            </div>
+          </div>
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_7">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva7 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">7. ภาวะหกล้ม</div>
+          <video width="100%" height="240" controls>
+            <source src="video/eva_7.mp4" type="video/mp4" />
+          </video>
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              วางเก้าอี้ที่มีที่ท้าวแขนที่จุดตั้งต้น วัดระยะทาง 3 เมตร
+              ทําเครื่องหมายบนพื้นบอกผู้สูงอายุทราบ
+              ว่าเมื่อเริ่มจับเวลาให้ลุกขึ้นจากเก้าอี้แล้วเดินให้เป็น
+              เส้นตรงด้วยความเร็วปกติ (สามารถใช้อุปกรณ์ ช่วยเดินได้)
+              เมื่อเดินถึงระยะทางที่กําหนดให้หมุน ตัวกลับ
+              และเดินกลับมานั่งที่เดิม และจับเวลาที่ใช้
+            </p>
+            <br /><br />
+          </div>
+          <div class="eva_form no_p_v no_border" style="border-width: 0px">
+            <div class="run_time">
+              <button class="play_stop"></button>
+              <div class="time">
+                <b><p>00</p></b>
+              </div>
+              <button class="btn_reset">รีเซ็ต</button>
+            </div>
+          </div>
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_8">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva8 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">8. สุขภาวะทางตา</div>
+          <img class="eva_banner" src="img/eye_banner.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              ประเมินผู้สูงอายุที่มีอาการสุขภาวะทางตา ระยะไกล ระยะใกล้ ต้อกระจก
+              ต้อหิน และสภาวะตาเสื่อมเพื่อตรวจวินิจฉัยและทำการรักษา
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">
+            1. สายตาระยะไกล นับนิ้วในระยะ 3 เมตร ได้ถูกต้องน้อยกว่า 3 ใน 4 ครั้ง
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            2. สายตาระยะใกล้ อ่านหนังสือพิมพ์หน้าหนึ่งในระยะ 1 ฟุตไม่ได้
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            3. ต้อกระจก ปิดตาดูทีละข้าง พบว่าตามัวคล้ายมีหมอกบัง
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">3.1 ตาซ้าย</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title">3.2 ตาขวา</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+
+          <div class="eva_form_box bold">
+            4. ต้อหิน ปิดตาดูทีละข้าง พบว่ามองเห็นชัด แต่ตรงกลางไม่เห็นรอบข้าง
+            หรือมักเดินชน ประตู สิ่งของบ่อย ๆ
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">4.1 ตาซ้าย</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title">4.2 ตาขวา</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            5. จอตาเสื่อมเนื่องจากอายุ ปิดตาดูทีละข้าง พบว่ามองเห็นจุดดํากลางภาพ
+            หรือเห็นภาพ บิดเบี้ยว
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">5.1 ตาซ้าย</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title">5.2 ตาขวา</p>
+            <div class="btn-group">
+              <button class="choice active" style="float: left">ไม่ใช่</button>
+              <button class="choice" style="float: right">ใช่</button>
+            </div>
+          </div>
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_9">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva9 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">9. การได้ยิน</div>
+          <video width="100%" height="240" controls>
+            <source src="video/eva_7.mp4" type="video/mp4" />
+          </video>
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              ผู้ทดสอบถูนิ้วโป้งกับนิ้วชี้หน้าหูผู้ถูกทดสอบเบา ๆ
+              (ห่างจากหูประมาณ 1 นิ้ว) ทีละข้าง ทั้งหูขวา และหูซ้าย
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form no_p_v">
+            <img class="eva_img" src="img/eva9_ear_right.png" />
+            <div class="btn-group">
+              <button class="choice" style="float: left">ได้ยิน</button>
+              <button class="choice" style="float: right">ไม่ได้ยิน</button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v">
+            <img class="eva_img" src="img/eva9_ear_left.png" />
+            <div class="btn-group">
+              <button class="choice" style="float: left">ได้ยิน</button>
+              <button class="choice" style="float: right">ไม่ได้ยิน</button>
+            </div>
+          </div>
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_10">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva10 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">10. การประเมินปัญหาการนอน</div>
+          <img class="eva_banner" src="img/sleep_banner.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              พูดคุยกับผู้สูงเรื่องการนอนหลับ โดยมีคำถาม จำนวน 2 ข้อ
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">1. มีปัญหาการนอนหลับหรือไม่ ?</div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left">ไม่มี</button>
+              <button class="choice" style="float: right">มี</button>
+            </div>
+          </div>
+          <div class="eva_form_box bold">
+            2. มีอาการง่วง อ่อนเพลียตอนกลางวัน หรือไม่ ?
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice active" style="float: left">ไม่มี</button>
+              <button class="choice" style="float: right">มี</button>
+            </div>
+          </div>
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_11">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva11 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">11.การประเมินสุขภาพช่องปาก</div>
+          <img class="eva_banner" src="img/oral_health_banner.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              ประเมินสุขภาพช่องปาก ผู้สูงอายุด้วยการสอบถาม
+              และตรวจเช็คสุขภาพช่องปากและฟัน
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">
+            1. มีความยากลำบากในการเคี้ยวอาหารแข็งหรือไม่ ?
+          </div>
+          <div class="eva_form no_p_v">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" value="0" target="1">
+                ไม่มี
+              </button>
+              <button class="choice" style="float: right" value="1" target="1">
+                มี
+              </button>
+            </div>
+          </div>
+          <div id="eva11_sub_1" style="display: none">
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                1.1 มีฟันผุ รากฟันผุที่ไม่สามารถป้องกันหรือ ให้บริการได้ หรือไม่
+              </p>
+              <img class="eva_img" src="img/oral_health1-1.png" />
+              <div class="btn-group">
+                <button class="choice" style="float: left">ไม่มี</button>
+                <button class="choice" style="float: right">มี</button>
+              </div>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">1.2 มีเหงือกบวม ฝีหนอง ฟันโยก หรือไม่</p>
+              <img class="eva_img" src="img/oral_health1-2.png" />
+              <div class="btn-group">
+                <button class="choice" style="float: left">ไม่มี</button>
+                <button class="choice" style="float: right">มี</button>
+              </div>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                1.3 จํานวนฟันแท้น้อยกว่าเกณฑ์ (อย่างน้อย 20 ซี่ หรือ 4 คู่สบ)
+                หรือไม่
+              </p>
+              <img class="eva_img" src="img/oral_health1-3.png" />
+              <div class="btn-group">
+                <button class="choice" style="float: left">ไม่มี</button>
+                <button class="choice" style="float: right">มี</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="eva_form_box bold">
+            2. มีอาการเจ็บปวดในช่องปากหรือไม่ ?
+          </div>
+          <div class="eva_form no_p_v">
+            <div class="btn-group" style="margin: 20px 0">
+              <button class="choice" style="float: left" value="0" target="2">
+                ไม่มี
+              </button>
+              <button class="choice" style="float: right" value="1" target="2">
+                มี
+              </button>
+            </div>
+          </div>
+          <div id="eva11_sub_2" style="display: none">
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.1 ปัญหาเนื้อเยื่อช่องปาก: มีก้อน รอยแดง รอยขาว
+                แผลเรื้อรังนานกว่า 2 สัปดาห์ หรือไม่
+              </p>
+              <img class="eva_img" src="img/oral_health2-1.png" />
+              <div class="btn-group">
+                <button class="choice" style="float: left">ไม่มี</button>
+                <button class="choice" style="float: right">มี</button>
+              </div>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.2 ปัญหาปากแห้ง น้ําลายแห้ง ต้องดื่มน้ํา
+                ตามเพื่อช่วยกลืนบ่อยครั้ง/มีอาการลิ้นแห้ง ติดเพดานบ่อย หรือไม่
+              </p>
+              <img class="eva_img" src="img/oral_health2-2.png" />
+              <div class="btn-group">
+                <button class="choice" style="float: left">ไม่มี</button>
+                <button class="choice" style="float: right">มี</button>
+              </div>
+            </div>
+            <div class="eva_form no_p_v no_border">
+              <p class="eva_title">
+                2.3 สภาพช่องปาก (ORAL HYGIENE) สะอาด หรือไม่
+              </p>
+              <img class="eva_img" src="img/oral_health2-3.png" />
+              <div class="btn-group">
+                <button class="choice" style="float: left">ไม่ดี</button>
+                <button class="choice" style="float: right">ดี</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_12">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva12 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">12. ภาวะโภชนาการ</div>
+          <img class="eva_banner" src="img/nutrition_banner.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              พูดคุยกับผู้สูงและสอบถามเกี่ยวกับการรับประทาน อาหาร
+              พร้อมตรวจวัดร่างกาย
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">
+            คำถามเกี่ยวกับน้ำหนักและความอยากอาหาร
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">
+              1. มีน้ำหนักลดลงมากกว่า 3 กก. ใน 3 เดือนที่ผ่านมาหรือไม่ ?
+            </p>
+            <div class="btn-group">
+              <button class="choice" style="float: left">ไม่มี</button>
+              <button class="choice" style="float: right">มี</button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v no_border">
+            <p class="eva_title">2. ในช่วงนี้ มีความอยากอาหารลดลงหรือไม่ ?</p>
+            <div class="btn-group">
+              <button class="choice" style="float: left" value="0" target="2">
+                ไม่มี
+              </button>
+              <button class="choice" style="float: right" value="1" target="2">
+                มี
+              </button>
+            </div>
+          </div>
+          <div id="eva12_sub_2" style="display: none">
+            <div class="eva_form_box bold">1. การคัดกรองภาวะโภชนาการ</div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                1.1. ในช่วง 3 เดือนที่ผ่านมารับประทานอาหาร ได้น้อยลง
+                เนื่องจากความอยากอาหารลดลง มีปัญหาการย่อยการเคี้ยว
+                หรือปัญหาการกลืน หรือไม่
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_1"
+                    id="eva12_radio_1_1_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_1_1_1"
+                    >รับประทานอาหารน้อยลงอย่างมาก</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_1"
+                    id="eva12_radio_1_1_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_1_1_2"
+                    >รับประทานอาหารน้อยลงปานกลาง</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_1"
+                    id="eva12_radio_1_1_3"
+                    value="2"
+                  />
+                  <label for="eva12_radio_1_1_3"
+                    >การรับประทานอาหารไม่เปลี่ยนแปลง</label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                1.2. ในช่วง 3 เดือนที่ผ่านมาน้ําหนักลดลง หรือไม่
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_2"
+                    id="eva12_radio_1_2_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_1_2_1"
+                    >น้ําหนักลดมากกวา่ 3 กิโลกรัม</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_2"
+                    id="eva12_radio_1_2_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_1_2_2">ไม่ทราบ</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_2"
+                    id="eva12_radio_1_2_3"
+                    value="2"
+                  />
+                  <label for="eva12_radio_1_2_3"
+                    >น้ําหนักลดระหว่าง 1 - 3 กิโลกรัม</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_2"
+                    id="eva12_radio_1_2_4"
+                    value="3"
+                  />
+                  <label for="eva12_radio_1_2_4">น้ําหนักไม่ลดลง</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">1.3. สามารถเคลื่อนไหวได้เองหรือไม่</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_3"
+                    id="eva12_radio_1_3_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_1_3_1"
+                    >นอนบนเตียง หรือต้องอยู่รถเข็นตลอด</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_3"
+                    id="eva12_radio_1_3_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_1_3_2"
+                    >ลุกจากเตียงหรือรถเข็นได้บ้าง แต่ไม่
+                    สามารถไปข้างนอกได้เอง</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_3"
+                    id="eva12_radio_1_3_3"
+                    value="2"
+                  />
+                  <label for="eva12_radio_1_3_3"
+                    >เดินและเคลื่อนไหวได้ตามปกติ</label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                1.4. ในช่วง 3 เดือนที่ผ่านมามีความเครียดรุน
+                แรงหรือป่วยเฉียบพลันหรือไม่
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_4"
+                    id="eva12_radio_1_4_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_1_4_1">มี</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_4"
+                    id="eva12_radio_1_4_2"
+                    value="2"
+                  />
+                  <label for="eva12_radio_1_4_2">ไม่มี</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">1.5. มีปัญหาทางจิตประสาทหรือไม่</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_5"
+                    id="eva12_radio_1_5_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_1_5_1"
+                    >ความจําเสื่อม หรือ ซึมเศร้า อย่างรุนแรง</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_5"
+                    id="eva12_radio_1_5_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_1_5_2">ความจําเสื่อมเล็กน้อย</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_5"
+                    id="eva12_radio_1_5_3"
+                    value="2"
+                  />
+                  <label for="eva12_radio_1_5_3">ไม่มีปัญหาทางประสาท</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                1.6. ดัชนีมวลกาย (BMI) = น้ําหนัก (กก.) หาร ส่วนสูง (ม.) ยกกำลัง
+                2
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_6"
+                    id="eva12_radio_1_6_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_1_6_1"
+                    >BMI ตั้งแต่ 21 แต่น้อยกว่า 23</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_6"
+                    id="eva12_radio_1_6_2"
+                    value="2"
+                  />
+                  <label for="eva12_radio_1_6_2"
+                    >BMI ตั้งแต่ 21 แต่น้อยกว่า 23</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_6"
+                    id="eva12_radio_1_6_3"
+                    value="3"
+                  />
+                  <label for="eva12_radio_1_6_3">BMI ตั้งแต่ 23 ขึ้นไป</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">1.7. เส้นรอบวงน่อง หน่วยเป็นเซนติเมตร</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_7"
+                    id="eva12_radio_1_7_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_1_7_1">น้อยกว่า 31</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_1_7"
+                    id="eva12_radio_1_7_2"
+                    value="3"
+                  />
+                  <label for="eva12_radio_1_7_2">ตั้งแต่ 31 ขึ้นไป</label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="eva_form_box bold">2. การประเมินภาวะโภชนาการ</div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.1. ช่วยเหลือตัวเองได้ (ไม่อยู่ในการดูแลของ สถานพักฟื้นคนชรา
+                หรือโรงพยาบาล)
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_1"
+                    id="eva12_radio_2_1_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_1_1">ไม่ใช่</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_1"
+                    id="eva12_radio_2_1_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_1_2">ใช่</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">2.2. รับประทานยามากกว่า 3 ชนิด ต่อวัน</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_2"
+                    id="eva12_radio_2_2_1"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_2_1">ไม่ใช่</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_2"
+                    id="eva12_radio_2_2_2"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_2_2">ใช่</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">2.3. มีแผลกดทับหรือแผลที่ผิวหนังหรือไม</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_1"
+                    id="eva12_radio_2_1_1"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_3_1">ไม่ใช่</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_1"
+                    id="eva12_radio_2_1_2"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_3_2">ใช่</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.4. ผู้ป่วยรับประทานอาหารเต็มอิ่มได้กี่มี่ื้อ ต่อวัน
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_4"
+                    id="eva12_radio_2_4_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_4_1">1 มื้อ</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_4"
+                    id="eva12_radio_2_4_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_4_2">2 มื้อ</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_4"
+                    id="eva12_radio_2_4_3"
+                    value="2"
+                  />
+                  <label for="eva12_radio_2_4_3">3 มื้อ</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.5. รับประทานอาหารจําพวกโปรตีนเหล่านี้ บ้างหรือไม่ (มี 3 คำถาม)
+              </p>
+              <p class="eva_title">
+                A. นมหรือผลิตภัณฑ์จากนม เช่น ชีส โยเกริต์ อย่างน้อย 1
+                หน่วยบริโภค/วัน
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_5A"
+                    id="eva12_radio_2_5A_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_5A_1">ไม่ใช่</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_5A"
+                    id="eva12_radio_2_5A_2"
+                    value="0.5"
+                  />
+                  <label for="eva12_radio_2_5A_2">ใช่</label>
+                </li>
+              </ul>
+              <p class="eva_title">
+                B. ถั่วหรือไข่ อย่างน้อย 2 หน่วยบริโภค ต่อสัปดาห์
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_5B"
+                    id="eva12_radio_2_5B_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_5B_1">ไม่ใช่</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_5B"
+                    id="eva12_radio_2_5B_2"
+                    value="0.5"
+                  />
+                  <label for="eva12_radio_2_5B_2">ใช่</label>
+                </li>
+              </ul>
+              <p class="eva_title">C. เนื้อสัตว์ ปลาหรือสัตว์ปีกทุกวัน</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_5C"
+                    id="eva12_radio_2_5C_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_5C_1">ไม่ใช่</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_5C"
+                    id="eva12_radio_2_5C_2"
+                    value="0.5"
+                  />
+                  <label for="eva12_radio_2_5C_2">ใช่</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.6. ผู้ป่วยรับประทานผักหรือผลไม้อย่างน้อย 2 หน่วยบริโภคต่อวัน
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_6"
+                    id="eva12_radio_2_6_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_6_1">ไม่ใช่</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_6"
+                    id="eva12_radio_2_6_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_6_2">ใช่</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.7. ดื่มเครื่องดมื่ (น้ํา น้ําผลไม้ กาแฟ ชา นม หรืออื่นๆ)
+                ปริมาณเท่าไหร่ต่อวัน
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_7"
+                    id="eva12_radio_2_7_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_7_1">น้อยกว่า 3 ถ้วย</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_7"
+                    id="eva12_radio_2_7_2"
+                    value="0.5"
+                  />
+                  <label for="eva12_radio_2_7_2">3–5ถ้วย</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_7"
+                    id="eva12_radio_2_7_3"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_7_3">มากกว่า 5 ถ้วย</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.8. ความสามารถในการช่วยเหลือตัวเองขณะ รับประทานอาหาร
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_8"
+                    id="eva12_radio_2_8_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_8_1"
+                    >ไม่สามารถรับประทานอาหารได้เอง</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_8"
+                    id="eva12_radio_2_8_2"
+                    value="0.5"
+                  />
+                  <label for="eva12_radio_2_8_2"
+                    >รับประทานได้เองแต่ค่อนข้างลําบาก</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_8"
+                    id="eva12_radio_2_8_3"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_8_3"
+                    >รับประทานอาหารได้เอง / ไม่มีปัญหา</label
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.9. ผู้ป่วยคิดว่าตนเองมีภาวะโภชนาการเป็น อย่างไร
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_9"
+                    id="eva12_radio_2_9_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_9_1">ขาดสารอาหาร</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_9"
+                    id="eva12_radio_2_9_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_9_2"
+                    >ไม่แน่ใจว่ามีภาวะโภชนาการเป็นอย่างไร</label
+                  >
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_9"
+                    id="eva12_radio_2_9_3"
+                    value="2"
+                  />
+                  <label for="eva12_radio_2_9_3">ไม่ขาดสารอาหาร</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">
+                2.10. เมื่อเทียบกับคนในวัยเดียวกัน ผู้ป่วยคิด
+                ว่าสุขภาพของตนเป็นอย่างไร
+              </p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_10"
+                    id="eva12_radio_2_10_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_10_1">ด้อยกว่า</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_10"
+                    id="eva12_radio_2_10_2"
+                    value="0.5"
+                  />
+                  <label for="eva12_radio_2_10_2">ไม่ทราบ</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_10"
+                    id="eva12_radio_2_10_3"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_10_3">พอกัน</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_10"
+                    id="eva12_radio_2_10_4"
+                    value="2"
+                  />
+                  <label for="eva12_radio_2_10_4">ดีกว่า</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">2.11. เส้นรอบวงแขน หน่วยเป็นเซนติเมตร</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_11"
+                    id="eva12_radio_2_11_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_11_1">น้อยกว่า 21</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_11"
+                    id="eva12_radio_2_11_2"
+                    value="0.5"
+                  />
+                  <label for="eva12_radio_2_11_2">21-22</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_11"
+                    id="eva12_radio_2_11_3"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_11_3">ตั้งแต่ 22 ขึ้น ไป</label>
+                </li>
+              </ul>
+            </div>
+            <div class="eva_form no_p_v no_border">
+              <p class="eva_title">2.12. เส้นรอบวงน่อง หน่วยเป็นเซนติเมตร</p>
+              <ul>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_12"
+                    id="eva12_radio_2_12_1"
+                    value="0"
+                  />
+                  <label for="eva12_radio_2_12_1">น้อยกว่า 31</label>
+                </li>
+                <li>
+                  <input
+                    type="radio"
+                    name="eva12_radio_2_12"
+                    id="eva12_radio_2_12_2"
+                    value="1"
+                  />
+                  <label for="eva12_radio_2_12_2">ตั้งแต่ 31 ขึ้น ไป</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="evaluate_page_13">
+      <div class="evaluate_page_header">
+        <div class="back_header_btn white"></div>
+        <div class="title">ทำแบบประเมิน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content">
+        <div class="backgroundblue"></div>
+        <div class="backgroundwhite2 eva13 no_p">
+          <div class="bar"></div>
+          <div class="eva_header_title">13. การทํากิจวัตรประจําวัน</div>
+          <img class="eva_banner" src="img/routine_banner.png" />
+          <div class="eva_form no_p_v">
+            <p class="eva_title bold">วิธีทดสอบ</p>
+            <p class="eva_description">
+              พูดคุยกับผู้สูง สอบถามผู้ดูแล และทดสอบการทำ
+              กิจวัตรประจำวันในกรณีต่างๆ
+            </p>
+            <p class="eva_title bold">แบบบันทึกผล</p>
+          </div>
+          <div class="eva_form_box bold">
+            1. รับประทานอาหารเมื่อเตรียมสำรับไว้ให้เรียบร้อยต่อหน้า
+          </div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_1"
+                  id="eva13_radio_1_1"
+                  value="0"
+                />
+                <label for="eva13_radio_1_1">ไม่สามารถตักอาหารเข้าปากได้</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_1"
+                  id="eva13_radio_1_2"
+                  value="1"
+                />
+                <label for="eva13_radio_1_2"
+                  >ตักอาหารเองได้แต่ต้องมีคนช่วย</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_1"
+                  id="eva13_radio_1_3"
+                  value="2"
+                />
+                <label for="eva13_radio_1_3"
+                  >ตักอาหารและช่วยตัวเองได้เป็นปกติ</label
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">
+            2. การล้างหน้า หวีผม แปรงฟัน โกนหนวด ในระยะเวลา24 - 28
+            ชั่วโมงที่ผ่านมา
+          </div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_2"
+                  id="eva13_radio_2_1"
+                  value="0"
+                />
+                <label for="eva13_radio_2_1">ต้องการความช่วยเหลือ</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_2"
+                  id="eva13_radio_2_2"
+                  value="1"
+                />
+                <label for="eva13_radio_2_2">ทําเองได้</label>
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">
+            3. การลุกนั่งจากที่นอน หรือจากเตียงไปยัง เก้าอี้
+          </div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_3"
+                  id="eva13_radio_3_1"
+                  value="0"
+                />
+                <label for="eva13_radio_3_1"
+                  >ไม่สามารถนั่งได้ (นั่งแล้วจะล้มเสมอ)</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_3"
+                  id="eva13_radio_3_2"
+                  value="1"
+                />
+                <label for="eva13_radio_3_2"
+                  >ต้องการความช่วยเหลืออย่างมากจึง จะนั่งได้</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_3"
+                  id="eva13_radio_3_3"
+                  value="2"
+                />
+                <label for="eva13_radio_3_3">ต้องการความช่วยเหลือบ้าง</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_3"
+                  id="eva13_radio_3_4"
+                  value="3"
+                />
+                <label for="eva13_radio_3_4">ทําได้เอง</label>
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">4. การใช้ห้องน้ํา</div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_4"
+                  id="eva13_radio_4_1"
+                  value="0"
+                />
+                <label for="eva13_radio_4_1">ช่วยตัวเองไม่ได</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_4"
+                  id="eva13_radio_4_2"
+                  value="1"
+                />
+                <label for="eva13_radio_4_2"
+                  >ทําเองได้บ้าง (แต่ต้องการความช่วยเหลือ ในบางสิ่ง)</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_4"
+                  id="eva13_radio_4_3"
+                  value="2"
+                />
+                <label for="eva13_radio_4_3"
+                  >ช่วยตัวเองได้ดี (ขึ้นนั่งและลงจากโถส้วม เองได้)</label
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">5. การเคลื่อนที่ภายในห้องหรือบ้าน</div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_5"
+                  id="eva13_radio_5_1"
+                  value="0"
+                />
+                <label for="eva13_radio_5_1">เคลื่อนที่ไปไหนไม่ได้</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_5"
+                  id="eva13_radio_5_2"
+                  value="1"
+                />
+                <label for="eva13_radio_5_2"
+                  >ต้องใช้รถเข็นช่วยตัวเองให้เคลื่อนที่ได้เอง
+                  (ไม่ต้องมีคนเข็นให้)</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_5"
+                  id="eva13_radio_5_3"
+                  value="2"
+                />
+                <label for="eva13_radio_5_3"
+                  >เดินหรือเคลื่อนที่โดยมีคนช่วยพยุง</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_5"
+                  id="eva13_radio_5_4"
+                  value="3"
+                />
+                <label for="eva13_radio_5_4">เดินหรือเคลื่อนที่ได้เอง</label>
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">6. การสวมใส่เสื้อผ้า</div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_6"
+                  id="eva13_radio_6_1"
+                  value="0"
+                />
+                <label for="eva13_radio_6_1"
+                  >ต้องมีคนสวมใส่ให้ ช่วยตัวเองได้น้อย</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_6"
+                  id="eva13_radio_6_2"
+                  value="1"
+                />
+                <label for="eva13_radio_6_2"
+                  >ช่วยตัวเองได้ประมาณร้อยละ 50 ที่เหลือ ต้องมีคนช่วย</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_6"
+                  id="eva13_radio_6_3"
+                  value="2"
+                />
+                <label for="eva13_radio_6_3"
+                  >ช่วยตัวเองได้ดี (รวมทั้งการติดกระดุม รูดซิบ)</label
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">7. การขึ้นลงบันได 1 ชั้น</div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_7"
+                  id="eva13_radio_7_1"
+                  value="0"
+                />
+                <label for="eva13_radio_7_1">ไม่สามารถทําได้</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_7"
+                  id="eva13_radio_7_2"
+                  value="1"
+                />
+                <label for="eva13_radio_7_2">ต้องการคนช่วย</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_7"
+                  id="eva13_radio_7_3"
+                  value="2"
+                />
+                <label for="eva13_radio_7_3">ขึ้นลงได้เอง</label>
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">8. การอาบน้ํา</div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_8"
+                  id="eva13_radio_8_1"
+                  value="0"
+                />
+                <label for="eva13_radio_8_1">ต้องมีคนช่วยหรือทําให้</label>
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_8"
+                  id="eva13_radio_8_2"
+                  value="1"
+                />
+                <label for="eva13_radio_8_2">อาบน้ําเองได้</label>
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">
+            9. การกลั้นการถ่ายอุจจาระในระยะ 1 สัปดาห์ ที่ผ่านมา
+          </div>
+          <div class="eva_form">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_9"
+                  id="eva13_radio_9_1"
+                  value="0"
+                />
+                <label for="eva13_radio_9_1"
+                  >กลั้นไม่ได้ หรือต้องการการสวนอุจจาระ อยู่เสมอ</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_9"
+                  id="eva13_radio_9_2"
+                  value="1"
+                />
+                <label for="eva13_radio_9_2"
+                  >กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่า 1 ครั้ง ต่อสัปดาห์)</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_9"
+                  id="eva13_radio_9_3"
+                  value="2"
+                />
+                <label for="eva13_radio_9_3">กลั้นได้เป็นปกติ</label>
+              </li>
+            </ul>
+          </div>
+          <div class="eva_form_box bold">
+            10. การกลั้นปัสสาวะในระยะ 1 สัปดาห์ที่ ผ่านมา
+          </div>
+          <div class="eva_form no_border">
+            <ul>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_10"
+                  id="eva13_radio_10_1"
+                  value="0"
+                />
+                <label for="eva13_radio_10_1"
+                  >กลั้นไม่ได้ หรือใส่สายสวนปัสสาวะแต่ไม่
+                  สามารถดูแลเองได้</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_10"
+                  id="eva13_radio_10_2"
+                  value="1"
+                />
+                <label for="eva13_radio_10_2"
+                  >กลั้นไม่ได้บางครั้ง (เป็นน้อยกว่าวันละ 1 ครั้ง)</label
+                >
+              </li>
+              <li>
+                <input
+                  type="radio"
+                  name="eva13_radio_10"
+                  id="eva13_radio_10_3"
+                  value="2"
+                />
+                <label for="eva13_radio_10_3">กลั้นได้เป็นปกติ</label>
+              </li>
+            </ul>
+          </div>
+
+          <div style="height: 225px"></div>
+        </div>
+      </div>
+      <div class="evaluate_page_status">
+        <p>
+          <b>ผลการทดสอบ</b>&nbsp;<i
+            class="fa fa-check-circle-o"
+            aria-hidden="true"
+          ></i>
+        </p>
+        <br />
+        <p>ปกติ</p>
+      </div>
+      <div class="footer evaluate_page_footer">
+        <div class="footerbar"></div>
+        <button class="btn_create_evaluate">เริ่มประเมินใหม่</button>
+      </div>
+      <div class="step-footer evaluate_page_step-footer">
+        <div class="btn_group">
+          <button class="cancel">ยกเลิก</button>
+          <button class="submit">บันทึก</button>
+        </div>
+      </div>
+    </div>
+
     <div id="modal-evaluate-alert" class="modal">
       <div class="modal-container-evaluate-alert">
         <div class="modal-dismiss"><i class="fa fa-times"></i></div>
