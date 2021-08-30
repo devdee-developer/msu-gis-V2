@@ -380,9 +380,10 @@ input.input-form.lock:read-only {
   top: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.65);
+  overflow-y: scroll;
 }
 .modal .modal-container {
-  position: fixed;
+  position: absolute;
   border-radius: 18px;
   top: 10%;
   left: 50%;
@@ -530,6 +531,17 @@ ul.sort-list li:last-child {
   width: 22px;
   height: 22px;
   border: 1px solid #c9d8d7;
+  border-radius: 100%;
+  background: #ffffff;
+}
+[type="radio"]:checked:disabled + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #7F7FA8;
   border-radius: 100%;
   background: #ffffff;
 }
@@ -747,7 +759,7 @@ ul.step-steps li.active ~ li {
 }
 .step-footer {
   margin: 0;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
