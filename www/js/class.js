@@ -14,3 +14,8 @@ class TopMenu {
     $(".top_menu_wrapper").hide();
   }
 }
+class Token{
+  getAccessToken(){
+    return localStorage.getItem("access_token");
+  }
+}
