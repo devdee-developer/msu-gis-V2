@@ -47,3 +47,43 @@ function showModal(_modal, _callback = function () {}) {
   });
   _callback();
 }
+function getAccessToken(){
+  $.ajax({
+    url: api_base_url+"/auth/login",
+    type:"POST",
+    data: {
+        partner_id:partner_id,
+        partner_key:partner_key
+    },
+    success: function( response ) {
+        console.log( response );
+        localStorage.setItem("access_token",response.access_token);
+    },
+    error: function () {
+      alert("เกิดข้อผิดพลาด");
+    }
+});
+}
+function login(username,password,access_token,_success,_error){
+  $.ajax({
+    url: api_base_url+"/msulogin",
+    type:"POST",
+    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer '+access_token); },
+    data:{
+      user:username,
+      pass:password
+    },
+    success: function( response ) {
+       
+        if(response.status==true){
+          _success(response);
+        }else{
+          _error(response.status);
+        }
+    },
+    error:function(e){
+      _error("เกิดข้อผิดพลาด");
+    }
+});
+  
+}
