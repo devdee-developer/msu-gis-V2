@@ -6,6 +6,7 @@ var topMenu = new TopMenu();
 var swiper_timer = setInterval(function () {}, 3000);
 var swiper_timer2 = setInterval(function () {}, 3000);
 $(function () {
+  getAccessToken();
   FastClick.attach(document.body);
   if (localStorage.getItem("vhv_app_user_token") === null) {
     changePage("splash_page", function () {});
