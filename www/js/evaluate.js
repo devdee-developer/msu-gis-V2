@@ -11,28 +11,29 @@ $(function () {
       }, 500);
     });
   function initialPageFunc() {
-    $(".collapse-filter .collapse-filter-header").click(function () {
-      $header = $(this);
-      $content = $header.next();
-      $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
-      $content.slideToggle(200, function () {});
-    });
-    $(".btn-sort").on("click", function () {
-      showModal("modal-sort-evaluate");
-    });
-    $(".contact_items")
-      .find("li")
-      .each(function (index) {
-        $(this).click(function () {
-          $("#evaluate_recommend").hide();
-          showModal("modal-evaluate-detail");
-        });
-      });
+   
     setTimeout(function () {
       $("#evaluate_recommend").show();
       showModal("modal-evaluate-detail");
     }, 500);
   }
+  $("#evaluate_page .collapse-filter .collapse-filter-header").click(function () {
+    $header = $(this);
+    $content = $header.next();
+    $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
+    $content.slideToggle(200, function () {});
+  });
+  $("#evaluate_page .btn-sort").on("click", function () {
+    showModal("modal-sort-evaluate");
+  });
+  $("#evaluate_page .contact_items")
+    .find("li")
+    .each(function (index) {
+      $(this).click(function () {
+        $("#evaluate_recommend").hide();
+        showModal("modal-evaluate-detail");
+      });
+    });
   // ปุ่ม ยืนยัน modal-evaluate-alert
   $("#modal-evaluate-alert .submit_alret").on("click", function () {
     changePage("evaluate_detail_page", function () {});

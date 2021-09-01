@@ -13,39 +13,39 @@ $(function () {
       }, 500);
     });
   function initialVisitPage() {
-    $(".collapse-filter .collapse-filter-header").click(function () {
-      $header = $(this);
-      $content = $header.next();
-      $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
-      $content.slideToggle(200, function () {});
-    });
-    $(".btn-sort").on("click", function () {
-      showModal("modal-sort-visit");
-    });
-    $(".contact_items")
-      .find("li")
-      .each(function (index) {
-        $(this).click(function () {
-          $("#visit_recommend").hide();
-          showModal("modal-visit-detail");
-        });
-      });
-
+    
     setTimeout(function () {
       $("#visit_recommend").show();
       showModal("modal-visit-detail");
     }, 500);
-
-    //visit detail
-    $(".ready-for-visit").on("click", function () {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("visit_detail_page", function () {});
-      }, 500);
-    });
+   
   }
+  $("#visit_page .collapse-filter .collapse-filter-header").click(function () {
+    $header = $(this);
+    $content = $header.next();
+    $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
+    $content.slideToggle(200, function () {});
+  });
+  $("#visit_page .btn-sort").on("click", function () {
+    showModal("modal-sort-visit");
+  });
+  $("#visit_page .contact_items")
+    .find("li")
+    .each(function (index) {
+      $(this).click(function () {
+        $("#visit_recommend").hide();
+        showModal("modal-visit-detail");
+      });
+    });
 
+  //visit detail
+  $(".ready-for-visit").on("click", function () {
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("visit_detail_page", function () {});
+    }, 500);
+  });
   function initialVisitFormPage() {
     resetVisitForm();
 
