@@ -9,12 +9,9 @@ var swiper_timer2 = setInterval(function () {}, 3000);
 $(function () {
   getAccessToken();
   FastClick.attach(document.body);
-  // console.log(token.getUserToken())
   if (!token.getUserToken()) {
-    console.log(1)
     changePage("splash_page", function () {});
   } else {
-    console.log(2)
     changePage("home_page", function () {
       calHomeButtonPosition();
       loading.show();
