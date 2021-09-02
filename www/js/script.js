@@ -3,6 +3,7 @@ var swiper;
 var swiper2;
 var loading = new Loading();
 var topMenu = new TopMenu();
+var token = new Token();
 var swiper_timer = setInterval(function () {}, 3000);
 var swiper_timer2 = setInterval(function () {}, 3000);
 $(function () {
