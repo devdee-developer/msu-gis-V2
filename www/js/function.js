@@ -66,7 +66,7 @@ function getAccessToken(){
 }
 function login(username,password,access_token,_success,_error){
   $.ajax({
-    url: api_base_url+"/msulogin",
+    url: api_base_url+"/vhvLogin",
     type:"POST",
     beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer '+access_token); },
     data:{
