@@ -64,11 +64,11 @@ function getAccessToken(){
     }
 });
 }
-function login(username,password,access_token,_success,_error){
+function login(username,password,_success,_error){
   $.ajax({
     url: api_base_url+"/vhvLogin",
     type:"POST",
-    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer '+access_token); },
+    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer '+token.getAccessToken()); },
     data:{
       user:username,
       pass:password
