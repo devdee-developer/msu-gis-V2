@@ -18,4 +18,11 @@ class Token{
   getAccessToken(){
     return localStorage.getItem("access_token");
   }
+  getUserToken(){
+    if (localStorage.getItem("user_token") === null) {
+      return false;
+    }else{
+      return localStorage.getItem("user_token");
+    }
+  }
 }

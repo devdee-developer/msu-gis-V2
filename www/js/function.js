@@ -76,6 +76,7 @@ function login(username,password,_success,_error){
     success: function( response ) {
        
         if(response.status==true){
+          localStorage.setItem("user_token",response.data);
           _success(response);
         }else{
           _error(response.status);
