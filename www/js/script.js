@@ -29,25 +29,28 @@ $(function () {
     });
   });
   $(".btn_submit_login").on("click", function () {
-    let username = $('#username').val()
-    let password = $('#password').val()
+    let username = $("#username").val();
+    let password = $("#password").val();
     loading.show();
-    login(username,password,
-      function(res){
+    login(
+      username,
+      password,
+      function (res) {
         loading.hide();
         changePage("home_page", function () {
           calHomeButtonPosition();
           initSlideHomePage();
         });
-    }
-      ,function(err){
+      },
+      function (err) {
         loading.hide();
-        alert(err)
-      })
+        alert(err);
+      }
+    );
   });
   $(".menu_home_page").on("click", function () {
     changePage("home_page", function () {
-      calHomeButtonPosition()
+      calHomeButtonPosition();
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -72,11 +75,9 @@ $(function () {
       }, 500);
     });
   });
-  $("#news_detail_page .header .back_header_btn").on("click",function(){
-    changePage("news_page", function () {
-      
-    });
-  })
+  $("#news_detail_page .header .back_header_btn").on("click", function () {
+    changePage("news_page", function () {});
+  });
   $(".menu_news_page").on("click", function () {
     changePage("news_page", function () {
       loading.show();
@@ -94,15 +95,15 @@ $(function () {
       }, 500);
     });
   });
-  $(".news_item").on("click",function(){
+  $(".news_item").on("click", function () {
     changePage("news_detail_page", function () {
       loading.show();
       setTimeout(function () {
         loading.hide();
       }, 500);
     });
-  })
-  $(".swiper-slide").on("click", function () {
+  });
+  $(".swiper-slide.news").on("click", function () {
     changePage("news_detail_page", function () {
       loading.show();
       setTimeout(function () {
@@ -129,31 +130,28 @@ $(function () {
       window.location = "";
     }, 500);
   });
-  $( window ).resize(function() {
+  $(window).resize(function () {
     initSlideHomePage();
     calHomeButtonPosition();
   });
-  $('.modal-dismiss').on('click',function () {
-    $(".modal").hide()
-    $('body').removeClass('modal-open')
-})
+  $(".modal-dismiss").on("click", function () {
+    $(".modal").hide();
+    $("body").removeClass("modal-open");
+  });
 });
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {}
-
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16,
     disableDefaultUI: true,
-    mapTypeControl:true,
+    mapTypeControl: true,
     mapTypeControlOptions: {
-
       position: google.maps.ControlPosition.LEFT_CENTER,
     },
-    
   });
 
   const icons = {

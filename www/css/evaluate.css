@@ -179,6 +179,9 @@ button.btn_create_evaluate {
   background-color: #6f63fd;
   height: 60px;
 }
+.evaluate_page_header .title {
+  font-size: 23px;
+}
 .footer.evaluate_page_footer {
   height: 100px;
   background-color: #ffffff;
@@ -1024,6 +1027,7 @@ button.camera {
   color: #ffffff;
   background-color: #6f63fd;
   height: 60px;
+  font-size: 23px;
 }
 #evaluate_detail_page .footer.evaluate-success {
   height: 250px;

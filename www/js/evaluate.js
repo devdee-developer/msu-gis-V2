@@ -83,8 +83,23 @@ $(function () {
   $("#evaluate_page .status-card").on("click", function () {
     let elder_id =$(this).attr("ELDER_ID")
     let elderData = localdata.data[1].elder.find(item=>item.ID==elder_id)
-    console.log("ELDER_ID: "+elder_id)
-    console.log("elderData: ",elderData)
+    let evaluateData = {
+      eva1:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva2:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva3:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva4:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva5:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva6:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva7:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva8:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva9:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva10:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva11:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva12:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      eva13:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+    };
+    
+    console.log(evaluateData)
     $("#evaluate_detail_page .contact_items").html(renderElderCard(elderData))
     
  
