@@ -14,6 +14,7 @@ $(function () {
     });
   function initialVisitPage() {
     
+    
     setTimeout(function () {
       $("#visit_recommend").show();
       showModal("modal-visit-detail");

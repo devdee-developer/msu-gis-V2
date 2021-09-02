@@ -213,6 +213,12 @@ button.btn_create_evaluate {
   border-width: 0;
   padding: 10px;
 }
+#evaluate_recommend {
+  color: #6F63FD;
+  margin-bottom: 32px;
+  font-size: 30px;
+  display: none;
+}
 .evaluate_page_status {
   position: absolute;
   left: 50%;

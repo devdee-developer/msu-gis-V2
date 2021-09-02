@@ -407,18 +407,18 @@ input.input-form.lock:read-only {
   align-items: center;
   color: #97989b;
 }
-#modal-visit-detail .modal-container img.thumbnail {
+#modal-visit-detail .modal-container img.thumbnail,#modal-evaluate-detail .modal-container img.thumbnail {
   border-radius: 16px;
   width: 55%;
   margin-bottom: 32px;
 }
-#modal-visit-detail .modal-container .name {
+#modal-visit-detail .modal-container .name,#modal-evaluate-detail .modal-container .name {
   color: #010979;
 }
-#modal-visit-detail .modal-container .age {
+#modal-visit-detail .modal-container .age,#modal-evaluate-detail .modal-container .age {
   color: #010979;
 }
-#modal-visit-detail .modal-container .distant {
+#modal-visit-detail .modal-container .distant,#modal-evaluate-detail .modal-container .distant {
   color: #010979;
 }
 
@@ -435,6 +435,9 @@ input.input-form.lock:read-only {
   text-align: left;
   background-color: #f296a3;
   overflow: hidden;
+}
+.status-card .status-card-header.inprogress{
+  background-color: #FCDDE1;
 }
 .status-card .status-card-header p {
   vertical-align: middle;

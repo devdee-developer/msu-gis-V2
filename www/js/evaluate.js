@@ -6,12 +6,16 @@ $(function () {
       setTimeout(function () {
         loading.hide();
         changePage("evaluate_page", function () {
-          initialPageFunc();
+          initialEvaPage();
         });
       }, 500);
     });
-  function initialPageFunc() {
-   
+  function initialEvaPage() {
+    let data = localdata.data[1].elder
+    $.each(data,function(index,row){
+      $("#eva_waiting_list").append(renderElderCard(row))
+    })
+    
     setTimeout(function () {
       $("#evaluate_recommend").show();
       showModal("modal-evaluate-detail");
@@ -26,14 +30,37 @@ $(function () {
   $("#evaluate_page .btn-sort").on("click", function () {
     showModal("modal-sort-evaluate");
   });
-  $("#evaluate_page .contact_items")
-    .find("li")
-    .each(function (index) {
-      $(this).click(function () {
-        $("#evaluate_recommend").hide();
-        showModal("modal-evaluate-detail");
-      });
-    });
+
+    $("#evaluate_page .contact_items").on("click","li",function(){
+      $("#modal-evaluate-detail .status-card").attr("ELDER_ID",$(this).attr("ELDER_ID"))
+      $("#evaluate_recommend").hide();
+      $("#modal-evaluate-detail .thumbnail").attr("src",$(this).find(".card-body-thumbnail").attr("src"))
+      $("#modal-evaluate-detail .name").text($(this).find(".name").text())
+      $("#modal-evaluate-detail .age").text($(this).find(".age").text())
+      $("#modal-evaluate-detail .distant span").text("0.8 กิโลเมตร")
+      if($(this).find(".card-footer .status").eq(1).text()=="รอประเมิน..."){
+        $("#modal-evaluate-detail .status-card-header").removeClass("inprogress")
+        $("#modal-evaluate-detail .status-card-header").html("<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>")
+        $("#modal-evaluate-detail .status-card-body-content").html(`
+                <h3>เริ่มประเมิน</h3>
+                <p style="font-size:14px">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  ยังไม่มีข้อมูล
+                </p>`
+        )
+      }else{
+        $("#modal-evaluate-detail .status-card-header").addClass("inprogress")
+        $("#modal-evaluate-detail .status-card-header").html("<p><b>สถานะการประเมิน</b> : "+"ข้อที่ 9 (การได้ยิน)"+"</p>")
+        $("#modal-evaluate-detail .status-card-body-content").html(`
+                <h3>ประเมินต่อ</h3>
+                <p style="font-size:14px">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  18 ม.ค. 64, เวลา 14:28 น.
+                </p>`
+        )
+      }
+     showModal("modal-evaluate-detail");
+    })
   // ปุ่ม ยืนยัน modal-evaluate-alert
   $("#modal-evaluate-alert .submit_alret").on("click", function () {
     changePage("evaluate_detail_page", function () {});
@@ -53,11 +80,20 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_detail_page ----------------------------------------------------------------------------- */
   // StepProgresse
-  $(".ready-for-evaluate").on("click", function () {
+  $("#evaluate_page .status-card").on("click", function () {
+    let elder_id =$(this).attr("ELDER_ID")
+    let elderData = localdata.data[1].elder.find(item=>item.ID==elder_id)
+    console.log("ELDER_ID: "+elder_id)
+    console.log("elderData: ",elderData)
+    $("#evaluate_detail_page .contact_items").html(renderElderCard(elderData))
+    
+ 
     loading.show();
     setTimeout(function () {
       loading.hide();
-      changePage("evaluate_detail_page", function () {});
+      changePage("evaluate_detail_page", function () {
+        
+      });
       setProgressevaluate(9);
     }, 500);
   });
