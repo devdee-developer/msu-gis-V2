@@ -83,7 +83,12 @@ function login(username,password,_success,_error){
         }
     },
     error:function(e){
-      _error("เกิดข้อผิดพลาด");
+      if(e.responseJSON.status==false){
+        _error("ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง");
+      }else{
+        _error("เกิดข้อผิดพลาด");
+      }
+     
     }
 });
   

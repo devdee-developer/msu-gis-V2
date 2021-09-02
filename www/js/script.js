@@ -9,9 +9,12 @@ var swiper_timer2 = setInterval(function () {}, 3000);
 $(function () {
   getAccessToken();
   FastClick.attach(document.body);
-  if (localStorage.getItem("vhv_app_user_token") === null) {
+  // console.log(token.getUserToken())
+  if (!token.getUserToken()) {
+    console.log(1)
     changePage("splash_page", function () {});
   } else {
+    console.log(2)
     changePage("home_page", function () {
       calHomeButtonPosition();
       loading.show();
@@ -29,15 +32,21 @@ $(function () {
     });
   });
   $(".btn_submit_login").on("click", function () {
-    localStorage.setItem("vhv_app_user_token", "xxx");
+    let username = $('#username').val()
+    let password = $('#password').val()
     loading.show();
-    setTimeout(function () {
-      loading.hide();
-      changePage("home_page", function () {
-        calHomeButtonPosition();
-        initSlideHomePage();
-      });
-    }, 500);
+    login(username,password,
+      function(res){
+        loading.hide();
+        changePage("home_page", function () {
+          calHomeButtonPosition();
+          initSlideHomePage();
+        });
+    }
+      ,function(err){
+        loading.hide();
+        alert(err)
+      })
   });
   $(".menu_home_page").on("click", function () {
     changePage("home_page", function () {
