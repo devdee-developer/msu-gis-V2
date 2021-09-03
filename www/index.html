@@ -3944,19 +3944,49 @@
             <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
           <div class="eva_form_box bold">1. มีปัญหาการนอนหลับหรือไม่ ?</div>
-          <div class="eva_form no_p_v no_border">
+          <div class="eva_form no_p_v">
             <div class="btn-group" style="margin: 20px 0" id="OSR1">
-              <button class="choice active" style="float: left">ไม่มี</button>
-              <button class="choice" style="float: right">มี</button>
+              <button class="choice active" style="float: left" value="0" target="1">ไม่มี</button>
+              <button class="choice" style="float: right" value="1" target="1">มี</button>
             </div>
+          </div>
+          <div id="eva10_sub_1" style="display:none">
+            <div class="eva_form no_p_v">
+              <p class="eva_title">1.1 นอนไม่หลับ</p>
+              <div class="btn-group" style="margin: 20px 0" id="OSR1A">
+                <button class="choice" style="float: left" value="0">ไม่มี</button>
+                <button class="choice" style="float: right" value="1" >มี</button>
+              </div>
+            </div>
+            <div class="eva_form no_p_v">
+              <p class="eva_title">1.2 นอนมากเกินไป</p>
+            <div class="btn-group" style="margin: 20px 0" id="OSR1B">
+              <button class="choice" style="float: left" value="0">ไม่มี</button>
+              <button class="choice" style="float: right" value="1" >มี</button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">1.3 นอนกรน</p>
+            <div class="btn-group" style="margin: 20px 0" id="OSR1C">
+              <button class="choice" style="float: left" value="0">ไม่มี</button>
+              <button class="choice" style="float: right" value="1" >มี</button>
+            </div>
+          </div>
+          <div class="eva_form no_p_v">
+            <p class="eva_title">1.4 นอนละเมอ</p>
+            <div class="btn-group" style="margin: 20px 0" id="OSR1D">
+              <button class="choice" style="float: left" value="0">ไม่มี</button>
+              <button class="choice" style="float: right" value="1" >มี</button>
+            </div>
+          </div>
           </div>
           <div class="eva_form_box bold">
             2. มีอาการง่วง อ่อนเพลียตอนกลางวัน หรือไม่ ?
           </div>
           <div class="eva_form no_p_v no_border">
             <div class="btn-group" style="margin: 20px 0" id="OSR2">
-              <button class="choice active" style="float: left">ไม่มี</button>
-              <button class="choice" style="float: right">มี</button>
+              <button class="choice active" style="float: left" value="0">ไม่มี</button>
+              <button class="choice" style="float: right" value="1">มี</button>
             </div>
           </div>
           <div style="height: 225px"></div>
@@ -4007,7 +4037,7 @@
             1. มีความยากลำบากในการเคี้ยวอาหารแข็งหรือไม่ ?
           </div>
           <div class="eva_form no_p_v">
-            <div class="btn-group" style="margin: 20px 0">
+            <div class="btn-group" style="margin: 20px 0" id="ORAL1">
               <button class="choice" style="float: left" value="0" target="1">
                 ไม่มี
               </button>
@@ -4022,17 +4052,17 @@
                 1.1 มีฟันผุ รากฟันผุที่ไม่สามารถป้องกันหรือ ให้บริการได้ หรือไม่
               </p>
               <img class="eva_img" src="img/oral_health1-1.png" />
-              <div class="btn-group">
-                <button class="choice" style="float: left">ไม่มี</button>
-                <button class="choice" style="float: right">มี</button>
+              <div class="btn-group" id="ORAL1A">
+                <button class="choice" style="float: left" value="0">ไม่มี</button>
+                <button class="choice" style="float: right" value="1">มี</button>
               </div>
             </div>
             <div class="eva_form no_p_v">
               <p class="eva_title">1.2 มีเหงือกบวม ฝีหนอง ฟันโยก หรือไม่</p>
               <img class="eva_img" src="img/oral_health1-2.png" />
-              <div class="btn-group">
-                <button class="choice" style="float: left">ไม่มี</button>
-                <button class="choice" style="float: right">มี</button>
+              <div class="btn-group" id="ORAL1B">
+                <button class="choice" style="float: left" value="0">ไม่มี</button>
+                <button class="choice" style="float: right" value="1">มี</button>
               </div>
             </div>
             <div class="eva_form no_p_v">
@@ -4041,9 +4071,9 @@
                 หรือไม่
               </p>
               <img class="eva_img" src="img/oral_health1-3.png" />
-              <div class="btn-group">
-                <button class="choice" style="float: left">ไม่มี</button>
-                <button class="choice" style="float: right">มี</button>
+              <div class="btn-group" id="ORAL1C">
+                <button class="choice" style="float: left" value="0">ไม่มี</button>
+                <button class="choice" style="float: right" value="1">มี</button>
               </div>
             </div>
           </div>
@@ -4052,7 +4082,7 @@
             2. มีอาการเจ็บปวดในช่องปากหรือไม่ ?
           </div>
           <div class="eva_form no_p_v">
-            <div class="btn-group" style="margin: 20px 0">
+            <div class="btn-group" style="margin: 20px 0" id="ORAL2">
               <button class="choice" style="float: left" value="0" target="2">
                 ไม่มี
               </button>
@@ -4068,9 +4098,9 @@
                 แผลเรื้อรังนานกว่า 2 สัปดาห์ หรือไม่
               </p>
               <img class="eva_img" src="img/oral_health2-1.png" />
-              <div class="btn-group">
-                <button class="choice" style="float: left">ไม่มี</button>
-                <button class="choice" style="float: right">มี</button>
+              <div class="btn-group" id="ORAL2A">
+                <button class="choice" style="float: left" value="0">ไม่มี</button>
+                <button class="choice" style="float: right" value="1">มี</button>
               </div>
             </div>
             <div class="eva_form no_p_v">
@@ -4079,9 +4109,9 @@
                 ตามเพื่อช่วยกลืนบ่อยครั้ง/มีอาการลิ้นแห้ง ติดเพดานบ่อย หรือไม่
               </p>
               <img class="eva_img" src="img/oral_health2-2.png" />
-              <div class="btn-group">
-                <button class="choice" style="float: left">ไม่มี</button>
-                <button class="choice" style="float: right">มี</button>
+              <div class="btn-group" id="ORAL2B"> 
+                <button class="choice" style="float: left" value="0">ไม่มี</button>
+                <button class="choice" style="float: right" value="1">มี</button>
               </div>
             </div>
             <div class="eva_form no_p_v no_border">
@@ -4089,9 +4119,9 @@
                 2.3 สภาพช่องปาก (ORAL HYGIENE) สะอาด หรือไม่
               </p>
               <img class="eva_img" src="img/oral_health2-3.png" />
-              <div class="btn-group">
-                <button class="choice" style="float: left">ไม่ดี</button>
-                <button class="choice" style="float: right">ดี</button>
+              <div class="btn-group" id="ORAL2C">
+                <button class="choice" style="float: left" value="0">ไม่ดี</button>
+                <button class="choice" style="float: right" value="1">ดี</button>
               </div>
             </div>
           </div>
@@ -4147,14 +4177,14 @@
             <p class="eva_title">
               1. มีน้ำหนักลดลงมากกว่า 3 กก. ใน 3 เดือนที่ผ่านมาหรือไม่ ?
             </p>
-            <div class="btn-group">
-              <button class="choice" style="float: left">ไม่มี</button>
-              <button class="choice" style="float: right">มี</button>
+            <div class="btn-group" id="NUTRI1">
+              <button class="choice" style="float: left" value="0">ไม่มี</button>
+              <button class="choice" style="float: right" value="1">มี</button>
             </div>
           </div>
           <div class="eva_form no_p_v no_border">
             <p class="eva_title">2. ในช่วงนี้ มีความอยากอาหารลดลงหรือไม่ ?</p>
-            <div class="btn-group">
+            <div class="btn-group" id="NUTRI2">
               <button class="choice" style="float: left" value="0" target="2">
                 ไม่มี
               </button>
@@ -4175,7 +4205,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_1"
+                    name="MNA1A"
                     id="eva12_radio_1_1_1"
                     value="0"
                   />
@@ -4186,7 +4216,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_1"
+                    name="MNA1A"
                     id="eva12_radio_1_1_2"
                     value="1"
                   />
@@ -4197,7 +4227,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_1"
+                    name="MNA1A"
                     id="eva12_radio_1_1_3"
                     value="2"
                   />
@@ -4215,7 +4245,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_2"
+                    name="MNA1B"
                     id="eva12_radio_1_2_1"
                     value="0"
                   />
@@ -4226,7 +4256,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_2"
+                    name="MNA1B"
                     id="eva12_radio_1_2_2"
                     value="1"
                   />
@@ -4235,7 +4265,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_2"
+                    name="MNA1B"
                     id="eva12_radio_1_2_3"
                     value="2"
                   />
@@ -4246,7 +4276,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_2"
+                    name="MNA1B"
                     id="eva12_radio_1_2_4"
                     value="3"
                   />
@@ -4260,7 +4290,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_3"
+                    name="MNA1C"
                     id="eva12_radio_1_3_1"
                     value="0"
                   />
@@ -4271,7 +4301,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_3"
+                    name="MNA1C"
                     id="eva12_radio_1_3_2"
                     value="1"
                   />
@@ -4283,7 +4313,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_3"
+                    name="MNA1C"
                     id="eva12_radio_1_3_3"
                     value="2"
                   />
@@ -4295,14 +4325,13 @@
             </div>
             <div class="eva_form no_p_v">
               <p class="eva_title">
-                1.4. ในช่วง 3 เดือนที่ผ่านมามีความเครียดรุน
-                แรงหรือป่วยเฉียบพลันหรือไม่
+                1.4. ในช่วง 3 เดือนที่ผ่านมามีความเครียดรุนแรงหรือป่วยเฉียบพลันหรือไม่
               </p>
               <ul>
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_4"
+                    name="MNA1D"
                     id="eva12_radio_1_4_1"
                     value="0"
                   />
@@ -4311,7 +4340,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_4"
+                    name="MNA1D"
                     id="eva12_radio_1_4_2"
                     value="2"
                   />
@@ -4325,7 +4354,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_5"
+                    name="MNA1E"
                     id="eva12_radio_1_5_1"
                     value="0"
                   />
@@ -4336,7 +4365,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_5"
+                    name="MNA1E"
                     id="eva12_radio_1_5_2"
                     value="1"
                   />
@@ -4345,7 +4374,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_5"
+                    name="MNA1E"
                     id="eva12_radio_1_5_3"
                     value="2"
                   />
@@ -4362,7 +4391,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_6"
+                    name="MNA1F"
                     id="eva12_radio_1_6_1"
                     value="0"
                   />
@@ -4373,7 +4402,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_6"
+                    name="MNA1F"
                     id="eva12_radio_1_6_2"
                     value="2"
                   />
@@ -4384,7 +4413,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_6"
+                    name="MNA1F"
                     id="eva12_radio_1_6_3"
                     value="3"
                   />
@@ -4398,7 +4427,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_7"
+                    name="MNA1G"
                     id="eva12_radio_1_7_1"
                     value="0"
                   />
@@ -4407,7 +4436,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_1_7"
+                    name="MNA1G"
                     id="eva12_radio_1_7_2"
                     value="3"
                   />
@@ -4426,7 +4455,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_1"
+                    name="MNA2A"
                     id="eva12_radio_2_1_1"
                     value="0"
                   />
@@ -4435,7 +4464,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_1"
+                    name="MNA2A"
                     id="eva12_radio_2_1_2"
                     value="1"
                   />
@@ -4449,7 +4478,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_2"
+                    name="MNA2B"
                     id="eva12_radio_2_2_1"
                     value="1"
                   />
@@ -4458,7 +4487,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_2"
+                    name="MNA2B"
                     id="eva12_radio_2_2_2"
                     value="0"
                   />
@@ -4472,8 +4501,8 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_1"
-                    id="eva12_radio_2_1_1"
+                    name="MNA2C"
+                    id="eva12_radio_2_3_1"
                     value="1"
                   />
                   <label for="eva12_radio_2_3_1">ไม่ใช่</label>
@@ -4481,8 +4510,8 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_1"
-                    id="eva12_radio_2_1_2"
+                    name="MNA2C"
+                    id="eva12_radio_2_3_2"
                     value="0"
                   />
                   <label for="eva12_radio_2_3_2">ใช่</label>
@@ -4491,13 +4520,13 @@
             </div>
             <div class="eva_form no_p_v">
               <p class="eva_title">
-                2.4. ผู้ป่วยรับประทานอาหารเต็มอิ่มได้กี่มี่ื้อ ต่อวัน
+                2.4. ผู้ป่วยรับประทานอาหารเต็มอิ่มได้กี่มี่อ ต่อวัน
               </p>
               <ul>
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_4"
+                    name="MNA2D"
                     id="eva12_radio_2_4_1"
                     value="0"
                   />
@@ -4506,7 +4535,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_4"
+                    name="MNA2D"
                     id="eva12_radio_2_4_2"
                     value="1"
                   />
@@ -4515,7 +4544,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_4"
+                    name="MNA2D"
                     id="eva12_radio_2_4_3"
                     value="2"
                   />
@@ -4535,7 +4564,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_5A"
+                    name="MNA2EA"
                     id="eva12_radio_2_5A_1"
                     value="0"
                   />
@@ -4544,7 +4573,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_5A"
+                    name="MNA2EA"
                     id="eva12_radio_2_5A_2"
                     value="0.5"
                   />
@@ -4558,7 +4587,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_5B"
+                    name="MNA2EB"
                     id="eva12_radio_2_5B_1"
                     value="0"
                   />
@@ -4567,7 +4596,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_5B"
+                    name="MNA2EB"
                     id="eva12_radio_2_5B_2"
                     value="0.5"
                   />
@@ -4579,7 +4608,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_5C"
+                    name="MNA2EC"
                     id="eva12_radio_2_5C_1"
                     value="0"
                   />
@@ -4588,7 +4617,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_5C"
+                    name="MNA2EC"
                     id="eva12_radio_2_5C_2"
                     value="0.5"
                   />
@@ -4604,7 +4633,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_6"
+                    name="MNA2F"
                     id="eva12_radio_2_6_1"
                     value="0"
                   />
@@ -4613,7 +4642,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_6"
+                    name="MNA2F"
                     id="eva12_radio_2_6_2"
                     value="1"
                   />
@@ -4630,7 +4659,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_7"
+                    name="MNA2G"
                     id="eva12_radio_2_7_1"
                     value="0"
                   />
@@ -4639,7 +4668,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_7"
+                    name="MNA2G"
                     id="eva12_radio_2_7_2"
                     value="0.5"
                   />
@@ -4648,7 +4677,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_7"
+                    name="MNA2G"
                     id="eva12_radio_2_7_3"
                     value="1"
                   />
@@ -4664,7 +4693,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_8"
+                    name="MNA2H"
                     id="eva12_radio_2_8_1"
                     value="0"
                   />
@@ -4675,7 +4704,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_8"
+                    name="MNA2H"
                     id="eva12_radio_2_8_2"
                     value="0.5"
                   />
@@ -4686,7 +4715,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_8"
+                    name="MNA2H"
                     id="eva12_radio_2_8_3"
                     value="1"
                   />
@@ -4704,7 +4733,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_9"
+                    name="MNA2I"
                     id="eva12_radio_2_9_1"
                     value="0"
                   />
@@ -4713,7 +4742,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_9"
+                    name="MNA2I"
                     id="eva12_radio_2_9_2"
                     value="1"
                   />
@@ -4724,7 +4753,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_9"
+                    name="MNA2I"
                     id="eva12_radio_2_9_3"
                     value="2"
                   />
@@ -4741,7 +4770,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_10"
+                    name="MNA2J"
                     id="eva12_radio_2_10_1"
                     value="0"
                   />
@@ -4750,7 +4779,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_10"
+                    name="MNA2J"
                     id="eva12_radio_2_10_2"
                     value="0.5"
                   />
@@ -4759,7 +4788,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_10"
+                    name="MNA2J"
                     id="eva12_radio_2_10_3"
                     value="1"
                   />
@@ -4768,7 +4797,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_10"
+                    name="MNA2J"
                     id="eva12_radio_2_10_4"
                     value="2"
                   />
@@ -4782,7 +4811,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_11"
+                    name="MNA2K"
                     id="eva12_radio_2_11_1"
                     value="0"
                   />
@@ -4791,7 +4820,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_11"
+                    name="MNA2K"
                     id="eva12_radio_2_11_2"
                     value="0.5"
                   />
@@ -4800,7 +4829,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_11"
+                    name="MNA2K"
                     id="eva12_radio_2_11_3"
                     value="1"
                   />
@@ -4814,7 +4843,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_12"
+                    name="MNA2L"
                     id="eva12_radio_2_12_1"
                     value="0"
                   />
@@ -4823,7 +4852,7 @@
                 <li>
                   <input
                     type="radio"
-                    name="eva12_radio_2_12"
+                    name="MNA2L"
                     id="eva12_radio_2_12_2"
                     value="1"
                   />
@@ -4885,7 +4914,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_1"
+                  name="ADL1"
                   id="eva13_radio_1_1"
                   value="0"
                 />
@@ -4894,7 +4923,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_1"
+                  name="ADL1"
                   id="eva13_radio_1_2"
                   value="1"
                 />
@@ -4905,7 +4934,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_1"
+                  name="ADL1"
                   id="eva13_radio_1_3"
                   value="2"
                 />
@@ -4924,7 +4953,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_2"
+                  name="ADL2"
                   id="eva13_radio_2_1"
                   value="0"
                 />
@@ -4933,7 +4962,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_2"
+                  name="ADL2"
                   id="eva13_radio_2_2"
                   value="1"
                 />
@@ -4949,7 +4978,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_3"
+                  name="ADL3"
                   id="eva13_radio_3_1"
                   value="0"
                 />
@@ -4960,7 +4989,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_3"
+                  name="ADL3"
                   id="eva13_radio_3_2"
                   value="1"
                 />
@@ -4971,7 +5000,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_3"
+                  name="ADL3"
                   id="eva13_radio_3_3"
                   value="2"
                 />
@@ -4980,7 +5009,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_3"
+                  name="ADL3"
                   id="eva13_radio_3_4"
                   value="3"
                 />
@@ -4994,7 +5023,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_4"
+                  name="ADL4"
                   id="eva13_radio_4_1"
                   value="0"
                 />
@@ -5003,7 +5032,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_4"
+                  name="ADL4"
                   id="eva13_radio_4_2"
                   value="1"
                 />
@@ -5014,7 +5043,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_4"
+                  name="ADL4"
                   id="eva13_radio_4_3"
                   value="2"
                 />
@@ -5030,7 +5059,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_5"
+                  name="ADL5"
                   id="eva13_radio_5_1"
                   value="0"
                 />
@@ -5039,7 +5068,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_5"
+                  name="ADL5"
                   id="eva13_radio_5_2"
                   value="1"
                 />
@@ -5051,7 +5080,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_5"
+                  name="ADL5"
                   id="eva13_radio_5_3"
                   value="2"
                 />
@@ -5062,7 +5091,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_5"
+                  name="ADL5"
                   id="eva13_radio_5_4"
                   value="3"
                 />
@@ -5076,7 +5105,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_6"
+                  name="ADL6"
                   id="eva13_radio_6_1"
                   value="0"
                 />
@@ -5087,7 +5116,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_6"
+                  name="ADL6"
                   id="eva13_radio_6_2"
                   value="1"
                 />
@@ -5098,7 +5127,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_6"
+                  name="ADL6"
                   id="eva13_radio_6_3"
                   value="2"
                 />
@@ -5114,7 +5143,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_7"
+                  name="ADL7"
                   id="eva13_radio_7_1"
                   value="0"
                 />
@@ -5123,7 +5152,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_7"
+                  name="ADL7"
                   id="eva13_radio_7_2"
                   value="1"
                 />
@@ -5132,7 +5161,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_7"
+                  name="ADL7"
                   id="eva13_radio_7_3"
                   value="2"
                 />
@@ -5146,7 +5175,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_8"
+                  name="ADL8"
                   id="eva13_radio_8_1"
                   value="0"
                 />
@@ -5155,7 +5184,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_8"
+                  name="ADL8"
                   id="eva13_radio_8_2"
                   value="1"
                 />
@@ -5171,7 +5200,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_9"
+                  name="ADL9"
                   id="eva13_radio_9_1"
                   value="0"
                 />
@@ -5182,7 +5211,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_9"
+                  name="ADL9"
                   id="eva13_radio_9_2"
                   value="1"
                 />
@@ -5193,7 +5222,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_9"
+                  name="ADL9"
                   id="eva13_radio_9_3"
                   value="2"
                 />
@@ -5209,7 +5238,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_10"
+                  name="ADL10"
                   id="eva13_radio_10_1"
                   value="0"
                 />
@@ -5221,7 +5250,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_10"
+                  name="ADL10"
                   id="eva13_radio_10_2"
                   value="1"
                 />
@@ -5232,7 +5261,7 @@
               <li>
                 <input
                   type="radio"
-                  name="eva13_radio_10"
+                  name="ADL10"
                   id="eva13_radio_10_3"
                   value="2"
                 />

@@ -957,12 +957,6 @@ $(function () {
   $("#evaluate_page_5 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let COG1A = parseInt($("#COG1A .choice.active").val()) 
-      let COG1B = parseInt($("#COG1B .choice.active").val())
-      let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").attr('src')
-      let COG2A = $("#COG2A").prop('checked') ? 1 : 0;
-      let COG2B = $("#COG2B").prop('checked') ? 1 : 0;
-      let COG2C = $("#COG2C").prop('checked') ? 1 : 0;
       let P2Q1=parseInt($("#P2Q1 .choice.active").val()) ;
       let P2Q2=parseInt($("#P2Q2 .choice.active").val()) ;
       let P9Q1=parseInt($('input[name="P9Q1"]:checked').val());
@@ -1594,6 +1588,29 @@ $(function () {
   $("#evaluate_page_11 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let ORAL1A = $("#ORAL1 .choice.active").val()==0?0:parseInt($("#ORAL1A .choice.active").val()) 
+      let ORAL1B =  $("#ORAL1 .choice.active").val()==0?0:parseInt($("#ORAL1B .choice.active").val()) 
+      let ORAL1C =  $("#ORAL1 .choice.active").val()==0?0:parseInt($("#ORAL1C .choice.active").val()) 
+      let ORAL2A =  $("#ORAL2 .choice.active").val()==0?0:parseInt($("#ORAL2A .choice.active").val()) 
+      let ORAL2B =  $("#ORAL2 .choice.active").val()==0?0:parseInt($("#ORAL2B .choice.active").val()) 
+      let ORAL2C =  $("#ORAL2 .choice.active").val()==0?0:parseInt($("#ORAL2C .choice.active").val()) 
+
+    
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO:11,
+        ORAL1A:ORAL1A,
+        ORAL1B:ORAL1B,
+        ORAL1C:ORAL1C,
+        ORAL2A:ORAL2A,
+        ORAL2B:ORAL2B,
+        ORAL2C:ORAL2C,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:ORAL1A+ORAL1B+ORAL1C+ORAL2A+ORAL2B+ORAL2C,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -1680,6 +1697,67 @@ $(function () {
   $("#evaluate_page_12 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let NUTRI1 = parseInt($("#NUTRI1 .choice.active").val()) 
+      let NUTRI2 =  parseInt($("#NUTRI2 .choice.active").val()) 
+      
+      let MNA1A =  parseInt($('input[name="MNA1A"]:checked').val());
+      let MNA1B =  parseInt($('input[name="MNA1B"]:checked').val());
+      let MNA1C =  parseInt($('input[name="MNA1C"]:checked').val());
+      let MNA1D =   parseInt($('input[name="MNA1D"]:checked').val());
+      let MNA1E =   parseInt($('input[name="MNA1E"]:checked').val()); 
+      let MNA1F =   parseInt($('input[name="MNA1F"]:checked').val()); 
+      let MNA1G =  parseInt($('input[name="MNA1G"]:checked').val());
+      let MNA2A =  parseInt($('input[name="MNA2A"]:checked').val());
+      let MNA2B =   parseInt($('input[name="MNA2B"]:checked').val());
+      let MNA2C =  parseInt($('input[name="MNA2C"]:checked').val());
+      let MNA2D =  parseInt($('input[name="MNA2D"]:checked').val());
+      let MNA2EA =  parseInt($('input[name="MNA2EA"]:checked').val());
+      let MNA2EB =  parseInt($('input[name="MNA2EB"]:checked').val());
+      let MNA2EC =   parseInt($('input[name="MNA2EC"]:checked').val());
+      let MNA2F =   parseInt($('input[name="MNA2F"]:checked').val());
+      let MNA2G =  parseInt($('input[name="MNA2G"]:checked').val());
+      let MNA2H =   parseInt($('input[name="MNA2H"]:checked').val());
+      let MNA2I =  parseInt($('input[name="MNA2I"]:checked').val());
+      let MNA2J =   parseInt($('input[name="MNA2J"]:checked').val());
+      let MNA2K =   parseInt($('input[name="MNA2K"]:checked').val());
+      let MNA2L =   parseInt($('input[name="MNA2L"]:checked').val());
+ 
+     
+     
+
+    
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO:12,
+        NUTRI1:NUTRI1,
+        NUTRI2:NUTRI2,
+        MNA1A:MNA1A,
+        MNA1B:MNA1B,
+        MNA1C:MNA1C,
+        MNA1D:MNA1D,
+        MNA1E:MNA1E,
+        MNA1F:MNA1F,
+        MNA1G:MNA1G,
+        MNA2A:MNA2A,
+        MNA2B:MNA2B,
+        MNA2C:MNA2C,
+        MNA2D:MNA2D,
+        MNA2EA:MNA2EA,
+        MNA2EB:MNA2EB,
+        MNA2EC:MNA2EC,
+        MNA2F:MNA2F,
+        MNA2G:MNA2G,
+        MNA2H:MNA2H,
+        MNA2I:MNA2I,
+        MNA2J:MNA2J,
+        MNA2K:MNA2K,
+        MNA2L:MNA2L,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:NUTRI1+NUTRI2+MNA1A+ORAL2A+MNA1B+MNA1C+MNA1D+MNA1E+MNA1F+MNA1G+MNA2A+MNA2B+MNA2C+MNA2D+MNA2EA+MNA2EB+MNA2EC+MNA2F+MNA2G+MNA2H+MNA2I+MNA2J+MNA2K+MNA2L,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -1755,6 +1833,37 @@ $(function () {
   $("#evaluate_page_13 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let ADL1 =  parseInt($('input[name="ADL1"]:checked').val());
+      let ADL2 =  parseInt($('input[name="ADL2"]:checked').val());
+      let ADL3 =  parseInt($('input[name="ADL3"]:checked').val());
+      let ADL4 =   parseInt($('input[name="ADL4"]:checked').val());
+      let ADL5 =   parseInt($('input[name="ADL5"]:checked').val()); 
+      let ADL6 =   parseInt($('input[name="ADL6"]:checked').val()); 
+      let ADL7 =  parseInt($('input[name="ADL7"]:checked').val());
+      let ADL8 =  parseInt($('input[name="ADL8"]:checked').val());
+      let ADL9 =   parseInt($('input[name="ADL9"]:checked').val());
+      let ADL10 =  parseInt($('input[name="ADL10"]:checked').val());
+    
+    
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO:13,
+        ADL1:ADL1,
+        ADL2:ADL2,
+        ADL3:ADL3,
+        ADL4:ADL4,
+        ADL5:ADL5,
+        ADL6:ADL6,
+        ADL7:ADL7,
+        ADL8:ADL8,
+        ADL9:ADL9,
+        ADL10:ADL10,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:ADL1+ADL2+ADL3+ADL4+ADL5+ADL6+ADL7+ADL8+ADL9+ADL10,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
