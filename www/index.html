@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="css/visit.css" />
     <link rel="stylesheet" href="css/evaluate.css" />
     <link rel="stylesheet" href="css/urgent_noti.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+    <link rel="stylesheet" href="css/setting.css" />
     <title>VHV</title>
   </head>
 
@@ -5951,6 +5953,181 @@
         </ul>
       </div>
     </div>
+    <div class="pages" id="profile_page">
+      <div class="profile_page_header">
+        <div class="back_header_btn"></div>
+        <div class="title">ข้อมูลผู้ใช้งาน</div>
+        <div class="gear_header_btn"></div>
+      </div>
+      <div class="content_profile">
+        <div class="card_header_profile">
+          <img class="card_header_thumbnail" src="img/older.png" />
+          <div class="card_header_body_profile">
+            <div class="base_info_title">
+              <img src="img/edit_profile_icon.png" />
+              <p style="font-size: 20px">ข้อมูลเบื้องต้น</p>
+            </div>
+            <p style="font-size: 23px">
+              <b>นายน้ำใจ รักสังคม</b>
+            </p>
+            <p style="font-size: 16px">อายุ 45 ปี, ชุมชนบ้านป่าตาล</p>
+          </div>
+        </div>
+        <div class="card_body_profile">
+          <div class="profile_detail">
+            <p class="title">เลขประจำตัว</p>
+            <p class="detail">1-1005-00892-21-8</p>
+          </div>
+          <div class="profile_detail">
+            <p class="title">ที่อยู่</p>
+            <p class="detail">
+              เลขที่ 22/8 หมู่ 5 ต.หนองผักสี อ.บ้านสีเมือง จ.อุบลราชธานี
+            </p>
+          </div>
+          <div class="profile_detail">
+            <p class="title">อาชีพหลัก</p>
+            <p class="detail">เกษตรกรรม</p>
+          </div>
+          <div class="profile_detail">
+            <p class="title">การศึกษา</p>
+            <p class="detail">ปริญญาตรี</p>
+          </div>
+          <div class="profile_detail">
+            <p class="title">ตำแหน่งในชุมชน</p>
+            <p class="detail">ผู้ใหญ่บ้าน</p>
+          </div>
+          <div class="profile_detail">
+            <p class="title">ความชำนาญพิเศษ</p>
+            <p class="detail">แพทย์แผนไทย</p>
+          </div>
+          <div class="profile_detail">
+            <p class="title">โทรศัพท์</p>
+            <p class="detail">089 533 8992</p>
+          </div>
+        </div>
+        <div class="card_footer_profile">
+          <div class="profile_role">
+            <img src="img/plus_icon.png" />
+            <p style="font-size: 20px; color: #3b3d48">
+              หน้าที่รับผิดชอบในชุมชน
+            </p>
+          </div>
+          <div class="input_profile_role">
+            <input
+              class="input-profile-role-field"
+              type="text"
+              name="profile_role"
+              placeholder="ระบุหน้าที่"
+              id="profile_role"
+            /><img
+              style="
+                margin-left: 20px;
+                background-color: #1bc3a2;
+                width: 45px;
+                border-radius: 10px;
+              "
+              src="img/plus_icon.png"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="profile_btn_group">
+          <button class="profile_cancel">กลับ</button>
+          <button class="profile_submit">บันทึกข้อมูล</button>
+        </div>
+      </div>
+    </div>
+    <div class="pages" id="setting_page">
+      <div class="setting_page_header">
+        <div class="back_header_btn"></div>
+        <div class="title">ตั้งค่าการใช้งาน</div>
+        <div style="width: 60px"></div>
+      </div>
+      <div class="content_setting">
+        <div class="card_body_setting" id="change_pass">
+          <p>เปลี่ยนรหัสเข้าใช้งาน</p>
+        </div>
+        <div class="card_body_setting" id="manual_setting">
+          <p>คู่มือการใช้งานเบื้องต้น</p>
+        </div>
+        <div class="card_body_setting_update" id="update_setting">
+          <img src="img/gear_icon.png" />
+          <p style="margin-left: 15px">อัพเดทแอพพลิเคชั่น เวอร์ชั่น 20.3.5.8</p>
+        </div>
+      </div>
+      <div id="modal-change-pass" class="modal">
+        <div class="modal-container-setting-pass">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <p style="font-size: 30px; color: #010979">
+            <b>เปลี่ยนรหัสเข้าใช้งาน</b>
+          </p>
+          <div class="old_pass">
+            <p style="font-size: 20px; color: #010979">ระบุรหัสปัจจุบัน</p>
+            <div class="old_pass_input">
+              <i class="fa fa-lock icon" style="top: 5px; left: 10px"></i>
+              <input
+                class="input-field"
+                type="password"
+                name="changepass"
+                id="changepass"
+              />
+            </div>
+            <p style="font-size: 20px; color: #010979">ระบุรหัสปัจจุบัน</p>
+            <div class="old_pass_input">
+              <i class="fa fa-lock icon" style="top: 5px; left: 10px"></i>
+              <input
+                class="input-field"
+                type="password"
+                placeholder="รหัสใหม่"
+                name="newpass"
+                id="newpass"
+                disabled
+              />
+            </div>
+            <div class="old_pass_input">
+              <i class="fa fa-lock icon" style="top: 5px; left: 10px"></i>
+              <input
+                class="input-field"
+                type="password"
+                placeholder="ระบุรหัสอีกครั้ง"
+                name="trynewpass"
+                id="trynewpass"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="btn_group">
+            <button class="setting_cancel">ยกเลิก</button>
+            <button class="setting_submit">ยืนยัน</button>
+          </div>
+        </div>
+      </div>
+      <div id="modal-in-progress" class="modal">
+        <div class="modal-container-evaluate-alert">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <p style="font-size: 30px; color: #010979">
+            <b>กำลังดำเนินงาน</b>
+          </p>
+          <p style="font-size: 20px; color: #3b3d48">
+            อยู่ระหว่างดำเนินงานปรับปรุง
+          </p>
+          <img src="img/rocket_icon.png" />
+          <div class="btn_group" style="justify-content: center">
+            <button class="progress_submit">รับทราบ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="modal-profile-save-success" class="modal">
+      <div class="modal-container-evaluate-alert">
+        <p style="font-size: 30px; color: #1bc3a2">
+          <b>ดำเนินการบันทึกสำเร็จ</b>
+        </p>
+        <p style="font-size: 20px; color: #3b3d48">บันทึกข้อมูลแล้ว</p>
+        <img src="img/evaluate_success.png" />
+      </div>
+    </div>
     <div id="modal-evaluate-alert" class="modal">
       <div class="modal-container-evaluate-alert">
         <div class="modal-dismiss"><i class="fa fa-times"></i></div>
@@ -6001,5 +6178,7 @@
     <script src="js/evaluate.js"></script>
     <script src="temp_data.js"></script>
     <script src="js/urgent_noti.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/setting.js"></script>
   </body>
 </html>
