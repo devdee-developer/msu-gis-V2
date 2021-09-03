@@ -574,7 +574,7 @@ input.input-DTX:focus {
 .modal .modal-container-evaluate-alert {
   position: fixed;
   border-radius: 18px;
-  top: 35%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #ffffff;
