@@ -83,25 +83,115 @@ $(function () {
   $("#evaluate_page .status-card").on("click", function () {
     let elder_id =$(this).attr("ELDER_ID")
     let elderData = localdata.data[1].elder.find(item=>item.ID==elder_id)
-    let evaluateData = {
-      eva1:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva2:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva3:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva4:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva5:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva6:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva7:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva8:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva9:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva10:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva11:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva12:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      eva13:{last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-    };
+    let evaluateData = [
+      {evaNo:1,evaName:"ประเมินโรคเบาหวาน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:2,evaName:"ประเมินโรคความดันโลหิตสูง",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:3,evaName:"โรคหัวใจและหลอดเลือด",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:4,evaName:"สมองเสื่อม",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:5,evaName:"โรคซึมเศร้า",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:6,evaName:"โรคข้อเข่าเสื่อม",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:7,evaName:"ภาวะหกล้ม",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:8,evaName:"สุขภาวะทางตา",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:9,evaName:"การได้ยิน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:10,evaName:"การประเมินปัญหาการนอน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:11,evaName:"การประเมินสุขภาพช่องปาก",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:12,evaName:"ภาวะโภชนาการ",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {evaNo:13,evaName:"การทํากิจวัตรประจําวัน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+    ];
     
-    console.log(evaluateData)
     $("#evaluate_detail_page .contact_items").html(renderElderCard(elderData))
-    
+    $("#evaluate_detail_page .list_item_group .visit_card,#evaluate_detail_page .list_item_group .evaluate_card,#evaluate_detail_page .list_item_group hr").remove();
+    for (let index = 0; index < evaluateData.length; index++) {
+      const evaluate = evaluateData[index];
+      console.log(evaluate)
+      $('#evaluate_detail_page .list_item_group').append(function() {
+            return $(`<div class="evaluate_card ${evaluate.total==0?'pending':`${evaluate.recommend!='ปรกติ'?'care_of_doctor':''}`}">
+            <div class="card_header">
+              <p><b>สถานะ :</b> ${evaluate.total>0?'ผ่านการประเมินแล้ว':'รอการประเมิน...'}</p>
+              <div class="space"></div>
+              ${evaluate.total>0?`<div class="qty_evaluate">ประเมินแล้ว ${evaluate.total} ครั้ง</div>`:''}
+              
+            </div>
+            <div class="card_body">
+              <div class="card_body_left">
+                <p><b class="no_evaluate">${evaluate.evaNo}</b></p>
+              </div>
+              <div class="card_body_center">
+                <p>${evaluate.evaName}</p>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                 ${evaluate.updateDate}
+                </p>
+              </div>
+              ${evaluate.total>0?`<div class="status-card-body-btn-evaluate">
+              <i class="fa fa-chevron-right"></i>
+              </div>`:''}
+              
+            </div>
+            ${evaluate.total>0?` <div class="card-footer">
+            <p>**คำแนะนำล่าสุด</p>
+            <div class="space"></div>
+            <div class="recommend"><p>${evaluate.recommend}</p></div>
+            </div>`:''}
+           
+            </div>
+            <hr>`).on('click',function(){
+              switch (index) {
+                case 0:
+                  gotoEvaPage1()
+                  break;
+              
+                case 1:
+                  gotoEvaPage2()
+                  break;
+              
+                case 2:
+                  gotoEvaPage3()
+                  break;
+              
+                case 3:
+                  gotoEvaPage4()
+                  break;
+              
+                case 4:
+                  gotoEvaPage5()
+                  break;
+              
+                case 5:
+                  gotoEvaPage6()
+                  break;
+              
+                case 6:
+                  gotoEvaPage7()
+                  break;
+                case 7:
+                  gotoEvaPage8()
+                  break;
+                case 8:
+                  gotoEvaPage9()
+                  break;
+                case 9:
+                  gotoEvaPage10()
+                  break;
+                case 10:
+                  gotoEvaPage11()
+                  break;
+                case 11:
+                  gotoEvaPage12()
+                  break;
+                case 12:
+                  gotoEvaPage13()
+                  break;
+              
+                default:
+                  break;
+              }
+             
+            })
+      }
+      )
+      
+    }
  
     loading.show();
     setTimeout(function () {
@@ -120,9 +210,8 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_1 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_1
-  $(".visit_card.current .card_body.evaluate")
-    .eq(0)
-    .on("click", function () {
+  
+  function gotoEvaPage1() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -134,7 +223,7 @@ $(function () {
           $("#evaluate_page_1 .step-footer").hide();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_1 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -198,9 +287,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_2 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_2
-  $(".visit_card.current .card_body.evaluate")
-    .eq(1)
-    .on("click", function () {
+  function gotoEvaPage2()  {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -214,7 +301,7 @@ $(function () {
           $("#evaluate_page_2 .step-footer").hide();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_2 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -304,9 +391,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_3
-  $(".visit_card.current .card_body.evaluate")
-    .eq(2)
-    .on("click", function () {
+  function gotoEvaPage3() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -324,7 +409,7 @@ $(function () {
           $("#evaluate_page_3 .step-footer").hide();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_3 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -399,9 +484,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_4 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_4
-  $(".visit_card.current .card_body.evaluate")
-    .eq(3)
-    .on("click", function () {
+  function gotoEvaPage4() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -422,7 +505,7 @@ $(function () {
           $("#evaluate_page_4 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   //add img
   $("button.camera").on("click", function () {
     showModal("modal-img-eva4");
@@ -495,7 +578,7 @@ $(function () {
       "disabled",
       false
     );
-    $("#evaluate_page_5 .evaluate_page_status ").show();
+    $("#evaluate_page_4 .evaluate_page_status ").show();
   });
   $(".image_upload_preview img").click(function () {
     var src = $(this).attr("src");
@@ -556,9 +639,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_5 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_5
-  $(".visit_card.current .card_body.evaluate")
-    .eq(4)
-    .on("click", function () {
+  function gotoEvaPage5() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -582,7 +663,7 @@ $(function () {
           $("#evaluate_page_5 .step-footer").hide();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_5 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -670,9 +751,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_6 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_6
-  $(".visit_card.current .card_body.evaluate")
-    .eq(5)
-    .on("click", function () {
+  function gotoEvaPage6() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -683,7 +762,7 @@ $(function () {
           $("#evaluate_page_6 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_6 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -748,9 +827,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_7 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_7
-  $(".visit_card.current .card_body.evaluate")
-    .eq(6)
-    .on("click", function () {
+  function gotoEvaPage7() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -768,7 +845,7 @@ $(function () {
           $("#evaluate_page_7 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_7 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -880,9 +957,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_8 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_8
-  $(".visit_card.current .card_body.evaluate")
-    .eq(7)
-    .on("click", function () {
+  function gotoEvaPage8() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -893,7 +968,7 @@ $(function () {
           $("#evaluate_page_8 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_8 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -958,9 +1033,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_9 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_9
-  $(".visit_card.current .card_body.evaluate")
-    .eq(8)
-    .on("click", function () {
+  function gotoEvaPage9() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -971,7 +1044,7 @@ $(function () {
           $("#evaluate_page_9 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_9 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1036,11 +1109,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_10 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_10
-  $(
-    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
-  )
-    .eq(9)
-    .on("click", function () {
+  function gotoEvaPage10() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -1051,7 +1120,7 @@ $(function () {
           $("#evaluate_page_10 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_10 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1116,11 +1185,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_11 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_11
-  $(
-    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
-  )
-    .eq(10)
-    .on("click", function () {
+  function gotoEvaPage11() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -1131,7 +1196,7 @@ $(function () {
           $("#evaluate_page_11 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_11 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1203,22 +1268,20 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_12 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_12
-  $(
-    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
-  )
-    .eq(11)
-    .on("click", function () {
+  function gotoEvaPage12() {
+
       loading.show();
       setTimeout(function () {
         loading.hide();
         changePage("evaluate_page_12", function () {
           $("#evaluate_page_12 button.choice").prop("disabled", true);
+          $("#evaluate_page_12 input[type='radio']").prop("disabled", true);
           $("#evaluate_page_12 .step-footer").hide();
           $("#evaluate_page_12 .evaluate_page_status ").show();
           $("#evaluate_page_12 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_12 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1229,6 +1292,7 @@ $(function () {
   // ปุ่ม เริ่มประเมินใหม่
   $("#evaluate_page_12 .footer .btn_create_evaluate").on("click", function () {
     $("#evaluate_page_12 button.choice").prop("disabled", false);
+    $("#evaluate_page_12 input[type='radio']").prop("disabled", false);
     $("#evaluate_page_12 .evaluate_page_status ").hide();
     $("#evaluate_page_12 .footer").hide();
     $("#evaluate_page_12 .step-footer").show();
@@ -1262,6 +1326,7 @@ $(function () {
     "click",
     function () {
       $("#evaluate_page_12 button.choice").prop("disabled", true);
+      $("#evaluate_page_12 input[type='radio']").prop("disabled", true);
       $("#evaluate_page_12 .evaluate_page_status ").show();
       $("#evaluate_page_12 .footer").show();
       $("#evaluate_page_12 .step-footer").hide();
@@ -1290,11 +1355,7 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_13 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_13
-  $(
-    ".visit_card.current .card_body.evaluate ,.visit_card.current .card_body.evaluate_pending"
-  )
-    .eq(12)
-    .on("click", function () {
+  function gotoEvaPage13() {
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -1305,7 +1366,7 @@ $(function () {
           $("#evaluate_page_13 .footer.evaluate_page_footer ").show();
         });
       }, 500);
-    });
+    };
   // ปุ่ม back
   $("#evaluate_page_13 .evaluate_page_header .back_header_btn").on(
     "click",

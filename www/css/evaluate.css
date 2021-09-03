@@ -32,6 +32,32 @@
   color: #ffffff;
   z-index: 2;
 }
+.evaluate_card{
+  margin: 10px 5px;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #FFFFFF;
+} 
+.evaluate_card .card_header{
+  display: flex;
+  padding-left: 17px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 39px;
+  color: #ffffff;
+  background-color: #1bc3a2;
+} 
+.evaluate_card.wait .card_header{
+  color: #010979;
+  background-color: #DDD8F0;
+} 
+.evaluate_card.pending .card_header{
+  color: #7F7FA8;
+  background-color: #EEEAFD;
+} 
+.evaluate_card.pending{
+  color: #7F7FA8;
+} 
 .visit_card .card_header_evaluate {
   display: flex;
   padding-left: 17px;
@@ -59,6 +85,37 @@
   color: #7f7fa8;
   background-color: #c9c9e273;
 }
+.evaluate_card .card_body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px 12px 17px 12px;
+  background-color: #4136bc;
+}
+.evaluate_card.pending .card_body {
+  background-color: #ddd8f0;
+}
+.evaluate_card.care_of_doctor .card_body {
+  background-color: #7676ff;
+}
+.evaluate_card .card_body .card_body_center p:nth-child(1) {
+  font-size: 23px;
+}
+.evaluate_card.pending .card_body .card_body_center p:nth-child(1) {
+ color: #9595F2;
+}
+.evaluate_card .card_body .card_body_center p:nth-child(2) {
+  font-size: 13px;
+}
+.evaluate_card .card_body .card_body_center {
+  width: 100%;
+}
+.evaluate_card .card_body .card_body_center {
+  padding-left: 13px;
+}
+.evaluate_card.care_of_doctor .card_body {
+  background-color: #7676ff;
+}
 .visit_card.current .card_body.evaluate {
   background-color: #4136bc;
 }
@@ -72,6 +129,15 @@
   padding: 0.5em 0.5em 0.5em 0.5em;
   background-color: #010979;
   display: flex;
+}
+.evaluate_card .card-footer {
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  background-color: #010979;
+  display: flex;
+}
+.evaluate_card.care_of_doctor .card-footer {
+  color: #0D0E12;
+  background-color: #FFEAE4;
 }
 .qty_evaluate {
   background-color: #ecf8f7;
@@ -123,6 +189,23 @@
   background-image: url(../img/doc_icon_white.png);
   background-size: 11px 13.5px;
 }
+.evaluate_card.care_of_doctor .recommend {
+  font-size: 14px;
+  float: left;
+  border-radius: 1em;
+  min-height: 27px;
+  line-height: 27px;
+  padding-left: 25px;
+  padding-right: 10px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 8px;
+  margin-right: 4px;
+  background-color: #f26e4f;
+  color: #ffffff;
+  background-image: url(../img/doc_icon_white.png);
+  background-size: 11px 13.5px;
+}
 .recommend.care_of_doctor {
   font-size: 14px;
   float: left;
@@ -151,7 +234,7 @@ button.btn_create_evaluate {
   font-family: Prompt;
   border-width: 0;
   position: absolute;
-  top: 70%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
