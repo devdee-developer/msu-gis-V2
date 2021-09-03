@@ -11,56 +11,66 @@ $(function () {
       }, 500);
     });
   function initialEvaPage() {
-    let data = localdata.data[1].elder
-    $.each(data,function(index,row){
-      $("#eva_waiting_list").append(renderElderCard(row))
-    })
-    
+    let data = localdata.data[1].elder;
+    $.each(data, function (index, row) {
+      $("#eva_waiting_list").append(renderElderCard(row));
+    });
+
     setTimeout(function () {
       $("#evaluate_recommend").show();
       showModal("modal-evaluate-detail");
     }, 500);
   }
-  $("#evaluate_page .collapse-filter .collapse-filter-header").click(function () {
-    $header = $(this);
-    $content = $header.next();
-    $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
-    $content.slideToggle(200, function () {});
-  });
+  $("#evaluate_page .collapse-filter .collapse-filter-header").click(
+    function () {
+      $header = $(this);
+      $content = $header.next();
+      $(".toggle", this).toggleClass("fa-chevron-up fa-chevron-down");
+      $content.slideToggle(200, function () {});
+    }
+  );
   $("#evaluate_page .btn-sort").on("click", function () {
     showModal("modal-sort-evaluate");
   });
 
-    $("#evaluate_page .contact_items").on("click","li",function(){
-      $("#modal-evaluate-detail .status-card").attr("ELDER_ID",$(this).attr("ELDER_ID"))
-      $("#evaluate_recommend").hide();
-      $("#modal-evaluate-detail .thumbnail").attr("src",$(this).find(".card-body-thumbnail").attr("src"))
-      $("#modal-evaluate-detail .name").text($(this).find(".name").text())
-      $("#modal-evaluate-detail .age").text($(this).find(".age").text())
-      $("#modal-evaluate-detail .distant span").text("0.8 กิโลเมตร")
-      if($(this).find(".card-footer .status").eq(1).text()=="รอประเมิน..."){
-        $("#modal-evaluate-detail .status-card-header").removeClass("inprogress")
-        $("#modal-evaluate-detail .status-card-header").html("<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>")
-        $("#modal-evaluate-detail .status-card-body-content").html(`
+  $("#evaluate_page .contact_items").on("click", "li", function () {
+    $("#modal-evaluate-detail .status-card").attr(
+      "ELDER_ID",
+      $(this).attr("ELDER_ID")
+    );
+    $("#evaluate_recommend").hide();
+    $("#modal-evaluate-detail .thumbnail").attr(
+      "src",
+      $(this).find(".card-body-thumbnail").attr("src")
+    );
+    $("#modal-evaluate-detail .name").text($(this).find(".name").text());
+    $("#modal-evaluate-detail .age").text($(this).find(".age").text());
+    $("#modal-evaluate-detail .distant span").text("0.8 กิโลเมตร");
+    if ($(this).find(".card-footer .status").eq(1).text() == "รอประเมิน...") {
+      $("#modal-evaluate-detail .status-card-header").removeClass("inprogress");
+      $("#modal-evaluate-detail .status-card-header").html(
+        "<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>"
+      );
+      $("#modal-evaluate-detail .status-card-body-content").html(`
                 <h3>เริ่มประเมิน</h3>
                 <p style="font-size:14px">
                   <i class="fa fa-clock-o" aria-hidden="true"></i>
                   ยังไม่มีข้อมูล
-                </p>`
-        )
-      }else{
-        $("#modal-evaluate-detail .status-card-header").addClass("inprogress")
-        $("#modal-evaluate-detail .status-card-header").html("<p><b>สถานะการประเมิน</b> : "+"ข้อที่ 9 (การได้ยิน)"+"</p>")
-        $("#modal-evaluate-detail .status-card-body-content").html(`
+                </p>`);
+    } else {
+      $("#modal-evaluate-detail .status-card-header").addClass("inprogress");
+      $("#modal-evaluate-detail .status-card-header").html(
+        "<p><b>สถานะการประเมิน</b> : " + "ข้อที่ 9 (การได้ยิน)" + "</p>"
+      );
+      $("#modal-evaluate-detail .status-card-body-content").html(`
                 <h3>ประเมินต่อ</h3>
                 <p style="font-size:14px">
                   <i class="fa fa-clock-o" aria-hidden="true"></i>
                   18 ม.ค. 64, เวลา 14:28 น.
-                </p>`
-        )
-      }
-     showModal("modal-evaluate-detail");
-    })
+                </p>`);
+    }
+    showModal("modal-evaluate-detail");
+  });
   // ปุ่ม ยืนยัน modal-evaluate-alert
   $("#modal-evaluate-alert .submit_alret").on("click", function () {
     changePage("evaluate_detail_page", function () {});
@@ -81,35 +91,164 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_detail_page ----------------------------------------------------------------------------- */
   // StepProgresse
   $("#evaluate_page .status-card").on("click", function () {
-    let elder_id =$(this).attr("ELDER_ID")
-    let elderData = localdata.data[1].elder.find(item=>item.ID==elder_id)
+    let elder_id = $(this).attr("ELDER_ID");
+    let elderData = localdata.data[1].elder.find((item) => item.ID == elder_id);
     let evaluateData = [
-      {evaNo:1,evaName:"ประเมินโรคเบาหวาน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:2,evaName:"ประเมินโรคความดันโลหิตสูง",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:3,evaName:"โรคหัวใจและหลอดเลือด",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:4,evaName:"สมองเสื่อม",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:5,evaName:"โรคซึมเศร้า",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:6,evaName:"โรคข้อเข่าเสื่อม",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:7,evaName:"ภาวะหกล้ม",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:8,evaName:"สุขภาวะทางตา",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:9,evaName:"การได้ยิน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:10,evaName:"การประเมินปัญหาการนอน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:11,evaName:"การประเมินสุขภาพช่องปาก",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:12,evaName:"ภาวะโภชนาการ",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
-      {evaNo:13,evaName:"การทํากิจวัตรประจําวัน",updateDate:'18 ม.ค. 64, เวลา 14:28 น.',recommend:"ปรกติ",last_data: {},total:localdata.data[1].evaluate1.filter(item=>item.ELDER_ID==elder_id).length},
+      {
+        evaNo: 1,
+        evaName: "ประเมินโรคเบาหวาน",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 2,
+        evaName: "ประเมินโรคความดันโลหิตสูง",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 3,
+        evaName: "โรคหัวใจและหลอดเลือด",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 4,
+        evaName: "สมองเสื่อม",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 5,
+        evaName: "โรคซึมเศร้า",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 6,
+        evaName: "โรคข้อเข่าเสื่อม",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 7,
+        evaName: "ภาวะหกล้ม",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 8,
+        evaName: "สุขภาวะทางตา",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 9,
+        evaName: "การได้ยิน",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 10,
+        evaName: "การประเมินปัญหาการนอน",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 11,
+        evaName: "การประเมินสุขภาพช่องปาก",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 12,
+        evaName: "ภาวะโภชนาการ",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
+      {
+        evaNo: 13,
+        evaName: "การทํากิจวัตรประจําวัน",
+        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        recommend: "ปรกติ",
+        last_data: {},
+        total: localdata.data[1].evaluate1.filter(
+          (item) => item.ELDER_ID == elder_id
+        ).length,
+      },
     ];
-    
-    $("#evaluate_detail_page .contact_items").html(renderElderCard(elderData))
-    $("#evaluate_detail_page .list_item_group .visit_card,#evaluate_detail_page .list_item_group .evaluate_card,#evaluate_detail_page .list_item_group hr").remove();
+
+    $("#evaluate_detail_page .contact_items").html(renderElderCard(elderData));
+    $(
+      "#evaluate_detail_page .list_item_group .visit_card,#evaluate_detail_page .list_item_group .evaluate_card,#evaluate_detail_page .list_item_group hr"
+    ).remove();
     for (let index = 0; index < evaluateData.length; index++) {
       const evaluate = evaluateData[index];
-      console.log(evaluate)
-      $('#evaluate_detail_page .list_item_group').append(function() {
-            return $(`<div class="evaluate_card ${evaluate.total==0?'pending':`${evaluate.recommend!='ปรกติ'?'care_of_doctor':''}`}">
+      console.log(evaluate);
+      $("#evaluate_detail_page .list_item_group").append(function () {
+        return $(`<div class="evaluate_card ${
+          evaluate.total == 0
+            ? "pending"
+            : `${evaluate.recommend != "ปรกติ" ? "care_of_doctor" : ""}`
+        }">
             <div class="card_header">
-              <p><b>สถานะ :</b> ${evaluate.total>0?'ผ่านการประเมินแล้ว':'รอการประเมิน...'}</p>
+              <p><b>สถานะ :</b> ${
+                evaluate.total > 0 ? "ผ่านการประเมินแล้ว" : "รอการประเมิน..."
+              }</p>
               <div class="space"></div>
-              ${evaluate.total>0?`<div class="qty_evaluate">ประเมินแล้ว ${evaluate.total} ครั้ง</div>`:''}
+              ${
+                evaluate.total > 0
+                  ? `<div class="qty_evaluate">ประเมินแล้ว ${evaluate.total} ครั้ง</div>`
+                  : ""
+              }
               
             </div>
             <div class="card_body">
@@ -123,82 +262,85 @@ $(function () {
                  ${evaluate.updateDate}
                 </p>
               </div>
-              ${evaluate.total>0?`<div class="status-card-body-btn-evaluate">
+              ${
+                evaluate.total > 0
+                  ? `<div class="status-card-body-btn-evaluate">
               <i class="fa fa-chevron-right"></i>
-              </div>`:''}
+              </div>`
+                  : ""
+              }
               
             </div>
-            ${evaluate.total>0?` <div class="card-footer">
+            ${
+              evaluate.total > 0
+                ? ` <div class="card-footer">
             <p>**คำแนะนำล่าสุด</p>
             <div class="space"></div>
             <div class="recommend"><p>${evaluate.recommend}</p></div>
-            </div>`:''}
+            </div>`
+                : ""
+            }
            
             </div>
-            <hr>`).on('click',function(){
-              switch (index) {
-                case 0:
-                  gotoEvaPage1()
-                  break;
-              
-                case 1:
-                  gotoEvaPage2()
-                  break;
-              
-                case 2:
-                  gotoEvaPage3()
-                  break;
-              
-                case 3:
-                  gotoEvaPage4()
-                  break;
-              
-                case 4:
-                  gotoEvaPage5()
-                  break;
-              
-                case 5:
-                  gotoEvaPage6()
-                  break;
-              
-                case 6:
-                  gotoEvaPage7()
-                  break;
-                case 7:
-                  gotoEvaPage8()
-                  break;
-                case 8:
-                  gotoEvaPage9()
-                  break;
-                case 9:
-                  gotoEvaPage10()
-                  break;
-                case 10:
-                  gotoEvaPage11()
-                  break;
-                case 11:
-                  gotoEvaPage12()
-                  break;
-                case 12:
-                  gotoEvaPage13()
-                  break;
-              
-                default:
-                  break;
-              }
-             
-            })
-      }
-      )
-      
+            <hr>`).on("click", function () {
+          switch (index) {
+            case 0:
+              gotoEvaPage1();
+              break;
+
+            case 1:
+              gotoEvaPage2();
+              break;
+
+            case 2:
+              gotoEvaPage3();
+              break;
+
+            case 3:
+              gotoEvaPage4();
+              break;
+
+            case 4:
+              gotoEvaPage5();
+              break;
+
+            case 5:
+              gotoEvaPage6();
+              break;
+
+            case 6:
+              gotoEvaPage7();
+              break;
+            case 7:
+              gotoEvaPage8();
+              break;
+            case 8:
+              gotoEvaPage9();
+              break;
+            case 9:
+              gotoEvaPage10();
+              break;
+            case 10:
+              gotoEvaPage11();
+              break;
+            case 11:
+              gotoEvaPage12();
+              break;
+            case 12:
+              gotoEvaPage13();
+              break;
+
+            default:
+              break;
+          }
+        });
+      });
     }
- 
+
     loading.show();
     setTimeout(function () {
       loading.hide();
-      changePage("evaluate_detail_page", function () {
-        
-      });
+      changePage("evaluate_detail_page", function () {});
       setProgressevaluate(9);
     }, 500);
   });
@@ -210,20 +352,20 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_1 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_1
-  
+
   function gotoEvaPage1() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_1", function () {
-          $("#DTX").prop("disabled", true);
-          $("#DTX").val("75");
-          $("#evaluate_page_1 .evaluate_page_status ").show();
-          $("#evaluate_page_1 .footer").show();
-          $("#evaluate_page_1 .step-footer").hide();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_1", function () {
+        $("#DTX").prop("disabled", true);
+        $("#DTX").val("75");
+        $("#evaluate_page_1 .evaluate_page_status ").show();
+        $("#evaluate_page_1 .footer").show();
+        $("#evaluate_page_1 .step-footer").hide();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_1 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -275,6 +417,15 @@ $(function () {
   $("#evaluate_page_1 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 1,
+        DTX: $("#DTX").val(),
+        EVALUATE_FLAG: 1,
+        EVALUATE_SCORE: $("#DTX").val(),
+        EVALUATE_RESULT: "",
+      };
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -287,21 +438,21 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_2 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_2
-  function gotoEvaPage2()  {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_2", function () {
-          $("#blood_pressure_up").prop("disabled", true);
-          $("#blood_pressure_down").prop("disabled", true);
-          $("#blood_pressure_up").val("75");
-          $("#blood_pressure_down").val("75");
-          $("#evaluate_page_2 .evaluate_page_status ").show();
-          $("#evaluate_page_2 .footer").show();
-          $("#evaluate_page_2 .step-footer").hide();
-        });
-      }, 500);
-    };
+  function gotoEvaPage2() {
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_2", function () {
+        $("#blood_pressure_up").prop("disabled", true);
+        $("#blood_pressure_down").prop("disabled", true);
+        $("#blood_pressure_up").val("75");
+        $("#blood_pressure_down").val("75");
+        $("#evaluate_page_2 .evaluate_page_status ").show();
+        $("#evaluate_page_2 .footer").show();
+        $("#evaluate_page_2 .step-footer").hide();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_2 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -379,6 +530,20 @@ $(function () {
   $("#evaluate_page_2 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 2,
+        SBP: $("#blood_pressure_up").val(),
+        DBP: $("#blood_pressure_down").val(),
+        FLAGSBP: 1,
+        RESULTSBP: "",
+        SCORESBP: $("#blood_pressure_up").val(),
+        FLAGDBP: 1,
+        RESULTDBP: "",
+        SCOREDBP: $("#blood_pressure_down").val(),
+       
+      };
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -392,24 +557,24 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_3 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_3
   function gotoEvaPage3() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_3", function () {
-          $("#CVD1N").addClass("active");
-          $("#CVD2N").addClass("active");
-          $("#CVD3N").addClass("active");
-          $("#CVD4N").addClass("active");
-          $("#CVD5N").addClass("active");
-          $("#CVD6N").addClass("active");
-          $("#CVD7N").addClass("active");
-          $("#evaluate_page_3 button.choice").prop("disabled", true);
-          $("#evaluate_page_3 .evaluate_page_status ").show();
-          $("#evaluate_page_3 .footer").show();
-          $("#evaluate_page_3 .step-footer").hide();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_3", function () {
+        $("#CVD1N").addClass("active");
+        $("#CVD2N").addClass("active");
+        $("#CVD3N").addClass("active");
+        $("#CVD4N").addClass("active");
+        $("#CVD5N").addClass("active");
+        $("#CVD6N").addClass("active");
+        $("#CVD7N").addClass("active");
+        $("#evaluate_page_3 button.choice").prop("disabled", true);
+        $("#evaluate_page_3 .evaluate_page_status ").show();
+        $("#evaluate_page_3 .footer").show();
+        $("#evaluate_page_3 .step-footer").hide();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_3 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -471,6 +636,29 @@ $(function () {
   $("#evaluate_page_3 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let CVD1 =parseInt($("#CVD1 .choice.active").val()) 
+      let CVD2 =parseInt($("#CVD2 .choice.active").val()) 
+      let CVD3 =parseInt($("#CVD3 .choice.active").val()) 
+      let CVD4 =parseInt($("#CVD4 .choice.active").val()) 
+      let CVD5 =parseInt($("#CVD5 .choice.active").val()) 
+      let CVD6 =parseInt($("#CVD6 .choice.active").val()) 
+      let CVD7 =parseInt($("#CVD7 .choice.active").val()) 
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 3,
+        CVD1:CVD1,
+        CVD2:CVD2,
+        CVD3:CVD3,
+        CVD4:CVD4,
+        CVD5:CVD5,
+        CVD6:CVD6,
+        CVD7:CVD7,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:CVD1+CVD2+CVD3+CVD4+CVD5+CVD6+CVD7,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -485,36 +673,45 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_4 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_4
   function gotoEvaPage4() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_4", function () {
-          checkImg();
-          $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
-            "disabled",
-            true
-          );
-          $(".image_upload_preview").attr("disabled", "disabled");
-          $("button.camera").hide();
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_4", function () {
+        checkImg();
+        $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
+          "disabled",
+          true
+        );
+        $(".image_upload_preview").attr("disabled", "disabled");
+        $("button.camera").hide();
 
-          $("#evaluate_page_4 input[type='checkbox']").prop("disabled", true);
-          $("#evaluate_page_4 button.choice").prop("disabled", true);
-          $("#evaluate_page_4 .step-footer").hide();
+        $("#evaluate_page_4 input[type='checkbox']").prop("disabled", true);
+        $("#evaluate_page_4 button.choice").prop("disabled", true);
+        $("#evaluate_page_4 .step-footer").hide();
 
-          $("#evaluate_page_4 .evaluate_page_status ").show();
-          $("#evaluate_page_4 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+        $("#evaluate_page_4 .evaluate_page_status ").show();
+        $("#evaluate_page_4 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   //add img
   $("button.camera").on("click", function () {
     showModal("modal-img-eva4");
   });
   $("#evaluate_page_4 .on_camera").on("click", function () {
-    $(".image_upload_preview").append('<img  src="img/1.jpg"/>');
-
-    checkImg();
-    $(".modal-dismiss").click();
+    navigator.camera.getPicture(
+      function (res) {
+        $(".image_upload_preview").append(
+          `<img  src="data:image/jpeg;base64,${res}"/>`
+        );
+        checkImg();
+        $(".modal-dismiss").click();
+      },
+      function (err) {},
+      {
+        destinationType: Camera.DestinationType.DATA_URL,
+      }
+    );
   });
   $("#evaluate_page_4 .on_gallery").on("click", function () {
     $(".image_upload_preview").append('<img  src="img/1.jpg"/>');
@@ -627,6 +824,27 @@ $(function () {
   $("#evaluate_page_4 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let COG1A = parseInt($("#COG1A .choice.active").val()) 
+      let COG1B = parseInt($("#COG1B .choice.active").val())
+      let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").attr('src')
+      let COG2A = $("#COG2A").prop('checked') ? 1 : 0;
+      let COG2B = $("#COG2B").prop('checked') ? 1 : 0;
+      let COG2C = $("#COG2C").prop('checked') ? 1 : 0;
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 4,
+        COG1A:COG1A,
+        COG1B:COG1B,
+        COG1C_PIC:COG1C_PIC,
+        COG2A:COG2A,
+        COG2B:COG2B,
+        COG2C:COG2C,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:COG1A+COG1B+COG2A+COG2B+COG2C,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -640,30 +858,30 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_5 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_5
   function gotoEvaPage5() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_5", function () {
-          $("#P9Q1_0").prop("checked", true);
-          $("#P9Q2_0").prop("checked", true);
-          $("#P9Q3_0").prop("checked", true);
-          $("#P9Q4_0").prop("checked", true);
-          $("#P9Q5_0").prop("checked", true);
-          $("#P9Q6_0").prop("checked", true);
-          $("#P9Q7_0").prop("checked", true);
-          $("#P9Q8_0").prop("checked", true);
-          $("#P9Q9_0").prop("checked", true);
-          $('#evaluate_page_5 input[type="radio"]').prop("disabled", true);
-          $("#evaluate_page_5 button.choice").removeClass("active");
-          $("#P2Q1N").addClass("active");
-          $("#P2Q2N").addClass("active");
-          $("#evaluate_page_5 button.choice").prop("disabled", true);
-          $("#evaluate_page_5 .evaluate_page_status ").show();
-          $("#evaluate_page_5 .footer").show();
-          $("#evaluate_page_5 .step-footer").hide();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_5", function () {
+        $("#P9Q1_0").prop("checked", true);
+        $("#P9Q2_0").prop("checked", true);
+        $("#P9Q3_0").prop("checked", true);
+        $("#P9Q4_0").prop("checked", true);
+        $("#P9Q5_0").prop("checked", true);
+        $("#P9Q6_0").prop("checked", true);
+        $("#P9Q7_0").prop("checked", true);
+        $("#P9Q8_0").prop("checked", true);
+        $("#P9Q9_0").prop("checked", true);
+        $('#evaluate_page_5 input[type="radio"]').prop("disabled", true);
+        $("#evaluate_page_5 button.choice").removeClass("active");
+        $("#P2Q1N").addClass("active");
+        $("#P2Q2N").addClass("active");
+        $("#evaluate_page_5 button.choice").prop("disabled", true);
+        $("#evaluate_page_5 .evaluate_page_status ").show();
+        $("#evaluate_page_5 .footer").show();
+        $("#evaluate_page_5 .step-footer").hide();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_5 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -739,6 +957,43 @@ $(function () {
   $("#evaluate_page_5 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let COG1A = parseInt($("#COG1A .choice.active").val()) 
+      let COG1B = parseInt($("#COG1B .choice.active").val())
+      let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").attr('src')
+      let COG2A = $("#COG2A").prop('checked') ? 1 : 0;
+      let COG2B = $("#COG2B").prop('checked') ? 1 : 0;
+      let COG2C = $("#COG2C").prop('checked') ? 1 : 0;
+      let P2Q1=parseInt($("#P2Q1 .choice.active").val()) ;
+      let P2Q2=parseInt($("#P2Q2 .choice.active").val()) ;
+      let P9Q1=parseInt($('input[name="P9Q1"]:checked').val());
+      let P9Q2=parseInt($('input[name="P9Q2"]:checked').val());
+      let P9Q3=parseInt($('input[name="P9Q3"]:checked').val());
+      let P9Q4=parseInt($('input[name="P9Q4"]:checked').val());
+      let P9Q5=parseInt($('input[name="P9Q5"]:checked').val());
+      let P9Q6=parseInt($('input[name="P9Q6"]:checked').val());
+      let P9Q7=parseInt($('input[name="P9Q7"]:checked').val());
+      let P9Q8=parseInt($('input[name="P9Q8"]:checked').val());
+      let P9Q9=parseInt($('input[name="P9Q9"]:checked').val());
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 5,
+        P2Q1:P2Q1,
+        P2Q2:P2Q2,
+        P9Q1:P9Q1,
+        P9Q2:P9Q2,
+        P9Q3:P9Q3,
+        P9Q4:P9Q4,
+        P9Q5:P9Q5,
+        P9Q6:P9Q6,
+        P9Q7:P9Q7,
+        P9Q8:P9Q8,
+        P9Q9:P9Q9,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:P2Q1+P2Q2+P9Q1+P9Q2+P9Q3+P9Q4+P9Q5+P9Q6+P9Q7+P9Q8+P9Q9,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -752,17 +1007,17 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_6 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_6
   function gotoEvaPage6() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_6", function () {
-          $("#evaluate_page_6 button.choice").prop("disabled", true);
-          $("#evaluate_page_6 .step-footer").hide();
-          $("#evaluate_page_6 .evaluate_page_status ").show();
-          $("#evaluate_page_6 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_6", function () {
+        $("#evaluate_page_6 button.choice").prop("disabled", true);
+        $("#evaluate_page_6 .step-footer").hide();
+        $("#evaluate_page_6 .evaluate_page_status ").show();
+        $("#evaluate_page_6 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_6 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -815,6 +1070,25 @@ $(function () {
   $("#evaluate_page_6 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let OST1 = parseInt($("#OST1 .choice.active").val()) 
+      let OST2 = parseInt($("#OST2 .choice.active").val())
+      let OST3 = parseInt($("#OST3 .choice.active").val())
+      let OST4 = parseInt($("#OST4 .choice.active").val())
+      let OST5 = parseInt($("#OST5 .choice.active").val())
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 6,
+        OST1:OST1,
+        OST2:OST2,
+        OST3:OST3,
+        OST4:OST4,
+        OST5:OST5,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:OST1+OST2+OST3+OST4+OST5,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -828,24 +1102,18 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_7 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_7
   function gotoEvaPage7() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_7", function () {
-          $("#evaluate_page_7 .run_time button.btn_reset").prop(
-            "disabled",
-            true
-          );
-          $("#evaluate_page_7 .run_time button.play_stop").prop(
-            "disabled",
-            true
-          );
-          $("#evaluate_page_7 .step-footer").hide();
-          $("#evaluate_page_7 .evaluate_page_status ").show();
-          $("#evaluate_page_7 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_7", function () {
+        $("#evaluate_page_7 .run_time button.btn_reset").prop("disabled", true);
+        $("#evaluate_page_7 .run_time button.play_stop").prop("disabled", true);
+        $("#evaluate_page_7 .step-footer").hide();
+        $("#evaluate_page_7 .evaluate_page_status ").show();
+        $("#evaluate_page_7 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_7 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -924,6 +1192,17 @@ $(function () {
   $("#evaluate_page_7 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let TUG = parseInt($("#evaluate_page_7 .time p").text())
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 7,
+        TUG:TUG,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:TUG,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -958,17 +1237,17 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_8 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_8
   function gotoEvaPage8() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_8", function () {
-          $("#evaluate_page_8 button.choice").prop("disabled", true);
-          $("#evaluate_page_8 .step-footer").hide();
-          $("#evaluate_page_8 .evaluate_page_status ").show();
-          $("#evaluate_page_8 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_8", function () {
+        $("#evaluate_page_8 button.choice").prop("disabled", true);
+        $("#evaluate_page_8 .step-footer").hide();
+        $("#evaluate_page_8 .evaluate_page_status ").show();
+        $("#evaluate_page_8 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_8 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1021,6 +1300,31 @@ $(function () {
   $("#evaluate_page_8 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let EYE1 = parseInt($("#EYE1 .choice.active").val()) 
+      let EYE2 = parseInt($("#EYE2 .choice.active").val())
+      let EYE3L = parseInt($("#EYE3L .choice.active").val())
+      let EYE3R = parseInt($("#EYE3R .choice.active").val())
+      let EYE4L = parseInt($("#EYE4L .choice.active").val())
+      let EYE4R = parseInt($("#EYE4R .choice.active").val())
+      let EYE5L = parseInt($("#EYE5L .choice.active").val())
+      let EYE5R = parseInt($("#EYE5R .choice.active").val())
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 8,
+        EYE1:EYE1,
+        EYE2:EYE2,
+        EYE3L:EYE3L,
+        EYE3R:EYE3R,
+        EYE4L:EYE4L,
+        EYE4R:EYE4R,
+        EYE5L:EYE5L,
+        EYE5R:EYE5R,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:EYE1+EYE2+EYE3L+EYE3R+EYE4L+EYE4R+EYE5L+EYE5R,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -1034,17 +1338,17 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_9 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_9
   function gotoEvaPage9() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_9", function () {
-          $("#evaluate_page_9 button.choice").prop("disabled", true);
-          $("#evaluate_page_9 .step-footer").hide();
-          $("#evaluate_page_9 .evaluate_page_status ").show();
-          $("#evaluate_page_9 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_9", function () {
+        $("#evaluate_page_9 button.choice").prop("disabled", true);
+        $("#evaluate_page_9 .step-footer").hide();
+        $("#evaluate_page_9 .evaluate_page_status ").show();
+        $("#evaluate_page_9 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_9 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1097,6 +1401,20 @@ $(function () {
   $("#evaluate_page_9 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let RUBL = parseInt($("#RUBL .choice.active").val()) 
+      let RUBR = parseInt($("#RUBR .choice.active").val())
+    
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO: 9,
+        RUBL:RUBL,
+        RUBR:RUBR,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:RUBL+RUBR,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -1110,17 +1428,17 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_10 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_10
   function gotoEvaPage10() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_10", function () {
-          $("#evaluate_page_10 button.choice").prop("disabled", true);
-          $("#evaluate_page_10 .step-footer").hide();
-          $("#evaluate_page_10 .evaluate_page_status ").show();
-          $("#evaluate_page_10 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_10", function () {
+        $("#evaluate_page_10 button.choice").prop("disabled", true);
+        $("#evaluate_page_10 .step-footer").hide();
+        $("#evaluate_page_10 .evaluate_page_status ").show();
+        $("#evaluate_page_10 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_10 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1173,6 +1491,26 @@ $(function () {
   $("#evaluate_page_10 .step-footer .btn_group .submit").on(
     "click",
     function () {
+      let OSR1A = $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1A .choice.active").val()) 
+      let OSR1B =  $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1B .choice.active").val()) 
+      let OSR1C =  $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1C .choice.active").val()) 
+      let OSR1D =  $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1D .choice.active").val()) 
+      let OSR2 = parseInt($("#OSR2 .choice.active").val()) 
+    
+      let data = {
+        ELDER_ID: "",
+        EVALUATE_DATE: "",
+        EVALUATE_NO:10,
+        OSR1A:OSR1A,
+        OSR1B:OSR1B,
+        OSR1C:OSR1C,
+        OSR1D:OSR1D,
+        OSR2:OSR2,
+        EVALUATE_FLAG:"1",
+        EVALUATE_SCORE:OSR1A+OSR1B+OSR1C+OSR1D+OSR2,
+        EVALUATE_RESULT:"",
+      };
+      console.log(data)
       $("#evaluate_detail_page .footer.evaluate-success").show();
       changePage("evaluate_detail_page", function () {
         setTimeout(function () {
@@ -1181,22 +1519,29 @@ $(function () {
       });
     }
   );
+  $("#evaluate_page_10 .choice").click(function () {
+    if ($(this).attr("value") == "0" && $(this).attr("target")) {
+      $("#eva10_sub_" + $(this).attr("target")).hide();
+    } else if ($(this).attr("value") == "1" && $(this).attr("target")) {
+      $("#eva10_sub_" + $(this).attr("target")).show();
+    }
+  });
   /* ----------------------------------------------------------------------------- end : evaluate_page_10 ----------------------------------------------------------------------------- */
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_11 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_11
   function gotoEvaPage11() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_11", function () {
-          $("#evaluate_page_11 button.choice").prop("disabled", true);
-          $("#evaluate_page_11 .step-footer").hide();
-          $("#evaluate_page_11 .evaluate_page_status ").show();
-          $("#evaluate_page_11 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_11", function () {
+        $("#evaluate_page_11 button.choice").prop("disabled", true);
+        $("#evaluate_page_11 .step-footer").hide();
+        $("#evaluate_page_11 .evaluate_page_status ").show();
+        $("#evaluate_page_11 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_11 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1269,19 +1614,18 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_12 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_12
   function gotoEvaPage12() {
-
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_12", function () {
-          $("#evaluate_page_12 button.choice").prop("disabled", true);
-          $("#evaluate_page_12 input[type='radio']").prop("disabled", true);
-          $("#evaluate_page_12 .step-footer").hide();
-          $("#evaluate_page_12 .evaluate_page_status ").show();
-          $("#evaluate_page_12 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_12", function () {
+        $("#evaluate_page_12 button.choice").prop("disabled", true);
+        $("#evaluate_page_12 input[type='radio']").prop("disabled", true);
+        $("#evaluate_page_12 .step-footer").hide();
+        $("#evaluate_page_12 .evaluate_page_status ").show();
+        $("#evaluate_page_12 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_12 .evaluate_page_header .back_header_btn").on(
     "click",
@@ -1356,17 +1700,17 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_page_13 ----------------------------------------------------------------------------- */
   // เปลี่ยนหน้าไป evaluate_page_13
   function gotoEvaPage13() {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-        changePage("evaluate_page_13", function () {
-          $('#evaluate_page_13 input[type="radio"]').prop("disabled", true);
-          $("#evaluate_page_13 .step-footer").hide();
-          $("#evaluate_page_13 .evaluate_page_status ").show();
-          $("#evaluate_page_13 .footer.evaluate_page_footer ").show();
-        });
-      }, 500);
-    };
+    loading.show();
+    setTimeout(function () {
+      loading.hide();
+      changePage("evaluate_page_13", function () {
+        $('#evaluate_page_13 input[type="radio"]').prop("disabled", true);
+        $("#evaluate_page_13 .step-footer").hide();
+        $("#evaluate_page_13 .evaluate_page_status ").show();
+        $("#evaluate_page_13 .footer.evaluate_page_footer ").show();
+      });
+    }, 500);
+  }
   // ปุ่ม back
   $("#evaluate_page_13 .evaluate_page_header .back_header_btn").on(
     "click",

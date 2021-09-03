@@ -24,9 +24,7 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-dialogs": {},
-      "cordova-plugin-camera": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      }
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "android"

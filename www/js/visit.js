@@ -93,6 +93,8 @@ $(function () {
     $("#visit_section1_1_input").on("change paste keyup", function () {
       if ($(this).val().length != 0) {
         disableNextVisit(false);
+      }else{
+        disableNextVisit(true);
       }
     });
   }
