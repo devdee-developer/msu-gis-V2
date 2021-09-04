@@ -7,7 +7,6 @@ var token = new Token();
 var swiper_timer = setInterval(function () {}, 3000);
 var swiper_timer2 = setInterval(function () {}, 3000);
 $(function () {
-  getAccessToken();
   FastClick.attach(document.body);
   if (!token.getUserToken()) {
     changePage("splash_page", function () {});
@@ -21,7 +20,6 @@ $(function () {
       initSlideHomePage();
     });
   }
-
   $(".btn_splash").on("click", function () {
     changePage("login_page", function () {
       var _h = $(".header_login").height();

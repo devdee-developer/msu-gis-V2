@@ -12,8 +12,8 @@ function initSlideHomePage() {
     loop: true,
     pagination: {
       el: ".swiper-pagination",
-      clickable: true,
-    },
+      clickable: true
+    }
   });
   swiper_timer = setInterval(function () {
     $(".swiper-button-next").click();
@@ -27,8 +27,8 @@ function initSlideNewsPage() {
     loop: true,
     pagination: {
       el: ".swiper-pagination2",
-      clickable: true,
-    },
+      clickable: true
+    }
   });
   swiper_timer2 = setInterval(function () {
     $(".swiper-button-next2").click();
@@ -47,49 +47,56 @@ function showModal(_modal, _callback = function () {}) {
   });
   _callback();
 }
-function getAccessToken(){
-  $.ajax({
-    url: api_base_url+"/auth/login",
-    type:"POST",
-    data: {
-        partner_id:partner_id,
-        partner_key:partner_key
-    },
-    success: function( response ) {
-        console.log( response );
-        localStorage.setItem("access_token",response.access_token);
-    },
-    error: function () {
-      alert("เกิดข้อผิดพลาด");
-    }
-});
+function getAccessToken(_success, _error) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: api_base_url + "/auth/login",
+      type: "POST",
+      data: {
+        partner_id: partner_id,
+        partner_key: partner_key
+      },
+      success: function (response) {
+        localStorage.setItem("access_token", response.access_token);
+        resolve(response.access_token);
+      },
+      error: function () {
+        reject("เกิดข้อผิดพลาด");
+      }
+    });
+  });
 }
-function login(username,password,_success,_error){
-  $.ajax({
-    url: api_base_url+"/vhvLogin",
-    type:"POST",
-    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer '+token.getAccessToken()); },
-    data:{
-      user:username,
-      pass:password
-    },
-    success: function( response ) {
-       
-        if(response.status==true){
-          localStorage.setItem("user_token",response.data);
+async function login(username, password, _success, _error) {
+  try {
+    await getAccessToken();
+    $.ajax({
+      url: api_base_url + "/vhvLogin",
+      type: "POST",
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization","Bearer " + token.getAccessToken());
+      },
+      data: {
+        user: username,
+        pass: password
+      },
+      success: function (response) {
+        console.log(response);
+        if (response.status == true) {
+          localStorage.setItem("user_token", response.data);
           _success(response);
-        }else{
+        } else {
           _error(response.status);
         }
-    },
-    error:function(e){
-      if(e.responseJSON.status==false){
-        _error("ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง");
-      }else{
-        _error("เกิดข้อผิดพลาด");
+      },
+      error: function (e) {
+        if (e.responseJSON.status == false) {
+          _error("ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง");
+        } else {
+          _error("เกิดข้อผิดพลาด");
+        }
       }
-     
-    }
-});
-  
+    });
+  } catch (error) {
+    _error("เกิดข้อผิดพลาด");
+  }
 }
