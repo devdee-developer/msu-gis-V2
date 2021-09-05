@@ -173,7 +173,79 @@ function getInitial(){
           $.each(data.elvaluate, function( index, row ) {
             tx.executeSql("INSERT INTO VHV_MA_EVALUATE (ID,GUID,EVALUATE_NO,EVALUATE_SUBNO,EVALUATE_MIN,EVALUATE_MAX,EVALUATE_RESULT,EVALUATE_FLAG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.EVALUATE_NO+"','"+row.EVALUATE_SUBNO+"','"+row.EVALUATE_MIN+"','"+row.EVALUATE_MAX+"','"+row.EVALUATE_RESULT+"','"+row.EVALUATE_FLAG+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
          });
+         
       });
+      db.transaction(function (tx) {   
+        $.each(data.emergency, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EMERGENCY (ID,GUID,VHV_ID,ELDER_ID,EMC_DATE,EMC_TYPE,EMC_TOPIC,EMC_DESC,EMC_PIC1,EMC_PIC2,EMC_PIC3,EMC_PIC4,EMC_PIC5,ADMIN_ID,ADMIN_DATE,ADMIN_DESC,ADMIN_SEND,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EMC_DATE+"','"+row.EMC_TYPE+"','"+row.EMC_TOPIC+"','"+row.EMC_DESC+"','"+row.EMC_PIC1+"','"+row.EMC_PIC2+"','"+row.EMC_PIC3+"','"+row.EMC_PIC4+"','"+row.EMC_PIC5+"','"+row.ADMIN_ID+"','"+row.ADMIN_DATE+"','"+row.ADMIN_DESC+"','"+row.ADMIN_SEND+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate1, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE1 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,DTX,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.DTX+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate2, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE2 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,SBP,DBP,FLAGSBP,RESULTSBP,SCORESBP,FLAGDBP,RESULTDBP,SCOREDBP,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.SBP+"','"+row.DBP+"','"+row.FLAGSBP+"','"+row.RESULTSBP+"','"+row.SCORESBP+"','"+row.FLAGDBP+"','"+row.RESULTDBP+"','"+row.SCOREDBP+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate3, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE3 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,CVD1,CVD2,CVD3,CVD4,CVD5,CVD6,CVD7,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.CVD1+"','"+row.CVD2+"','"+row.CVD3+"','"+row.CVD4+"','"+row.CVD5+"','"+row.CVD6+"','"+row.CVD7+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate4, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE4 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,COG1A,COG1B,COG1C_PIC,COG2A,COG2B,COG2C,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.COG1A+"','"+row.COG1B+"','"+row.COG1C_PIC+"','"+row.COG2A+"','"+row.COG2B+"','"+row.COG2C+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate5, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE5 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,P2Q1,P2Q2,P9Q1,P9Q2,P9Q3,P9Q4,P9Q5,P9Q6,P9Q7,P9Q8,P9Q9,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.P2Q1+"','"+row.P2Q2+"','"+row.P9Q1+"','"+row.P9Q2+"','"+row.P9Q3+"','"+row.P9Q4+"','"+row.P9Q5+"','"+row.P9Q6+"','"+row.P9Q7+"','"+row.P9Q8+"','"+row.P9Q9+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate6, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE6 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,OST1,OST2,OST3,OST4,OST5,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.OST1+"','"+row.OST2+"','"+row.OST3+"','"+row.OST4+"','"+row.OST5+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate7, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE7 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,TUG,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.TUG+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate8, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE8 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,EYE1,EYE2,EYE3L,EYE3R,EYE4L,EYE4R,EYE5L,EYE5R,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.EYE1+"','"+row.EYE2+"','"+row.EYE3L+"','"+row.EYE3R+"','"+row.EYE4L+"','"+row.EYE4R+"','"+row.EYE5L+"','"+row.EYE5R+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate9, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE9 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,RUBL,RUBR,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.RUBL+"','"+row.RUBR+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate10, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE10 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,OSR1A,OSR1B,OSR1C,OSR1D,OSR2,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.OSR1A+"','"+row.OSR1B+"','"+row.OSR1C+"','"+row.OSR1D+"','"+row.OSR2+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate11, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE11 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,ORAL1A,ORAL1B,ORAL1C,ORAL2A,ORAL2B,ORAL2C,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.ORAL1A+"','"+row.ORAL1B+"','"+row.ORAL1C+"','"+row.ORAL2A+"','"+row.ORAL2B+"','"+row.ORAL2C+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate12, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE12 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,NUTRI1,NUTRI2,MNA1A,MNA1B,MNA1C,MNA1D,MNA1E,MNA1F,MNA1G,MNA2A,MNA2B,MNA2C,MNA2D,MNA2EA,MNA2EB,MNA2EC,MNA2F,MNA2G,MNA2H,MNA2I,MNA2J,MNA2K,MNA2L,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.NUTRI1+"','"+row.NUTRI2+"','"+row.MNA1A+"','"+row.MNA1B+"','"+row.MNA1C+"','"+row.MNA1D+"','"+row.MNA1E+"','"+row.MNA1F+"','"+row.MNA1G+"','"+row.MNA2A+"','"+row.MNA2B+"','"+row.MNA2C+"','"+row.MNA2D+"','"+row.MNA2EA+"','"+row.MNA2EB+"','"+row.MNA2EC+"','"+row.MNA2F+"','"+row.MNA2G+"','"+row.MNA2H+"','"+row.MNA2I+"','"+row.MNA2J+"','"+row.MNA2K+"','"+row.MNA2L+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+      db.transaction(function (tx) {   
+        $.each(data.evaluate13, function( index, row ) {
+          tx.executeSql("INSERT INTO VHV_TR_EVALUATE13 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,ADL1,ADL2,ADL3,ADL4,ADL5,ADL6,ADL7,ADL8,ADL9,ADL10,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.VHV_ID+"','"+row.ELDER_ID+"','"+row.EVALUATE_DATE+"','"+row.EVALUATE_NO+"','"+row.ADL1+"','"+row.ADL2+"','"+row.ADL3+"','"+row.ADL4+"','"+row.ADL5+"','"+row.ADL6+"','"+row.ADL7+"','"+row.ADL8+"','"+row.ADL9+"','"+row.ADL10+"','"+row.EVALUATE_FLAG+"','"+row.EVALUATE_SCORE+"','"+row.EVALUATE_RESULT+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+       });
+      });
+           
             
            
 
