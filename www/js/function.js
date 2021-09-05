@@ -112,7 +112,7 @@ function getInitial(){
     success: function( response ) {
        console.log(response);
     //  response.data = CryptoJS.AES.decrypt(response.data, "MsU2021APPlcation");
-      response.data =CryptoJSAesJson.decrypt(response.data, "MsU2021APPlcation")
+      response.data =CryptoJSAesJson.decrypt(response.data, secret_key_aes);
        var data = response.data;
        if(response.status==true){
          console.log(data);
