@@ -162,5 +162,5 @@ function sqlInsert(table,data,_callback){
       console.log(insert_string);
       tx.executeSql(insert_string); 
   }); 
-  _callback();
+  _callback(data.ID);
 }
