@@ -196,3 +196,11 @@ function sqlUpdate(TABLE,data,ID,_callback){
        });
      
    }
+   function sqlDelete(TABLE,ID,_callback){
+    let str = 'DELETE FROM '+TABLE+' WHERE ID='+ID;
+    console.log(str);
+    db.transaction(function (tx) {
+       tx.executeSql(str);
+       _callback(ID);
+    });
+}
