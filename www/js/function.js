@@ -204,3 +204,20 @@ function sqlUpdate(TABLE,data,ID,_callback){
        _callback(ID);
     });
 }
+function queryALL(TABLE,_callback){
+  var arr = [];
+  db.transaction(function (tx) { 
+     tx.executeSql('SELECT * FROM '+TABLE, [], function (tx, results) { 
+        var len = results.rows.length, i; 
+       
+    
+        for (i = 0; i < len; i++) { 
+           arr.push(results.rows.item(i)); 
+          
+        } 
+_callback(arr);
+          
+    
+     }, null); 
+  });
+  }
