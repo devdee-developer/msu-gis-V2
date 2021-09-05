@@ -3,15 +3,17 @@ $(function () {
     .eq(0)
     .on("click", function () {
       loading.show();
+
       setTimeout(function () {
-        loading.hide();
+        
         changePage("evaluate_page", function () {
-          initialEvaPage();
+          initialEvaPage()
         });
       }, 500);
     });
   function initialEvaPage() {
     listElderEvaluate(function (waitList, evaluatedList) {
+      loading.hide();
       $("#eva_waiting_list").html("");
       $("#eva_evaluated_list").html("");
       $("#evaluate_page .sort-bar h4 span").html(
@@ -132,7 +134,8 @@ $(function () {
           evaNo: 2,
           evaName: "ประเมินโรคความดันโลหิตสูง",
           updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
-
+          recommend:lastData?`ตัวบน: ${lastData.RESULTSBP},ตัวล่าง: ${lastData.RESULTDBP}`:'',
+          warningCard:lastData?(lastData.FLAGSBP==1||lastData.FLAGDBP==1?true:false):false,
           last_data: lastData,
           total: total2,
         });
@@ -341,6 +344,7 @@ $(function () {
                                       evaluate.total == 0
                                         ? "pending"
                                         : `${
+                                           evaluate.evaNo==2?(evaluate.warningCard?"care_of_doctor":''):
                                             evaluate.last_data.EVALUATE_FLAG ==
                                             1
                                               ? "care_of_doctor"
@@ -386,9 +390,10 @@ $(function () {
                                         ${
                                           evaluate.total > 0
                                             ? ` <div class="card-footer">
-                                        <p>**คำแนะนำล่าสุด</p>
+                                        <p>คำแนะนำล่าสุด</p>
                                         <div class="space"></div>
                                         <div class="recommend"><p>${
+                                          evaluate.evaNo==2?evaluate.recommend:
                                           evaluate.last_data
                                             ? evaluate.last_data.EVALUATE_RESULT
                                             : ""
@@ -519,6 +524,8 @@ $(function () {
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE1", lastRecordId, function (lastData) {
         $("#DTX").val(lastData.DTX);
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -554,7 +561,7 @@ $(function () {
   // เช็คค่าใน input
   var EVALUATE_RESULT1;
   $("#DTX").on("change paste keyup", function () {
-    if (validateForm([$("#DTX").val()])) {
+    if (validateForm([$("#DTX").val()])&&$("#DTX").val().length>1) {
       $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
         "disabled",
         false
@@ -581,6 +588,7 @@ $(function () {
       $("#evaluate_page_1 .evaluate_page_status ").show();
       $("#evaluate_page_1 .footer").show();
       $("#evaluate_page_1 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(0).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -625,6 +633,8 @@ $(function () {
       queryByID("VHV_TR_EVALUATE2", lastRecordId, function (lastData) {
         $("#blood_pressure_up").val(lastData.SBP);
         $("#blood_pressure_down").val(lastData.DBP);
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -699,6 +709,7 @@ $(function () {
       $("#evaluate_page_2 .evaluate_page_status ").show();
       $("#evaluate_page_2 .footer").show();
       $("#evaluate_page_2 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(1).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -752,6 +763,8 @@ $(function () {
         $(`#CVD5 .choice[value="${lastData.CVD5}"]`).addClass("active");
         $(`#CVD6 .choice[value="${lastData.CVD6}"]`).addClass("active");
         $(`#CVD7 .choice[value="${lastData.CVD7}"]`).addClass("active");
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -827,6 +840,7 @@ $(function () {
       $("#evaluate_page_3 .evaluate_page_status ").show();
       $("#evaluate_page_3 .footer").show();
       $("#evaluate_page_3 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(2).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -894,6 +908,8 @@ $(function () {
         $(`#COG2A`).prop("checked", lastData.COG2A == 1 ? true : false);
         $(`#COG2B`).prop("checked", lastData.COG2B == 1 ? true : false);
         $(`#COG2C`).prop("checked", lastData.COG2C == 1 ? true : false);
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -1061,6 +1077,7 @@ $(function () {
       $("#evaluate_page_4 .evaluate_page_status ").show();
       $("#evaluate_page_4 .footer").show();
       $("#evaluate_page_4 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(3).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -1128,6 +1145,8 @@ $(function () {
         $(`input[name="P9Q7"][value="${lastData.P9Q7}"]`).prop("checked", true);
         $(`input[name="P9Q8"][value="${lastData.P9Q8}"]`).prop("checked", true);
         $(`input[name="P9Q9"][value="${lastData.P9Q9}"]`).prop("checked", true);
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -1226,6 +1245,7 @@ $(function () {
       $("#evaluate_page_5 .evaluate_page_status ").show();
       $("#evaluate_page_5 .footer").show();
       $("#evaluate_page_5 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(4).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -1306,6 +1326,8 @@ $(function () {
         $(`#OST3 .choice[value="${lastData.OST3}"]`).addClass("active");
         $(`#OST4 .choice[value="${lastData.OST4}"]`).addClass("active");
         $(`#OST5 .choice[value="${lastData.OST5}"]`).addClass("active");
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -1374,6 +1396,7 @@ $(function () {
       $("#evaluate_page_6 .evaluate_page_status ").show();
       $("#evaluate_page_6 .footer").show();
       $("#evaluate_page_6 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(5).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -1427,6 +1450,8 @@ $(function () {
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE7", lastRecordId, function (lastData) {
         $("#evaluate_page_7 .time p").text(pad(lastData.TUG, 2));
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -1525,6 +1550,7 @@ $(function () {
       $("#evaluate_page_7 .step-footer").hide();
       $("#evaluate_page_7 .evaluate_page_status ").show();
       $("#evaluate_page_7 .footer.evaluate_page_footer ").show();
+      $('#evaluate_detail_page .evaluate_card').eq(6).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -1598,6 +1624,8 @@ $(function () {
         $(`#EYE4R .choice[value="${lastData.EYE4R}"]`).addClass("active");
         $(`#EYE5L .choice[value="${lastData.EYE5L}"]`).addClass("active");
         $(`#EYE5R .choice[value="${lastData.EYE5R}"]`).addClass("active");
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -1670,6 +1698,7 @@ $(function () {
       $("#evaluate_page_8 .evaluate_page_status ").show();
       $("#evaluate_page_8 .footer").show();
       $("#evaluate_page_8 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(7).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -1712,11 +1741,11 @@ $(function () {
       sqlInsert("VHV_TR_EVALUATE8", data, function (inserted_id) {
         console.log(inserted_id);
         reloadEvaluateList();
-        $("#evaluate_detail_page .footer.evaluate-success").show();
+        $("#evaluate_detail_page .footer.evaluate-success").fadeIn(1000);
         changePage("evaluate_detail_page", function () {
           setTimeout(function () {
-            $("#evaluate_detail_page .footer.evaluate-success").hide();
-          }, 1000);
+            $("#evaluate_detail_page .footer.evaluate-success").fadeOut(1000);
+          }, 2000);
         });
       });
     }
@@ -1732,6 +1761,8 @@ $(function () {
       queryByID("VHV_TR_EVALUATE9", lastRecordId, function (lastData) {
         $(`#RUBR .choice[value="${lastData.RUBR}"]`).addClass("active");
         $(`#RUBL .choice[value="${lastData.RUBL}"]`).addClass("active");
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -1797,6 +1828,7 @@ $(function () {
       $("#evaluate_page_9 .evaluate_page_status ").show();
       $("#evaluate_page_9 .footer").show();
       $("#evaluate_page_9 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(8).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -1863,6 +1895,8 @@ $(function () {
         $(`#OSR1C .choice[value="${lastData.OSR1C}"]`).addClass("active");
         $(`#OSR1D .choice[value="${lastData.OSR1D}"]`).addClass("active");
         $(`#OSR2 .choice[value="${lastData.OSR2}"]`).addClass("active");
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -1940,6 +1974,7 @@ $(function () {
       $("#evaluate_page_10 .evaluate_page_status ").show();
       $("#evaluate_page_10 .footer").show();
       $("#evaluate_page_10 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(9).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -2044,6 +2079,8 @@ $(function () {
         $(`#ORAL2A .choice[value="${lastData.ORAL2A}"]`).addClass("active");
         $(`#ORAL2B .choice[value="${lastData.ORAL2B}"]`).addClass("active");
         $(`#ORAL2C .choice[value="${lastData.ORAL2C}"]`).addClass("active");
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -2127,6 +2164,7 @@ $(function () {
       $("#evaluate_page_11 .evaluate_page_status ").show();
       $("#evaluate_page_11 .footer").show();
       $("#evaluate_page_11 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(10).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -2293,6 +2331,8 @@ $(function () {
           "checked",
           true
         );
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -2411,6 +2451,7 @@ $(function () {
       $("#evaluate_page_12 .evaluate_page_status ").show();
       $("#evaluate_page_12 .footer").show();
       $("#evaluate_page_12 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(11).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -2544,6 +2585,8 @@ $(function () {
           "checked",
           true
         );
+        evaluateResult(lastData).then((res) => {
+        });
       });
     }
     setTimeout(function () {
@@ -2630,6 +2673,7 @@ $(function () {
       $("#evaluate_page_13 .evaluate_page_status ").show();
       $("#evaluate_page_13 .footer").show();
       $("#evaluate_page_13 .step-footer").hide();
+      $('#evaluate_detail_page .evaluate_card').eq(12).click() 
     }
   );
   // ปุ่ม บันทึก
@@ -2742,7 +2786,12 @@ $(function () {
             (item) => parseFloat(item.EVALUATE_MIN) <=parseFloat(data.EVALUATE_SCORE) &&parseFloat(item.EVALUATE_MAX) >= parseFloat(data.EVALUATE_SCORE)
             
           );
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).show();
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).removeClass('alert')
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`).eq(1).text(result.EVALUATE_RESULT)
+          if(result.EVALUATE_FLAG==1){
+            $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).addClass('alert')
+          }
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(3000);
         } else {
           let RESULTSBP = evaResult.find(
             (item) =>  parseFloat(item.EVALUATE_SUBNO)==1 &&parseFloat(item.EVALUATE_MIN) <=parseFloat(data.SCORESBP) &&parseFloat(item.EVALUATE_MAX) >= parseFloat(data.SCORESBP)
@@ -2751,6 +2800,12 @@ $(function () {
           let RESULTDBP = evaResult.find(
             (item) => parseFloat(item.EVALUATE_SUBNO)==2 &&parseFloat(item.EVALUATE_MIN) <=parseFloat(data.SCOREDBP) &&parseFloat(item.EVALUATE_MAX) >= parseFloat(data.SCOREDBP)
           );
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).removeClass('alert')
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`).eq(1).html(`ตัวบน : ${RESULTSBP.EVALUATE_RESULT} <br>ตัวล่าง : ${RESULTDBP.EVALUATE_RESULT}`)
+          if(RESULTSBP.EVALUATE_FLAG==1||RESULTDBP.EVALUATE_FLAG==1){
+            $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).addClass('alert')
+          }
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(3000);
           result={RESULTSBP,RESULTDBP}
           console.log(result)
         }
