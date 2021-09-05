@@ -155,7 +155,7 @@ function sqlInsert(table,data,_callback){
 
   var value = "";
   for(var i=0;i<Object.keys(data).length;i++){
-      value += "'"+obj[Object.keys(data)[i]]+"',";
+      value += "'"+data[Object.keys(data)[i]]+"',";
   }
   value = inserted_id+","+value.slice(0, -1);
   db.transaction(function (tx) { 
