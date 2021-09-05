@@ -38,6 +38,7 @@ $(function () {
         changePage("home_page", function () {
           calHomeButtonPosition();
           initSlideHomePage();
+          getInitial();
         });
       },
       function (err) {
