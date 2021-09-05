@@ -955,9 +955,7 @@ $(function () {
   $("#evaluate_page_4 .on_camera").on("click", function () {
     navigator.camera.getPicture(
       function (res) {
-        $(".image_upload_preview").append(
-          `<img  src="data:image/jpeg;base64,${res}"/>`
-        );
+        $(".image_upload_preview img").attr('src',`data:image/jpeg;base64,${res}` );
         checkImg();
         vaildateFormEva4();
         $(".modal-dismiss").click();
