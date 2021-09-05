@@ -11,15 +11,17 @@ $(function () {
       }, 500);
     });
   function initialEvaPage() {
-    let data = localdata.data[1].elder;
-    $.each(data, function (index, row) {
-      $("#eva_waiting_list").append(renderElderCard(row));
+    queryALL("VHV_TR_ELDER", function (ELDER) {
+      console.log(ELDER);
+      $("#evaluate_page .sort-bar h4 span").html(`${ELDER.length} คน`)
+      $.each(ELDER, function (index, row) {
+        $("#eva_waiting_list").append(renderElderCard(row));
+      });
+      setTimeout(function () {
+        $("#evaluate_recommend").show();
+        showModal("modal-evaluate-detail");
+      }, 500);
     });
-
-    setTimeout(function () {
-      $("#evaluate_recommend").show();
-      showModal("modal-evaluate-detail");
-    }, 500);
   }
   $("#evaluate_page .collapse-filter .collapse-filter-header").click(
     function () {
@@ -90,253 +92,369 @@ $(function () {
 
   /* ----------------------------------------------------------------------------- start : evaluate_detail_page ----------------------------------------------------------------------------- */
   // StepProgresse
-  $("#evaluate_page .status-card").on("click", function () {
-    let elder_id = $(this).attr("ELDER_ID");
-    let elderData = localdata.data[1].elder.find((item) => item.ID == elder_id);
-    let evaluateData = [
-      {
+  function reloadEvaluateList() {
+    let elder_id = $("#evaluate_page .status-card").attr("ELDER_ID");
+    let evaluateData = [];
+    console.log(elder_id);
+    queryALL("VHV_TR_ELDER", function (ELDER) {
+      $("#evaluate_detail_page .contact_items").html(
+        renderElderCard(ELDER.find((item) => (item.ID = elder_id)))
+      );
+    });
+    queryALL("VHV_TR_EVALUATE1", function (EVALUATE1) {
+      let eva = EVALUATE1.filter((item) => item.ELDER_ID == elder_id);
+      let lastData = eva ? eva[eva.length - 1] : undefined;
+      let total1 = EVALUATE1.filter((item) => item.ELDER_ID == elder_id).length;
+      evaluateData.push({
         evaNo: 1,
         evaName: "ประเมินโรคเบาหวาน",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
+        updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
         recommend: "ปรกติ",
         last_data: {},
-        total: localdata.data[1].evaluate1.filter(
+        total: total1,
+      });
+      queryALL("VHV_TR_EVALUATE2", function (EVALUATE2) {
+        let eva = EVALUATE2.filter((item) => item.ELDER_ID == elder_id);
+        let lastData = eva ? eva[eva.length - 1] : undefined;
+        let total2 = EVALUATE2.filter(
           (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 2,
-        evaName: "ประเมินโรคความดันโลหิตสูง",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 3,
-        evaName: "โรคหัวใจและหลอดเลือด",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 4,
-        evaName: "สมองเสื่อม",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 5,
-        evaName: "โรคซึมเศร้า",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 6,
-        evaName: "โรคข้อเข่าเสื่อม",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 7,
-        evaName: "ภาวะหกล้ม",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 8,
-        evaName: "สุขภาวะทางตา",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 9,
-        evaName: "การได้ยิน",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 10,
-        evaName: "การประเมินปัญหาการนอน",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 11,
-        evaName: "การประเมินสุขภาพช่องปาก",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 12,
-        evaName: "ภาวะโภชนาการ",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-      {
-        evaNo: 13,
-        evaName: "การทํากิจวัตรประจําวัน",
-        updateDate: "18 ม.ค. 64, เวลา 14:28 น.",
-        recommend: "ปรกติ",
-        last_data: {},
-        total: localdata.data[1].evaluate1.filter(
-          (item) => item.ELDER_ID == elder_id
-        ).length,
-      },
-    ];
+        ).length;
+        evaluateData.push({
+          evaNo: 2,
+          evaName: "ประเมินโรคความดันโลหิตสูง",
+          updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+          recommend: "ปรกติ",
+          last_data: {},
+          total: total2,
+        });
+        queryALL("VHV_TR_EVALUATE3", function (EVALUATE3) {
+          let eva = EVALUATE3.filter((item) => item.ELDER_ID == elder_id);
+          let lastData = eva ? eva[eva.length - 1] : undefined;
+          let total3 = EVALUATE3.filter(
+            (item) => item.ELDER_ID == elder_id
+          ).length;
+          evaluateData.push({
+            evaNo: 3,
+            evaName: "โรคหัวใจและหลอดเลือด",
+            updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+            recommend: "ปรกติ",
+            last_data: {},
+            total: total3,
+          });
+          queryALL("VHV_TR_EVALUATE4", function (EVALUATE4) {
+            let eva = EVALUATE4.filter((item) => item.ELDER_ID == elder_id);
+            let lastData = eva ? eva[eva.length - 1] : undefined;
+            let total4 = EVALUATE4.filter(
+              (item) => item.ELDER_ID == elder_id
+            ).length;
+            evaluateData.push({
+              evaNo: 4,
+              evaName: "สมองเสื่อม",
+              updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+              recommend: "ปรกติ",
+              last_data: {},
+              total: total4,
+            });
+            queryALL("VHV_TR_EVALUATE5", function (EVALUATE5) {
+              let eva = EVALUATE5.filter((item) => item.ELDER_ID == elder_id);
+              let lastData = eva ? eva[eva.length - 1] : undefined;
+              let total5 = EVALUATE5.filter(
+                (item) => item.ELDER_ID == elder_id
+              ).length;
+              evaluateData.push({
+                evaNo: 5,
+                evaName: "โรคซึมเศร้า",
+                updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+                recommend: "ปรกติ",
+                last_data: {},
+                total: total5,
+              });
+              queryALL("VHV_TR_EVALUATE6", function (EVALUATE6) {
+                let eva = EVALUATE6.filter((item) => item.ELDER_ID == elder_id);
+                let lastData = eva ? eva[eva.length - 1] : undefined;
+                let total6 = EVALUATE6.filter(
+                  (item) => item.ELDER_ID == elder_id
+                ).length;
+                evaluateData.push({
+                  evaNo: 6,
+                  evaName: "โรคข้อเข่าเสื่อม",
+                  updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+                  recommend: "ปรกติ",
+                  last_data: {},
+                  total: total6,
+                });
+                queryALL("VHV_TR_EVALUATE7", function (EVALUATE7) {
+                  let eva = EVALUATE7.filter(
+                    (item) => item.ELDER_ID == elder_id
+                  );
+                  let lastData = eva ? eva[eva.length - 1] : undefined;
+                  let total7 = EVALUATE7.filter(
+                    (item) => item.ELDER_ID == elder_id
+                  ).length;
+                  evaluateData.push({
+                    evaNo: 7,
+                    evaName: "ภาวะหกล้ม",
+                    updateDate: lastData
+                      ? lastData.EVALUATE_DATE
+                      : "ไม่มีข้อมูล",
+                    recommend: "ปรกติ",
+                    last_data: {},
+                    total: total7,
+                  });
+                  queryALL("VHV_TR_EVALUATE8", function (EVALUATE8) {
+                    let eva = EVALUATE8.filter(
+                      (item) => item.ELDER_ID == elder_id
+                    );
+                    let lastData = eva ? eva[eva.length - 1] : undefined;
+                    let total8 = EVALUATE8.filter(
+                      (item) => item.ELDER_ID == elder_id
+                    ).length;
+                    evaluateData.push({
+                      evaNo: 8,
+                      evaName: "สุขภาวะทางตา",
+                      updateDate: lastData
+                        ? lastData.EVALUATE_DATE
+                        : "ไม่มีข้อมูล",
+                      recommend: "ปรกติ",
+                      last_data: {},
+                      total: total8,
+                    });
+                    queryALL("VHV_TR_EVALUATE9", function (EVALUATE9) {
+                      let eva = EVALUATE9.filter(
+                        (item) => item.ELDER_ID == elder_id
+                      );
+                      let lastData = eva ? eva[eva.length - 1] : undefined;
+                      let total9 = EVALUATE9.filter(
+                        (item) => item.ELDER_ID == elder_id
+                      ).length;
+                      evaluateData.push({
+                        evaNo: 9,
+                        evaName: "การได้ยิน",
+                        updateDate: lastData
+                          ? lastData.EVALUATE_DATE
+                          : "ไม่มีข้อมูล",
+                        recommend: "ปรกติ",
+                        last_data: {},
+                        total: total9,
+                      });
+                      queryALL("VHV_TR_EVALUATE10", function (EVALUATE10) {
+                        let eva = EVALUATE10.filter(
+                          (item) => item.ELDER_ID == elder_id
+                        );
+                        let lastData = eva ? eva[eva.length - 1] : undefined;
+                        let total10 = EVALUATE10.filter(
+                          (item) => item.ELDER_ID == elder_id
+                        ).length;
+                        evaluateData.push({
+                          evaNo: 10,
+                          evaName: "การประเมินปัญหาการนอน",
+                          updateDate: lastData
+                            ? lastData.EVALUATE_DATE
+                            : "ไม่มีข้อมูล",
+                          recommend: "ปรกติ",
+                          last_data: {},
+                          total: total10,
+                        });
+                        queryALL("VHV_TR_EVALUATE11", function (EVALUATE11) {
+                          let eva = EVALUATE11.filter(
+                            (item) => item.ELDER_ID == elder_id
+                          );
+                          let lastData = eva ? eva[eva.length - 1] : undefined;
+                          let total11 = EVALUATE11.filter(
+                            (item) => item.ELDER_ID == elder_id
+                          ).length;
+                          evaluateData.push({
+                            evaNo: 11,
+                            evaName: "การประเมินสุขภาพช่องปาก",
+                            updateDate: lastData
+                              ? lastData.EVALUATE_DATE
+                              : "ไม่มีข้อมูล",
+                            recommend: "ปรกติ",
+                            last_data: {},
+                            total: total11,
+                          });
+                          queryALL("VHV_TR_EVALUATE12", function (EVALUATE12) {
+                            let eva = EVALUATE12.filter(
+                              (item) => item.ELDER_ID == elder_id
+                            );
+                            let lastData = eva
+                              ? eva[eva.length - 1]
+                              : undefined;
+                            let total12 = EVALUATE12.filter(
+                              (item) => item.ELDER_ID == elder_id
+                            ).length;
+                            evaluateData.push({
+                              evaNo: 12,
+                              evaName: "ภาวะโภชนาการ",
+                              updateDate: lastData
+                                ? lastData.EVALUATE_DATE
+                                : "ไม่มีข้อมูล",
+                              recommend: "ปรกติ",
+                              last_data: {},
+                              total: total12,
+                            });
+                            queryALL(
+                              "VHV_TR_EVALUATE13",
+                              function (EVALUATE13) {
+                                let eva = EVALUATE13.filter(
+                                  (item) => item.ELDER_ID == elder_id
+                                );
+                                let lastData = eva
+                                  ? eva[eva.length - 1]
+                                  : undefined;
+                                let total13 = EVALUATE13.filter(
+                                  (item) => item.ELDER_ID == elder_id
+                                ).length;
+                                evaluateData.push({
+                                  evaNo: 13,
+                                  evaName: "การทํากิจวัตรประจําวัน",
+                                  updateDate: lastData
+                                    ? lastData.EVALUATE_DATE
+                                    : "ไม่มีข้อมูล",
+                                  recommend: "ปรกติ",
+                                  last_data: {},
+                                  total: total13,
+                                });
+                                for (
+                                  let index = 0;
+                                  index < evaluateData.length;
+                                  index++
+                                ) {
+                                  const evaluate = evaluateData[index];
+                                  console.log(evaluate);
+                                  $(
+                                    "#evaluate_detail_page .list_item_group"
+                                  ).append(function () {
+                                    return $(`<div class="evaluate_card ${
+                                      evaluate.total == 0
+                                        ? "pending"
+                                        : `${
+                                            evaluate.recommend != "ปรกติ"
+                                              ? "care_of_doctor"
+                                              : ""
+                                          }`
+                                    }">
+                                        <div class="card_header">
+                                          <p><b>สถานะ :</b> ${
+                                            evaluate.total > 0
+                                              ? "ผ่านการประเมินแล้ว"
+                                              : "รอการประเมิน..."
+                                          }</p>
+                                          <div class="space"></div>
+                                          ${
+                                            evaluate.total > 0
+                                              ? `<div class="qty_evaluate">ประเมินแล้ว ${evaluate.total} ครั้ง</div>`
+                                              : ""
+                                          }
+                                          
+                                        </div>
+                                        <div class="card_body">
+                                          <div class="card_body_left">
+                                            <p><b class="no_evaluate">${
+                                              evaluate.evaNo
+                                            }</b></p>
+                                          </div>
+                                          <div class="card_body_center">
+                                            <p>${evaluate.evaName}</p>
+                                            <p>
+                                              <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
+                                             ${evaluate.updateDate}
+                                            </p>
+                                          </div>
+                                          ${
+                                            evaluate.total > 0
+                                              ? `<div class="status-card-body-btn-evaluate">
+                                          <i class="fa fa-chevron-right"></i>
+                                          </div>`
+                                              : ""
+                                          }
+                                          
+                                        </div>
+                                        ${
+                                          evaluate.total > 0
+                                            ? ` <div class="card-footer">
+                                        <p>**คำแนะนำล่าสุด</p>
+                                        <div class="space"></div>
+                                        <div class="recommend"><p>${evaluate.recommend}</p></div>
+                                        </div>`
+                                            : ""
+                                        }
+                                       
+                                        </div>
+                                        <hr>`).on("click", function () {
+                                      switch (index) {
+                                        case 0:
+                                          gotoEvaPage1();
+                                          break;
 
-    $("#evaluate_detail_page .contact_items").html(renderElderCard(elderData));
+                                        case 1:
+                                          gotoEvaPage2();
+                                          break;
+
+                                        case 2:
+                                          gotoEvaPage3();
+                                          break;
+
+                                        case 3:
+                                          gotoEvaPage4();
+                                          break;
+
+                                        case 4:
+                                          gotoEvaPage5();
+                                          break;
+
+                                        case 5:
+                                          gotoEvaPage6();
+                                          break;
+
+                                        case 6:
+                                          gotoEvaPage7();
+                                          break;
+                                        case 7:
+                                          gotoEvaPage8();
+                                          break;
+                                        case 8:
+                                          gotoEvaPage9();
+                                          break;
+                                        case 9:
+                                          gotoEvaPage10();
+                                          break;
+                                        case 10:
+                                          gotoEvaPage11();
+                                          break;
+                                        case 11:
+                                          gotoEvaPage12();
+                                          break;
+                                        case 12:
+                                          gotoEvaPage13();
+                                          break;
+
+                                        default:
+                                          break;
+                                      }
+                                    });
+                                  });
+                                }
+                              }
+                            );
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
     $(
       "#evaluate_detail_page .list_item_group .visit_card,#evaluate_detail_page .list_item_group .evaluate_card,#evaluate_detail_page .list_item_group hr"
     ).remove();
-    for (let index = 0; index < evaluateData.length; index++) {
-      const evaluate = evaluateData[index];
-      console.log(evaluate);
-      $("#evaluate_detail_page .list_item_group").append(function () {
-        return $(`<div class="evaluate_card ${
-          evaluate.total == 0
-            ? "pending"
-            : `${evaluate.recommend != "ปรกติ" ? "care_of_doctor" : ""}`
-        }">
-            <div class="card_header">
-              <p><b>สถานะ :</b> ${
-                evaluate.total > 0 ? "ผ่านการประเมินแล้ว" : "รอการประเมิน..."
-              }</p>
-              <div class="space"></div>
-              ${
-                evaluate.total > 0
-                  ? `<div class="qty_evaluate">ประเมินแล้ว ${evaluate.total} ครั้ง</div>`
-                  : ""
-              }
-              
-            </div>
-            <div class="card_body">
-              <div class="card_body_left">
-                <p><b class="no_evaluate">${evaluate.evaNo}</b></p>
-              </div>
-              <div class="card_body_center">
-                <p>${evaluate.evaName}</p>
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
-                 ${evaluate.updateDate}
-                </p>
-              </div>
-              ${
-                evaluate.total > 0
-                  ? `<div class="status-card-body-btn-evaluate">
-              <i class="fa fa-chevron-right"></i>
-              </div>`
-                  : ""
-              }
-              
-            </div>
-            ${
-              evaluate.total > 0
-                ? ` <div class="card-footer">
-            <p>**คำแนะนำล่าสุด</p>
-            <div class="space"></div>
-            <div class="recommend"><p>${evaluate.recommend}</p></div>
-            </div>`
-                : ""
-            }
-           
-            </div>
-            <hr>`).on("click", function () {
-          switch (index) {
-            case 0:
-              gotoEvaPage1();
-              break;
-
-            case 1:
-              gotoEvaPage2();
-              break;
-
-            case 2:
-              gotoEvaPage3();
-              break;
-
-            case 3:
-              gotoEvaPage4();
-              break;
-
-            case 4:
-              gotoEvaPage5();
-              break;
-
-            case 5:
-              gotoEvaPage6();
-              break;
-
-            case 6:
-              gotoEvaPage7();
-              break;
-            case 7:
-              gotoEvaPage8();
-              break;
-            case 8:
-              gotoEvaPage9();
-              break;
-            case 9:
-              gotoEvaPage10();
-              break;
-            case 10:
-              gotoEvaPage11();
-              break;
-            case 11:
-              gotoEvaPage12();
-              break;
-            case 12:
-              gotoEvaPage13();
-              break;
-
-            default:
-              break;
-          }
-        });
-      });
-    }
-
+  }
+  $("#evaluate_page .status-card").on("click", function () {
+    reloadEvaluateList();
     loading.show();
     setTimeout(function () {
       loading.hide();
@@ -418,19 +536,23 @@ $(function () {
     "click",
     function () {
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 1,
         DTX: $("#DTX").val(),
         EVALUATE_FLAG: 1,
         EVALUATE_SCORE: $("#DTX").val(),
         EVALUATE_RESULT: "",
       };
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      sqlInsert("VHV_TR_EVALUATE1", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -531,8 +653,8 @@ $(function () {
     "click",
     function () {
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 2,
         SBP: $("#blood_pressure_up").val(),
         DBP: $("#blood_pressure_down").val(),
@@ -542,13 +664,16 @@ $(function () {
         FLAGDBP: 1,
         RESULTDBP: "",
         SCOREDBP: $("#blood_pressure_down").val(),
-       
       };
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      sqlInsert("VHV_TR_EVALUATE2", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -636,34 +761,38 @@ $(function () {
   $("#evaluate_page_3 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let CVD1 =parseInt($("#CVD1 .choice.active").val()) 
-      let CVD2 =parseInt($("#CVD2 .choice.active").val()) 
-      let CVD3 =parseInt($("#CVD3 .choice.active").val()) 
-      let CVD4 =parseInt($("#CVD4 .choice.active").val()) 
-      let CVD5 =parseInt($("#CVD5 .choice.active").val()) 
-      let CVD6 =parseInt($("#CVD6 .choice.active").val()) 
-      let CVD7 =parseInt($("#CVD7 .choice.active").val()) 
+      let CVD1 = parseInt($("#CVD1 .choice.active").val());
+      let CVD2 = parseInt($("#CVD2 .choice.active").val());
+      let CVD3 = parseInt($("#CVD3 .choice.active").val());
+      let CVD4 = parseInt($("#CVD4 .choice.active").val());
+      let CVD5 = parseInt($("#CVD5 .choice.active").val());
+      let CVD6 = parseInt($("#CVD6 .choice.active").val());
+      let CVD7 = parseInt($("#CVD7 .choice.active").val());
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 3,
-        CVD1:CVD1,
-        CVD2:CVD2,
-        CVD3:CVD3,
-        CVD4:CVD4,
-        CVD5:CVD5,
-        CVD6:CVD6,
-        CVD7:CVD7,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:CVD1+CVD2+CVD3+CVD4+CVD5+CVD6+CVD7,
-        EVALUATE_RESULT:"",
+        CVD1: CVD1,
+        CVD2: CVD2,
+        CVD3: CVD3,
+        CVD4: CVD4,
+        CVD5: CVD5,
+        CVD6: CVD6,
+        CVD7: CVD7,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE: CVD1 + CVD2 + CVD3 + CVD4 + CVD5 + CVD6 + CVD7,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE3", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -824,32 +953,38 @@ $(function () {
   $("#evaluate_page_4 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let COG1A = parseInt($("#COG1A .choice.active").val()) 
-      let COG1B = parseInt($("#COG1B .choice.active").val())
-      let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").attr('src')
-      let COG2A = $("#COG2A").prop('checked') ? 1 : 0;
-      let COG2B = $("#COG2B").prop('checked') ? 1 : 0;
-      let COG2C = $("#COG2C").prop('checked') ? 1 : 0;
+      let COG1A = parseInt($("#COG1A .choice.active").val());
+      let COG1B = parseInt($("#COG1B .choice.active").val());
+      let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").attr(
+        "src"
+      );
+      let COG2A = $("#COG2A").prop("checked") ? 1 : 0;
+      let COG2B = $("#COG2B").prop("checked") ? 1 : 0;
+      let COG2C = $("#COG2C").prop("checked") ? 1 : 0;
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 4,
-        COG1A:COG1A,
-        COG1B:COG1B,
-        COG1C_PIC:COG1C_PIC,
-        COG2A:COG2A,
-        COG2B:COG2B,
-        COG2C:COG2C,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:COG1A+COG1B+COG2A+COG2B+COG2C,
-        EVALUATE_RESULT:"",
+        COG1A: COG1A,
+        COG1B: COG1B,
+        COG1C_PIC: COG1C_PIC,
+        COG2A: COG2A,
+        COG2B: COG2B,
+        COG2C: COG2C,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE: COG1A + COG1B + COG2A + COG2B + COG2C,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE4", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -957,42 +1092,57 @@ $(function () {
   $("#evaluate_page_5 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let P2Q1=parseInt($("#P2Q1 .choice.active").val()) ;
-      let P2Q2=parseInt($("#P2Q2 .choice.active").val()) ;
-      let P9Q1=parseInt($('input[name="P9Q1"]:checked').val());
-      let P9Q2=parseInt($('input[name="P9Q2"]:checked').val());
-      let P9Q3=parseInt($('input[name="P9Q3"]:checked').val());
-      let P9Q4=parseInt($('input[name="P9Q4"]:checked').val());
-      let P9Q5=parseInt($('input[name="P9Q5"]:checked').val());
-      let P9Q6=parseInt($('input[name="P9Q6"]:checked').val());
-      let P9Q7=parseInt($('input[name="P9Q7"]:checked').val());
-      let P9Q8=parseInt($('input[name="P9Q8"]:checked').val());
-      let P9Q9=parseInt($('input[name="P9Q9"]:checked').val());
+      let P2Q1 = parseInt($("#P2Q1 .choice.active").val());
+      let P2Q2 = parseInt($("#P2Q2 .choice.active").val());
+      let P9Q1 = parseInt($('input[name="P9Q1"]:checked').val());
+      let P9Q2 = parseInt($('input[name="P9Q2"]:checked').val());
+      let P9Q3 = parseInt($('input[name="P9Q3"]:checked').val());
+      let P9Q4 = parseInt($('input[name="P9Q4"]:checked').val());
+      let P9Q5 = parseInt($('input[name="P9Q5"]:checked').val());
+      let P9Q6 = parseInt($('input[name="P9Q6"]:checked').val());
+      let P9Q7 = parseInt($('input[name="P9Q7"]:checked').val());
+      let P9Q8 = parseInt($('input[name="P9Q8"]:checked').val());
+      let P9Q9 = parseInt($('input[name="P9Q9"]:checked').val());
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 5,
-        P2Q1:P2Q1,
-        P2Q2:P2Q2,
-        P9Q1:P9Q1,
-        P9Q2:P9Q2,
-        P9Q3:P9Q3,
-        P9Q4:P9Q4,
-        P9Q5:P9Q5,
-        P9Q6:P9Q6,
-        P9Q7:P9Q7,
-        P9Q8:P9Q8,
-        P9Q9:P9Q9,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:P2Q1+P2Q2+P9Q1+P9Q2+P9Q3+P9Q4+P9Q5+P9Q6+P9Q7+P9Q8+P9Q9,
-        EVALUATE_RESULT:"",
+        P2Q1: P2Q1,
+        P2Q2: P2Q2,
+        P9Q1: P9Q1,
+        P9Q2: P9Q2,
+        P9Q3: P9Q3,
+        P9Q4: P9Q4,
+        P9Q5: P9Q5,
+        P9Q6: P9Q6,
+        P9Q7: P9Q7,
+        P9Q8: P9Q8,
+        P9Q9: P9Q9,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE:
+          P2Q1 +
+          P2Q2 +
+          P9Q1 +
+          P9Q2 +
+          P9Q3 +
+          P9Q4 +
+          P9Q5 +
+          P9Q6 +
+          P9Q7 +
+          P9Q8 +
+          P9Q9,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE5", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1064,30 +1214,34 @@ $(function () {
   $("#evaluate_page_6 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let OST1 = parseInt($("#OST1 .choice.active").val()) 
-      let OST2 = parseInt($("#OST2 .choice.active").val())
-      let OST3 = parseInt($("#OST3 .choice.active").val())
-      let OST4 = parseInt($("#OST4 .choice.active").val())
-      let OST5 = parseInt($("#OST5 .choice.active").val())
+      let OST1 = parseInt($("#OST1 .choice.active").val());
+      let OST2 = parseInt($("#OST2 .choice.active").val());
+      let OST3 = parseInt($("#OST3 .choice.active").val());
+      let OST4 = parseInt($("#OST4 .choice.active").val());
+      let OST5 = parseInt($("#OST5 .choice.active").val());
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 6,
-        OST1:OST1,
-        OST2:OST2,
-        OST3:OST3,
-        OST4:OST4,
-        OST5:OST5,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:OST1+OST2+OST3+OST4+OST5,
-        EVALUATE_RESULT:"",
+        OST1: OST1,
+        OST2: OST2,
+        OST3: OST3,
+        OST4: OST4,
+        OST5: OST5,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE: OST1 + OST2 + OST3 + OST4 + OST5,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE6", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1186,22 +1340,26 @@ $(function () {
   $("#evaluate_page_7 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let TUG = parseInt($("#evaluate_page_7 .time p").text())
+      let TUG = parseInt($("#evaluate_page_7 .time p").text());
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 7,
-        TUG:TUG,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:TUG,
-        EVALUATE_RESULT:"",
+        TUG: TUG,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE: TUG,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE7", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1294,36 +1452,41 @@ $(function () {
   $("#evaluate_page_8 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let EYE1 = parseInt($("#EYE1 .choice.active").val()) 
-      let EYE2 = parseInt($("#EYE2 .choice.active").val())
-      let EYE3L = parseInt($("#EYE3L .choice.active").val())
-      let EYE3R = parseInt($("#EYE3R .choice.active").val())
-      let EYE4L = parseInt($("#EYE4L .choice.active").val())
-      let EYE4R = parseInt($("#EYE4R .choice.active").val())
-      let EYE5L = parseInt($("#EYE5L .choice.active").val())
-      let EYE5R = parseInt($("#EYE5R .choice.active").val())
+      let EYE1 = parseInt($("#EYE1 .choice.active").val());
+      let EYE2 = parseInt($("#EYE2 .choice.active").val());
+      let EYE3L = parseInt($("#EYE3L .choice.active").val());
+      let EYE3R = parseInt($("#EYE3R .choice.active").val());
+      let EYE4L = parseInt($("#EYE4L .choice.active").val());
+      let EYE4R = parseInt($("#EYE4R .choice.active").val());
+      let EYE5L = parseInt($("#EYE5L .choice.active").val());
+      let EYE5R = parseInt($("#EYE5R .choice.active").val());
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 8,
-        EYE1:EYE1,
-        EYE2:EYE2,
-        EYE3L:EYE3L,
-        EYE3R:EYE3R,
-        EYE4L:EYE4L,
-        EYE4R:EYE4R,
-        EYE5L:EYE5L,
-        EYE5R:EYE5R,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:EYE1+EYE2+EYE3L+EYE3R+EYE4L+EYE4R+EYE5L+EYE5R,
-        EVALUATE_RESULT:"",
+        EYE1: EYE1,
+        EYE2: EYE2,
+        EYE3L: EYE3L,
+        EYE3R: EYE3R,
+        EYE4L: EYE4L,
+        EYE4R: EYE4R,
+        EYE5L: EYE5L,
+        EYE5R: EYE5R,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE:
+          EYE1 + EYE2 + EYE3L + EYE3R + EYE4L + EYE4R + EYE5L + EYE5R,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE8", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1395,25 +1558,29 @@ $(function () {
   $("#evaluate_page_9 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let RUBL = parseInt($("#RUBL .choice.active").val()) 
-      let RUBR = parseInt($("#RUBR .choice.active").val())
-    
+      let RUBL = parseInt($("#RUBL .choice.active").val());
+      let RUBR = parseInt($("#RUBR .choice.active").val());
+
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
         EVALUATE_NO: 9,
-        RUBL:RUBL,
-        RUBR:RUBR,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:RUBL+RUBR,
-        EVALUATE_RESULT:"",
+        RUBL: RUBL,
+        RUBR: RUBR,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE: RUBL + RUBR,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE9", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1485,31 +1652,47 @@ $(function () {
   $("#evaluate_page_10 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let OSR1A = $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1A .choice.active").val()) 
-      let OSR1B =  $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1B .choice.active").val()) 
-      let OSR1C =  $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1C .choice.active").val()) 
-      let OSR1D =  $("#OSR1 .choice.active").val()==0?0:parseInt($("#OSR1D .choice.active").val()) 
-      let OSR2 = parseInt($("#OSR2 .choice.active").val()) 
-    
+      let OSR1A =
+        $("#OSR1 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#OSR1A .choice.active").val());
+      let OSR1B =
+        $("#OSR1 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#OSR1B .choice.active").val());
+      let OSR1C =
+        $("#OSR1 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#OSR1C .choice.active").val());
+      let OSR1D =
+        $("#OSR1 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#OSR1D .choice.active").val());
+      let OSR2 = parseInt($("#OSR2 .choice.active").val());
+
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
-        EVALUATE_NO:10,
-        OSR1A:OSR1A,
-        OSR1B:OSR1B,
-        OSR1C:OSR1C,
-        OSR1D:OSR1D,
-        OSR2:OSR2,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:OSR1A+OSR1B+OSR1C+OSR1D+OSR2,
-        EVALUATE_RESULT:"",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
+        EVALUATE_NO: 10,
+        OSR1A: OSR1A,
+        OSR1B: OSR1B,
+        OSR1C: OSR1C,
+        OSR1D: OSR1D,
+        OSR2: OSR2,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE: OSR1A + OSR1B + OSR1C + OSR1D + OSR2,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE10", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1588,34 +1771,55 @@ $(function () {
   $("#evaluate_page_11 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let ORAL1A = $("#ORAL1 .choice.active").val()==0?0:parseInt($("#ORAL1A .choice.active").val()) 
-      let ORAL1B =  $("#ORAL1 .choice.active").val()==0?0:parseInt($("#ORAL1B .choice.active").val()) 
-      let ORAL1C =  $("#ORAL1 .choice.active").val()==0?0:parseInt($("#ORAL1C .choice.active").val()) 
-      let ORAL2A =  $("#ORAL2 .choice.active").val()==0?0:parseInt($("#ORAL2A .choice.active").val()) 
-      let ORAL2B =  $("#ORAL2 .choice.active").val()==0?0:parseInt($("#ORAL2B .choice.active").val()) 
-      let ORAL2C =  $("#ORAL2 .choice.active").val()==0?0:parseInt($("#ORAL2C .choice.active").val()) 
+      let ORAL1A =
+        $("#ORAL1 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#ORAL1A .choice.active").val());
+      let ORAL1B =
+        $("#ORAL1 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#ORAL1B .choice.active").val());
+      let ORAL1C =
+        $("#ORAL1 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#ORAL1C .choice.active").val());
+      let ORAL2A =
+        $("#ORAL2 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#ORAL2A .choice.active").val());
+      let ORAL2B =
+        $("#ORAL2 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#ORAL2B .choice.active").val());
+      let ORAL2C =
+        $("#ORAL2 .choice.active").val() == 0
+          ? 0
+          : parseInt($("#ORAL2C .choice.active").val());
 
-    
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
-        EVALUATE_NO:11,
-        ORAL1A:ORAL1A,
-        ORAL1B:ORAL1B,
-        ORAL1C:ORAL1C,
-        ORAL2A:ORAL2A,
-        ORAL2B:ORAL2B,
-        ORAL2C:ORAL2C,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:ORAL1A+ORAL1B+ORAL1C+ORAL2A+ORAL2B+ORAL2C,
-        EVALUATE_RESULT:"",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
+        EVALUATE_NO: 11,
+        ORAL1A: ORAL1A,
+        ORAL1B: ORAL1B,
+        ORAL1C: ORAL1C,
+        ORAL2A: ORAL2A,
+        ORAL2B: ORAL2B,
+        ORAL2C: ORAL2C,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE: ORAL1A + ORAL1B + ORAL1C + ORAL2A + ORAL2B + ORAL2C,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE11", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1697,72 +1901,96 @@ $(function () {
   $("#evaluate_page_12 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let NUTRI1 = parseInt($("#NUTRI1 .choice.active").val()) 
-      let NUTRI2 =  parseInt($("#NUTRI2 .choice.active").val()) 
-      
-      let MNA1A =  parseInt($('input[name="MNA1A"]:checked').val());
-      let MNA1B =  parseInt($('input[name="MNA1B"]:checked').val());
-      let MNA1C =  parseInt($('input[name="MNA1C"]:checked').val());
-      let MNA1D =   parseInt($('input[name="MNA1D"]:checked').val());
-      let MNA1E =   parseInt($('input[name="MNA1E"]:checked').val()); 
-      let MNA1F =   parseInt($('input[name="MNA1F"]:checked').val()); 
-      let MNA1G =  parseInt($('input[name="MNA1G"]:checked').val());
-      let MNA2A =  parseInt($('input[name="MNA2A"]:checked').val());
-      let MNA2B =   parseInt($('input[name="MNA2B"]:checked').val());
-      let MNA2C =  parseInt($('input[name="MNA2C"]:checked').val());
-      let MNA2D =  parseInt($('input[name="MNA2D"]:checked').val());
-      let MNA2EA =  parseInt($('input[name="MNA2EA"]:checked').val());
-      let MNA2EB =  parseInt($('input[name="MNA2EB"]:checked').val());
-      let MNA2EC =   parseInt($('input[name="MNA2EC"]:checked').val());
-      let MNA2F =   parseInt($('input[name="MNA2F"]:checked').val());
-      let MNA2G =  parseInt($('input[name="MNA2G"]:checked').val());
-      let MNA2H =   parseInt($('input[name="MNA2H"]:checked').val());
-      let MNA2I =  parseInt($('input[name="MNA2I"]:checked').val());
-      let MNA2J =   parseInt($('input[name="MNA2J"]:checked').val());
-      let MNA2K =   parseInt($('input[name="MNA2K"]:checked').val());
-      let MNA2L =   parseInt($('input[name="MNA2L"]:checked').val());
- 
-     
-     
+      let NUTRI1 = parseInt($("#NUTRI1 .choice.active").val());
+      let NUTRI2 = parseInt($("#NUTRI2 .choice.active").val());
 
-    
+      let MNA1A = parseInt($('input[name="MNA1A"]:checked').val());
+      let MNA1B = parseInt($('input[name="MNA1B"]:checked').val());
+      let MNA1C = parseInt($('input[name="MNA1C"]:checked').val());
+      let MNA1D = parseInt($('input[name="MNA1D"]:checked').val());
+      let MNA1E = parseInt($('input[name="MNA1E"]:checked').val());
+      let MNA1F = parseInt($('input[name="MNA1F"]:checked').val());
+      let MNA1G = parseInt($('input[name="MNA1G"]:checked').val());
+      let MNA2A = parseInt($('input[name="MNA2A"]:checked').val());
+      let MNA2B = parseInt($('input[name="MNA2B"]:checked').val());
+      let MNA2C = parseInt($('input[name="MNA2C"]:checked').val());
+      let MNA2D = parseInt($('input[name="MNA2D"]:checked').val());
+      let MNA2EA = parseInt($('input[name="MNA2EA"]:checked').val());
+      let MNA2EB = parseInt($('input[name="MNA2EB"]:checked').val());
+      let MNA2EC = parseInt($('input[name="MNA2EC"]:checked').val());
+      let MNA2F = parseInt($('input[name="MNA2F"]:checked').val());
+      let MNA2G = parseInt($('input[name="MNA2G"]:checked').val());
+      let MNA2H = parseInt($('input[name="MNA2H"]:checked').val());
+      let MNA2I = parseInt($('input[name="MNA2I"]:checked').val());
+      let MNA2J = parseInt($('input[name="MNA2J"]:checked').val());
+      let MNA2K = parseInt($('input[name="MNA2K"]:checked').val());
+      let MNA2L = parseInt($('input[name="MNA2L"]:checked').val());
+
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
-        EVALUATE_NO:12,
-        NUTRI1:NUTRI1,
-        NUTRI2:NUTRI2,
-        MNA1A:MNA1A,
-        MNA1B:MNA1B,
-        MNA1C:MNA1C,
-        MNA1D:MNA1D,
-        MNA1E:MNA1E,
-        MNA1F:MNA1F,
-        MNA1G:MNA1G,
-        MNA2A:MNA2A,
-        MNA2B:MNA2B,
-        MNA2C:MNA2C,
-        MNA2D:MNA2D,
-        MNA2EA:MNA2EA,
-        MNA2EB:MNA2EB,
-        MNA2EC:MNA2EC,
-        MNA2F:MNA2F,
-        MNA2G:MNA2G,
-        MNA2H:MNA2H,
-        MNA2I:MNA2I,
-        MNA2J:MNA2J,
-        MNA2K:MNA2K,
-        MNA2L:MNA2L,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:NUTRI1+NUTRI2+MNA1A+ORAL2A+MNA1B+MNA1C+MNA1D+MNA1E+MNA1F+MNA1G+MNA2A+MNA2B+MNA2C+MNA2D+MNA2EA+MNA2EB+MNA2EC+MNA2F+MNA2G+MNA2H+MNA2I+MNA2J+MNA2K+MNA2L,
-        EVALUATE_RESULT:"",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
+        EVALUATE_NO: 12,
+        NUTRI1: NUTRI1,
+        NUTRI2: NUTRI2,
+        MNA1A: MNA1A,
+        MNA1B: MNA1B,
+        MNA1C: MNA1C,
+        MNA1D: MNA1D,
+        MNA1E: MNA1E,
+        MNA1F: MNA1F,
+        MNA1G: MNA1G,
+        MNA2A: MNA2A,
+        MNA2B: MNA2B,
+        MNA2C: MNA2C,
+        MNA2D: MNA2D,
+        MNA2EA: MNA2EA,
+        MNA2EB: MNA2EB,
+        MNA2EC: MNA2EC,
+        MNA2F: MNA2F,
+        MNA2G: MNA2G,
+        MNA2H: MNA2H,
+        MNA2I: MNA2I,
+        MNA2J: MNA2J,
+        MNA2K: MNA2K,
+        MNA2L: MNA2L,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE:
+          NUTRI1 +
+          NUTRI2 +
+          MNA1A +
+          ORAL2A +
+          MNA1B +
+          MNA1C +
+          MNA1D +
+          MNA1E +
+          MNA1F +
+          MNA1G +
+          MNA2A +
+          MNA2B +
+          MNA2C +
+          MNA2D +
+          MNA2EA +
+          MNA2EB +
+          MNA2EC +
+          MNA2F +
+          MNA2G +
+          MNA2H +
+          MNA2I +
+          MNA2J +
+          MNA2K +
+          MNA2L,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE12", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
@@ -1833,42 +2061,46 @@ $(function () {
   $("#evaluate_page_13 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let ADL1 =  parseInt($('input[name="ADL1"]:checked').val());
-      let ADL2 =  parseInt($('input[name="ADL2"]:checked').val());
-      let ADL3 =  parseInt($('input[name="ADL3"]:checked').val());
-      let ADL4 =   parseInt($('input[name="ADL4"]:checked').val());
-      let ADL5 =   parseInt($('input[name="ADL5"]:checked').val()); 
-      let ADL6 =   parseInt($('input[name="ADL6"]:checked').val()); 
-      let ADL7 =  parseInt($('input[name="ADL7"]:checked').val());
-      let ADL8 =  parseInt($('input[name="ADL8"]:checked').val());
-      let ADL9 =   parseInt($('input[name="ADL9"]:checked').val());
-      let ADL10 =  parseInt($('input[name="ADL10"]:checked').val());
-    
-    
+      let ADL1 = parseInt($('input[name="ADL1"]:checked').val());
+      let ADL2 = parseInt($('input[name="ADL2"]:checked').val());
+      let ADL3 = parseInt($('input[name="ADL3"]:checked').val());
+      let ADL4 = parseInt($('input[name="ADL4"]:checked').val());
+      let ADL5 = parseInt($('input[name="ADL5"]:checked').val());
+      let ADL6 = parseInt($('input[name="ADL6"]:checked').val());
+      let ADL7 = parseInt($('input[name="ADL7"]:checked').val());
+      let ADL8 = parseInt($('input[name="ADL8"]:checked').val());
+      let ADL9 = parseInt($('input[name="ADL9"]:checked').val());
+      let ADL10 = parseInt($('input[name="ADL10"]:checked').val());
+
       let data = {
-        ELDER_ID: "",
-        EVALUATE_DATE: "",
-        EVALUATE_NO:13,
-        ADL1:ADL1,
-        ADL2:ADL2,
-        ADL3:ADL3,
-        ADL4:ADL4,
-        ADL5:ADL5,
-        ADL6:ADL6,
-        ADL7:ADL7,
-        ADL8:ADL8,
-        ADL9:ADL9,
-        ADL10:ADL10,
-        EVALUATE_FLAG:"1",
-        EVALUATE_SCORE:ADL1+ADL2+ADL3+ADL4+ADL5+ADL6+ADL7+ADL8+ADL9+ADL10,
-        EVALUATE_RESULT:"",
+        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+        EVALUATE_DATE: getCurrentDate(),
+        EVALUATE_NO: 13,
+        ADL1: ADL1,
+        ADL2: ADL2,
+        ADL3: ADL3,
+        ADL4: ADL4,
+        ADL5: ADL5,
+        ADL6: ADL6,
+        ADL7: ADL7,
+        ADL8: ADL8,
+        ADL9: ADL9,
+        ADL10: ADL10,
+        EVALUATE_FLAG: "1",
+        EVALUATE_SCORE:
+          ADL1 + ADL2 + ADL3 + ADL4 + ADL5 + ADL6 + ADL7 + ADL8 + ADL9 + ADL10,
+        EVALUATE_RESULT: "",
       };
-      console.log(data)
-      $("#evaluate_detail_page .footer.evaluate-success").show();
-      changePage("evaluate_detail_page", function () {
-        setTimeout(function () {
-          $("#evaluate_detail_page .footer.evaluate-success").hide();
-        }, 1000);
+      console.log(data);
+      sqlInsert("VHV_TR_EVALUATE13", data, function (inserted_id) {
+        console.log(inserted_id);
+        reloadEvaluateList();
+        $("#evaluate_detail_page .footer.evaluate-success").show();
+        changePage("evaluate_detail_page", function () {
+          setTimeout(function () {
+            $("#evaluate_detail_page .footer.evaluate-success").hide();
+          }, 1000);
+        });
       });
     }
   );
