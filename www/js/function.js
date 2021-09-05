@@ -165,3 +165,19 @@ function sqlInsert(table,data,_callback){
   }); 
   _callback(inserted_id);
 }
+function queryByID(TABLE,ID,_callback){
+  var arr = [];
+  db.transaction(function (tx) { 
+     tx.executeSql('SELECT * FROM '+TABLE+' WHERE ID='+ID, [], function (tx, results) { 
+        var len = results.rows.length, i; 
+       
+    
+        for (i = 0; i < len; i++) { 
+           _callback(results.rows.item(i)); 
+          
+        } 
+          
+    
+     }, null); 
+  });
+  }
