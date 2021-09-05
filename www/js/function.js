@@ -142,3 +142,25 @@ function getInitial(){
     }
 });
 }
+function getNewId(){
+return Date.now();
+}
+function sqlInsert(table,data,_callback){
+  var column = "";
+  for(var i=0;i<Object.keys(obj).length;i++){
+      column += Object.keys(obj)[i]+",";
+  }
+  column = column.slice(0, -1);
+
+  var value = "";
+  for(var i=0;i<Object.keys(obj).length;i++){
+      value += "'"+obj[Object.keys(obj)[i]]+"',";
+  }
+  value = value.slice(0, -1);
+  db.transaction(function (tx) { 
+      var insert_string = "INSERT INTO "+table+" ("+column+") VALUES ("+value+")";
+      console.log(insert_string);
+      tx.executeSql(insert_string); 
+  }); 
+  _callback();
+}
