@@ -100,3 +100,45 @@ async function login(username, password, _success, _error) {
     _error("เกิดข้อผิดพลาด");
   }
 }
+function getInitial(){
+
+  $.ajax({
+    url: api_base_url+"/getIntial",
+    type:"POST",
+    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', 'Bearer '+token.getAccessToken()); },
+    data:{
+      token:token.getUserToken()
+    },
+    success: function( response ) {
+       console.log(response);
+    //  response.data = CryptoJS.AES.decrypt(response.data, "MsU2021APPlcation");
+      response.data =CryptoJSAesJson.decrypt(response.data, "MsU2021APPlcation")
+       var data = response.data;
+       if(response.status==true){
+         console.log(data);
+       
+        db.transaction(function (tx) {   
+            $.each(data.elder, function( index, row ) {
+              tx.executeSql("INSERT INTO VHV_TR_ELDER (ID,GUID,ELDER_NAME,ELDER_HOUSE_NO,ELDER_SEX,ELDER_AVATAR,ELDER_BIRTHDATE,ELDER_STRESS,ELDER_KNOWLEDGE,ELDER_CONSUME,ELDER_ACTIVITY,SHPH_ID,SHPH_MOOID,ELDER_LAT,ELDER_LONG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.ELDER_NAME+"','"+row.ELDER_HOUSE_NO+"','"+row.ELDER_SEX+"','"+row.ELDER_AVATAR+"','"+row.ELDER_BIRTHDATE+"','"+row.ELDER_STRESS+"','"+row.ELDER_KNOWLEDGE+"','"+row.ELDER_CONSUME+"','"+row.ELDER_ACTIVITY+"','"+row.SHPH_ID+"','"+row.SHPH_MOOID+"','"+row.ELDER_LAT+"','"+row.ELDER_LONG+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+           });
+        });
+
+        db.transaction(function (tx) {   
+          $.each(data.elvaluate, function( index, row ) {
+            tx.executeSql("INSERT INTO VHV_MA_EVALUATE (ID,GUID,EVALUATE_NO,EVALUATE_SUBNO,EVALUATE_MIN,EVALUATE_MAX,EVALUATE_RESULT,EVALUATE_FLAG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('"+row.ID+"','"+row.GUID+"','"+row.EVALUATE_NO+"','"+row.EVALUATE_SUBNO+"','"+row.EVALUATE_MIN+"','"+row.EVALUATE_MAX+"','"+row.EVALUATE_RESULT+"','"+row.EVALUATE_FLAG+"','"+row.DELETE_FLAG+"','"+row.CREATE_USER+"','"+row.CREATE_DATE+"','"+row.UPDATE_USER+"','"+row.UPDATE_DATE+"')");
+         });
+      });
+            
+           
+
+       }else{
+        _error("เกิดข้อผิดพลาด");
+       }
+       
+    },
+    error:function(e){
+        _error("เกิดข้อผิดพลาด");
+
+    }
+});
+}
