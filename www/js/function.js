@@ -181,3 +181,18 @@ function queryByID(TABLE,ID,_callback){
      }, null); 
   });
   }
+function sqlUpdate(TABLE,data,ID,_callback){
+
+    var str = "";
+     for(var i=0;i<Object.keys(data).length;i++){
+         str += Object.keys(data)[i]+"='"+data[Object.keys(data)[i]]+"',";
+     }
+     str = str.slice(0, -1);
+   
+     let update_query = "UPDATE "+TABLE+" SET " +str+ " WHERE ID=" + ID;
+       db.transaction(function (tx) {
+           tx.executeSql(update_query);
+           _callback(ID);
+       });
+     
+   }
