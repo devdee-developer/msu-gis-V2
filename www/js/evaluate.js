@@ -521,6 +521,9 @@ $(function () {
 
   function gotoEvaPage1(lastRecordId) {
     loading.show();
+    $("#evaluate_page_1 button.choice").removeClass("active");
+    $("#evaluate_page_1 input[type='number'],#evaluate_page_1 input[type='text']").val("")
+    $('#evaluate_page_1 input[type="radio"],#evaluate_page_1 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE1", lastRecordId, function (lastData) {
         $("#DTX").val(lastData.DTX);
@@ -629,6 +632,9 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_2
   function gotoEvaPage2(lastRecordId) {
     loading.show();
+    $("#evaluate_page_2 button.choice").removeClass("active");
+    $("#evaluate_page_2 input[type='number'],#evaluate_page_2 input[type='text']").val("")
+    $('#evaluate_page_2 input[type="radio"],#evaluate_page_2 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE2", lastRecordId, function (lastData) {
         $("#blood_pressure_up").val(lastData.SBP);
@@ -754,6 +760,10 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_3
   function gotoEvaPage3(lastRecordId) {
     loading.show();
+
+    $("#evaluate_page_3 button.choice").removeClass("active");
+    $("#evaluate_page_3 input[type='number'],#evaluate_page_3 input[type='text']").val("")
+    $('#evaluate_page_3 input[type="radio"],#evaluate_page_3 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE3", lastRecordId, function (lastData) {
         $(`#CVD1 .choice[value="${lastData.CVD1}"]`).addClass("active");
@@ -897,11 +907,16 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_4
   function gotoEvaPage4(lastRecordId) {
     loading.show();
+   
+    $("#evaluate_page_4 button.choice").removeClass("active");
+    $("#evaluate_page_4 input[type='number'],#evaluate_page_3 input[type='text']").val("")
+    $('#evaluate_page_4 input[type="radio"],#evaluate_page_3 input[type="checkbox"]').prop("checked", false);
+    $(`#evaluate_page_4 .image_upload_preview img`).removeAttr('src')
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE4", lastRecordId, function (lastData) {
         $(`#COG1A .choice[value="${lastData.COG1A}"]`).addClass("active");
         $(`#COG1B .choice[value="${lastData.COG1B}"]`).addClass("active");
-        $(`#evaluate_page_4 .image_upload_preview`).attr(
+        $(`#evaluate_page_4 .image_upload_preview img`).attr(
           "src",
           lastData.COG1C_PIC
         );
@@ -921,6 +936,7 @@ $(function () {
           true
         );
         $(".image_upload_preview").attr("disabled", "disabled");
+        
         $("button.camera").hide();
 
         $("#evaluate_page_4 input[type='checkbox']").prop("disabled", true);
@@ -953,7 +969,7 @@ $(function () {
     );
   });
   $("#evaluate_page_4 .on_gallery").on("click", function () {
-    $(".image_upload_preview").append('<img  src="img/1.jpg"/>');
+    $(".image_upload_preview img").attr('src',"img/1.jpg");
 
     checkImg();
     $(".modal-dismiss").click();
@@ -963,11 +979,10 @@ $(function () {
   //remove img
 
   $(".image_upload_preview .dismiss").on("click", function () {
-    console.log($(".image_upload_preview").attr("disabled"));
     if ($(".image_upload_preview").attr("disabled") == "disabled") {
       return false;
     } else {
-      $(".image_upload_preview img").remove();
+      $(".image_upload_preview img").removeAttr("src")
       $(".image_upload_preview").hide();
       $("button.camera").show();
     }
@@ -983,7 +998,7 @@ $(function () {
   $("#evaluate_page_4 .footer .btn_create_evaluate").on("click", function () {
     $(`#COG1A .choice`).removeClass("active");
     $(`#COG1B .choice`).removeClass("active");
-    $(".image_upload_preview img").remove();
+    $(".image_upload_preview img").removeAttr("src")
     $(".image_upload_preview").hide();
     $("button.camera").show();
     $(`#COG2A`).prop("checked", false);
@@ -1014,10 +1029,7 @@ $(function () {
       validateForm([
         $("#COG1A .choice.active").val(),
         $("#COG1B .choice.active").val(),
-        $("#evaluate_page_4 .image_upload_preview img").attr("src"),
-        $("#COG2A").prop("checked"),
-        $("#COG2B").prop("checked"),
-        $("#COG2C").prop("checked"),
+        $("#evaluate_page_4 .image_upload_preview img").attr("src")
       ])
     ) {
       $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
@@ -1084,9 +1096,7 @@ $(function () {
   function setDataEva4(){
     let COG1A = parseInt($("#COG1A .choice.active").val());
     let COG1B = parseInt($("#COG1B .choice.active").val());
-    let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").attr(
-      "src"
-    );
+    let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").prop('src');
     let COG2A = $("#COG2A").prop("checked") ? 1 : 0;
     let COG2B = $("#COG2B").prop("checked") ? 1 : 0;
     let COG2C = $("#COG2C").prop("checked") ? 1 : 0;
@@ -1132,6 +1142,10 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_5
   function gotoEvaPage5(lastRecordId) {
     loading.show();
+    
+    $("#evaluate_page_5 button.choice").removeClass("active");
+    $("#evaluate_page_5 input[type='number'],#evaluate_page_5 input[type='text']").val("")
+    $('#evaluate_page_5 input[type="radio"],#evaluate_page_5 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE5", lastRecordId, function (lastData) {
         $(`#P2Q1 .choice[value="${lastData.P2Q1}"]`).addClass("active");
@@ -1153,9 +1167,7 @@ $(function () {
       loading.hide();
       changePage("evaluate_page_5", function () {
         $('#evaluate_page_5 input[type="radio"]').prop("disabled", true);
-        $("#evaluate_page_5 button.choice").removeClass("active");
-        $("#P2Q1N").addClass("active");
-        $("#P2Q2N").addClass("active");
+
         $("#evaluate_page_5 button.choice").prop("disabled", true);
         $("#evaluate_page_5 .evaluate_page_status ").show();
         $("#evaluate_page_5 .footer").show();
@@ -1318,7 +1330,10 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_6
   function gotoEvaPage6(lastRecordId) {
     loading.show();
+    
     $("#evaluate_page_6 button.choice").removeClass("active");
+    $("#evaluate_page_6 input[type='number'],#evaluate_page_6 input[type='text']").val("")
+    $('#evaluate_page_6 input[type="radio"],#evaluate_page_6 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE6", lastRecordId, function (lastData) {
         $(`#OST1 .choice[value="${lastData.OST1}"]`).addClass("active");
@@ -1447,6 +1462,11 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_7
   function gotoEvaPage7(lastRecordId) {
     loading.show();
+    
+    $("#evaluate_page_7 button.choice").removeClass("active");
+    $("#evaluate_page_7 input[type='number'],#evaluate_page_7 input[type='text']").val("")
+    $('#evaluate_page_7 input[type="radio"],#evaluate_page_7 input[type="checkbox"]').prop("checked", false);
+    $("#evaluate_page_7 .time p").text(pad(0, 2));
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE7", lastRecordId, function (lastData) {
         $("#evaluate_page_7 .time p").text(pad(lastData.TUG, 2));
@@ -1614,6 +1634,8 @@ $(function () {
   function gotoEvaPage8(lastRecordId) {
     loading.show();
     $("#evaluate_page_8 button.choice").removeClass("active");
+    $("#evaluate_page_8 input[type='number'],#evaluate_page_8 input[type='text']").val("")
+    $('#evaluate_page_8 input[type="radio"],#evaluate_page_8 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE8", lastRecordId, function (lastData) {
         $(`#EYE1 .choice[value="${lastData.EYE1}"]`).addClass("active");
@@ -1757,6 +1779,8 @@ $(function () {
   function gotoEvaPage9(lastRecordId) {
     loading.show();
     $("#evaluate_page_9 button.choice").removeClass("active");
+    $("#evaluate_page_9 input[type='number'],#evaluate_page_9 input[type='text']").val("")
+    $('#evaluate_page_9 input[type="radio"],#evaluate_page_9 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE9", lastRecordId, function (lastData) {
         $(`#RUBR .choice[value="${lastData.RUBR}"]`).addClass("active");
@@ -1874,6 +1898,9 @@ $(function () {
   function gotoEvaPage10(lastRecordId) {
     loading.show();
     $("#evaluate_page_10 button.choice").removeClass("active");
+    $("#evaluate_page_10 input[type='number'],#evaluate_page_10 input[type='text']").val("")
+    $('#evaluate_page_10 input[type="radio"],#evaluate_page_10 input[type="checkbox"]').prop("checked", false);
+    $("#eva10_sub_1").hide();
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE10", lastRecordId, function (lastData) {
         if (
@@ -2046,6 +2073,10 @@ $(function () {
   function gotoEvaPage11(lastRecordId) {
     loading.show();
     $("#evaluate_page_11 button.choice").removeClass("active");
+    $("#evaluate_page_11 input[type='number'],#evaluate_page_11 input[type='text']").val("")
+    $('#evaluate_page_11 input[type="radio"],#evaluate_page_11 input[type="checkbox"]').prop("checked", false);
+    $("#eva11_sub_1").hide();
+    $("#eva11_sub_2").hide();
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE11", lastRecordId, function (lastData) {
         if (
@@ -2243,6 +2274,8 @@ $(function () {
   function gotoEvaPage12(lastRecordId) {
     loading.show();
     $("#evaluate_page_12 button.choice").removeClass("active");
+    $("#evaluate_page_12 input[type='number'],#evaluate_page_12 input[type='text']").val("")
+    $('#evaluate_page_12 input[type="radio"],#evaluate_page_12 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE12", lastRecordId, function (lastData) {
         $(`#NUTRI1 .choice[value="${lastData.NUTRI1}"]`).addClass("active");
@@ -2570,6 +2603,8 @@ $(function () {
   function gotoEvaPage13(lastRecordId) {
     loading.show();
     $("#evaluate_page_13 button.choice").removeClass("active");
+    $("#evaluate_page_13 input[type='number'],#evaluate_page_13 input[type='text']").val("")
+    $('#evaluate_page_13 input[type="radio"],#evaluate_page_13 input[type="checkbox"]').prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE13", lastRecordId, function (lastData) {
         $(`input[name="ADL1"][value="${lastData.ADL1}"]`).prop("checked", true);
@@ -2752,7 +2787,8 @@ $(function () {
   }
   //check img
   function checkImg() {
-    let img = $(".image_upload_preview img");
+    let img = $(".image_upload_preview img").prop('src');
+    console.log(img)
     if (img.length == 0) {
       $(".image_upload_preview").hide();
       $("button.camera").show();

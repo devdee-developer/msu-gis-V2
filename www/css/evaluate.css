@@ -674,6 +674,9 @@ input.input-DTX:focus {
   max-width: 384px;
   padding: 38px 13px 13px 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+   align-items: center;
 }
 .modal .modal-container-evaluate-alert .modal-dismiss {
   height: 10%;
@@ -818,7 +821,8 @@ button.play_stop.active {
   text-align: center;
 }
 .backgroundwhite2 .eva_banner {
-  height: 225px;
+  max-width: 100%;
+  width: 414px;
 }
 .bold {
   font-weight: bold;
