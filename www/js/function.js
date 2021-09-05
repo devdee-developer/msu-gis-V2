@@ -148,14 +148,14 @@ return Date.now();
 function sqlInsert(table,data,_callback){
   var inserted_id = getNewId();
   var column = "";
-  for(var i=0;i<Object.keys(obj).length;i++){
-      column += Object.keys(obj)[i]+",";
+  for(var i=0;i<Object.keys(data).length;i++){
+      column += Object.keys(data)[i]+",";
   }
   column = "ID,"+column.slice(0, -1);
 
   var value = "";
-  for(var i=0;i<Object.keys(obj).length;i++){
-      value += "'"+obj[Object.keys(obj)[i]]+"',";
+  for(var i=0;i<Object.keys(data).length;i++){
+      value += "'"+obj[Object.keys(data)[i]]+"',";
   }
   value = inserted_id+","+value.slice(0, -1);
   db.transaction(function (tx) { 
