@@ -2245,7 +2245,7 @@
             <i class="fa fa-calendar-o" style="font-size: 18px"></i>
             &nbsp;รอประเมินสุขภาพ
           </h2>
-          <h4>...กำลังรอยู่ 5 คน</h4>
+          <h4 class="eva_waiting_list_count">...กำลังรอยู่ 5 คน</h4>
         </div>
         <ul id="eva_waiting_list" class="contact_items">
           <!-- <li>
@@ -2306,9 +2306,9 @@
             <i class="fa fa-calendar-o" style="font-size: 18px"></i>
             &nbsp;ประเมินแล้ว
           </h2>
-          <h4 class="visited">จำนวน 3 คน</h4>
+          <h4 class="eva_evaluated_list_count visited">จำนวน 3 คน</h4>
         </div>
-        <ul class="contact_items">
+        <ul id="eva_evaluated_list" class="contact_items">
           <!-- <li>
             <div class="card-body">
               <img class="card-body-thumbnail" src="img/older.png" />
@@ -2921,7 +2921,6 @@
               class="input-DTX"
               id="DTX"
               placeholder="ใส่ตัวเลข"
-              value="75"
             />
             <p class="blood_pressure_unit">มก.ดล</p>
           </div>
@@ -2972,21 +2971,21 @@
           <div class="eva_form no_p_v" style="border-width: 0px">
             <p class="eva_title">ระดับความดันโลหิตตัวบน</p>
             <input
-              type="text"
+              type="number"
               class="input-DTX"
               id="blood_pressure_up"
               placeholder="ใส่ตัวเลข"
-              value="75"
+             
             />
             <p class="blood_pressure_unit">มม.ปรอท</p>
             <br />
             <p class="eva_title">ระดับความดันโลหิตตัวล่าง</p>
             <input
-              type="text"
+              type="number"
               class="input-DTX"
               id="blood_pressure_down"
               placeholder="ใส่ตัวเลข"
-              value="75"
+           
             />
             <p class="blood_pressure_unit">มม.ปรอท</p>
           </div>
@@ -3202,7 +3201,7 @@
               <i class="fa fa-camera" aria-hidden="true"></i>
             </button>
             <div class="image_upload_preview">
-              <img src="img/1.jpg" />
+              <img src="" />
               <div class="dismiss">
                 <i class="fa fa-minus" aria-hidden="true"></i>
               </div>
@@ -3609,7 +3608,7 @@
           </div>
           <div class="eva_form no_p_v no_border">
             <div class="btn-group" style="margin: 20px 0" id="OST1">
-              <button class="choice active" style="float: left" id="OST1N" value="0">
+              <button class="choice" style="float: left" id="OST1N" value="0">
                 ไม่ใช่
               </button>
               <button class="choice" style="float: right" id="OST1Y" value="1">
@@ -3622,7 +3621,7 @@
           </div>
           <div class="eva_form no_p_v no_border">
             <div class="btn-group" style="margin: 20px 0" id="OST2">
-              <button class="choice active" style="float: left" id="OST2N" value="0">
+              <button class="choice" style="float: left" id="OST2N" value="0">
                 ไม่ใช่
               </button>
               <button class="choice" style="float: right" id="OST2Y" value="1">
@@ -3635,7 +3634,7 @@
           </div>
           <div class="eva_form no_p_v no_border">
             <div class="btn-group" style="margin: 20px 0" id="OST3">
-              <button class="choice active" style="float: left" id="OST3N" value="0">
+              <button class="choice" style="float: left" id="OST3N" value="0">
                 ไม่ใช่
               </button>
               <button class="choice" style="float: right" id="OST3Y" value="1">
@@ -3646,7 +3645,7 @@
           <div class="eva_form_box bold">4. มีลักษณะข้อใหญ่ผิดรูป</div>
           <div class="eva_form no_p_v no_border">
             <div class="btn-group" style="margin: 20px 0"  id="OST4">
-              <button class="choice active" style="float: left" id="OST4N"  value="0">
+              <button class="choice" style="float: left" id="OST4N"  value="0">
                 ไม่ใช่
               </button>
               <button class="choice" style="float: right" id="OST4Y" value="1"> 
@@ -3657,7 +3656,7 @@
           <div class="eva_form_box bold">5. ไม่พบข้ออุ่น</div>
           <div class="eva_form no_p_v no_border" >
             <div class="btn-group" style="margin: 20px 0" id="OST5" >
-              <button class="choice active" style="float: left" id="OST5N" value="0">
+              <button class="choice" style="float: left" id="OST5N" value="0">
                 ไม่ใช่
               </button>
               <button class="choice" style="float: right" id="OST5Y" value="1">
@@ -3773,7 +3772,7 @@
           </div>
           <div class="eva_form no_p_v no_border">
             <div class="btn-group" style="margin: 20px 0" id="EYE1">
-              <button class="choice active" style="float: left" value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left" value="0">ไม่ใช่</button>
               <button class="choice" style="float: right" value="1">ใช่</button>
             </div>
           </div>
@@ -3782,7 +3781,7 @@
           </div>
           <div class="eva_form no_p_v no_border">
             <div class="btn-group" style="margin: 20px 0"  id="EYE2">
-              <button class="choice active" style="float: left" value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left" value="0">ไม่ใช่</button>
               <button class="choice" style="float: right" value="1">ใช่</button>
             </div>
           </div>
@@ -3792,14 +3791,14 @@
           <div class="eva_form no_p_v">
             <p class="eva_title">3.1 ตาซ้าย</p>
             <div class="btn-group" id="EYE3L">
-              <button class="choice active" style="float: left" value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left" value="0">ไม่ใช่</button>
               <button class="choice" style="float: right" value="1">ใช่</button>
             </div>
           </div>
           <div class="eva_form no_p_v no_border">
             <p class="eva_title">3.2 ตาขวา</p>
             <div class="btn-group" id="EYE3R">
-              <button class="choice active" style="float: left" value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left" value="0">ไม่ใช่</button>
               <button class="choice" style="float: right" value="1">ใช่</button>
             </div>
           </div>
@@ -3811,14 +3810,14 @@
           <div class="eva_form no_p_v">
             <p class="eva_title">4.1 ตาซ้าย</p>
             <div class="btn-group" id="EYE4L">
-              <button class="choice active" style="float: left" value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left" value="0">ไม่ใช่</button>
               <button class="choice" style="float: right" value="1">ใช่</button>
             </div>
           </div>
           <div class="eva_form no_p_v no_border">
             <p class="eva_title">4.2 ตาขวา</p>
             <div class="btn-group" id="EYE4R">
-              <button class="choice active" style="float: left" value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left" value="0">ไม่ใช่</button>
               <button class="choice" style="float: right" value="1">ใช่</button>
             </div>
           </div>
@@ -3829,14 +3828,14 @@
           <div class="eva_form no_p_v">
             <p class="eva_title">5.1 ตาซ้าย</p>
             <div class="btn-group"  id="EYE5L">
-              <button class="choice active" style="float: left"  value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left"  value="0">ไม่ใช่</button>
               <button class="choice" style="float: right"  value="1">ใช่</button>
             </div>
           </div>
           <div class="eva_form no_p_v no_border">
             <p class="eva_title">5.2 ตาขวา</p>
             <div class="btn-group"  id="EYE5R">
-              <button class="choice active" style="float: left" value="0">ไม่ใช่</button>
+              <button class="choice" style="float: left" value="0">ไม่ใช่</button>
               <button class="choice" style="float: right" value="1">ใช่</button>
             </div>
           </div>
@@ -4120,8 +4119,8 @@
               </p>
               <img class="eva_img" src="img/oral_health2-3.png" />
               <div class="btn-group" id="ORAL2C">
-                <button class="choice" style="float: left" value="0">ไม่ดี</button>
-                <button class="choice" style="float: right" value="1">ดี</button>
+                <button class="choice" style="float: left" value="1">ไม่ดี</button>
+                <button class="choice" style="float: right" value="0">ดี</button>
               </div>
             </div>
           </div>
@@ -4193,7 +4192,7 @@
               </button>
             </div>
           </div>
-          <div id="eva12_sub_2" style="display: none">
+          <div id="eva12_sub_2" >
             <div class="eva_form_box bold">1. การคัดกรองภาวะโภชนาการ</div>
             <div class="eva_form no_p_v">
               <p class="eva_title">

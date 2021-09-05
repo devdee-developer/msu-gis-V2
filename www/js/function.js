@@ -268,6 +268,89 @@ _callback(arr);
      }, null); 
   });
   }
+
+
+function listElderEvaluate(_callback){
+ 
+    var waitForEvaluate = [];
+    var evaluated = [];
+    db.transaction(function (tx) { 
+      
+       tx.executeSql(`SELECT distinct elder.* FROM VHV_TR_ELDER as elder 
+                      LEFT JOIN VHV_TR_EVALUATE1 as eva1 on elder.ID = eva1.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE2 as eva2 on elder.ID = eva2.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE3 as eva3 on elder.ID = eva3.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE4 as eva4 on elder.ID = eva4.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE5 as eva5 on elder.ID = eva5.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE6 as eva6 on elder.ID = eva6.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE7 as eva7 on elder.ID = eva7.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE8 as eva8 on elder.ID = eva8.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE9 as eva9 on elder.ID = eva9.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE10 as eva10 on elder.ID = eva10.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE11 as eva11 on elder.ID = eva11.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE12 as eva12 on elder.ID = eva12.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE13 as eva13 on elder.ID = eva13.ELDER_ID
+                      WHERE 
+                      eva1.ELDER_ID is null or
+                      eva2.ELDER_ID is null or
+                      eva3.ELDER_ID is null or
+                      eva4.ELDER_ID is null or
+                      eva5.ELDER_ID is null or
+                      eva6.ELDER_ID is null or
+                      eva7.ELDER_ID is null or
+                      eva8.ELDER_ID is null or
+                      eva9.ELDER_ID is null or
+                      eva10.ELDER_ID is null or
+                      eva11.ELDER_ID is null or
+                      eva12.ELDER_ID is null or
+                      eva13.ELDER_ID is null
+                      `, [], function (tx, results) { 
+          var len = results.rows.length, i; 
+          for (i = 0; i < len; i++) { 
+            waitForEvaluate.push(results.rows.item(i)); 
+          } 
+         
+
+
+       }, null); 
+       tx.executeSql(`SELECT distinct elder.* FROM VHV_TR_ELDER as elder 
+                      LEFT JOIN VHV_TR_EVALUATE1 as eva1 on elder.ID = eva1.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE2 as eva2 on elder.ID = eva2.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE3 as eva3 on elder.ID = eva3.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE4 as eva4 on elder.ID = eva4.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE5 as eva5 on elder.ID = eva5.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE6 as eva6 on elder.ID = eva6.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE7 as eva7 on elder.ID = eva7.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE8 as eva8 on elder.ID = eva8.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE9 as eva9 on elder.ID = eva9.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE10 as eva10 on elder.ID = eva10.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE11 as eva11 on elder.ID = eva11.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE12 as eva12 on elder.ID = eva12.ELDER_ID
+                      LEFT JOIN VHV_TR_EVALUATE13 as eva13 on elder.ID = eva13.ELDER_ID
+                      WHERE 
+                      eva1.ELDER_ID is not null and
+                      eva2.ELDER_ID is not null and
+                      eva3.ELDER_ID is not null and
+                      eva4.ELDER_ID is not null and
+                      eva5.ELDER_ID is not null and
+                      eva6.ELDER_ID is not null and
+                      eva7.ELDER_ID is not null and
+                      eva8.ELDER_ID is not null and
+                      eva9.ELDER_ID is not null and
+                      eva10.ELDER_ID is not null and
+                      eva11.ELDER_ID is not null and
+                      eva12.ELDER_ID is not null and
+                      eva13.ELDER_ID is not null
+                      `, [], function (tx, results) { 
+          var len = results.rows.length, i; 
+          for (i = 0; i < len; i++) { 
+            evaluated.push(results.rows.item(i)); 
+          }
+          _callback(waitForEvaluate,evaluated);
+
+       }, null); 
+    });
+  }
   // yyyy-mm-dd
 function getAge(dateString) {
   if (dateString != null) {
@@ -363,11 +446,12 @@ function renderElderCard(elderData) {
 </li>`
 }
 function getCurrentDate(){
-      function pad(num, size) {
-        num = num.toString();
-        while (num.length < size) num = "0" + num;
-        return num;
-      }
+      
       const date = new Date()
      return `${date.getFullYear()}-${pad(date.getMonth()+1,2)}-${pad(date.getDate(),2)} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+}
+function pad(num, size) {
+  num = num.toString();
+  while (num.length < size) num = "0" + num;
+  return num;
 }
