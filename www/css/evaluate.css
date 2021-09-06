@@ -206,6 +206,40 @@
   background-image: url(../img/doc_icon_white.png);
   background-size: 11px 13.5px;
 }
+.evaluate_card.care_of_doctor-red .recommend {
+  font-size: 14px;
+  float: left;
+  border-radius: 1em;
+  min-height: 27px;
+  line-height: 27px;
+  padding-left: 25px;
+  padding-right: 10px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 8px;
+  margin-right: 4px;
+  background-color: #b63d4d;
+  color: #ffffff;
+  background-image: url(../img/doc_icon_white.png);
+  background-size: 11px 13.5px;
+}
+.evaluate_card.care_of_doctor-yellow .recommend {
+  font-size: 14px;
+  float: left;
+  border-radius: 1em;
+  min-height: 27px;
+  line-height: 27px;
+  padding-left: 25px;
+  padding-right: 10px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 8px;
+  margin-right: 4px;
+  background-color: #f5c761;
+  color: #ffffff;
+  background-image: url(../img/doc_icon_white.png);
+  background-size: 11px 13.5px;
+}
 .recommend.care_of_doctor {
   font-size: 14px;
   float: left;
@@ -324,6 +358,12 @@ button.btn_create_evaluate {
 }
 .evaluate_page_status.alert {
   background-color: #f26e4f;
+}
+.evaluate_page_status.alert-red {
+  background-color: #b63d4d;
+}
+.evaluate_page_status.alert-yellow {
+  background-color: #f5c761;
 }
 .backgroundwhite .bar {
   height: 5px;

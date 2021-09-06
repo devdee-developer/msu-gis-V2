@@ -52,7 +52,7 @@ $(function () {
   }
   function renderModal(item) {
     var maxdate = " ยังไม่มีข้อมูล";
-    getMaxDateEva(item.rowid, function (res) {
+    getMaxDateEva(item.ID, function (res) {
       if (res[0]["MaxDate"] != null) {
         var date = res[0]["MaxDate"];
         var day = date.substring(8, 10);
@@ -123,7 +123,6 @@ $(function () {
 
   $("#evaluate_page .contact_items").on("click", "li", function () {
     queryByID("VHV_TR_ELDER", $(this).attr("ELDER_ID"), function (res) {
-     console.log(res)
       renderModal(res);
     });
     // $("#modal-evaluate-detail .status-card").attr(
@@ -189,7 +188,7 @@ $(function () {
     queryALL("VHV_TR_ELDER", function (ELDER) {
       $("#evaluate_detail_page .contact_items").html(
         renderElderCard(
-          ELDER.find((item) => item.rowid == elder_id),
+          ELDER.find((item) => item.ID == elder_id),
           false
         )
       );
@@ -216,14 +215,41 @@ $(function () {
           evaNo: 2,
           evaName: "ประเมินโรคความดันโลหิตสูง",
           updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+          // recommend: lastData
+          //   ? `ตัวบน: ${lastData.RESULTSBP},ตัวล่าง: ${lastData.RESULTDBP}`
+          //   : "",
           recommend: lastData
-            ? `ตัวบน: ${lastData.RESULTSBP},ตัวล่าง: ${lastData.RESULTDBP}`
+            ? // ? `ตัวบน: ${lastData.RESULTSBP},ตัวล่าง: ${lastData.RESULTDBP}`
+              lastData.FLAGSBP >= lastData.FLAGDBP
+              ? lastData.RESULTSBP
+              : lastData.RESULTDBP
             : "",
+          // warningCard: lastData
+          //   ? lastData.FLAGSBP == 0 || lastData.FLAGDBP == 0
+          //     ? true
+          //     : false
+          //   : false,
           warningCard: lastData
-            ? lastData.FLAGSBP == 1 || lastData.FLAGDBP == 1
-              ? true
-              : false
-            : false,
+            ? lastData.FLAGSBP >= lastData.FLAGDBP
+              ? lastData.FLAGSBP == 0
+                ? ""
+                : lastData.FLAGSBP == 1
+                ? "care_of_doctor-yellow"
+                : lastData.FLAGSBP == 2
+                ? "care_of_doctor"
+                : lastData.FLAGSBP == 3
+                ? "care_of_doctor-red"
+                : ""
+              : lastData.FLAGDBP == 0
+              ? ""
+              : lastData.FLAGDBP == 1
+              ? "care_of_doctor-yellow"
+              : lastData.FLAGDBP == 2
+              ? "care_of_doctor"
+              : lastData.FLAGDBP == 3
+              ? "care_of_doctor-red"
+              : ""
+            : "",
           last_data: lastData,
           total: total2,
         });
@@ -434,9 +460,9 @@ $(function () {
                                         : `${
                                             evaluate.evaNo == 2
                                               ? evaluate.warningCard
-                                                ? "care_of_doctor"
-                                                : ""
-                                              : evaluate.last_data
+                                              : // ? "care_of_doctor"
+                                              // : ""
+                                              evaluate.last_data
                                                   .EVALUATE_FLAG == 1
                                               ? "care_of_doctor"
                                               : ""
@@ -600,6 +626,8 @@ $(function () {
     $(
       "#evaluate_detail_page .list_item_group .visit_card,#evaluate_detail_page .list_item_group .evaluate_card,#evaluate_detail_page .list_item_group hr"
     ).remove();
+    // const evaluate = evaluateData[index];
+    // console.log(evaluateData);
   }
   $("#evaluate_page .status-card").on("click", function () {
     reloadEvaluateList();
@@ -610,26 +638,36 @@ $(function () {
         $("#evaluate_detail_page .content .evaluate_status_bar span").text(
           " " + $("#evaluate_detail_page ul li span").eq(0).text()
         );
-        if ($("#evaluate_detail_page ul li span").eq(0).text() == "แข็งแรง") {
-          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
-            "src",
-            "img/health_2_icon.png"
-          );
-        } else if (
-          $("#evaluate_detail_page ul li span").eq(0).text() == "พยุงเดิน"
-        ) {
-          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
-            "src",
-            "img/health_3_icon.png"
-          );
-        } else if (
-          $("#evaluate_detail_page ul li span").eq(0).text() == "ติดเตียง"
-        ) {
-          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
-            "src",
-            "img/health_1_icon.png"
-          );
-        }
+        // console.log($("#evaluate_detail_page ul li span").eq(0).text());
+        queryByID(
+          "VHV_TR_ELDER",
+          $("#evaluate_page .status-card").attr("ELDER_ID"),
+          function (res) {
+            console.log(res);
+            if (res.HEALTH_STATUS == 1) {
+              console.log("แข็งแรง");
+              $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+                "src",
+                "img/health_2_icon.png"
+              );
+            } else if (res.HEALTH_STATUS == 2) {
+              console.log("พยุงเดิน");
+              $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+                "src",
+                "img/health_3_icon.png"
+              );
+            } else if (res.HEALTH_STATUS == 3) {
+              console.log("ติดเตียง");
+              $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+                "src",
+                "img/health_1_icon.png"
+              );
+            }
+          }
+        );
+        $("#evaluate_detail_page .footer .footerbarstatus p")
+          .eq(1)
+          .text(" " + $("#evaluate_detail_page ul li span").eq(1).text());
       });
       // setProgressevaluate(9);
     }, 500);
@@ -638,6 +676,39 @@ $(function () {
   $("#evaluate_detail_page .header .back_header_btn").on("click", function () {
     changePage("evaluate_page", function () {});
   });
+  // chkStatusEva;
+  function chkStatusEva() {
+    return new Promise((resolve, reject) => {
+      let tempStatusEva = [];
+      $.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], function (index, dt) {
+        queryByELDER_ID(
+          "VHV_TR_EVALUATE" + dt,
+          $("#evaluate_page .status-card").attr("ELDER_ID"),
+          function (res) {
+            if (res.length > 0) {
+              tempStatusEva.push({ data: dt });
+            }
+            if (dt == 13) {
+              resolve(tempStatusEva);
+            }
+          }
+        );
+      });
+    });
+  }
+  // chkStatusEvaAll
+  function chkStatusEvaAll() {
+    chkStatusEva().then(function (res) {
+      if (res.length == 13) {
+        sqlUpdate(
+          "VHV_TR_ELDER",
+          { EVALUATE_STATUS: 1 },
+          $("#evaluate_page .status-card").attr("ELDER_ID"),
+          function (res) {}
+        );
+      }
+    });
+  }
   /* ----------------------------------------------------------------------------- end : evaluate_detail_page ----------------------------------------------------------------------------- */
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_1 ----------------------------------------------------------------------------- */
@@ -722,6 +793,7 @@ $(function () {
     }
   );
   // ปุ่ม บันทึก
+
   function setDataEva1() {
     let data = {
       ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
@@ -743,6 +815,7 @@ $(function () {
       data.EVALUATE_RESULT = EVALUATE_RESULT1.EVALUATE_RESULT;
       sqlInsert("VHV_TR_EVALUATE1", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -874,6 +947,7 @@ $(function () {
         (data.RESULTDBP = EVALUATE_RESULT2.RESULTDBP.EVALUATE_RESULT),
         sqlInsert("VHV_TR_EVALUATE2", data, function (inserted_id) {
           console.log(inserted_id);
+          chkStatusEvaAll();
           reloadEvaluateList();
           $("#evaluate_detail_page .footer.evaluate-success").show();
           changePage("evaluate_detail_page", function () {
@@ -900,13 +974,27 @@ $(function () {
     ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE3", lastRecordId, function (lastData) {
-        $(`#CVD1 .choice[value="${parseInt(lastData.CVD1)}"]`).addClass("active");
-        $(`#CVD2 .choice[value="${parseInt(lastData.CVD2)}"]`).addClass("active");
-        $(`#CVD3 .choice[value="${parseInt(lastData.CVD3)}"]`).addClass("active");
-        $(`#CVD4 .choice[value="${parseInt(lastData.CVD4)}"]`).addClass("active");
-        $(`#CVD5 .choice[value="${parseInt(lastData.CVD5)}"]`).addClass("active");
-        $(`#CVD6 .choice[value="${parseInt(lastData.CVD6)}"]`).addClass("active");
-        $(`#CVD7 .choice[value="${parseInt(lastData.CVD7)}"]`).addClass("active");
+        $(`#CVD1 .choice[value="${parseInt(lastData.CVD1)}"]`).addClass(
+          "active"
+        );
+        $(`#CVD2 .choice[value="${parseInt(lastData.CVD2)}"]`).addClass(
+          "active"
+        );
+        $(`#CVD3 .choice[value="${parseInt(lastData.CVD3)}"]`).addClass(
+          "active"
+        );
+        $(`#CVD4 .choice[value="${parseInt(lastData.CVD4)}"]`).addClass(
+          "active"
+        );
+        $(`#CVD5 .choice[value="${parseInt(lastData.CVD5)}"]`).addClass(
+          "active"
+        );
+        $(`#CVD6 .choice[value="${parseInt(lastData.CVD6)}"]`).addClass(
+          "active"
+        );
+        $(`#CVD7 .choice[value="${parseInt(lastData.CVD7)}"]`).addClass(
+          "active"
+        );
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1020,6 +1108,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE3", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -1048,9 +1137,13 @@ $(function () {
     $(`#evaluate_page_4 .image_upload_preview img`).removeAttr("src");
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE4", lastRecordId, function (lastData) {
-        $(`#COG1A .choice[value="${parseInt(lastData.COG1A)}"]`).addClass("active");
+        $(`#COG1A .choice[value="${parseInt(lastData.COG1A)}"]`).addClass(
+          "active"
+        );
 
-        $(`#COG1B .choice[value="${parseInt(lastData.COG1B)}"]`).addClass("active");
+        $(`#COG1B .choice[value="${parseInt(lastData.COG1B)}"]`).addClass(
+          "active"
+        );
         $(`#evaluate_page_4 .image_upload_preview img`).attr(
           "src",
           lastData.COG1C_PIC
@@ -1275,6 +1368,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE4", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -1301,17 +1395,48 @@ $(function () {
     ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE5", lastRecordId, function (lastData) {
-        $(`#P2Q1 .choice[value="${parseInt(lastData.P2Q1)}"]`).addClass("active");
-        $(`#P2Q2 .choice[value="${parseInt(lastData.P2Q2)}"]`).addClass("active");
-        $(`input[name="P9Q1"][value="${parseInt(lastData.P9Q1)}"]`).prop("checked", true);
-        $(`input[name="P9Q2"][value="${parseInt(lastData.P9Q2)}"]`).prop("checked", true);
-        $(`input[name="P9Q3"][value="${parseInt(lastData.P9Q3)}"]`).prop("checked", true);
-        $(`input[name="P9Q4"][value="${parseInt(lastData.P9Q4)}"]`).prop("checked", true);
-        $(`input[name="P9Q5"][value="${parseInt(lastData.P9Q5)}"]`).prop("checked", true);
-        $(`input[name="P9Q6"][value="${parseInt(lastData.P9Q6)}"]`).prop("checked", true);
-        $(`input[name="P9Q7"][value="${parseInt(lastData.P9Q7)}"]`).prop("checked", true);
-        $(`input[name="P9Q8"][value="${parseInt(lastData.P9Q8)}"]`).prop("checked", true);
-        $(`input[name="P9Q9"][value="${parseInt(lastData.P9Q9)}"]`).prop("checked", true);
+        $(`#P2Q1 .choice[value="${parseInt(lastData.P2Q1)}"]`).addClass(
+          "active"
+        );
+        $(`#P2Q2 .choice[value="${parseInt(lastData.P2Q2)}"]`).addClass(
+          "active"
+        );
+        $(`input[name="P9Q1"][value="${parseInt(lastData.P9Q1)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q2"][value="${parseInt(lastData.P9Q2)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q3"][value="${parseInt(lastData.P9Q3)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q4"][value="${parseInt(lastData.P9Q4)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q5"][value="${parseInt(lastData.P9Q5)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q6"][value="${parseInt(lastData.P9Q6)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q7"][value="${parseInt(lastData.P9Q7)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q8"][value="${parseInt(lastData.P9Q8)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="P9Q9"][value="${parseInt(lastData.P9Q9)}"]`).prop(
+          "checked",
+          true
+        );
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1466,6 +1591,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE5", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -1492,11 +1618,21 @@ $(function () {
     ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE6", lastRecordId, function (lastData) {
-        $(`#OST1 .choice[value="${parseInt(lastData.OST1)}"]`).addClass("active");
-        $(`#OST2 .choice[value="${parseInt(lastData.OST2)}"]`).addClass("active");
-        $(`#OST3 .choice[value="${parseInt(lastData.OST3)}"]`).addClass("active");
-        $(`#OST4 .choice[value="${parseInt(lastData.OST4)}"]`).addClass("active");
-        $(`#OST5 .choice[value="${parseInt(lastData.OST5)}"]`).addClass("active");
+        $(`#OST1 .choice[value="${parseInt(lastData.OST1)}"]`).addClass(
+          "active"
+        );
+        $(`#OST2 .choice[value="${parseInt(lastData.OST2)}"]`).addClass(
+          "active"
+        );
+        $(`#OST3 .choice[value="${parseInt(lastData.OST3)}"]`).addClass(
+          "active"
+        );
+        $(`#OST4 .choice[value="${parseInt(lastData.OST4)}"]`).addClass(
+          "active"
+        );
+        $(`#OST5 .choice[value="${parseInt(lastData.OST5)}"]`).addClass(
+          "active"
+        );
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1600,6 +1736,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE6", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -1753,6 +1890,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE7", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -1799,14 +1937,30 @@ $(function () {
     ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE8", lastRecordId, function (lastData) {
-        $(`#EYE1 .choice[value="${parseInt(lastData.EYE1)}"]`).addClass("active");
-        $(`#EYE2 .choice[value="${parseInt(lastData.EYE2)}"]`).addClass("active");
-        $(`#EYE3L .choice[value="${parseInt(lastData.EYE3L)}"]`).addClass("active");
-        $(`#EYE3R .choice[value="${parseInt(lastData.EYE3R)}"]`).addClass("active");
-        $(`#EYE4L .choice[value="${parseInt(lastData.EYE4L)}"]`).addClass("active");
-        $(`#EYE4R .choice[value="${parseInt(lastData.EYE4R)}"]`).addClass("active");
-        $(`#EYE5L .choice[value="${parseInt(lastData.EYE5L)}"]`).addClass("active");
-        $(`#EYE5R .choice[value="${parseInt(lastData.EYE5R)}"]`).addClass("active");
+        $(`#EYE1 .choice[value="${parseInt(lastData.EYE1)}"]`).addClass(
+          "active"
+        );
+        $(`#EYE2 .choice[value="${parseInt(lastData.EYE2)}"]`).addClass(
+          "active"
+        );
+        $(`#EYE3L .choice[value="${parseInt(lastData.EYE3L)}"]`).addClass(
+          "active"
+        );
+        $(`#EYE3R .choice[value="${parseInt(lastData.EYE3R)}"]`).addClass(
+          "active"
+        );
+        $(`#EYE4L .choice[value="${parseInt(lastData.EYE4L)}"]`).addClass(
+          "active"
+        );
+        $(`#EYE4R .choice[value="${parseInt(lastData.EYE4R)}"]`).addClass(
+          "active"
+        );
+        $(`#EYE5L .choice[value="${parseInt(lastData.EYE5L)}"]`).addClass(
+          "active"
+        );
+        $(`#EYE5R .choice[value="${parseInt(lastData.EYE5R)}"]`).addClass(
+          "active"
+        );
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1921,6 +2075,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE8", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").fadeIn(1000);
         changePage("evaluate_detail_page", function () {
@@ -1946,8 +2101,12 @@ $(function () {
     ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE9", lastRecordId, function (lastData) {
-        $(`#RUBR .choice[value="${parseInt(lastData.RUBR)}"]`).addClass("active");
-        $(`#RUBL .choice[value="${parseInt(lastData.RUBL)}"]`).addClass("active");
+        $(`#RUBR .choice[value="${parseInt(lastData.RUBR)}"]`).addClass(
+          "active"
+        );
+        $(`#RUBL .choice[value="${parseInt(lastData.RUBL)}"]`).addClass(
+          "active"
+        );
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -2043,6 +2202,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE9", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -2083,11 +2243,21 @@ $(function () {
           $("#eva10_sub_1").hide();
         }
 
-        $(`#OSR1A .choice[value="${parseInt(lastData.OSR1A)}"]`).addClass("active");
-        $(`#OSR1B .choice[value="${parseInt(lastData.OSR1B)}"]`).addClass("active");
-        $(`#OSR1C .choice[value="${parseInt(lastData.OSR1C)}"]`).addClass("active");
-        $(`#OSR1D .choice[value="${parseInt(lastData.OSR1D)}"]`).addClass("active");
-        $(`#OSR2 .choice[value="${parseInt(lastData.OSR2)}"]`).addClass("active");
+        $(`#OSR1A .choice[value="${parseInt(lastData.OSR1A)}"]`).addClass(
+          "active"
+        );
+        $(`#OSR1B .choice[value="${parseInt(lastData.OSR1B)}"]`).addClass(
+          "active"
+        );
+        $(`#OSR1C .choice[value="${parseInt(lastData.OSR1C)}"]`).addClass(
+          "active"
+        );
+        $(`#OSR1D .choice[value="${parseInt(lastData.OSR1D)}"]`).addClass(
+          "active"
+        );
+        $(`#OSR2 .choice[value="${parseInt(lastData.OSR2)}"]`).addClass(
+          "active"
+        );
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -2213,6 +2383,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE10", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -2272,12 +2443,24 @@ $(function () {
           $("#eva11_sub_2").hide();
         }
 
-        $(`#ORAL1A .choice[value="${parseInt(lastData.ORAL1A)}"]`).addClass("active");
-        $(`#ORAL1B .choice[value="${parseInt(lastData.ORAL1B)}"]`).addClass("active");
-        $(`#ORAL1C .choice[value="${parseInt(lastData.ORAL1C)}"]`).addClass("active");
-        $(`#ORAL2A .choice[value="${parseInt(lastData.ORAL2A)}"]`).addClass("active");
-        $(`#ORAL2B .choice[value="${parseInt(lastData.ORAL2B)}"]`).addClass("active");
-        $(`#ORAL2C .choice[value="${parseInt(lastData.ORAL2C)}"]`).addClass("active");
+        $(`#ORAL1A .choice[value="${parseInt(lastData.ORAL1A)}"]`).addClass(
+          "active"
+        );
+        $(`#ORAL1B .choice[value="${parseInt(lastData.ORAL1B)}"]`).addClass(
+          "active"
+        );
+        $(`#ORAL1C .choice[value="${parseInt(lastData.ORAL1C)}"]`).addClass(
+          "active"
+        );
+        $(`#ORAL2A .choice[value="${parseInt(lastData.ORAL2A)}"]`).addClass(
+          "active"
+        );
+        $(`#ORAL2B .choice[value="${parseInt(lastData.ORAL2B)}"]`).addClass(
+          "active"
+        );
+        $(`#ORAL2C .choice[value="${parseInt(lastData.ORAL2C)}"]`).addClass(
+          "active"
+        );
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -2417,6 +2600,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE11", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -2449,8 +2633,12 @@ $(function () {
     ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE12", lastRecordId, function (lastData) {
-        $(`#NUTRI1 .choice[value="${parseInt(lastData.NUTRI1)}"]`).addClass("active");
-        $(`#NUTRI2 .choice[value="${parseInt(lastData.NUTRI2)}"]`).addClass("active");
+        $(`#NUTRI1 .choice[value="${parseInt(lastData.NUTRI1)}"]`).addClass(
+          "active"
+        );
+        $(`#NUTRI2 .choice[value="${parseInt(lastData.NUTRI2)}"]`).addClass(
+          "active"
+        );
         $(`input[name="MNA1A"][value="${parseInt(lastData.MNA1A)}"]`).prop(
           "checked",
           true
@@ -2495,18 +2683,21 @@ $(function () {
           "checked",
           true
         );
-        $(`input[name="MNA2EA"][value="${parseFloat(lastData.MNA2EA).toFixed(1)}"]`).prop(
-          "checked",
-          true
-        );
-        $(`input[name="MNA2EB"][value="${parseFloat(lastData.MNA2EB).toFixed(1)}"]`).prop(
-          "checked",
-          true
-        );
-        $(`input[name="MNA2EC"][value="${parseFloat(lastData.MNA2EC).toFixed(1)}"]`).prop(
-          "checked",
-          true
-        );
+        $(
+          `input[name="MNA2EA"][value="${parseFloat(lastData.MNA2EA).toFixed(
+            1
+          )}"]`
+        ).prop("checked", true);
+        $(
+          `input[name="MNA2EB"][value="${parseFloat(lastData.MNA2EB).toFixed(
+            1
+          )}"]`
+        ).prop("checked", true);
+        $(
+          `input[name="MNA2EC"][value="${parseFloat(lastData.MNA2EC).toFixed(
+            1
+          )}"]`
+        ).prop("checked", true);
         $(`input[name="MNA2F"][value="${parseInt(lastData.MNA2F)}"]`).prop(
           "checked",
           true
@@ -2748,6 +2939,7 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE12", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -2780,15 +2972,42 @@ $(function () {
     ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByRowID("VHV_TR_EVALUATE13", lastRecordId, function (lastData) {
-        $(`input[name="ADL1"][value="${parseInt(lastData.ADL1)}"]`).prop("checked", true);
-        $(`input[name="ADL2"][value="${parseInt(lastData.ADL2)}"]`).prop("checked", true);
-        $(`input[name="ADL3"][value="${parseInt(lastData.ADL3)}"]`).prop("checked", true);
-        $(`input[name="ADL4"][value="${parseInt(lastData.ADL4)}"]`).prop("checked", true);
-        $(`input[name="ADL5"][value="${parseInt(lastData.ADL5)}"]`).prop("checked", true);
-        $(`input[name="ADL6"][value="${parseInt(lastData.ADL6)}"]`).prop("checked", true);
-        $(`input[name="ADL7"][value="${parseInt(lastData.ADL7)}"]`).prop("checked", true);
-        $(`input[name="ADL8"][value="${parseInt(lastData.ADL8)}"]`).prop("checked", true);
-        $(`input[name="ADL9"][value="${parseInt(lastData.ADL9)}"]`).prop("checked", true);
+        $(`input[name="ADL1"][value="${parseInt(lastData.ADL1)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL2"][value="${parseInt(lastData.ADL2)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL3"][value="${parseInt(lastData.ADL3)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL4"][value="${parseInt(lastData.ADL4)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL5"][value="${parseInt(lastData.ADL5)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL6"][value="${parseInt(lastData.ADL6)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL7"][value="${parseInt(lastData.ADL7)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL8"][value="${parseInt(lastData.ADL8)}"]`).prop(
+          "checked",
+          true
+        );
+        $(`input[name="ADL9"][value="${parseInt(lastData.ADL9)}"]`).prop(
+          "checked",
+          true
+        );
         $(`input[name="ADL10"][value="${parseInt(lastData.ADL10)}"]`).prop(
           "checked",
           true
@@ -2925,6 +3144,13 @@ $(function () {
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE13", data, function (inserted_id) {
         console.log(inserted_id);
+        chkStatusEvaAll();
+        sqlUpdate(
+          "VHV_TR_ELDER",
+          { HEALTH_STATUS: data.EVALUATE_FLAG },
+          $("#evaluate_page .status-card").attr("ELDER_ID"),
+          function (res) {}
+        );
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
@@ -3025,21 +3251,40 @@ $(function () {
           $(
             `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
           ).removeClass("alert");
+          $(
+            `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+          ).removeClass("alert-red");
+          $(
+            `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+          ).removeClass("alert-yellow");
+          var result = { EVALUATE_RESULT: "", EVALUATE_FLAG: 0 };
+          if (RESULTSBP.EVALUATE_FLAG >= RESULTDBP.EVALUATE_FLAG) {
+            result.EVALUATE_RESULT = RESULTSBP.EVALUATE_RESULT;
+            result.EVALUATE_FLAG = RESULTSBP.EVALUATE_FLAG;
+          } else {
+            result.EVALUATE_RESULT = RESULTDBP.EVALUATE_RESULT;
+            result.EVALUATE_FLAG = RESULTDBP.EVALUATE_FLAG;
+          }
           $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
             .eq(1)
-            .html(
-              `ตัวบน : ${RESULTSBP.EVALUATE_RESULT} <br>ตัวล่าง : ${RESULTDBP.EVALUATE_RESULT}`
-            );
-          if (RESULTSBP.EVALUATE_FLAG == 1 || RESULTDBP.EVALUATE_FLAG == 1) {
+            .text(result.EVALUATE_RESULT);
+          if (result.EVALUATE_FLAG == 1) {
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert-yellow");
+          } else if (result.EVALUATE_FLAG == 2) {
             $(
               `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
             ).addClass("alert");
+          } else if (result.EVALUATE_FLAG == 3) {
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert-red");
           }
           $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(
             3000
           );
           result = { RESULTSBP, RESULTDBP };
-          console.log(result);
         }
 
         resolve(result);

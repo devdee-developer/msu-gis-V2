@@ -1170,7 +1170,7 @@ function sqlInsert(table, data, _callback) {
 }
 function queryByID(TABLE, ID, _callback) {
   var arr = [];
-  console.log("SELECT rowid,* FROM " + TABLE + " WHERE ID=" + parseInt(ID));
+  // console.log("SELECT rowid,* FROM " + TABLE + " WHERE ID=" + parseInt(ID));
   db.transaction(function (tx) {
     tx.executeSql(
       "SELECT rowid,* FROM " + TABLE + " WHERE ID=" + parseInt(ID),
@@ -1188,9 +1188,36 @@ function queryByID(TABLE, ID, _callback) {
     );
   });
 }
+function queryByELDER_ID(TABLE, ELDER_ID, _callback) {
+  var arr = [];
+  console.log(
+    "SELECT rowid,* FROM " + TABLE + " WHERE ELDER_ID=" + parseInt(ELDER_ID)
+  );
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT rowid,* FROM " +
+        TABLE +
+        " WHERE ELDER_ID='" +
+        parseInt(ELDER_ID) +
+        "'",
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+        for (i = 0; i < len; i++) {
+          arr.push(results.rows.item(i));
+        }
+        _callback(arr);
+      },
+      null
+    );
+  });
+}
 function queryByRowID(TABLE, rowID, _callback) {
   var arr = [];
-  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(rowID));
+  console.log(
+    "SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(rowID)
+  );
   db.transaction(function (tx) {
     tx.executeSql(
       "SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(rowID),
@@ -1209,6 +1236,9 @@ function queryByRowID(TABLE, rowID, _callback) {
   });
 }
 function sqlUpdate(TABLE, data, ID, _callback) {
+  // console.log(TABLE);
+  // console.log(data);
+  // console.log(ID);
   var str = "";
   for (var i = 0; i < Object.keys(data).length; i++) {
     str += Object.keys(data)[i] + "='" + data[Object.keys(data)[i]] + "',";
@@ -1248,7 +1278,13 @@ function queryALL(TABLE, _callback) {
     );
   });
 }
-
+// function chkStatusEvaAll(ELDER_ID, _callback) {
+//   var arr = [];
+//   queryByID("VHV_TR_EVALUATE1", ELDER_ID, function (res) {
+//     console.log(res);
+//     // _callback(res);
+//   });
+// }
 function listElderEvaluate(_callback) {
   var waitForEvaluate = [];
   var evaluated = [];
@@ -1412,50 +1448,50 @@ function getAge(dateString) {
   } else ageString = "ไม่มีข้อมูลอายุ";
   return ageString;
 }
-function getMaxDateEva(rowid, _callback) {
+function getMaxDateEva(ELDER_ID, _callback) {
   var arr = [];
   db.transaction(function (tx) {
     tx.executeSql(
       `SELECT MAX(UPDATE_DATE) AS MaxDate FROM
           (
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE1 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE1 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE2 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE2 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE3 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE3 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE4 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE4 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE5 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE5 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE6 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE6 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE7 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE7 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE8 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE8 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE9 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE9 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE10 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE10 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE11 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE11 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE12 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE12 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' UNION
-            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE13 WHERE rowid = '` +
-        rowid +
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE13 WHERE ELDER_ID = '` +
+        ELDER_ID +
         `' ) AS my_tab`,
       [],
       function (tx, results) {
