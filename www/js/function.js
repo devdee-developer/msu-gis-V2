@@ -146,6 +146,37 @@ async function login(username, password, _success, _error) {
     _error("เกิดข้อผิดพลาด");
   }
 }
+function callAPI(enpoint, method, data, _success, _error) {
+  try {
+    await getAccessToken();
+    $.ajax({
+      url: enpoint,
+      type: method,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization","Bearer " + token.getAccessToken());
+      },
+      data: data,
+      success: function (response) {
+        console.log(response);
+        if (response.status == true) {
+        
+          _success(response);
+        } else {
+          _error(response.status);
+        }
+      },
+      error: function (e) {
+        if (e.responseJSON.status == false) {
+          _error("เกิดข้อผิดพลาด");
+        } else {
+          _error("เกิดข้อผิดพลาด");
+        }
+      }
+    });
+  } catch (error) {
+    _error("เกิดข้อผิดพลาด");
+  }
+}
 function getInitial(){
 
   $.ajax({
