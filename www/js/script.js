@@ -122,6 +122,7 @@ $(function () {
   });
   $("#logout").on("click", function () {
     $(".close_top_menu").click();
+    // clearInterval(syncDataInterval)
     localStorage.clear();
     loading.show();
     setTimeout(function () {

@@ -338,7 +338,7 @@ $(function () {
                                   ).append(function () {
                                     return $(`<div lastEvalutateId=${
                                       evaluate.last_data
-                                        ? evaluate.last_data.ID
+                                        ? evaluate.last_data.rowid
                                         : 0
                                     } class="evaluate_card ${
                                       evaluate.total == 0
