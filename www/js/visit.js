@@ -6,19 +6,33 @@ $(function () {
     .on("click", function () {
       loading.show();
       setTimeout(function () {
-        loading.hide();
+       
         changePage("visit_page", function () {
           initialVisitPage();
         });
       }, 500);
     });
   function initialVisitPage() {
+    queryALL("VHV_TR_ELDER",function(elderList){
+      console.log(elderList)
+      // $("#visit_page .waiting_list").html("");
+      // $("#visit_page .visited_list").html("");
+      // $("#visit_page .sort-bar h4 span").html(
+      //   `${elderList.length} คน`
+      // );
+      // $("#visit_page .waiting_list_count").text(`...กำลังรอยู่ ${elderList.length} คน`);
+      // $("#visit_page .visited_list_count").text(`จำนวน ${elderList.length} คน`);
+      // $.each(elderList, function (index, row) {
+      //   $("#visit_page .waiting_list").append(renderElderCard(row));
+      // });
+      loading.hide();
+      setTimeout(function () {
+        $("#visit_recommend").show();
+        showModal("modal-visit-detail");
+      }, 500);
+    })
     
-    
-    setTimeout(function () {
-      $("#visit_recommend").show();
-      showModal("modal-visit-detail");
-    }, 500);
+  
    
   }
   $("#visit_page .collapse-filter .collapse-filter-header").click(function () {
