@@ -183,6 +183,7 @@ async function callAPI(enpoint, method, data, _success, _error) {
   }
 }
 function getInitial() {
+  clearInitial();
   $.ajax({
     url: api_base_url + "/getIntial",
     type: "POST",
@@ -1319,4 +1320,182 @@ function pad(num, size) {
   num = num.toString();
   while (num.length < size) num = "0" + num;
   return num;
+}
+function clearInitial(){
+  
+  db.transaction(function (tx) {
+
+  tx.executeSql(
+    "DELETE FROM VHV_TR_ELDER"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_EVALUATE"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_GIS_DISTRICT"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_GIS_PROVINCE"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_GIS_TUMBOL"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_HEADER"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_JOB "
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_OFFICE "
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_OFFICETYPE"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_SHPH"
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_MA_SHPH_MOO "
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_TR_CONTENT "
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM  VHV_TR_CONTENTLINK "
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EMERGENCY "
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE1"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE2"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE3"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE4"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE5"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE6"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE7 "
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE8"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE9"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE10"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE11 "
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE12 "
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_EVALUATE13 "
+  );
+});
+
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_READCONTENT"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_SOLVE"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_VHV "
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_VHV_ELDER"
+  );
+});
+db.transaction(function (tx) {
+  tx.executeSql(
+    "DELETE FROM VHV_TR_VISIT"
+  );
+});
+  
 }
