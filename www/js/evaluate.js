@@ -955,7 +955,7 @@ $(function () {
   $("#evaluate_page_4 .on_camera").on("click", function () {
     navigator.camera.getPicture(
       function (res) {
-        $(".image_upload_preview img").attr('src',`data:image/jpeg;base64,${res}` );
+        $(".image_upload_preview img").attr('src',`data:image/png;base64,${res}` );
         checkImg();
         vaildateFormEva4();
         $(".modal-dismiss").click();
@@ -967,12 +967,29 @@ $(function () {
     );
   });
   $("#evaluate_page_4 .on_gallery").on("click", function () {
-    $(".image_upload_preview img").attr('src',"img/1.jpg");
+    $("#on_gallery").click();
+    // $(".image_upload_preview img").attr('src',"img/1.jpg");
 
-    checkImg();
-    $(".modal-dismiss").click();
-    vaildateFormEva4();
+    
   });
+  $("#on_gallery").change(function() {
+    readURL(this);
+  });
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('.image_upload_preview img').attr('src', e.target.result);
+        checkImg();
+        $(".modal-dismiss").click();
+         vaildateFormEva4();
+      }
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      alert('select a file to see preview');
+      $('.image_upload_preview img').removeAttr('src');
+    }
+  }
 
   //remove img
 
