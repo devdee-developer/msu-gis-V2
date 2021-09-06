@@ -1290,80 +1290,27 @@ function listElderEvaluate(_callback) {
   var evaluated = [];
   db.transaction(function (tx) {
     tx.executeSql(
-      `SELECT distinct elder.rowid, elder.* FROM VHV_TR_ELDER as elder 
-                      LEFT JOIN VHV_TR_EVALUATE1 as eva1 on elder.ID = eva1.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE2 as eva2 on elder.ID = eva2.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE3 as eva3 on elder.ID = eva3.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE4 as eva4 on elder.ID = eva4.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE5 as eva5 on elder.ID = eva5.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE6 as eva6 on elder.ID = eva6.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE7 as eva7 on elder.ID = eva7.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE8 as eva8 on elder.ID = eva8.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE9 as eva9 on elder.ID = eva9.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE10 as eva10 on elder.ID = eva10.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE11 as eva11 on elder.ID = eva11.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE12 as eva12 on elder.ID = eva12.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE13 as eva13 on elder.ID = eva13.ELDER_ID
-                      WHERE 
-                      eva1.ELDER_ID is null or
-                      eva2.ELDER_ID is null or
-                      eva3.ELDER_ID is null or
-                      eva4.ELDER_ID is null or
-                      eva5.ELDER_ID is null or
-                      eva6.ELDER_ID is null or
-                      eva7.ELDER_ID is null or
-                      eva8.ELDER_ID is null or
-                      eva9.ELDER_ID is null or
-                      eva10.ELDER_ID is null or
-                      eva11.ELDER_ID is null or
-                      eva12.ELDER_ID is null or
-                      eva13.ELDER_ID is null
-                      `,
+      `SELECT distinct elder.rowid, elder.* FROM VHV_TR_ELDER as elder WHERE elder.EVALUATE_STATUS = '0'`,
       [],
       function (tx, results) {
+       
         var len = results.rows.length,
           i;
         for (i = 0; i < len; i++) {
+          console.log(results.rows.item(i))
           waitForEvaluate.push(results.rows.item(i));
         }
       },
       null
     );
     tx.executeSql(
-      `SELECT distinct elder.rowid, elder.* FROM VHV_TR_ELDER as elder 
-                      LEFT JOIN VHV_TR_EVALUATE1 as eva1 on elder.ID = eva1.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE2 as eva2 on elder.ID = eva2.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE3 as eva3 on elder.ID = eva3.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE4 as eva4 on elder.ID = eva4.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE5 as eva5 on elder.ID = eva5.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE6 as eva6 on elder.ID = eva6.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE7 as eva7 on elder.ID = eva7.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE8 as eva8 on elder.ID = eva8.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE9 as eva9 on elder.ID = eva9.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE10 as eva10 on elder.ID = eva10.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE11 as eva11 on elder.ID = eva11.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE12 as eva12 on elder.ID = eva12.ELDER_ID
-                      LEFT JOIN VHV_TR_EVALUATE13 as eva13 on elder.ID = eva13.ELDER_ID
-                      WHERE 
-                      eva1.ELDER_ID is not null and
-                      eva2.ELDER_ID is not null and
-                      eva3.ELDER_ID is not null and
-                      eva4.ELDER_ID is not null and
-                      eva5.ELDER_ID is not null and
-                      eva6.ELDER_ID is not null and
-                      eva7.ELDER_ID is not null and
-                      eva8.ELDER_ID is not null and
-                      eva9.ELDER_ID is not null and
-                      eva10.ELDER_ID is not null and
-                      eva11.ELDER_ID is not null and
-                      eva12.ELDER_ID is not null and
-                      eva13.ELDER_ID is not null
-                      `,
+      `SELECT distinct elder.rowid, elder.* FROM VHV_TR_ELDER as elder WHERE elder.EVALUATE_STATUS = '1'`,
       [],
       function (tx, results) {
         var len = results.rows.length,
           i;
         for (i = 0; i < len; i++) {
+          console.log(results.rows.item(i))
           evaluated.push(results.rows.item(i));
         }
         _callback(waitForEvaluate, evaluated);
