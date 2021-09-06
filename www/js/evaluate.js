@@ -5,9 +5,8 @@ $(function () {
       loading.show();
 
       setTimeout(function () {
-        
         changePage("evaluate_page", function () {
-          initialEvaPage()
+          initialEvaPage();
         });
       }, 500);
     });
@@ -32,6 +31,21 @@ $(function () {
         $("#evaluate_recommend").show();
         showModal("modal-evaluate-detail");
       }, 500);
+    });
+    queryALL("VHV_MA_GIS_PROVINCE", function (res) {
+      $("#evaluate_page .content .collapse-filter #evaSearchProvince").val(
+        "จังหวัด " + res[0]["GIS_PROVINCENAME"]
+      );
+    });
+    queryALL("VHV_MA_GIS_TUMBOL", function (res) {
+      $("#evaluate_page .content .collapse-filter #evaSearchTumbol").val(
+        "ตำบล " + res[0]["GIS_TUMBOLNAME"]
+      );
+    });
+    queryALL("VHV_MA_SHPH_MOO", function (res) {
+      $("#evaluate_page .content .collapse-filter #evaSearchMoo").val(
+        "หมู่ที่ " + res[0]["SHPH_MOO"]
+      );
     });
   }
   $("#evaluate_page .collapse-filter .collapse-filter-header").click(
@@ -134,8 +148,14 @@ $(function () {
           evaNo: 2,
           evaName: "ประเมินโรคความดันโลหิตสูง",
           updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
-          recommend:lastData?`ตัวบน: ${lastData.RESULTSBP},ตัวล่าง: ${lastData.RESULTDBP}`:'',
-          warningCard:lastData?(lastData.FLAGSBP==1||lastData.FLAGDBP==1?true:false):false,
+          recommend: lastData
+            ? `ตัวบน: ${lastData.RESULTSBP},ตัวล่าง: ${lastData.RESULTDBP}`
+            : "",
+          warningCard: lastData
+            ? lastData.FLAGSBP == 1 || lastData.FLAGDBP == 1
+              ? true
+              : false
+            : false,
           last_data: lastData,
           total: total2,
         });
@@ -344,9 +364,12 @@ $(function () {
                                       evaluate.total == 0
                                         ? "pending"
                                         : `${
-                                           evaluate.evaNo==2?(evaluate.warningCard?"care_of_doctor":''):
-                                            evaluate.last_data.EVALUATE_FLAG ==
-                                            1
+                                            evaluate.evaNo == 2
+                                              ? evaluate.warningCard
+                                                ? "care_of_doctor"
+                                                : ""
+                                              : evaluate.last_data
+                                                  .EVALUATE_FLAG == 1
                                               ? "care_of_doctor"
                                               : ""
                                           }`
@@ -393,8 +416,9 @@ $(function () {
                                         <p>คำแนะนำล่าสุด</p>
                                         <div class="space"></div>
                                         <div class="recommend"><p>${
-                                          evaluate.evaNo==2?evaluate.recommend:
-                                          evaluate.last_data
+                                          evaluate.evaNo == 2
+                                            ? evaluate.recommend
+                                            : evaluate.last_data
                                             ? evaluate.last_data.EVALUATE_RESULT
                                             : ""
                                         }</p></div>
@@ -522,13 +546,16 @@ $(function () {
   function gotoEvaPage1(lastRecordId) {
     loading.show();
     $("#evaluate_page_1 button.choice").removeClass("active");
-    $("#evaluate_page_1 input[type='number'],#evaluate_page_1 input[type='text']").val("")
-    $('#evaluate_page_1 input[type="radio"],#evaluate_page_1 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_1 input[type='number'],#evaluate_page_1 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_1 input[type="radio"],#evaluate_page_1 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE1", lastRecordId, function (lastData) {
         $("#DTX").val(lastData.DTX);
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -564,7 +591,7 @@ $(function () {
   // เช็คค่าใน input
   var EVALUATE_RESULT1;
   $("#DTX").on("change paste keyup", function () {
-    if (validateForm([$("#DTX").val()])&&$("#DTX").val().length>1) {
+    if (validateForm([$("#DTX").val()]) && $("#DTX").val().length > 1) {
       $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
         "disabled",
         false
@@ -591,7 +618,7 @@ $(function () {
       $("#evaluate_page_1 .evaluate_page_status ").show();
       $("#evaluate_page_1 .footer").show();
       $("#evaluate_page_1 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(0).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(0).click();
     }
   );
   // ปุ่ม บันทึก
@@ -633,14 +660,17 @@ $(function () {
   function gotoEvaPage2(lastRecordId) {
     loading.show();
     $("#evaluate_page_2 button.choice").removeClass("active");
-    $("#evaluate_page_2 input[type='number'],#evaluate_page_2 input[type='text']").val("")
-    $('#evaluate_page_2 input[type="radio"],#evaluate_page_2 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_2 input[type='number'],#evaluate_page_2 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_2 input[type="radio"],#evaluate_page_2 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE2", lastRecordId, function (lastData) {
         $("#blood_pressure_up").val(lastData.SBP);
         $("#blood_pressure_down").val(lastData.DBP);
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -715,7 +745,7 @@ $(function () {
       $("#evaluate_page_2 .evaluate_page_status ").show();
       $("#evaluate_page_2 .footer").show();
       $("#evaluate_page_2 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(1).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(1).click();
     }
   );
   // ปุ่ม บันทึก
@@ -738,20 +768,20 @@ $(function () {
     "click",
     function () {
       let data = setDataEva2();
-      data.FLAGSBP= EVALUATE_RESULT2.RESULTSBP.EVALUATE_FLAG,
-      data.RESULTSBP= EVALUATE_RESULT2.RESULTSBP.EVALUATE_RESULT,
-      data.FLAGDBP=EVALUATE_RESULT2.RESULTDBP.EVALUATE_FLAG,
-      data.RESULTDBP=EVALUATE_RESULT2.RESULTDBP.EVALUATE_RESULT,
-      sqlInsert("VHV_TR_EVALUATE2", data, function (inserted_id) {
-        console.log(inserted_id);
-        reloadEvaluateList();
-        $("#evaluate_detail_page .footer.evaluate-success").show();
-        changePage("evaluate_detail_page", function () {
-          setTimeout(function () {
-            $("#evaluate_detail_page .footer.evaluate-success").hide();
-          }, 1000);
+      (data.FLAGSBP = EVALUATE_RESULT2.RESULTSBP.EVALUATE_FLAG),
+        (data.RESULTSBP = EVALUATE_RESULT2.RESULTSBP.EVALUATE_RESULT),
+        (data.FLAGDBP = EVALUATE_RESULT2.RESULTDBP.EVALUATE_FLAG),
+        (data.RESULTDBP = EVALUATE_RESULT2.RESULTDBP.EVALUATE_RESULT),
+        sqlInsert("VHV_TR_EVALUATE2", data, function (inserted_id) {
+          console.log(inserted_id);
+          reloadEvaluateList();
+          $("#evaluate_detail_page .footer.evaluate-success").show();
+          changePage("evaluate_detail_page", function () {
+            setTimeout(function () {
+              $("#evaluate_detail_page .footer.evaluate-success").hide();
+            }, 1000);
+          });
         });
-      });
     }
   );
   /* ----------------------------------------------------------------------------- end : evaluate_page_2 ----------------------------------------------------------------------------- */
@@ -762,8 +792,12 @@ $(function () {
     loading.show();
 
     $("#evaluate_page_3 button.choice").removeClass("active");
-    $("#evaluate_page_3 input[type='number'],#evaluate_page_3 input[type='text']").val("")
-    $('#evaluate_page_3 input[type="radio"],#evaluate_page_3 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_3 input[type='number'],#evaluate_page_3 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_3 input[type="radio"],#evaluate_page_3 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE3", lastRecordId, function (lastData) {
         $(`#CVD1 .choice[value="${lastData.CVD1}"]`).addClass("active");
@@ -773,8 +807,7 @@ $(function () {
         $(`#CVD5 .choice[value="${lastData.CVD5}"]`).addClass("active");
         $(`#CVD6 .choice[value="${lastData.CVD6}"]`).addClass("active");
         $(`#CVD7 .choice[value="${lastData.CVD7}"]`).addClass("active");
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -811,7 +844,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT3
+  let EVALUATE_RESULT3;
   $("#evaluate_page_3 .btn-group button").on("click", function () {
     if (
       validateForm([
@@ -824,7 +857,6 @@ $(function () {
         $("#CVD7 button.choice.active").val(),
       ])
     ) {
-
       let data = setDataEva3();
 
       evaluateResult(data).then((res) => {
@@ -850,11 +882,11 @@ $(function () {
       $("#evaluate_page_3 .evaluate_page_status ").show();
       $("#evaluate_page_3 .footer").show();
       $("#evaluate_page_3 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(2).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(2).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva3(){
+  function setDataEva3() {
     let CVD1 = parseInt($("#CVD1 .choice.active").val());
     let CVD2 = parseInt($("#CVD2 .choice.active").val());
     let CVD3 = parseInt($("#CVD3 .choice.active").val());
@@ -862,8 +894,7 @@ $(function () {
     let CVD5 = parseInt($("#CVD5 .choice.active").val());
     let CVD6 = parseInt($("#CVD6 .choice.active").val());
     let CVD7 = parseInt($("#CVD7 .choice.active").val());
-    let data =
-    {
+    let data = {
       ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 3,
@@ -878,15 +909,14 @@ $(function () {
       EVALUATE_SCORE: CVD1 + CVD2 + CVD3 + CVD4 + CVD5 + CVD6 + CVD7,
       EVALUATE_RESULT: "",
     };
-    return data
+    return data;
   }
   $("#evaluate_page_3 .step-footer .btn_group .submit").on(
     "click",
     function () {
-
-      let data = setDataEva3()
-      data.EVALUATE_FLAG=EVALUATE_RESULT3.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT3.EVALUATE_RESULT
+      let data = setDataEva3();
+      data.EVALUATE_FLAG = EVALUATE_RESULT3.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT3.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE3", data, function (inserted_id) {
         console.log(inserted_id);
@@ -907,11 +937,15 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_4
   function gotoEvaPage4(lastRecordId) {
     loading.show();
-   
+
     $("#evaluate_page_4 button.choice").removeClass("active");
-    $("#evaluate_page_4 input[type='number'],#evaluate_page_3 input[type='text']").val("")
-    $('#evaluate_page_4 input[type="radio"],#evaluate_page_3 input[type="checkbox"]').prop("checked", false);
-    $(`#evaluate_page_4 .image_upload_preview img`).removeAttr('src')
+    $(
+      "#evaluate_page_4 input[type='number'],#evaluate_page_3 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_4 input[type="radio"],#evaluate_page_3 input[type="checkbox"]'
+    ).prop("checked", false);
+    $(`#evaluate_page_4 .image_upload_preview img`).removeAttr("src");
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE4", lastRecordId, function (lastData) {
         $(`#COG1A .choice[value="${lastData.COG1A}"]`).addClass("active");
@@ -923,8 +957,7 @@ $(function () {
         $(`#COG2A`).prop("checked", lastData.COG2A == 1 ? true : false);
         $(`#COG2B`).prop("checked", lastData.COG2B == 1 ? true : false);
         $(`#COG2C`).prop("checked", lastData.COG2C == 1 ? true : false);
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -936,7 +969,7 @@ $(function () {
           true
         );
         $(".image_upload_preview").attr("disabled", "disabled");
-        
+
         $("button.camera").hide();
 
         $("#evaluate_page_4 input[type='checkbox']").prop("disabled", true);
@@ -955,7 +988,10 @@ $(function () {
   $("#evaluate_page_4 .on_camera").on("click", function () {
     navigator.camera.getPicture(
       function (res) {
-        $(".image_upload_preview img").attr('src',`data:image/png;base64,${res}` );
+        $(".image_upload_preview img").attr(
+          "src",
+          `data:image/png;base64,${res}`
+        );
         checkImg();
         vaildateFormEva4();
         $(".modal-dismiss").click();
@@ -969,25 +1005,23 @@ $(function () {
   $("#evaluate_page_4 .on_gallery").on("click", function () {
     $("#on_gallery").click();
     // $(".image_upload_preview img").attr('src',"img/1.jpg");
-
-    
   });
-  $("#on_gallery").change(function() {
+  $("#on_gallery").change(function () {
     readURL(this);
   });
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
-      reader.onload = function(e) {
-        $('.image_upload_preview img').attr('src', e.target.result);
+      reader.onload = function (e) {
+        $(".image_upload_preview img").attr("src", e.target.result);
         checkImg();
         $(".modal-dismiss").click();
-         vaildateFormEva4();
-      }
+        vaildateFormEva4();
+      };
       reader.readAsDataURL(input.files[0]);
     } else {
-      alert('select a file to see preview');
-      $('.image_upload_preview img').removeAttr('src');
+      alert("select a file to see preview");
+      $(".image_upload_preview img").removeAttr("src");
     }
   }
 
@@ -997,7 +1031,7 @@ $(function () {
     if ($(".image_upload_preview").attr("disabled") == "disabled") {
       return false;
     } else {
-      $(".image_upload_preview img").removeAttr("src")
+      $(".image_upload_preview img").removeAttr("src");
       $(".image_upload_preview").hide();
       $("button.camera").show();
     }
@@ -1013,7 +1047,7 @@ $(function () {
   $("#evaluate_page_4 .footer .btn_create_evaluate").on("click", function () {
     $(`#COG1A .choice`).removeClass("active");
     $(`#COG1B .choice`).removeClass("active");
-    $(".image_upload_preview img").removeAttr("src")
+    $(".image_upload_preview img").removeAttr("src");
     $(".image_upload_preview").hide();
     $("button.camera").show();
     $(`#COG2A`).prop("checked", false);
@@ -1038,22 +1072,22 @@ $(function () {
   ).on("click", function () {
     vaildateFormEva4();
   });
-  let EVALUATE_RESULT4
+  let EVALUATE_RESULT4;
   function vaildateFormEva4() {
     if (
       validateForm([
         $("#COG1A .choice.active").val(),
         $("#COG1B .choice.active").val(),
-        $("#evaluate_page_4 .image_upload_preview img").attr("src")
+        $("#evaluate_page_4 .image_upload_preview img").attr("src"),
       ])
     ) {
       $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
         "disabled",
         false
       );
-     let data = setDataEva4()
-     evaluateResult(data).then((res) => {
-      EVALUATE_RESULT4 = res;
+      let data = setDataEva4();
+      evaluateResult(data).then((res) => {
+        EVALUATE_RESULT4 = res;
       });
     } else {
       $("#evaluate_page_4 .step-footer .btn_group .submit").prop(
@@ -1104,14 +1138,14 @@ $(function () {
       $("#evaluate_page_4 .evaluate_page_status ").show();
       $("#evaluate_page_4 .footer").show();
       $("#evaluate_page_4 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(3).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(3).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva4(){
+  function setDataEva4() {
     let COG1A = parseInt($("#COG1A .choice.active").val());
     let COG1B = parseInt($("#COG1B .choice.active").val());
-    let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").prop('src');
+    let COG1C_PIC = $("#evaluate_page_4 .image_upload_preview img").prop("src");
     let COG2A = $("#COG2A").prop("checked") ? 1 : 0;
     let COG2B = $("#COG2B").prop("checked") ? 1 : 0;
     let COG2C = $("#COG2C").prop("checked") ? 1 : 0;
@@ -1129,15 +1163,14 @@ $(function () {
       EVALUATE_SCORE: COG1A + COG1B + COG2A + COG2B + COG2C,
       EVALUATE_RESULT: "",
     };
-    return data
+    return data;
   }
   $("#evaluate_page_4 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      
-      let data = setDataEva4()
-      data.EVALUATE_FLAG=EVALUATE_RESULT4.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT4.EVALUATE_RESULT
+      let data = setDataEva4();
+      data.EVALUATE_FLAG = EVALUATE_RESULT4.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT4.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE4", data, function (inserted_id) {
         console.log(inserted_id);
@@ -1157,10 +1190,14 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_5
   function gotoEvaPage5(lastRecordId) {
     loading.show();
-    
+
     $("#evaluate_page_5 button.choice").removeClass("active");
-    $("#evaluate_page_5 input[type='number'],#evaluate_page_5 input[type='text']").val("")
-    $('#evaluate_page_5 input[type="radio"],#evaluate_page_5 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_5 input[type='number'],#evaluate_page_5 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_5 input[type="radio"],#evaluate_page_5 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE5", lastRecordId, function (lastData) {
         $(`#P2Q1 .choice[value="${lastData.P2Q1}"]`).addClass("active");
@@ -1174,8 +1211,7 @@ $(function () {
         $(`input[name="P9Q7"][value="${lastData.P9Q7}"]`).prop("checked", true);
         $(`input[name="P9Q8"][value="${lastData.P9Q8}"]`).prop("checked", true);
         $(`input[name="P9Q9"][value="${lastData.P9Q9}"]`).prop("checked", true);
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -1216,7 +1252,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT5
+  let EVALUATE_RESULT5;
   $(
     "#evaluate_page_5 .btn-group button,#evaluate_page_5 input[type='radio']"
   ).on("click", function () {
@@ -1251,7 +1287,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva5()
+      let data = setDataEva5();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT5 = res;
       });
@@ -1272,11 +1308,11 @@ $(function () {
       $("#evaluate_page_5 .evaluate_page_status ").show();
       $("#evaluate_page_5 .footer").show();
       $("#evaluate_page_5 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(4).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(4).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva5(){
+  function setDataEva5() {
     let P2Q1 = parseInt($("#P2Q1 .choice.active").val());
     let P2Q2 = parseInt($("#P2Q2 .choice.active").val());
     let P9Q1 = parseInt($('input[name="P9Q1"]:checked').val());
@@ -1318,14 +1354,14 @@ $(function () {
         P9Q9,
       EVALUATE_RESULT: "",
     };
-    return data
+    return data;
   }
   $("#evaluate_page_5 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let data = setDataEva5()
-      data.EVALUATE_FLAG=EVALUATE_RESULT5.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT5.EVALUATE_RESULT
+      let data = setDataEva5();
+      data.EVALUATE_FLAG = EVALUATE_RESULT5.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT5.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE5", data, function (inserted_id) {
         console.log(inserted_id);
@@ -1345,10 +1381,14 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_6
   function gotoEvaPage6(lastRecordId) {
     loading.show();
-    
+
     $("#evaluate_page_6 button.choice").removeClass("active");
-    $("#evaluate_page_6 input[type='number'],#evaluate_page_6 input[type='text']").val("")
-    $('#evaluate_page_6 input[type="radio"],#evaluate_page_6 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_6 input[type='number'],#evaluate_page_6 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_6 input[type="radio"],#evaluate_page_6 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE6", lastRecordId, function (lastData) {
         $(`#OST1 .choice[value="${lastData.OST1}"]`).addClass("active");
@@ -1356,8 +1396,7 @@ $(function () {
         $(`#OST3 .choice[value="${lastData.OST3}"]`).addClass("active");
         $(`#OST4 .choice[value="${lastData.OST4}"]`).addClass("active");
         $(`#OST5 .choice[value="${lastData.OST5}"]`).addClass("active");
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -1394,7 +1433,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT6
+  let EVALUATE_RESULT6;
   $("#evaluate_page_6 .btn-group button").on("click", function () {
     let OST1 = $("#OST1 .choice.active").val();
     let OST2 = $("#OST2 .choice.active").val();
@@ -1406,7 +1445,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva6()
+      let data = setDataEva6();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT6 = res;
       });
@@ -1426,11 +1465,11 @@ $(function () {
       $("#evaluate_page_6 .evaluate_page_status ").show();
       $("#evaluate_page_6 .footer").show();
       $("#evaluate_page_6 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(5).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(5).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva6(){
+  function setDataEva6() {
     let OST1 = parseInt($("#OST1 .choice.active").val());
     let OST2 = parseInt($("#OST2 .choice.active").val());
     let OST3 = parseInt($("#OST3 .choice.active").val());
@@ -1449,15 +1488,14 @@ $(function () {
       EVALUATE_SCORE: OST1 + OST2 + OST3 + OST4 + OST5,
       EVALUATE_RESULT: "",
     };
-    return data
+    return data;
   }
   $("#evaluate_page_6 .step-footer .btn_group .submit").on(
     "click",
     function () {
-     
-      let data = setDataEva6()
-      data.EVALUATE_FLAG=EVALUATE_RESULT6.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT6.EVALUATE_RESULT
+      let data = setDataEva6();
+      data.EVALUATE_FLAG = EVALUATE_RESULT6.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT6.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE6", data, function (inserted_id) {
         console.log(inserted_id);
@@ -1477,16 +1515,19 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_7
   function gotoEvaPage7(lastRecordId) {
     loading.show();
-    
+
     $("#evaluate_page_7 button.choice").removeClass("active");
-    $("#evaluate_page_7 input[type='number'],#evaluate_page_7 input[type='text']").val("")
-    $('#evaluate_page_7 input[type="radio"],#evaluate_page_7 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_7 input[type='number'],#evaluate_page_7 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_7 input[type="radio"],#evaluate_page_7 input[type="checkbox"]'
+    ).prop("checked", false);
     $("#evaluate_page_7 .time p").text(pad(0, 2));
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE7", lastRecordId, function (lastData) {
         $("#evaluate_page_7 .time p").text(pad(lastData.TUG, 2));
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -1520,7 +1561,7 @@ $(function () {
     $("#evaluate_page_7 .step-footer").show();
   });
   // ปุ่ม เริ่มนับเวลา
-  let EVALUATE_RESULT7
+  let EVALUATE_RESULT7;
   $("#evaluate_page_7 .run_time button.play_stop").on("click", function () {
     if ($("#evaluate_page_7 .run_time button.play_stop").hasClass("active")) {
       $("#evaluate_page_7 .run_time button.play_stop").removeClass("active");
@@ -1543,7 +1584,7 @@ $(function () {
         "disabled",
         true
       );
-      let data = setDataEva7()
+      let data = setDataEva7();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT7 = res;
       });
@@ -1561,8 +1602,8 @@ $(function () {
     $("#evaluate_page_7 .step-footer .btn_group .submit").prop(
       "disabled",
       true
-    ); 
-    let data = setDataEva7()
+    );
+    let data = setDataEva7();
     evaluateResult(data).then((res) => {
       EVALUATE_RESULT7 = res;
     });
@@ -1585,11 +1626,11 @@ $(function () {
       $("#evaluate_page_7 .step-footer").hide();
       $("#evaluate_page_7 .evaluate_page_status ").show();
       $("#evaluate_page_7 .footer.evaluate_page_footer ").show();
-      $('#evaluate_detail_page .evaluate_card').eq(6).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(6).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva7(){
+  function setDataEva7() {
     let TUG = parseInt($("#evaluate_page_7 .time p").text());
     let data = {
       ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
@@ -1600,14 +1641,14 @@ $(function () {
       EVALUATE_SCORE: TUG,
       EVALUATE_RESULT: "",
     };
-    return data
+    return data;
   }
   $("#evaluate_page_7 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let data = setDataEva7()
-      data.EVALUATE_FLAG=EVALUATE_RESULT7.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT7.EVALUATE_RESULT
+      let data = setDataEva7();
+      data.EVALUATE_FLAG = EVALUATE_RESULT7.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT7.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE7", data, function (inserted_id) {
         console.log(inserted_id);
@@ -1649,8 +1690,12 @@ $(function () {
   function gotoEvaPage8(lastRecordId) {
     loading.show();
     $("#evaluate_page_8 button.choice").removeClass("active");
-    $("#evaluate_page_8 input[type='number'],#evaluate_page_8 input[type='text']").val("")
-    $('#evaluate_page_8 input[type="radio"],#evaluate_page_8 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_8 input[type='number'],#evaluate_page_8 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_8 input[type="radio"],#evaluate_page_8 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE8", lastRecordId, function (lastData) {
         $(`#EYE1 .choice[value="${lastData.EYE1}"]`).addClass("active");
@@ -1661,8 +1706,7 @@ $(function () {
         $(`#EYE4R .choice[value="${lastData.EYE4R}"]`).addClass("active");
         $(`#EYE5L .choice[value="${lastData.EYE5L}"]`).addClass("active");
         $(`#EYE5R .choice[value="${lastData.EYE5R}"]`).addClass("active");
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -1699,7 +1743,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT8
+  let EVALUATE_RESULT8;
   $("#evaluate_page_8 .btn-group button").on("click", function () {
     let EYE1 = $("#EYE1 .choice.active").val();
     let EYE2 = $("#EYE2 .choice.active").val();
@@ -1715,7 +1759,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva8()
+      let data = setDataEva8();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT8 = res;
       });
@@ -1735,11 +1779,11 @@ $(function () {
       $("#evaluate_page_8 .evaluate_page_status ").show();
       $("#evaluate_page_8 .footer").show();
       $("#evaluate_page_8 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(7).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(7).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva8(){
+  function setDataEva8() {
     let EYE1 = parseInt($("#EYE1 .choice.active").val());
     let EYE2 = parseInt($("#EYE2 .choice.active").val());
     let EYE3L = parseInt($("#EYE3L .choice.active").val());
@@ -1770,10 +1814,9 @@ $(function () {
   $("#evaluate_page_8 .step-footer .btn_group .submit").on(
     "click",
     function () {
-    
-      let data = setDataEva8()
-      data.EVALUATE_FLAG=EVALUATE_RESULT8.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT8.EVALUATE_RESULT
+      let data = setDataEva8();
+      data.EVALUATE_FLAG = EVALUATE_RESULT8.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT8.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE8", data, function (inserted_id) {
         console.log(inserted_id);
@@ -1794,14 +1837,17 @@ $(function () {
   function gotoEvaPage9(lastRecordId) {
     loading.show();
     $("#evaluate_page_9 button.choice").removeClass("active");
-    $("#evaluate_page_9 input[type='number'],#evaluate_page_9 input[type='text']").val("")
-    $('#evaluate_page_9 input[type="radio"],#evaluate_page_9 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_9 input[type='number'],#evaluate_page_9 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_9 input[type="radio"],#evaluate_page_9 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE9", lastRecordId, function (lastData) {
         $(`#RUBR .choice[value="${lastData.RUBR}"]`).addClass("active");
         $(`#RUBL .choice[value="${lastData.RUBL}"]`).addClass("active");
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -1838,7 +1884,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT9
+  let EVALUATE_RESULT9;
   $("#evaluate_page_9 .btn-group button").on("click", function () {
     let RUBL = $("#RUBL .choice.active").val();
     let RUBR = $("#RUBR .choice.active").val();
@@ -1847,7 +1893,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva9()
+      let data = setDataEva9();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT9 = res;
       });
@@ -1867,11 +1913,11 @@ $(function () {
       $("#evaluate_page_9 .evaluate_page_status ").show();
       $("#evaluate_page_9 .footer").show();
       $("#evaluate_page_9 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(8).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(8).click();
     }
   );
   // ปุ่ม บันทึก
-   function setDataEva9(){
+  function setDataEva9() {
     let RUBL = parseInt($("#RUBL .choice.active").val());
     let RUBR = parseInt($("#RUBR .choice.active").val());
 
@@ -1885,14 +1931,14 @@ $(function () {
       EVALUATE_SCORE: RUBL + RUBR,
       EVALUATE_RESULT: "",
     };
-    return data
+    return data;
   }
   $("#evaluate_page_9 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let data = setDataEva9()
-      data.EVALUATE_FLAG=EVALUATE_RESULT9.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT9.EVALUATE_RESULT
+      let data = setDataEva9();
+      data.EVALUATE_FLAG = EVALUATE_RESULT9.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT9.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE9", data, function (inserted_id) {
         console.log(inserted_id);
@@ -1913,8 +1959,12 @@ $(function () {
   function gotoEvaPage10(lastRecordId) {
     loading.show();
     $("#evaluate_page_10 button.choice").removeClass("active");
-    $("#evaluate_page_10 input[type='number'],#evaluate_page_10 input[type='text']").val("")
-    $('#evaluate_page_10 input[type="radio"],#evaluate_page_10 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_10 input[type='number'],#evaluate_page_10 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_10 input[type="radio"],#evaluate_page_10 input[type="checkbox"]'
+    ).prop("checked", false);
     $("#eva10_sub_1").hide();
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE10", lastRecordId, function (lastData) {
@@ -1937,8 +1987,7 @@ $(function () {
         $(`#OSR1C .choice[value="${lastData.OSR1C}"]`).addClass("active");
         $(`#OSR1D .choice[value="${lastData.OSR1D}"]`).addClass("active");
         $(`#OSR2 .choice[value="${lastData.OSR2}"]`).addClass("active");
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -1976,7 +2025,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT10
+  let EVALUATE_RESULT10;
   $("#evaluate_page_10 .btn-group button").on("click", function () {
     let vaidateValue = [];
     let OSR1 = $("#OSR1 .choice.active").val();
@@ -1996,7 +2045,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva10()
+      let data = setDataEva10();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT10 = res;
       });
@@ -2016,51 +2065,50 @@ $(function () {
       $("#evaluate_page_10 .evaluate_page_status ").show();
       $("#evaluate_page_10 .footer").show();
       $("#evaluate_page_10 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(9).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(9).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva10(){
+  function setDataEva10() {
     let OSR1A =
-        $("#OSR1 .choice.active").val() == 0
-          ? 0
-          : parseInt($("#OSR1A .choice.active").val());
-      let OSR1B =
-        $("#OSR1 .choice.active").val() == 0
-          ? 0
-          : parseInt($("#OSR1B .choice.active").val());
-      let OSR1C =
-        $("#OSR1 .choice.active").val() == 0
-          ? 0
-          : parseInt($("#OSR1C .choice.active").val());
-      let OSR1D =
-        $("#OSR1 .choice.active").val() == 0
-          ? 0
-          : parseInt($("#OSR1D .choice.active").val());
-      let OSR2 = parseInt($("#OSR2 .choice.active").val());
+      $("#OSR1 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#OSR1A .choice.active").val());
+    let OSR1B =
+      $("#OSR1 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#OSR1B .choice.active").val());
+    let OSR1C =
+      $("#OSR1 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#OSR1C .choice.active").val());
+    let OSR1D =
+      $("#OSR1 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#OSR1D .choice.active").val());
+    let OSR2 = parseInt($("#OSR2 .choice.active").val());
 
-      let data = {
-        ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
-        EVALUATE_DATE: getCurrentDate(),
-        EVALUATE_NO: 10,
-        OSR1A: OSR1A,
-        OSR1B: OSR1B,
-        OSR1C: OSR1C,
-        OSR1D: OSR1D,
-        OSR2: OSR2,
-        EVALUATE_FLAG: "",
-        EVALUATE_SCORE: OSR1A + OSR1B + OSR1C + OSR1D + OSR2,
-        EVALUATE_RESULT: "",
-      };
-      return data
+    let data = {
+      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      EVALUATE_DATE: getCurrentDate(),
+      EVALUATE_NO: 10,
+      OSR1A: OSR1A,
+      OSR1B: OSR1B,
+      OSR1C: OSR1C,
+      OSR1D: OSR1D,
+      OSR2: OSR2,
+      EVALUATE_FLAG: "",
+      EVALUATE_SCORE: OSR1A + OSR1B + OSR1C + OSR1D + OSR2,
+      EVALUATE_RESULT: "",
+    };
+    return data;
   }
   $("#evaluate_page_10 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      
-      let data = setDataEva10()
-      data.EVALUATE_FLAG=EVALUATE_RESULT10.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT10.EVALUATE_RESULT
+      let data = setDataEva10();
+      data.EVALUATE_FLAG = EVALUATE_RESULT10.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT10.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE10", data, function (inserted_id) {
         console.log(inserted_id);
@@ -2088,8 +2136,12 @@ $(function () {
   function gotoEvaPage11(lastRecordId) {
     loading.show();
     $("#evaluate_page_11 button.choice").removeClass("active");
-    $("#evaluate_page_11 input[type='number'],#evaluate_page_11 input[type='text']").val("")
-    $('#evaluate_page_11 input[type="radio"],#evaluate_page_11 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_11 input[type='number'],#evaluate_page_11 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_11 input[type="radio"],#evaluate_page_11 input[type="checkbox"]'
+    ).prop("checked", false);
     $("#eva11_sub_1").hide();
     $("#eva11_sub_2").hide();
     if (lastRecordId > 0) {
@@ -2125,8 +2177,7 @@ $(function () {
         $(`#ORAL2A .choice[value="${lastData.ORAL2A}"]`).addClass("active");
         $(`#ORAL2B .choice[value="${lastData.ORAL2B}"]`).addClass("active");
         $(`#ORAL2C .choice[value="${lastData.ORAL2C}"]`).addClass("active");
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -2164,7 +2215,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT11
+  let EVALUATE_RESULT11;
   $("#evaluate_page_11 .btn-group button").on("click", function () {
     let ORAL1 = $("#ORAL1 .choice.active").val();
     let ORAL2 = $("#ORAL2 .choice.active").val();
@@ -2190,7 +2241,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva11()
+      let data = setDataEva11();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT11 = res;
       });
@@ -2210,58 +2261,58 @@ $(function () {
       $("#evaluate_page_11 .evaluate_page_status ").show();
       $("#evaluate_page_11 .footer").show();
       $("#evaluate_page_11 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(10).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(10).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva11(){
+  function setDataEva11() {
     let ORAL1A =
-    $("#ORAL1 .choice.active").val() == 0
-      ? 0
-      : parseInt($("#ORAL1A .choice.active").val());
-  let ORAL1B =
-    $("#ORAL1 .choice.active").val() == 0
-      ? 0
-      : parseInt($("#ORAL1B .choice.active").val());
-  let ORAL1C =
-    $("#ORAL1 .choice.active").val() == 0
-      ? 0
-      : parseInt($("#ORAL1C .choice.active").val());
-  let ORAL2A =
-    $("#ORAL2 .choice.active").val() == 0
-      ? 0
-      : parseInt($("#ORAL2A .choice.active").val());
-  let ORAL2B =
-    $("#ORAL2 .choice.active").val() == 0
-      ? 0
-      : parseInt($("#ORAL2B .choice.active").val());
-  let ORAL2C =
-    $("#ORAL2 .choice.active").val() == 0
-      ? 0
-      : parseInt($("#ORAL2C .choice.active").val());
+      $("#ORAL1 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#ORAL1A .choice.active").val());
+    let ORAL1B =
+      $("#ORAL1 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#ORAL1B .choice.active").val());
+    let ORAL1C =
+      $("#ORAL1 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#ORAL1C .choice.active").val());
+    let ORAL2A =
+      $("#ORAL2 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#ORAL2A .choice.active").val());
+    let ORAL2B =
+      $("#ORAL2 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#ORAL2B .choice.active").val());
+    let ORAL2C =
+      $("#ORAL2 .choice.active").val() == 0
+        ? 0
+        : parseInt($("#ORAL2C .choice.active").val());
 
-  let data = {
-    ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
-    EVALUATE_DATE: getCurrentDate(),
-    EVALUATE_NO: 11,
-    ORAL1A: ORAL1A,
-    ORAL1B: ORAL1B,
-    ORAL1C: ORAL1C,
-    ORAL2A: ORAL2A,
-    ORAL2B: ORAL2B,
-    ORAL2C: ORAL2C,
-    EVALUATE_FLAG: "",
-    EVALUATE_SCORE: ORAL1A + ORAL1B + ORAL1C + ORAL2A + ORAL2B + ORAL2C,
-    EVALUATE_RESULT: "",
-  };
-  return data
+    let data = {
+      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      EVALUATE_DATE: getCurrentDate(),
+      EVALUATE_NO: 11,
+      ORAL1A: ORAL1A,
+      ORAL1B: ORAL1B,
+      ORAL1C: ORAL1C,
+      ORAL2A: ORAL2A,
+      ORAL2B: ORAL2B,
+      ORAL2C: ORAL2C,
+      EVALUATE_FLAG: "",
+      EVALUATE_SCORE: ORAL1A + ORAL1B + ORAL1C + ORAL2A + ORAL2B + ORAL2C,
+      EVALUATE_RESULT: "",
+    };
+    return data;
   }
   $("#evaluate_page_11 .step-footer .btn_group .submit").on(
     "click",
     function () {
-      let data = setDataEva11()
-      data.EVALUATE_FLAG=EVALUATE_RESULT11.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT11.EVALUATE_RESULT
+      let data = setDataEva11();
+      data.EVALUATE_FLAG = EVALUATE_RESULT11.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT11.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE11", data, function (inserted_id) {
         console.log(inserted_id);
@@ -2289,8 +2340,12 @@ $(function () {
   function gotoEvaPage12(lastRecordId) {
     loading.show();
     $("#evaluate_page_12 button.choice").removeClass("active");
-    $("#evaluate_page_12 input[type='number'],#evaluate_page_12 input[type='text']").val("")
-    $('#evaluate_page_12 input[type="radio"],#evaluate_page_12 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_12 input[type='number'],#evaluate_page_12 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_12 input[type="radio"],#evaluate_page_12 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE12", lastRecordId, function (lastData) {
         $(`#NUTRI1 .choice[value="${lastData.NUTRI1}"]`).addClass("active");
@@ -2379,8 +2434,7 @@ $(function () {
           "checked",
           true
         );
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -2420,7 +2474,7 @@ $(function () {
     $(this).addClass("active");
   });
   // เช็คค่าในแบบประเมินเพื่อเปิดปุ่มบันทึก
-  let EVALUATE_RESULT12
+  let EVALUATE_RESULT12;
   $(
     "#evaluate_page_12 .btn-group button,#evaluate_page_12 input[type='radio']"
   ).on("click", function () {
@@ -2478,7 +2532,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva12()
+      let data = setDataEva12();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT12 = res;
       });
@@ -2499,11 +2553,11 @@ $(function () {
       $("#evaluate_page_12 .evaluate_page_status ").show();
       $("#evaluate_page_12 .footer").show();
       $("#evaluate_page_12 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(11).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(11).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva12(){
+  function setDataEva12() {
     let NUTRI1 = parseFloat($("#NUTRI1 .choice.active").val());
     let NUTRI2 = parseFloat($("#NUTRI2 .choice.active").val());
     let MNA1A = parseFloat($('input[name="MNA1A"]:checked').val());
@@ -2557,40 +2611,39 @@ $(function () {
       MNA2L: MNA2L,
       EVALUATE_FLAG: "",
       EVALUATE_SCORE:
-      NUTRI1 +
-      NUTRI2 +
-      MNA1A +
-      MNA1B +
-      MNA1C +
-      MNA1D +
-      MNA1E +
-      MNA1F +
-      MNA1G +
-      MNA2A +
-      MNA2B +
-      MNA2C +
-      MNA2D +
-      MNA2EA +
-      MNA2EB +
-      MNA2EC +
-      MNA2F +
-      MNA2G +
-      MNA2H +
-      MNA2I +
-      MNA2J +
-      MNA2K +
-      MNA2L,
+        NUTRI1 +
+        NUTRI2 +
+        MNA1A +
+        MNA1B +
+        MNA1C +
+        MNA1D +
+        MNA1E +
+        MNA1F +
+        MNA1G +
+        MNA2A +
+        MNA2B +
+        MNA2C +
+        MNA2D +
+        MNA2EA +
+        MNA2EB +
+        MNA2EC +
+        MNA2F +
+        MNA2G +
+        MNA2H +
+        MNA2I +
+        MNA2J +
+        MNA2K +
+        MNA2L,
       EVALUATE_RESULT: "",
     };
-    return data
+    return data;
   }
   $("#evaluate_page_12 .step-footer .btn_group .submit").on(
     "click",
     function () {
-     
-      let data = setDataEva12()
-      data.EVALUATE_FLAG=EVALUATE_RESULT12.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT12.EVALUATE_RESULT
+      let data = setDataEva12();
+      data.EVALUATE_FLAG = EVALUATE_RESULT12.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT12.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE12", data, function (inserted_id) {
         console.log(inserted_id);
@@ -2618,8 +2671,12 @@ $(function () {
   function gotoEvaPage13(lastRecordId) {
     loading.show();
     $("#evaluate_page_13 button.choice").removeClass("active");
-    $("#evaluate_page_13 input[type='number'],#evaluate_page_13 input[type='text']").val("")
-    $('#evaluate_page_13 input[type="radio"],#evaluate_page_13 input[type="checkbox"]').prop("checked", false);
+    $(
+      "#evaluate_page_13 input[type='number'],#evaluate_page_13 input[type='text']"
+    ).val("");
+    $(
+      '#evaluate_page_13 input[type="radio"],#evaluate_page_13 input[type="checkbox"]'
+    ).prop("checked", false);
     if (lastRecordId > 0) {
       queryByID("VHV_TR_EVALUATE13", lastRecordId, function (lastData) {
         $(`input[name="ADL1"][value="${lastData.ADL1}"]`).prop("checked", true);
@@ -2635,8 +2692,7 @@ $(function () {
           "checked",
           true
         );
-        evaluateResult(lastData).then((res) => {
-        });
+        evaluateResult(lastData).then((res) => {});
       });
     }
     setTimeout(function () {
@@ -2703,7 +2759,7 @@ $(function () {
         "disabled",
         false
       );
-      let data = setDataEva13()
+      let data = setDataEva13();
       evaluateResult(data).then((res) => {
         EVALUATE_RESULT13 = res;
       });
@@ -2723,11 +2779,11 @@ $(function () {
       $("#evaluate_page_13 .evaluate_page_status ").show();
       $("#evaluate_page_13 .footer").show();
       $("#evaluate_page_13 .step-footer").hide();
-      $('#evaluate_detail_page .evaluate_card').eq(12).click() 
+      $("#evaluate_detail_page .evaluate_card").eq(12).click();
     }
   );
   // ปุ่ม บันทึก
-  function setDataEva13(){
+  function setDataEva13() {
     let ADL1 = parseInt($('input[name="ADL1"]:checked').val());
     let ADL2 = parseInt($('input[name="ADL2"]:checked').val());
     let ADL3 = parseInt($('input[name="ADL3"]:checked').val());
@@ -2762,11 +2818,9 @@ $(function () {
   $("#evaluate_page_13 .step-footer .btn_group .submit").on(
     "click",
     function () {
-     
-      
-      let data = setDataEva13()
-      data.EVALUATE_FLAG=EVALUATE_RESULT13.EVALUATE_FLAG
-      data.EVALUATE_RESULT=EVALUATE_RESULT13.EVALUATE_RESULT
+      let data = setDataEva13();
+      data.EVALUATE_FLAG = EVALUATE_RESULT13.EVALUATE_FLAG;
+      data.EVALUATE_RESULT = EVALUATE_RESULT13.EVALUATE_RESULT;
       console.log(data);
       sqlInsert("VHV_TR_EVALUATE13", data, function (inserted_id) {
         console.log(inserted_id);
@@ -2802,8 +2856,8 @@ $(function () {
   }
   //check img
   function checkImg() {
-    let img = $(".image_upload_preview img").prop('src');
-    console.log(img)
+    let img = $(".image_upload_preview img").prop("src");
+    console.log(img);
     if (img.length == 0) {
       $(".image_upload_preview").hide();
       $("button.camera").show();
@@ -2826,41 +2880,67 @@ $(function () {
   }
   function evaluateResult(data) {
     return new Promise((resolve, reject) => {
-      let result
+      let result;
       queryALL("VHV_MA_EVALUATE", function (evaResultAll) {
         let evaResult = evaResultAll.filter(
           (item) => item.EVALUATE_NO == data.EVALUATE_NO
         );
-        console.log(evaResult)
+        console.log(evaResult);
         if (data.EVALUATE_NO != 2) {
-           result = evaResult.find(
-            (item) => parseFloat(item.EVALUATE_MIN) <=parseFloat(data.EVALUATE_SCORE) &&parseFloat(item.EVALUATE_MAX) >= parseFloat(data.EVALUATE_SCORE)
-            
+          result = evaResult.find(
+            (item) =>
+              parseFloat(item.EVALUATE_MIN) <=
+                parseFloat(data.EVALUATE_SCORE) &&
+              parseFloat(item.EVALUATE_MAX) >= parseFloat(data.EVALUATE_SCORE)
           );
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).removeClass('alert')
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`).eq(1).text(result.EVALUATE_RESULT)
-          if(result.EVALUATE_FLAG==1){
-            $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).addClass('alert')
+          $(
+            `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+          ).removeClass("alert");
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
+            .eq(1)
+            .text(result.EVALUATE_RESULT);
+          if (result.EVALUATE_FLAG == 1) {
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert");
           }
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(3000);
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(
+            3000
+          );
         } else {
           let RESULTSBP = evaResult.find(
-            (item) =>  parseFloat(item.EVALUATE_SUBNO)==1 &&parseFloat(item.EVALUATE_MIN) <=parseFloat(data.SCORESBP) &&parseFloat(item.EVALUATE_MAX) >= parseFloat(data.SCORESBP)
+            (item) =>
+              parseFloat(item.EVALUATE_SUBNO) == 1 &&
+              parseFloat(item.EVALUATE_MIN) <= parseFloat(data.SCORESBP) &&
+              parseFloat(item.EVALUATE_MAX) >= parseFloat(data.SCORESBP)
           );
-   
+
           let RESULTDBP = evaResult.find(
-            (item) => parseFloat(item.EVALUATE_SUBNO)==2 &&parseFloat(item.EVALUATE_MIN) <=parseFloat(data.SCOREDBP) &&parseFloat(item.EVALUATE_MAX) >= parseFloat(data.SCOREDBP)
+            (item) =>
+              parseFloat(item.EVALUATE_SUBNO) == 2 &&
+              parseFloat(item.EVALUATE_MIN) <= parseFloat(data.SCOREDBP) &&
+              parseFloat(item.EVALUATE_MAX) >= parseFloat(data.SCOREDBP)
           );
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).removeClass('alert')
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`).eq(1).html(`ตัวบน : ${RESULTSBP.EVALUATE_RESULT} <br>ตัวล่าง : ${RESULTDBP.EVALUATE_RESULT}`)
-          if(RESULTSBP.EVALUATE_FLAG==1||RESULTDBP.EVALUATE_FLAG==1){
-            $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).addClass('alert')
+          $(
+            `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+          ).removeClass("alert");
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
+            .eq(1)
+            .html(
+              `ตัวบน : ${RESULTSBP.EVALUATE_RESULT} <br>ตัวล่าง : ${RESULTDBP.EVALUATE_RESULT}`
+            );
+          if (RESULTSBP.EVALUATE_FLAG == 1 || RESULTDBP.EVALUATE_FLAG == 1) {
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert");
           }
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(3000);
-          result={RESULTSBP,RESULTDBP}
-          console.log(result)
+          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(
+            3000
+          );
+          result = { RESULTSBP, RESULTDBP };
+          console.log(result);
         }
-       
+
         resolve(result);
       });
     });
