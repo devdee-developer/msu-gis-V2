@@ -118,12 +118,12 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_detail_page ----------------------------------------------------------------------------- */
   // StepProgresse
   function reloadEvaluateList() {
-    let elder_id = $("#evaluate_page .status-card").attr("ELDER_ID");
+    let elder_id = $("#modal-evaluate-detail .status-card").attr("ELDER_ID");
     let evaluateData = [];
     console.log(elder_id);
     queryALL("VHV_TR_ELDER", function (ELDER) {
       $("#evaluate_detail_page .contact_items").html(
-        renderElderCard(ELDER.find((item) => (item.ID = elder_id)))
+        renderElderCard(ELDER.find((item) => (item.ID == elder_id)))
       );
     });
     queryALL("VHV_TR_EVALUATE1", function (EVALUATE1) {

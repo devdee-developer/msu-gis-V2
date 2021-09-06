@@ -19,11 +19,12 @@ $(function () {
       console.log(`sync all result`, result);
       //ถ้า sycn สำเร็จ Initial ใหม่
       queryALL("VHV_TR_VHV", function (vhv_tr_vhv) {
+        let serverVersion = result.find((item)=>item.status==true).CURRENT_VERSION
         console.log(
-          `local version :${vhv_tr_vhv[0].MB_VERSION} ,server version:${result[0].CURRENT_VERSION}`
+          `local version :${vhv_tr_vhv[0].MB_VERSION} ,server version:${serverVersion}`
         );
         //ถ้า version ไม่เท่ากัน Initial ใหม่
-        if (vhv_tr_vhv[0].MB_VERSION < result[0].CURRENT_VERSION) {
+        if (vhv_tr_vhv[0].MB_VERSION < serverVersion) {
           getInitial();
         }
       });
