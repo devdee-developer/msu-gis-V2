@@ -70,7 +70,7 @@ $(function () {
           time +
           " น.";
       }
-      $("#modal-evaluate-detail .status-card").attr("ELDER_ID", item.rowid);
+      $("#modal-evaluate-detail .status-card").attr("ELDER_ID", item.ID);
       $("#evaluate_recommend").hide();
       $("#modal-evaluate-detail .thumbnail").attr("src", item.ELDER_AVATAR);
       $("#modal-evaluate-detail .name").text(item.ELDER_NAME);
@@ -123,6 +123,7 @@ $(function () {
 
   $("#evaluate_page .contact_items").on("click", "li", function () {
     queryByID("VHV_TR_ELDER", $(this).attr("ELDER_ID"), function (res) {
+     console.log(res)
       renderModal(res);
     });
     // $("#modal-evaluate-detail .status-card").attr(
@@ -652,7 +653,7 @@ $(function () {
       '#evaluate_page_1 input[type="radio"],#evaluate_page_1 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE1", lastRecordId, function (lastData) {
+      queryByRowID("VHV_TR_EVALUATE1", lastRecordId, function (lastData) {
         $("#DTX").val(lastData.DTX);
         evaluateResult(lastData).then((res) => {});
       });
@@ -766,7 +767,7 @@ $(function () {
       '#evaluate_page_2 input[type="radio"],#evaluate_page_2 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE2", lastRecordId, function (lastData) {
+      queryByRowID("VHV_TR_EVALUATE2", lastRecordId, function (lastData) {
         $("#blood_pressure_up").val(lastData.SBP);
         $("#blood_pressure_down").val(lastData.DBP);
         evaluateResult(lastData).then((res) => {});
@@ -898,14 +899,14 @@ $(function () {
       '#evaluate_page_3 input[type="radio"],#evaluate_page_3 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE3", lastRecordId, function (lastData) {
-        $(`#CVD1 .choice[value="${lastData.CVD1}"]`).addClass("active");
-        $(`#CVD2 .choice[value="${lastData.CVD2}"]`).addClass("active");
-        $(`#CVD3 .choice[value="${lastData.CVD3}"]`).addClass("active");
-        $(`#CVD4 .choice[value="${lastData.CVD4}"]`).addClass("active");
-        $(`#CVD5 .choice[value="${lastData.CVD5}"]`).addClass("active");
-        $(`#CVD6 .choice[value="${lastData.CVD6}"]`).addClass("active");
-        $(`#CVD7 .choice[value="${lastData.CVD7}"]`).addClass("active");
+      queryByRowID("VHV_TR_EVALUATE3", lastRecordId, function (lastData) {
+        $(`#CVD1 .choice[value="${parseInt(lastData.CVD1)}"]`).addClass("active");
+        $(`#CVD2 .choice[value="${parseInt(lastData.CVD2)}"]`).addClass("active");
+        $(`#CVD3 .choice[value="${parseInt(lastData.CVD3)}"]`).addClass("active");
+        $(`#CVD4 .choice[value="${parseInt(lastData.CVD4)}"]`).addClass("active");
+        $(`#CVD5 .choice[value="${parseInt(lastData.CVD5)}"]`).addClass("active");
+        $(`#CVD6 .choice[value="${parseInt(lastData.CVD6)}"]`).addClass("active");
+        $(`#CVD7 .choice[value="${parseInt(lastData.CVD7)}"]`).addClass("active");
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1046,11 +1047,10 @@ $(function () {
     ).prop("checked", false);
     $(`#evaluate_page_4 .image_upload_preview img`).removeAttr("src");
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE4", lastRecordId, function (lastData) {
-        console.log(`#COG1A .choice[value="${lastData.COG1A}"]`);
-        $(`#COG1A .choice[value="${lastData.COG1A}"]`).addClass("active");
+      queryByRowID("VHV_TR_EVALUATE4", lastRecordId, function (lastData) {
+        $(`#COG1A .choice[value="${parseInt(lastData.COG1A)}"]`).addClass("active");
 
-        $(`#COG1B .choice[value="${lastData.COG1B}"]`).addClass("active");
+        $(`#COG1B .choice[value="${parseInt(lastData.COG1B)}"]`).addClass("active");
         $(`#evaluate_page_4 .image_upload_preview img`).attr(
           "src",
           lastData.COG1C_PIC
@@ -1300,18 +1300,18 @@ $(function () {
       '#evaluate_page_5 input[type="radio"],#evaluate_page_5 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE5", lastRecordId, function (lastData) {
-        $(`#P2Q1 .choice[value="${lastData.P2Q1}"]`).addClass("active");
-        $(`#P2Q2 .choice[value="${lastData.P2Q2}"]`).addClass("active");
-        $(`input[name="P9Q1"][value="${lastData.P9Q1}"]`).prop("checked", true);
-        $(`input[name="P9Q2"][value="${lastData.P9Q2}"]`).prop("checked", true);
-        $(`input[name="P9Q3"][value="${lastData.P9Q3}"]`).prop("checked", true);
-        $(`input[name="P9Q4"][value="${lastData.P9Q4}"]`).prop("checked", true);
-        $(`input[name="P9Q5"][value="${lastData.P9Q5}"]`).prop("checked", true);
-        $(`input[name="P9Q6"][value="${lastData.P9Q6}"]`).prop("checked", true);
-        $(`input[name="P9Q7"][value="${lastData.P9Q7}"]`).prop("checked", true);
-        $(`input[name="P9Q8"][value="${lastData.P9Q8}"]`).prop("checked", true);
-        $(`input[name="P9Q9"][value="${lastData.P9Q9}"]`).prop("checked", true);
+      queryByRowID("VHV_TR_EVALUATE5", lastRecordId, function (lastData) {
+        $(`#P2Q1 .choice[value="${parseInt(lastData.P2Q1)}"]`).addClass("active");
+        $(`#P2Q2 .choice[value="${parseInt(lastData.P2Q2)}"]`).addClass("active");
+        $(`input[name="P9Q1"][value="${parseInt(lastData.P9Q1)}"]`).prop("checked", true);
+        $(`input[name="P9Q2"][value="${parseInt(lastData.P9Q2)}"]`).prop("checked", true);
+        $(`input[name="P9Q3"][value="${parseInt(lastData.P9Q3)}"]`).prop("checked", true);
+        $(`input[name="P9Q4"][value="${parseInt(lastData.P9Q4)}"]`).prop("checked", true);
+        $(`input[name="P9Q5"][value="${parseInt(lastData.P9Q5)}"]`).prop("checked", true);
+        $(`input[name="P9Q6"][value="${parseInt(lastData.P9Q6)}"]`).prop("checked", true);
+        $(`input[name="P9Q7"][value="${parseInt(lastData.P9Q7)}"]`).prop("checked", true);
+        $(`input[name="P9Q8"][value="${parseInt(lastData.P9Q8)}"]`).prop("checked", true);
+        $(`input[name="P9Q9"][value="${parseInt(lastData.P9Q9)}"]`).prop("checked", true);
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1491,12 +1491,12 @@ $(function () {
       '#evaluate_page_6 input[type="radio"],#evaluate_page_6 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE6", lastRecordId, function (lastData) {
-        $(`#OST1 .choice[value="${lastData.OST1}"]`).addClass("active");
-        $(`#OST2 .choice[value="${lastData.OST2}"]`).addClass("active");
-        $(`#OST3 .choice[value="${lastData.OST3}"]`).addClass("active");
-        $(`#OST4 .choice[value="${lastData.OST4}"]`).addClass("active");
-        $(`#OST5 .choice[value="${lastData.OST5}"]`).addClass("active");
+      queryByRowID("VHV_TR_EVALUATE6", lastRecordId, function (lastData) {
+        $(`#OST1 .choice[value="${parseInt(lastData.OST1)}"]`).addClass("active");
+        $(`#OST2 .choice[value="${parseInt(lastData.OST2)}"]`).addClass("active");
+        $(`#OST3 .choice[value="${parseInt(lastData.OST3)}"]`).addClass("active");
+        $(`#OST4 .choice[value="${parseInt(lastData.OST4)}"]`).addClass("active");
+        $(`#OST5 .choice[value="${parseInt(lastData.OST5)}"]`).addClass("active");
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1626,7 +1626,7 @@ $(function () {
     ).prop("checked", false);
     $("#evaluate_page_7 .time p").text(pad(0, 2));
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE7", lastRecordId, function (lastData) {
+      queryByRowID("VHV_TR_EVALUATE7", lastRecordId, function (lastData) {
         $("#evaluate_page_7 .time p").text(pad(lastData.TUG, 2));
         evaluateResult(lastData).then((res) => {});
       });
@@ -1798,15 +1798,15 @@ $(function () {
       '#evaluate_page_8 input[type="radio"],#evaluate_page_8 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE8", lastRecordId, function (lastData) {
-        $(`#EYE1 .choice[value="${lastData.EYE1}"]`).addClass("active");
-        $(`#EYE2 .choice[value="${lastData.EYE2}"]`).addClass("active");
-        $(`#EYE3L .choice[value="${lastData.EYE3L}"]`).addClass("active");
-        $(`#EYE3R .choice[value="${lastData.EYE3R}"]`).addClass("active");
-        $(`#EYE4L .choice[value="${lastData.EYE4L}"]`).addClass("active");
-        $(`#EYE4R .choice[value="${lastData.EYE4R}"]`).addClass("active");
-        $(`#EYE5L .choice[value="${lastData.EYE5L}"]`).addClass("active");
-        $(`#EYE5R .choice[value="${lastData.EYE5R}"]`).addClass("active");
+      queryByRowID("VHV_TR_EVALUATE8", lastRecordId, function (lastData) {
+        $(`#EYE1 .choice[value="${parseInt(lastData.EYE1)}"]`).addClass("active");
+        $(`#EYE2 .choice[value="${parseInt(lastData.EYE2)}"]`).addClass("active");
+        $(`#EYE3L .choice[value="${parseInt(lastData.EYE3L)}"]`).addClass("active");
+        $(`#EYE3R .choice[value="${parseInt(lastData.EYE3R)}"]`).addClass("active");
+        $(`#EYE4L .choice[value="${parseInt(lastData.EYE4L)}"]`).addClass("active");
+        $(`#EYE4R .choice[value="${parseInt(lastData.EYE4R)}"]`).addClass("active");
+        $(`#EYE5L .choice[value="${parseInt(lastData.EYE5L)}"]`).addClass("active");
+        $(`#EYE5R .choice[value="${parseInt(lastData.EYE5R)}"]`).addClass("active");
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -1945,9 +1945,9 @@ $(function () {
       '#evaluate_page_9 input[type="radio"],#evaluate_page_9 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE9", lastRecordId, function (lastData) {
-        $(`#RUBR .choice[value="${lastData.RUBR}"]`).addClass("active");
-        $(`#RUBL .choice[value="${lastData.RUBL}"]`).addClass("active");
+      queryByRowID("VHV_TR_EVALUATE9", lastRecordId, function (lastData) {
+        $(`#RUBR .choice[value="${parseInt(lastData.RUBR)}"]`).addClass("active");
+        $(`#RUBL .choice[value="${parseInt(lastData.RUBL)}"]`).addClass("active");
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -2068,7 +2068,7 @@ $(function () {
     ).prop("checked", false);
     $("#eva10_sub_1").hide();
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE10", lastRecordId, function (lastData) {
+      queryByRowID("VHV_TR_EVALUATE10", lastRecordId, function (lastData) {
         if (
           parseFloat(lastData.OSR1A) +
             parseFloat(lastData.OSR1B) +
@@ -2083,11 +2083,11 @@ $(function () {
           $("#eva10_sub_1").hide();
         }
 
-        $(`#OSR1A .choice[value="${lastData.OSR1A}"]`).addClass("active");
-        $(`#OSR1B .choice[value="${lastData.OSR1B}"]`).addClass("active");
-        $(`#OSR1C .choice[value="${lastData.OSR1C}"]`).addClass("active");
-        $(`#OSR1D .choice[value="${lastData.OSR1D}"]`).addClass("active");
-        $(`#OSR2 .choice[value="${lastData.OSR2}"]`).addClass("active");
+        $(`#OSR1A .choice[value="${parseInt(lastData.OSR1A)}"]`).addClass("active");
+        $(`#OSR1B .choice[value="${parseInt(lastData.OSR1B)}"]`).addClass("active");
+        $(`#OSR1C .choice[value="${parseInt(lastData.OSR1C)}"]`).addClass("active");
+        $(`#OSR1D .choice[value="${parseInt(lastData.OSR1D)}"]`).addClass("active");
+        $(`#OSR2 .choice[value="${parseInt(lastData.OSR2)}"]`).addClass("active");
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -2246,7 +2246,7 @@ $(function () {
     $("#eva11_sub_1").hide();
     $("#eva11_sub_2").hide();
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE11", lastRecordId, function (lastData) {
+      queryByRowID("VHV_TR_EVALUATE11", lastRecordId, function (lastData) {
         if (
           parseFloat(lastData.ORAL1A) +
             parseFloat(lastData.ORAL1B) +
@@ -2272,12 +2272,12 @@ $(function () {
           $("#eva11_sub_2").hide();
         }
 
-        $(`#ORAL1A .choice[value="${lastData.ORAL1A}"]`).addClass("active");
-        $(`#ORAL1B .choice[value="${lastData.ORAL1B}"]`).addClass("active");
-        $(`#ORAL1C .choice[value="${lastData.ORAL1C}"]`).addClass("active");
-        $(`#ORAL2A .choice[value="${lastData.ORAL2A}"]`).addClass("active");
-        $(`#ORAL2B .choice[value="${lastData.ORAL2B}"]`).addClass("active");
-        $(`#ORAL2C .choice[value="${lastData.ORAL2C}"]`).addClass("active");
+        $(`#ORAL1A .choice[value="${parseInt(lastData.ORAL1A)}"]`).addClass("active");
+        $(`#ORAL1B .choice[value="${parseInt(lastData.ORAL1B)}"]`).addClass("active");
+        $(`#ORAL1C .choice[value="${parseInt(lastData.ORAL1C)}"]`).addClass("active");
+        $(`#ORAL2A .choice[value="${parseInt(lastData.ORAL2A)}"]`).addClass("active");
+        $(`#ORAL2B .choice[value="${parseInt(lastData.ORAL2B)}"]`).addClass("active");
+        $(`#ORAL2C .choice[value="${parseInt(lastData.ORAL2C)}"]`).addClass("active");
         evaluateResult(lastData).then((res) => {});
       });
     }
@@ -2448,90 +2448,90 @@ $(function () {
       '#evaluate_page_12 input[type="radio"],#evaluate_page_12 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE12", lastRecordId, function (lastData) {
-        $(`#NUTRI1 .choice[value="${lastData.NUTRI1}"]`).addClass("active");
-        $(`#NUTRI2 .choice[value="${lastData.NUTRI2}"]`).addClass("active");
-        $(`input[name="MNA1A"][value="${lastData.MNA1A}"]`).prop(
+      queryByRowID("VHV_TR_EVALUATE12", lastRecordId, function (lastData) {
+        $(`#NUTRI1 .choice[value="${parseInt(lastData.NUTRI1)}"]`).addClass("active");
+        $(`#NUTRI2 .choice[value="${parseInt(lastData.NUTRI2)}"]`).addClass("active");
+        $(`input[name="MNA1A"][value="${parseInt(lastData.MNA1A)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA1B"][value="${lastData.MNA1B}"]`).prop(
+        $(`input[name="MNA1B"][value="${parseInt(lastData.MNA1B)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA1C"][value="${lastData.MNA1C}"]`).prop(
+        $(`input[name="MNA1C"][value="${parseInt(lastData.MNA1C)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA1D"][value="${lastData.MNA1D}"]`).prop(
+        $(`input[name="MNA1D"][value="${parseInt(lastData.MNA1D)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA1E"][value="${lastData.MNA1E}"]`).prop(
+        $(`input[name="MNA1E"][value="${parseInt(lastData.MNA1E)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA1F"][value="${lastData.MNA1F}"]`).prop(
+        $(`input[name="MNA1F"][value="${parseInt(lastData.MNA1F)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA1G"][value="${lastData.MNA1G}"]`).prop(
+        $(`input[name="MNA1G"][value="${parseInt(lastData.MNA1G)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2A"][value="${lastData.MNA2A}"]`).prop(
+        $(`input[name="MNA2A"][value="${parseInt(lastData.MNA2A)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2B"][value="${lastData.MNA2B}"]`).prop(
+        $(`input[name="MNA2B"][value="${parseInt(lastData.MNA2B)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2C"][value="${lastData.MNA2C}"]`).prop(
+        $(`input[name="MNA2C"][value="${parseInt(lastData.MNA2C)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2D"][value="${lastData.MNA2D}"]`).prop(
+        $(`input[name="MNA2D"][value="${parseInt(lastData.MNA2D)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2EA"][value="${lastData.MNA2EA}"]`).prop(
+        $(`input[name="MNA2EA"][value="${parseFloat(lastData.MNA2EA).toFixed(1)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2EB"][value="${lastData.MNA2EB}"]`).prop(
+        $(`input[name="MNA2EB"][value="${parseFloat(lastData.MNA2EB).toFixed(1)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2EC"][value="${lastData.MNA2EC}"]`).prop(
+        $(`input[name="MNA2EC"][value="${parseFloat(lastData.MNA2EC).toFixed(1)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2F"][value="${lastData.MNA2F}"]`).prop(
+        $(`input[name="MNA2F"][value="${parseInt(lastData.MNA2F)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2G"][value="${lastData.MNA2G}"]`).prop(
+        $(`input[name="MNA2G"][value="${parseInt(lastData.MNA2G)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2H"][value="${lastData.MNA2H}"]`).prop(
+        $(`input[name="MNA2H"][value="${parseInt(lastData.MNA2H)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2I"][value="${lastData.MNA2I}"]`).prop(
+        $(`input[name="MNA2I"][value="${parseInt(lastData.MNA2I)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2J"][value="${lastData.MNA2J}"]`).prop(
+        $(`input[name="MNA2J"][value="${parseInt(lastData.MNA2J)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2K"][value="${lastData.MNA2K}"]`).prop(
+        $(`input[name="MNA2K"][value="${parseInt(lastData.MNA2K)}"]`).prop(
           "checked",
           true
         );
-        $(`input[name="MNA2L"][value="${lastData.MNA2L}"]`).prop(
+        $(`input[name="MNA2L"][value="${parseInt(lastData.MNA2L)}"]`).prop(
           "checked",
           true
         );
@@ -2779,17 +2779,17 @@ $(function () {
       '#evaluate_page_13 input[type="radio"],#evaluate_page_13 input[type="checkbox"]'
     ).prop("checked", false);
     if (lastRecordId > 0) {
-      queryByID("VHV_TR_EVALUATE13", lastRecordId, function (lastData) {
-        $(`input[name="ADL1"][value="${lastData.ADL1}"]`).prop("checked", true);
-        $(`input[name="ADL2"][value="${lastData.ADL2}"]`).prop("checked", true);
-        $(`input[name="ADL3"][value="${lastData.ADL3}"]`).prop("checked", true);
-        $(`input[name="ADL4"][value="${lastData.ADL4}"]`).prop("checked", true);
-        $(`input[name="ADL5"][value="${lastData.ADL5}"]`).prop("checked", true);
-        $(`input[name="ADL6"][value="${lastData.ADL6}"]`).prop("checked", true);
-        $(`input[name="ADL7"][value="${lastData.ADL7}"]`).prop("checked", true);
-        $(`input[name="ADL8"][value="${lastData.ADL8}"]`).prop("checked", true);
-        $(`input[name="ADL9"][value="${lastData.ADL9}"]`).prop("checked", true);
-        $(`input[name="ADL10"][value="${lastData.ADL10}"]`).prop(
+      queryByRowID("VHV_TR_EVALUATE13", lastRecordId, function (lastData) {
+        $(`input[name="ADL1"][value="${parseInt(lastData.ADL1)}"]`).prop("checked", true);
+        $(`input[name="ADL2"][value="${parseInt(lastData.ADL2)}"]`).prop("checked", true);
+        $(`input[name="ADL3"][value="${parseInt(lastData.ADL3)}"]`).prop("checked", true);
+        $(`input[name="ADL4"][value="${parseInt(lastData.ADL4)}"]`).prop("checked", true);
+        $(`input[name="ADL5"][value="${parseInt(lastData.ADL5)}"]`).prop("checked", true);
+        $(`input[name="ADL6"][value="${parseInt(lastData.ADL6)}"]`).prop("checked", true);
+        $(`input[name="ADL7"][value="${parseInt(lastData.ADL7)}"]`).prop("checked", true);
+        $(`input[name="ADL8"][value="${parseInt(lastData.ADL8)}"]`).prop("checked", true);
+        $(`input[name="ADL9"][value="${parseInt(lastData.ADL9)}"]`).prop("checked", true);
+        $(`input[name="ADL10"][value="${parseInt(lastData.ADL10)}"]`).prop(
           "checked",
           true
         );

@@ -1170,10 +1170,30 @@ function sqlInsert(table, data, _callback) {
 }
 function queryByID(TABLE, ID, _callback) {
   var arr = [];
-  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(ID));
+  console.log("SELECT rowid,* FROM " + TABLE + " WHERE ID=" + parseInt(ID));
   db.transaction(function (tx) {
     tx.executeSql(
-      "SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(ID),
+      "SELECT rowid,* FROM " + TABLE + " WHERE ID=" + parseInt(ID),
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+
+        for (i = 0; i < len; i++) {
+          console.log(results.rows.item(i));
+          _callback(results.rows.item(i));
+        }
+      },
+      null
+    );
+  });
+}
+function queryByRowID(TABLE, rowID, _callback) {
+  var arr = [];
+  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(rowID));
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(rowID),
       [],
       function (tx, results) {
         var len = results.rows.length,
@@ -1507,7 +1527,7 @@ function renderElderCard(elderData, righticon = true) {
     var R_icon = '<i class="right-icon fa fa-chevron-right"></i>';
   }
 
-  return `<li ELDER_ID="${elderData.rowid}">
+  return `<li ELDER_ID="${elderData.ID}">
   <div class="card-body">
     <img class="card-body-thumbnail" src="${elderData.ELDER_AVATAR}" />
     <div class="card-body-content">
