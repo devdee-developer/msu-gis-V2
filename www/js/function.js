@@ -183,7 +183,6 @@ async function callAPI(enpoint, method, data, _success, _error) {
   }
 }
 function getInitial() {
-  clearInitial();
   $.ajax({
     url: api_base_url + "/getIntial",
     type: "POST",
@@ -199,10 +198,9 @@ function getInitial() {
       response.data = CryptoJSAesJson.decrypt(response.data, secret_key_aes);
       var data = response.data;
       if (response.status == true) {
+        clearInitial();
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_ELDER");
           $.each(data.elder, function (index, row) {
-            console.log(row);
             tx.executeSql(
               "INSERT INTO VHV_TR_ELDER (ID,GUID,ELDER_NAME,ELDER_HOUSE_NO,ELDER_SEX,ELDER_AVATAR,ELDER_BIRTHDATE,ELDER_STRESS,ELDER_KNOWLEDGE,ELDER_CONSUME,ELDER_ACTIVITY,SHPH_ID,SHPH_MOOID,ELDER_LAT,ELDER_LONG,HEALTH_STATUS,VISIT_STATUS,EVALUATE_STATUS,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
                 row.ID +
@@ -256,7 +254,6 @@ function getInitial() {
         });
 
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_MA_EVALUATE");
           $.each(data.elvaluate, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_MA_EVALUATE (ID,GUID,EVALUATE_NO,EVALUATE_SUBNO,EVALUATE_MIN,EVALUATE_MAX,EVALUATE_RESULT,EVALUATE_FLAG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -290,7 +287,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EMERGENCY");
           $.each(data.emergency, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EMERGENCY (ID,GUID,VHV_ID,ELDER_ID,EMC_DATE,EMC_TYPE,EMC_TOPIC,EMC_DESC,EMC_PIC1,EMC_PIC2,EMC_PIC3,EMC_PIC4,EMC_PIC5,ADMIN_ID,ADMIN_DATE,ADMIN_DESC,ADMIN_SEND,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -342,7 +338,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE1");
           $.each(data.evaluate1, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE1 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,DTX,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -380,7 +375,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE2");
           $.each(data.evaluate2, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE2 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,SBP,DBP,FLAGSBP,RESULTSBP,SCORESBP,FLAGDBP,RESULTDBP,SCOREDBP,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -426,7 +420,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE3");
           $.each(data.evaluate3, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE3 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,CVD1,CVD2,CVD3,CVD4,CVD5,CVD6,CVD7,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -476,7 +469,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE4");
           $.each(data.evaluate4, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE4 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,COG1A,COG1B,COG1C_PIC,COG2A,COG2B,COG2C,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -524,7 +516,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE5");
           $.each(data.evaluate5, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE5 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,P2Q1,P2Q2,P9Q1,P9Q2,P9Q3,P9Q4,P9Q5,P9Q6,P9Q7,P9Q8,P9Q9,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -582,7 +573,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE6");
           $.each(data.evaluate6, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE6 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,OST1,OST2,OST3,OST4,OST5,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -628,7 +618,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE7");
           $.each(data.evaluate7, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE7 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,TUG,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -666,7 +655,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE8");
           $.each(data.evaluate8, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE8 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,EYE1,EYE2,EYE3L,EYE3R,EYE4L,EYE4R,EYE5L,EYE5R,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -718,7 +706,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE9");
           $.each(data.evaluate9, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE9 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,RUBL,RUBR,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -758,7 +745,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE10");
           $.each(data.evaluate10, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE10 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,OSR1A,OSR1B,OSR1C,OSR1D,OSR2,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -804,7 +790,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE11");
           $.each(data.evaluate11, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE11 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,ORAL1A,ORAL1B,ORAL1C,ORAL2A,ORAL2B,ORAL2C,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -852,7 +837,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE12");
           $.each(data.evaluate12, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE12 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,NUTRI1,NUTRI2,MNA1A,MNA1B,MNA1C,MNA1D,MNA1E,MNA1F,MNA1G,MNA2A,MNA2B,MNA2C,MNA2D,MNA2EA,MNA2EB,MNA2EC,MNA2F,MNA2G,MNA2H,MNA2I,MNA2J,MNA2K,MNA2L,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -934,7 +918,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_EVALUATE13");
           $.each(data.evaluate13, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_EVALUATE13 (ID,GUID,VHV_ID,ELDER_ID,EVALUATE_DATE,EVALUATE_NO,ADL1,ADL2,ADL3,ADL4,ADL5,ADL6,ADL7,ADL8,ADL9,ADL10,EVALUATE_FLAG,EVALUATE_SCORE,EVALUATE_RESULT,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -990,7 +973,6 @@ function getInitial() {
           });
         });
         db.transaction(function (tx) {
-          tx.executeSql("DELETE FROM VHV_TR_VHV");
           $.each(data.userInfo, function (index, row) {
             tx.executeSql(
               "INSERT INTO VHV_TR_VHV (ID,GUID,VHV_USER,VHV_IDCARD,VHV_USERID,VHV_PASSWORD,VHV_SEX,VHV_BIRTHDATE,VHV_ADDR,SHPH_ID,SHPH_MOOID,VHV_LAT,VHV_LONG,MB_VERSION,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
@@ -1021,6 +1003,124 @@ function getInitial() {
                 row.VHV_LONG +
                 "','" +
                 row.MB_VERSION +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
+        db.transaction(function (tx) {
+          $.each(data.gisProvince, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_GIS_PROVINCE (ID,GUID,GIS_PROVINCENAME,GIS_LAT,GIS_LONG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.GIS_PROVINCENAME +
+                "','" +
+                row.GIS_LAT +
+                "','" +
+                row.GIS_LONG +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
+        db.transaction(function (tx) {
+          $.each(data.gisDistrict, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_GIS_DISTRICT (ID,GUID,GIS_PROVINCE,GIS_DISTRICTNAME,GIS_LAT,GIS_LONG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.GIS_PROVINCE +
+                "','" +
+                row.GIS_DISTRICTNAME +
+                "','" +
+                row.GIS_LAT +
+                "','" +
+                row.GIS_LONG +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
+        db.transaction(function (tx) {
+          $.each(data.gisTumbol, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_GIS_TUMBOL (ID,GUID,GIS_PROVINCE,GIS_DISTRICT,GIS_TUMBOLNAME,GIS_LAT,GIS_LONG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.GIS_PROVINCE +
+                "','" +
+                row.GIS_DISTRICT +
+                "','" +
+                row.GIS_TUMBOLNAME +
+                "','" +
+                row.GIS_LAT +
+                "','" +
+                row.GIS_LONG +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
+        db.transaction(function (tx) {
+          $.each(data.shphMoo, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_SHPH_MOO (ID,GUID,SHPH_ID,SHPH_MOO,SHPH_MOONAME,SHPH_LAT,SHPH_LONG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.SHPH_ID +
+                "','" +
+                row.SHPH_MOO +
+                "','" +
+                row.SHPH_MOONAME +
+                "','" +
+                row.SHPH_LONG +
+                "','" +
+                row.GIS_LONG +
                 "','" +
                 row.DELETE_FLAG +
                 "','" +
@@ -1070,7 +1170,7 @@ function sqlInsert(table, data, _callback) {
 }
 function queryByID(TABLE, ID, _callback) {
   var arr = [];
-  console.log("SELECT rowid,* FROM " + TABLE + " WHERE ID=" + ID)
+  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + ID)
   db.transaction(function (tx) {
     tx.executeSql(
       "SELECT * FROM " + TABLE + " WHERE ID=" +  ID,
@@ -1315,188 +1415,121 @@ function getCurrentDate() {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1, 2)}-${pad(
     date.getDate(),
     2
-  )} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  )} ${pad(date.getHours(),2)}:${pad(date.getMinutes(),2)}:${pad(date.getSeconds(),2)}`;
 }
 function pad(num, size) {
   num = num.toString();
   while (num.length < size) num = "0" + num;
   return num;
 }
-function clearInitial(){
-  
+function clearInitial() {
   db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_ELDER");
+  });
 
-  tx.executeSql(
-    "DELETE FROM VHV_TR_ELDER"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_EVALUATE");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_EVALUATE"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_GIS_DISTRICT");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_GIS_DISTRICT"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_GIS_PROVINCE");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_GIS_PROVINCE"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_GIS_TUMBOL");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_GIS_TUMBOL"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_HEADER");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_HEADER"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_JOB ");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_JOB "
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_OFFICE ");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_OFFICE "
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_OFFICETYPE");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_OFFICETYPE"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_SHPH");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_SHPH"
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_MA_SHPH_MOO ");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_MA_SHPH_MOO "
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_TR_CONTENT ");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_TR_CONTENT "
-  );
-});
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM  VHV_TR_CONTENTLINK ");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EMERGENCY ");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE1");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE2");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE3");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE4");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE5");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE6");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE7 ");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE8");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE9");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE10");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE11 ");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE12 ");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_EVALUATE13 ");
+  });
 
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM  VHV_TR_CONTENTLINK "
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EMERGENCY "
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE1"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE2"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE3"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE4"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE5"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE6"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE7 "
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE8"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE9"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE10"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE11 "
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE12 "
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_EVALUATE13 "
-  );
-});
-
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_READCONTENT"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_SOLVE"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_VHV "
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_VHV_ELDER"
-  );
-});
-db.transaction(function (tx) {
-  tx.executeSql(
-    "DELETE FROM VHV_TR_VISIT"
-  );
-});
-  
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_READCONTENT");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_SOLVE");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_VHV ");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_VHV_ELDER");
+  });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_TR_VISIT");
+  });
 }
