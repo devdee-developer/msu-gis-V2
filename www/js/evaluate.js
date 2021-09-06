@@ -948,8 +948,11 @@ $(function () {
     ).prop("checked", false);
     $(`#evaluate_page_4 .image_upload_preview img`).removeAttr("src");
     if (lastRecordId > 0) {
+    
       queryByID("VHV_TR_EVALUATE4", lastRecordId, function (lastData) {
+        console.log(`#COG1A .choice[value="${lastData.COG1A}"]`)
         $(`#COG1A .choice[value="${lastData.COG1A}"]`).addClass("active");
+      
         $(`#COG1B .choice[value="${lastData.COG1B}"]`).addClass("active");
         $(`#evaluate_page_4 .image_upload_preview img`).attr(
           "src",

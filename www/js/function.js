@@ -1170,10 +1170,10 @@ function sqlInsert(table, data, _callback) {
 }
 function queryByID(TABLE, ID, _callback) {
   var arr = [];
-  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + ID)
+  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(ID) )
   db.transaction(function (tx) {
     tx.executeSql(
-      "SELECT * FROM " + TABLE + " WHERE ID=" +  ID,
+      "SELECT rowid,* FROM " + TABLE + " WHERE rowid=" +  parseInt(ID),
       [],
       function (tx, results) {
         var len = results.rows.length,
