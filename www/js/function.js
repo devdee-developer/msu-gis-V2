@@ -183,7 +183,7 @@ async function callAPI(enpoint, method, data, _success, _error) {
   }
 }
 function getInitial() {
-  clearInitial();
+  
   $.ajax({
     url: api_base_url + "/getIntial",
     type: "POST",
@@ -199,6 +199,7 @@ function getInitial() {
       response.data = CryptoJSAesJson.decrypt(response.data, secret_key_aes);
       var data = response.data;
       if (response.status == true) {
+        clearInitial();
         db.transaction(function (tx) {
           tx.executeSql("DELETE FROM VHV_TR_ELDER");
           $.each(data.elder, function (index, row) {
