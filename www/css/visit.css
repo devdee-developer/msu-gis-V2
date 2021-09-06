@@ -276,13 +276,16 @@
   position: absolute;
   right: 8px;
 }
-
 .contact_items li .card-footer .status.healthy {
   color: #ffffff;
   background-color: #010979;
   background-image: url(../img/health_2_icon.png);
 }
-
+.contact_items li .card-footer .status.walker {
+  color: #fdebc1;
+  background-color: #010979;
+  background-image: url(../img/health_3_icon.png);
+}
 .contact_items li .card-footer .status.patient-in-bed {
   color: #fcdde1;
   background-color: #010979;
@@ -407,18 +410,22 @@ input.input-form.lock:read-only {
   align-items: center;
   color: #97989b;
 }
-#modal-visit-detail .modal-container img.thumbnail,#modal-evaluate-detail .modal-container img.thumbnail {
+#modal-visit-detail .modal-container img.thumbnail,
+#modal-evaluate-detail .modal-container img.thumbnail {
   border-radius: 16px;
   width: 55%;
   margin-bottom: 32px;
 }
-#modal-visit-detail .modal-container .name,#modal-evaluate-detail .modal-container .name {
+#modal-visit-detail .modal-container .name,
+#modal-evaluate-detail .modal-container .name {
   color: #010979;
 }
-#modal-visit-detail .modal-container .age,#modal-evaluate-detail .modal-container .age {
+#modal-visit-detail .modal-container .age,
+#modal-evaluate-detail .modal-container .age {
   color: #010979;
 }
-#modal-visit-detail .modal-container .distant,#modal-evaluate-detail .modal-container .distant {
+#modal-visit-detail .modal-container .distant,
+#modal-evaluate-detail .modal-container .distant {
   color: #010979;
 }
 
@@ -436,8 +443,14 @@ input.input-form.lock:read-only {
   background-color: #f296a3;
   overflow: hidden;
 }
-.status-card .status-card-header.inprogress{
-  background-color: #FCDDE1;
+.status-card .status-card-header.inprogress {
+  background-color: #fcdde1;
+}
+.status-card .status-card-header.wait-for-evaluate {
+  background-color: #f296a3;
+}
+.status-card .status-card-header.evaluated {
+  background-color: #ecf8f7;
 }
 .status-card .status-card-header p {
   vertical-align: middle;
@@ -544,7 +557,7 @@ ul.sort-list li:last-child {
   top: 0;
   width: 22px;
   height: 22px;
-  border: 1px solid #7F7FA8;
+  border: 1px solid #7f7fa8;
   border-radius: 100%;
   background: #ffffff;
 }
@@ -800,15 +813,16 @@ button.step-btn {
   align-items: center;
   justify-content: center;
 }
-.read button.step-btn{
-  background-image: none!important;
-  justify-content:center!important;
+.read button.step-btn {
+  background-image: none !important;
+  justify-content: center !important;
   width: 158px !important;
 }
-.read  button.step-btn.cancel,.read  button.step-btn.prev{
-  color: #010979!important;
-  background-color: #FFFFFF!important;
-  border: 2px solid #010979!important;
+.read button.step-btn.cancel,
+.read button.step-btn.prev {
+  color: #010979 !important;
+  background-color: #ffffff !important;
+  border: 2px solid #010979 !important;
 }
 button.step-btn.next,
 button.step-btn.finish {
@@ -945,7 +959,7 @@ ul.visit_form li:last-child {
   cursor: pointer;
   line-height: 20px;
   display: inline-block;
-  color: #C9D8D7;
+  color: #c9d8d7;
 }
 .visit_form [type="radio"]:disabled:checked + label {
   position: relative;
@@ -953,7 +967,7 @@ ul.visit_form li:last-child {
   cursor: pointer;
   line-height: 20px;
   display: inline-block;
-  color: #97A3A3;
+  color: #97a3a3;
 }
 .visit_form [type="radio"]:checked + label:after,
 .visit_form [type="radio"]:not(:checked) + label:after {
@@ -972,7 +986,7 @@ ul.visit_form li:last-child {
   content: "";
   width: 10px;
   height: 10px;
-  background: #97A3A3;
+  background: #97a3a3;
   position: absolute;
   top: 7px;
   left: 7px;
@@ -1172,7 +1186,7 @@ input.visit_form::placeholder {
   border-width: 0;
 }
 .visit_form input[type="checkbox"]:disabled:checked {
-  background-color: #97A3A3;
+  background-color: #97a3a3;
   background-image: url(../img/check_disabled.png);
   background-position-x: center;
   background-position-y: center;
@@ -1189,31 +1203,31 @@ input.visit_form::placeholder {
   position: relative;
   cursor: pointer;
   line-height: 22px;
-  color: #97A3A3;
+  color: #97a3a3;
 }
 .visit_form [type="checkbox"]:disabled:not(:checked) + label {
   position: relative;
   cursor: pointer;
   line-height: 22px;
-  color: #C9D8D7;
+  color: #c9d8d7;
 }
-.problem_wrapper{
+.problem_wrapper {
   border-radius: 13px;
-  background-color: #ECF8F7;
-  border: 2px solid #1BC3A2;
+  background-color: #ecf8f7;
+  border: 2px solid #1bc3a2;
   padding: 10px 20px;
-  color: #08776F;
+  color: #08776f;
   font-size: 20px;
   margin-bottom: 20px;
   position: relative;
 }
-.problem_wrapper .problem_index{
+.problem_wrapper .problem_index {
   position: absolute;
   left: 0;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #08776F;
-  color: #FFFFFF;
+  background-color: #08776f;
+  color: #ffffff;
   width: 24px;
   height: 24px;
   text-align: center;
@@ -1221,13 +1235,13 @@ input.visit_form::placeholder {
   font-size: 13px;
   line-height: 24px;
 }
-.problem_wrapper .problem_dismiss{
+.problem_wrapper .problem_dismiss {
   position: absolute;
   right: 0;
   top: 0;
   transform: translate(24%, -50%);
-  background-color: #F53F4D;
-  color: #FFFFFF;
+  background-color: #f53f4d;
+  color: #ffffff;
   width: 19px;
   height: 19px;
   text-align: center;
@@ -1235,26 +1249,27 @@ input.visit_form::placeholder {
   font-size: 13px;
   line-height: 19px;
 }
-.toggle_input_group.summarize.read .btn_add_problem,.toggle_input_group.summarize.read #summarize_input1{
+.toggle_input_group.summarize.read .btn_add_problem,
+.toggle_input_group.summarize.read #summarize_input1 {
   display: none;
 }
-.toggle_input_group.summarize.read .problem_wrapper{
+.toggle_input_group.summarize.read .problem_wrapper {
   border-radius: 13px;
-  background-color: #F4F8F8;
-  border: 2px solid #C9D8D7;
+  background-color: #f4f8f8;
+  border: 2px solid #c9d8d7;
   padding: 10px 20px;
-  color: #97A3A3;
+  color: #97a3a3;
   font-size: 20px;
   margin-bottom: 20px;
   position: relative;
 }
-.toggle_input_group.summarize.read .problem_wrapper .problem_index{
+.toggle_input_group.summarize.read .problem_wrapper .problem_index {
   position: absolute;
   left: 0;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #97A3A3;
-  color: #FFFFFF;
+  background-color: #97a3a3;
+  color: #ffffff;
   width: 24px;
   height: 24px;
   text-align: center;
@@ -1262,13 +1277,13 @@ input.visit_form::placeholder {
   font-size: 13px;
   line-height: 24px;
 }
-.toggle_input_group.summarize.read .problem_wrapper .problem_dismiss{
+.toggle_input_group.summarize.read .problem_wrapper .problem_dismiss {
   position: absolute;
   right: 0;
   top: 0;
   transform: translate(24%, -50%);
-  background-color: #97A3A3;
-  color: #FFFFFF;
+  background-color: #97a3a3;
+  color: #ffffff;
   width: 19px;
   height: 19px;
   text-align: center;

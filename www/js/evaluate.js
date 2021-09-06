@@ -28,8 +28,10 @@ $(function () {
       });
 
       setTimeout(function () {
-        $("#evaluate_recommend").show();
-        showModal("modal-evaluate-detail");
+        if (waitList.length > 0) {
+          renderModal(waitList[0]);
+          $("#evaluate_recommend").show();
+        }
       }, 500);
     });
     queryALL("VHV_MA_GIS_PROVINCE", function (res) {
@@ -48,6 +50,65 @@ $(function () {
       );
     });
   }
+  function renderModal(item) {
+    var maxdate = " ยังไม่มีข้อมูล";
+    getMaxDateEva(item.rowid, function (res) {
+      if (res[0]["MaxDate"] != null) {
+        var date = res[0]["MaxDate"];
+        var day = date.substring(8, 10);
+        var month = date.substring(5, 7).replace("0", "") - 1;
+        var year = date.substring(0, 4);
+        var time = date.substring(11, 16);
+        maxdate =
+          " " +
+          day +
+          " " +
+          getMonthThai(month) +
+          " " +
+          year +
+          " เวลา " +
+          time +
+          " น.";
+      }
+      $("#modal-evaluate-detail .status-card").attr("ELDER_ID", item.rowid);
+      $("#evaluate_recommend").hide();
+      $("#modal-evaluate-detail .thumbnail").attr("src", item.ELDER_AVATAR);
+      $("#modal-evaluate-detail .name").text(item.ELDER_NAME);
+      $("#modal-evaluate-detail .age").text(getAge(item.ELDER_BIRTHDATE));
+      $("#modal-evaluate-detail .distant").hide();
+      if (item.EVALUATE_STATUS == 1) {
+        $("#modal-evaluate-detail .status-card-header").removeClass(
+          "wait-for-evaluate"
+        );
+        $("#modal-evaluate-detail .status-card-header").addClass("evaluated");
+        $("#modal-evaluate-detail .status-card-header").html(
+          "<p><b>สถานะการประเมิน</b> : ประเมินแล้ว</p>"
+        );
+        $("#modal-evaluate-detail .status-card-body-content").html(`
+                <h3>ประเมินแล้ว</h3>
+                <p style="font-size:11px">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>${maxdate}
+                </p>`);
+      } else if (item.EVALUATE_STATUS == 0) {
+        $("#modal-evaluate-detail .status-card-header").removeClass(
+          "evaluated"
+        );
+        $("#modal-evaluate-detail .status-card-header").addClass(
+          "wait-for-evaluate"
+        );
+        $("#modal-evaluate-detail .status-card-header").html(
+          "<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>"
+        );
+        $("#modal-evaluate-detail .status-card-body-content").html(`
+                <h3>เริ่มประเมิน</h3>
+                <p style="font-size:11px">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  ยังไม่มีข้อมูล
+                </p>`);
+      }
+      showModal("modal-evaluate-detail");
+    });
+  }
   $("#evaluate_page .collapse-filter .collapse-filter-header").click(
     function () {
       $header = $(this);
@@ -61,42 +122,45 @@ $(function () {
   });
 
   $("#evaluate_page .contact_items").on("click", "li", function () {
-    $("#modal-evaluate-detail .status-card").attr(
-      "ELDER_ID",
-      $(this).attr("ELDER_ID")
-    );
-    $("#evaluate_recommend").hide();
-    $("#modal-evaluate-detail .thumbnail").attr(
-      "src",
-      $(this).find(".card-body-thumbnail").attr("src")
-    );
-    $("#modal-evaluate-detail .name").text($(this).find(".name").text());
-    $("#modal-evaluate-detail .age").text($(this).find(".age").text());
-    $("#modal-evaluate-detail .distant span").text("0.8 กิโลเมตร");
-    if ($(this).find(".card-footer .status").eq(1).text() == "รอประเมิน...") {
-      $("#modal-evaluate-detail .status-card-header").removeClass("inprogress");
-      $("#modal-evaluate-detail .status-card-header").html(
-        "<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>"
-      );
-      $("#modal-evaluate-detail .status-card-body-content").html(`
-                <h3>เริ่มประเมิน</h3>
-                <p style="font-size:14px">
-                  <i class="fa fa-clock-o" aria-hidden="true"></i>
-                  ยังไม่มีข้อมูล
-                </p>`);
-    } else {
-      $("#modal-evaluate-detail .status-card-header").addClass("inprogress");
-      $("#modal-evaluate-detail .status-card-header").html(
-        "<p><b>สถานะการประเมิน</b> : " + "ข้อที่ 9 (การได้ยิน)" + "</p>"
-      );
-      $("#modal-evaluate-detail .status-card-body-content").html(`
-                <h3>ประเมินต่อ</h3>
-                <p style="font-size:14px">
-                  <i class="fa fa-clock-o" aria-hidden="true"></i>
-                  18 ม.ค. 64, เวลา 14:28 น.
-                </p>`);
-    }
-    showModal("modal-evaluate-detail");
+    queryByID("VHV_TR_ELDER", $(this).attr("ELDER_ID"), function (res) {
+      renderModal(res);
+    });
+    // $("#modal-evaluate-detail .status-card").attr(
+    //   "ELDER_ID",
+    //   $(this).attr("ELDER_ID")
+    // );
+    // $("#evaluate_recommend").hide();
+    // $("#modal-evaluate-detail .thumbnail").attr(
+    //   "src",
+    //   $(this).find(".card-body-thumbnail").attr("src")
+    // );
+    // $("#modal-evaluate-detail .name").text($(this).find(".name").text());
+    // $("#modal-evaluate-detail .age").text($(this).find(".age").text());
+    // $("#modal-evaluate-detail .distant span").text("0.8 กิโลเมตร");
+    // if ($(this).find(".card-footer .status").eq(1).text() == "รอประเมิน...") {
+    //   $("#modal-evaluate-detail .status-card-header").removeClass("inprogress");
+    //   $("#modal-evaluate-detail .status-card-header").html(
+    //     "<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>"
+    //   );
+    //   $("#modal-evaluate-detail .status-card-body-content").html(`
+    //             <h3>เริ่มประเมิน</h3>
+    //             <p style="font-size:14px">
+    //               <i class="fa fa-clock-o" aria-hidden="true"></i>
+    //               ยังไม่มีข้อมูล
+    //             </p>`);
+    // } else {
+    //   $("#modal-evaluate-detail .status-card-header").addClass("inprogress");
+    //   $("#modal-evaluate-detail .status-card-header").html(
+    //     "<p><b>สถานะการประเมิน</b> : " + "ข้อที่ 9 (การได้ยิน)" + "</p>"
+    //   );
+    //   $("#modal-evaluate-detail .status-card-body-content").html(`
+    //             <h3>ประเมินต่อ</h3>
+    //             <p style="font-size:14px">
+    //               <i class="fa fa-clock-o" aria-hidden="true"></i>
+    //               18 ม.ค. 64, เวลา 14:28 น.
+    //             </p>`);
+    // }
+    // showModal("modal-evaluate-detail");
   });
   // ปุ่ม ยืนยัน modal-evaluate-alert
   $("#modal-evaluate-alert .submit_alret").on("click", function () {
@@ -123,7 +187,10 @@ $(function () {
     console.log(elder_id);
     queryALL("VHV_TR_ELDER", function (ELDER) {
       $("#evaluate_detail_page .contact_items").html(
-        renderElderCard(ELDER.find((item) => (item.ID == elder_id)))
+        renderElderCard(
+          ELDER.find((item) => item.rowid == elder_id),
+          false
+        )
       );
     });
     queryALL("VHV_TR_EVALUATE1", function (EVALUATE1) {
@@ -399,7 +466,14 @@ $(function () {
                                             <p>
                                               <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
                                              ${evaluate.updateDate}
-                                             ${evaluate.last_data?(evaluate.last_data.GUID==null?'':'<i class="fa fa-check" aria-hidden="true"></i>'):''}
+                                             ${
+                                               evaluate.last_data
+                                                 ? evaluate.last_data.GUID ==
+                                                   null
+                                                   ? ""
+                                                   : '<i class="fa fa-check" aria-hidden="true"></i>'
+                                                 : ""
+                                             }
                                             </p>
                                           </div>
                                           ${
@@ -531,8 +605,32 @@ $(function () {
     loading.show();
     setTimeout(function () {
       loading.hide();
-      changePage("evaluate_detail_page", function () {});
-      setProgressevaluate(9);
+      changePage("evaluate_detail_page", function () {
+        $("#evaluate_detail_page .content .evaluate_status_bar span").text(
+          " " + $("#evaluate_detail_page ul li span").eq(0).text()
+        );
+        if ($("#evaluate_detail_page ul li span").eq(0).text() == "แข็งแรง") {
+          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+            "src",
+            "img/health_2_icon.png"
+          );
+        } else if (
+          $("#evaluate_detail_page ul li span").eq(0).text() == "พยุงเดิน"
+        ) {
+          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+            "src",
+            "img/health_3_icon.png"
+          );
+        } else if (
+          $("#evaluate_detail_page ul li span").eq(0).text() == "ติดเตียง"
+        ) {
+          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+            "src",
+            "img/health_1_icon.png"
+          );
+        }
+      });
+      // setProgressevaluate(9);
     }, 500);
   });
   // ปุ่ม back
@@ -948,11 +1046,10 @@ $(function () {
     ).prop("checked", false);
     $(`#evaluate_page_4 .image_upload_preview img`).removeAttr("src");
     if (lastRecordId > 0) {
-    
       queryByID("VHV_TR_EVALUATE4", lastRecordId, function (lastData) {
-        console.log(`#COG1A .choice[value="${lastData.COG1A}"]`)
+        console.log(`#COG1A .choice[value="${lastData.COG1A}"]`);
         $(`#COG1A .choice[value="${lastData.COG1A}"]`).addClass("active");
-      
+
         $(`#COG1B .choice[value="${lastData.COG1B}"]`).addClass("active");
         $(`#evaluate_page_4 .image_upload_preview img`).attr(
           "src",

@@ -32,13 +32,13 @@
   color: #ffffff;
   z-index: 2;
 }
-.evaluate_card{
+.evaluate_card {
   margin: 10px 5px;
   border-radius: 10px;
   overflow: hidden;
-  color: #FFFFFF;
-} 
-.evaluate_card .card_header{
+  color: #ffffff;
+}
+.evaluate_card .card_header {
   display: flex;
   padding-left: 17px;
   justify-content: flex-start;
@@ -46,18 +46,18 @@
   height: 39px;
   color: #ffffff;
   background-color: #1bc3a2;
-} 
-.evaluate_card.wait .card_header{
+}
+.evaluate_card.wait .card_header {
   color: #010979;
-  background-color: #DDD8F0;
-} 
-.evaluate_card.pending .card_header{
-  color: #7F7FA8;
-  background-color: #EEEAFD;
-} 
-.evaluate_card.pending{
-  color: #7F7FA8;
-} 
+  background-color: #ddd8f0;
+}
+.evaluate_card.pending .card_header {
+  color: #7f7fa8;
+  background-color: #eeeafd;
+}
+.evaluate_card.pending {
+  color: #7f7fa8;
+}
 .visit_card .card_header_evaluate {
   display: flex;
   padding-left: 17px;
@@ -102,7 +102,7 @@
   font-size: 23px;
 }
 .evaluate_card.pending .card_body .card_body_center p:nth-child(1) {
- color: #9595F2;
+  color: #9595f2;
 }
 .evaluate_card .card_body .card_body_center p:nth-child(2) {
   font-size: 13px;
@@ -136,8 +136,8 @@
   display: flex;
 }
 .evaluate_card.care_of_doctor .card-footer {
-  color: #0D0E12;
-  background-color: #FFEAE4;
+  color: #0d0e12;
+  background-color: #ffeae4;
 }
 .qty_evaluate {
   background-color: #ecf8f7;
@@ -300,7 +300,7 @@ button.btn_create_evaluate {
   padding: 10px;
 }
 #evaluate_recommend {
-  color: #6F63FD;
+  color: #6f63fd;
   margin-bottom: 32px;
   font-size: 30px;
   display: none;
@@ -316,10 +316,14 @@ button.btn_create_evaluate {
   background-color: #1bc3a2;
   height: 225px;
   padding: 30px 40px;
-  -moz-transition: all 0.6s ease-in-out; -webkit-transition: all 0.6s ease-in-out; -o-transition: all 0.6s ease-in-out; -ms-transition: all 0.6s ease-in-out; transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
 }
-.evaluate_page_status.alert{
-  background-color: #F26E4F;
+.evaluate_page_status.alert {
+  background-color: #f26e4f;
 }
 .backgroundwhite .bar {
   height: 5px;
@@ -676,7 +680,7 @@ input.input-DTX:focus {
   text-align: center;
   display: flex;
   flex-direction: column;
-   align-items: center;
+  align-items: center;
 }
 .modal .modal-container-evaluate-alert .modal-dismiss {
   height: 10%;
@@ -1105,7 +1109,7 @@ button.camera {
   position: absolute;
   left: 0px;
   right: 0px;
-  bottom: 135px;
+  bottom: 80px;
   top: 60px;
   overflow: hidden;
   overflow-y: scroll;
@@ -1145,7 +1149,7 @@ button.camera {
   color: #010979;
 }
 #evaluate_detail_page .footer {
-  height: 135px;
+  height: 80px;
   background-color: #ffffff;
   border-radius: 25px 25px 0 0;
   box-shadow: 0px -3px 15px #7f7fa873;

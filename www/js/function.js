@@ -154,7 +154,7 @@ async function callAPI(enpoint, method, data, _success, _error) {
     $.ajax({
       url: enpoint,
       type: method,
-      contentType: 'application/json',
+      contentType: "application/json",
       beforeSend: function (xhr) {
         xhr.setRequestHeader(
           "Authorization",
@@ -1170,17 +1170,17 @@ function sqlInsert(table, data, _callback) {
 }
 function queryByID(TABLE, ID, _callback) {
   var arr = [];
-  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(ID) )
+  console.log("SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(ID));
   db.transaction(function (tx) {
     tx.executeSql(
-      "SELECT rowid,* FROM " + TABLE + " WHERE rowid=" +  parseInt(ID),
+      "SELECT rowid,* FROM " + TABLE + " WHERE rowid=" + parseInt(ID),
       [],
       function (tx, results) {
         var len = results.rows.length,
           i;
 
         for (i = 0; i < len; i++) {
-          console.log(results.rows.item(i))
+          console.log(results.rows.item(i));
           _callback(results.rows.item(i));
         }
       },
@@ -1234,7 +1234,7 @@ function listElderEvaluate(_callback) {
   var evaluated = [];
   db.transaction(function (tx) {
     tx.executeSql(
-      `SELECT distinct elder.* FROM VHV_TR_ELDER as elder 
+      `SELECT distinct elder.rowid, elder.* FROM VHV_TR_ELDER as elder 
                       LEFT JOIN VHV_TR_EVALUATE1 as eva1 on elder.ID = eva1.ELDER_ID
                       LEFT JOIN VHV_TR_EVALUATE2 as eva2 on elder.ID = eva2.ELDER_ID
                       LEFT JOIN VHV_TR_EVALUATE3 as eva3 on elder.ID = eva3.ELDER_ID
@@ -1274,7 +1274,7 @@ function listElderEvaluate(_callback) {
       null
     );
     tx.executeSql(
-      `SELECT distinct elder.* FROM VHV_TR_ELDER as elder 
+      `SELECT distinct elder.rowid, elder.* FROM VHV_TR_ELDER as elder 
                       LEFT JOIN VHV_TR_EVALUATE1 as eva1 on elder.ID = eva1.ELDER_ID
                       LEFT JOIN VHV_TR_EVALUATE2 as eva2 on elder.ID = eva2.ELDER_ID
                       LEFT JOIN VHV_TR_EVALUATE3 as eva3 on elder.ID = eva3.ELDER_ID
@@ -1392,8 +1392,122 @@ function getAge(dateString) {
   } else ageString = "ไม่มีข้อมูลอายุ";
   return ageString;
 }
-function renderElderCard(elderData) {
-  return `<li ELDER_ID="${elderData.ID}">
+function getMaxDateEva(rowid, _callback) {
+  var arr = [];
+  db.transaction(function (tx) {
+    tx.executeSql(
+      `SELECT MAX(UPDATE_DATE) AS MaxDate FROM
+          (
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE1 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE2 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE3 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE4 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE5 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE6 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE7 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE8 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE9 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE10 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE11 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE12 WHERE rowid = '` +
+        rowid +
+        `' UNION
+            SELECT UPDATE_DATE FROM VHV_TR_EVALUATE13 WHERE rowid = '` +
+        rowid +
+        `' ) AS my_tab`,
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+        for (i = 0; i < len; i++) {
+          arr.push(results.rows.item(i));
+        }
+        _callback(arr);
+      },
+      null
+    );
+  });
+}
+function getMonthThai(month_no) {
+  var monthNamesThai = [
+    "ม.ค.",
+    "ก.พ.",
+    "มี.ค.",
+    "เม.ย.",
+    "พ.ค.",
+    "มิ.ย.",
+    "ก.ค",
+    "ส.ค.",
+    "ก.ย.",
+    "ต.ค.",
+    "พ.ย.",
+    "ธ.ค.",
+  ];
+  return monthNamesThai[month_no];
+}
+function renderElderCard(elderData, righticon = true) {
+  console.log(elderData);
+  var classhealth = "healthy";
+  var healthText = "ไม่มีข้อมูล";
+  var classvisit = "wait-for-visit";
+  var visitText = "รอออกเยี่ยม...";
+  var classevalate = "wait-for-evaluate";
+  var evalateText = "รอประเมิน...";
+
+  if (elderData.HEALTH_STATUS == 3) {
+    classhealth = "patient-in-bed";
+    healthText = "ติดเตียง";
+  } else if (elderData.HEALTH_STATUS == 2) {
+    classhealth = "walker";
+    healthText = "พยุงเดิน";
+  } else if (elderData.HEALTH_STATUS == 1) {
+    classhealth = "healthy";
+    healthText = "แข็งแรง";
+  }
+
+  if (elderData.EVALUATE_STATUS == 1) {
+    classevalate = "evaluated";
+    evalateText = "ประเมินแล้ว";
+  } else if (elderData.EVALUATE_STATUS == 0) {
+    classevalate = "wait-for-evaluate";
+    evalateText = "รอประเมิน...";
+  }
+
+  if (elderData.VISIT_STATUS == 1) {
+    classvisit = "visited";
+    visitText = "ออกเยี่ยมแล้ว";
+  } else if (elderData.VISIT_STATUS == 0) {
+    classvisit = "wait-for-visit";
+    visitText = "รอออกเยี่ยม...";
+  }
+  var R_icon = "";
+  if (righticon) {
+    var R_icon = '<i class="right-icon fa fa-chevron-right"></i>';
+  }
+
+  return `<li ELDER_ID="${elderData.rowid}">
   <div class="card-body">
     <img class="card-body-thumbnail" src="${elderData.ELDER_AVATAR}" />
     <div class="card-body-content">
@@ -1401,12 +1515,12 @@ function renderElderCard(elderData) {
       <h5 class="age">${getAge(elderData.ELDER_BIRTHDATE)}</h5>
       <p class="address">${elderData.ELDER_HOUSE_NO}</p>
     </div>
-    <i class="right-icon fa fa-chevron-right"></i>
+    ${R_icon}
   </div>
   <div class="card-footer">
-    <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
-    <span class="status inprogress-evaluate"><p>กำลังประเมิน...</p></span>
-    <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+    <span class="status ${classhealth}"><p>${healthText}</p> </span>
+    <span class="status ${classevalate}"><p>${evalateText}</p></span>
+    <span class="status ${classvisit}"><p>${visitText}</p></span>
   </div>
 </li>`;
 }
@@ -1415,7 +1529,10 @@ function getCurrentDate() {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1, 2)}-${pad(
     date.getDate(),
     2
-  )} ${pad(date.getHours(),2)}:${pad(date.getMinutes(),2)}:${pad(date.getSeconds(),2)}`;
+  )} ${pad(date.getHours(), 2)}:${pad(date.getMinutes(), 2)}:${pad(
+    date.getSeconds(),
+    2
+  )}`;
 }
 function pad(num, size) {
   num = num.toString();
