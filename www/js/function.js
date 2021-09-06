@@ -148,7 +148,6 @@ async function login(username, password, _success, _error) {
 }
 function callAPI(enpoint, method, data, _success, _error) {
   try {
-    await getAccessToken();
     $.ajax({
       url: enpoint,
       type: method,
