@@ -164,7 +164,9 @@ $(function () {
   });
   // ปุ่ม ยืนยัน modal-evaluate-alert
   $("#modal-evaluate-alert .submit_alret").on("click", function () {
-    changePage("evaluate_detail_page", function () {});
+    changePage("evaluate_detail_page", function () {
+      readerAfterSaveEva();
+    });
     $(".modal").hide();
     $("body").removeClass("modal-open");
   });
@@ -629,45 +631,60 @@ $(function () {
     // const evaluate = evaluateData[index];
     // console.log(evaluateData);
   }
+  function readerAfterSaveEva() {
+    $("#evaluate_detail_page .content .evaluate_status_bar span").text(
+      " " + $("#evaluate_detail_page ul li span").eq(0).text()
+    );
+    queryByID(
+      "VHV_TR_ELDER",
+      $("#evaluate_page .status-card").attr("ELDER_ID"),
+      function (res) {
+        console.log(res);
+        if (res.HEALTH_STATUS == 1) {
+          console.log("แข็งแรง");
+          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+            "src",
+            "img/health_2_icon.png"
+          );
+          $("#evaluate_detail_page .content .evaluate_status_bar span").text(
+            "แข็งแรง"
+          );
+        } else if (res.HEALTH_STATUS == 2) {
+          console.log("พยุงเดิน");
+          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+            "src",
+            "img/health_3_icon.png"
+          );
+          $("#evaluate_detail_page .content .evaluate_status_bar span").text(
+            "พยุงเดิน"
+          );
+        } else if (res.HEALTH_STATUS == 3) {
+          console.log("ติดเตียง");
+          $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
+            "src",
+            "img/health_1_icon.png"
+          );
+          $("#evaluate_detail_page .content .evaluate_status_bar span").text(
+            "ติดเตียง"
+          );
+        } else {
+          $("#evaluate_detail_page .content .evaluate_status_bar span").text(
+            "ไม่มีข้อมูล"
+          );
+        }
+      }
+    );
+    $("#evaluate_detail_page .footer .footerbarstatus p")
+      .eq(1)
+      .text(" " + $("#evaluate_detail_page ul li span").eq(1).text());
+  }
   $("#evaluate_page .status-card").on("click", function () {
     reloadEvaluateList();
     loading.show();
     setTimeout(function () {
       loading.hide();
       changePage("evaluate_detail_page", function () {
-        $("#evaluate_detail_page .content .evaluate_status_bar span").text(
-          " " + $("#evaluate_detail_page ul li span").eq(0).text()
-        );
-        // console.log($("#evaluate_detail_page ul li span").eq(0).text());
-        queryByID(
-          "VHV_TR_ELDER",
-          $("#evaluate_page .status-card").attr("ELDER_ID"),
-          function (res) {
-            console.log(res);
-            if (res.HEALTH_STATUS == 1) {
-              console.log("แข็งแรง");
-              $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
-                "src",
-                "img/health_2_icon.png"
-              );
-            } else if (res.HEALTH_STATUS == 2) {
-              console.log("พยุงเดิน");
-              $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
-                "src",
-                "img/health_3_icon.png"
-              );
-            } else if (res.HEALTH_STATUS == 3) {
-              console.log("ติดเตียง");
-              $("#evaluate_detail_page .content .evaluate_status_bar img").attr(
-                "src",
-                "img/health_1_icon.png"
-              );
-            }
-          }
-        );
-        $("#evaluate_detail_page .footer .footerbarstatus p")
-          .eq(1)
-          .text(" " + $("#evaluate_detail_page ul li span").eq(1).text());
+        readerAfterSaveEva();
       });
       // setProgressevaluate(9);
     }, 500);
@@ -819,6 +836,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -951,6 +969,7 @@ $(function () {
           reloadEvaluateList();
           $("#evaluate_detail_page .footer.evaluate-success").show();
           changePage("evaluate_detail_page", function () {
+            readerAfterSaveEva();
             setTimeout(function () {
               $("#evaluate_detail_page .footer.evaluate-success").hide();
             }, 1000);
@@ -1112,6 +1131,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -1372,6 +1392,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -1595,6 +1616,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -1740,6 +1762,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -1894,6 +1917,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -2079,6 +2103,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").fadeIn(1000);
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").fadeOut(1000);
           }, 2000);
@@ -2206,6 +2231,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -2387,6 +2413,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -2604,6 +2631,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -2943,6 +2971,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
@@ -3154,6 +3183,7 @@ $(function () {
         reloadEvaluateList();
         $("#evaluate_detail_page .footer.evaluate-success").show();
         changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
           setTimeout(function () {
             $("#evaluate_detail_page .footer.evaluate-success").hide();
           }, 1000);
