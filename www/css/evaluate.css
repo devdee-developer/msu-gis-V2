@@ -475,6 +475,11 @@ button.btn_create_evaluate {
   height: 50px;
   float: left;
 }
+.input-DTX:disabled{
+  border-color: #E4E1F0;
+  background-color: #E4E1F0;
+  color:#7F7FA8;
+}
 
 .btnYesSelector {
   min-width: 100px;
