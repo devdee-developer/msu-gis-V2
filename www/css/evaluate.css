@@ -116,6 +116,12 @@
 .evaluate_card.care_of_doctor .card_body {
   background-color: #7676ff;
 }
+.evaluate_card.care_of_doctor-red .card_body {
+  background-color: #7676ff;
+}
+.evaluate_card.care_of_doctor-yellow .card_body {
+  background-color: #7676ff;
+}
 .visit_card.current .card_body.evaluate {
   background-color: #4136bc;
 }
@@ -123,6 +129,12 @@
   background-color: #ddd8f0;
 }
 .visit_card.current .card_body.evaluate.care_of_doctor {
+  background-color: #7676ff;
+}
+.visit_card.current .card_body.evaluate.care_of_doctor-red {
+  background-color: #7676ff;
+}
+.visit_card.current .card_body.evaluate.care_of_doctor-yellow {
   background-color: #7676ff;
 }
 .card-footer.evaluate {
@@ -136,6 +148,14 @@
   display: flex;
 }
 .evaluate_card.care_of_doctor .card-footer {
+  color: #0d0e12;
+  background-color: #ffeae4;
+}
+.evaluate_card.care_of_doctor-red .card-footer {
+  color: #0d0e12;
+  background-color: #ffeae4;
+}
+.evaluate_card.care_of_doctor-yellow .card-footer {
   color: #0d0e12;
   background-color: #ffeae4;
 }
@@ -190,51 +210,19 @@
   background-size: 11px 13.5px;
 }
 .evaluate_card.care_of_doctor .recommend {
-  font-size: 14px;
-  float: left;
-  border-radius: 1em;
-  min-height: 27px;
-  line-height: 27px;
-  padding-left: 25px;
-  padding-right: 10px;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  background-position-x: 8px;
-  margin-right: 4px;
   background-color: #f26e4f;
   color: #ffffff;
   background-image: url(../img/doc_icon_white.png);
   background-size: 11px 13.5px;
 }
 .evaluate_card.care_of_doctor-red .recommend {
-  font-size: 14px;
-  float: left;
-  border-radius: 1em;
-  min-height: 27px;
-  line-height: 27px;
-  padding-left: 25px;
-  padding-right: 10px;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  background-position-x: 8px;
-  margin-right: 4px;
+
   background-color: #b63d4d;
   color: #ffffff;
   background-image: url(../img/doc_icon_white.png);
   background-size: 11px 13.5px;
 }
 .evaluate_card.care_of_doctor-yellow .recommend {
-  font-size: 14px;
-  float: left;
-  border-radius: 1em;
-  min-height: 27px;
-  line-height: 27px;
-  padding-left: 25px;
-  padding-right: 10px;
-  background-repeat: no-repeat;
-  background-position-y: center;
-  background-position-x: 8px;
-  margin-right: 4px;
   background-color: #f5c761;
   color: #ffffff;
   background-image: url(../img/doc_icon_white.png);

@@ -466,8 +466,10 @@ $(function () {
                                               // : ""
                                               evaluate.last_data
                                                   .EVALUATE_FLAG == 1
-                                              ? "care_of_doctor"
-                                              : ""
+                                              ? "care_of_doctor-yellow"
+                                              :  evaluate.last_data
+                                              .EVALUATE_FLAG == 2 ? "care_of_doctor":evaluate.last_data
+                                              .EVALUATE_FLAG == 3 ? "care_of_doctor-red":""
                                           }`
                                     }">
                                         <div class="card_header">
@@ -719,7 +721,7 @@ $(function () {
       if (res.length == 13) {
         sqlUpdate(
           "VHV_TR_ELDER",
-          { EVALUATE_STATUS: 1 },
+          { EVALUATE_STATUS: 1 ,UPDATE_FLAG:1},
           $("#evaluate_page .status-card").attr("ELDER_ID"),
           function (res) {}
         );
@@ -3176,7 +3178,7 @@ $(function () {
         chkStatusEvaAll();
         sqlUpdate(
           "VHV_TR_ELDER",
-          { HEALTH_STATUS: data.EVALUATE_FLAG },
+          { HEALTH_STATUS: data.EVALUATE_FLAG ,UPDATE_FLAG:1},
           $("#evaluate_page .status-card").attr("ELDER_ID"),
           function (res) {}
         );
@@ -3250,17 +3252,44 @@ $(function () {
                 parseFloat(data.EVALUATE_SCORE) &&
               parseFloat(item.EVALUATE_MAX) >= parseFloat(data.EVALUATE_SCORE)
           );
+        
           $(
             `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
           ).removeClass("alert");
-          $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
+          $(
+            `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+          ).removeClass("alert-red");
+          $(
+            `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+          ).removeClass("alert-yellow");
+          if(result){
+            $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
             .eq(1)
             .text(result.EVALUATE_RESULT);
           if (result.EVALUATE_FLAG == 1) {
             $(
               `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert-yellow");
+          }else if (result.EVALUATE_FLAG == 2) {
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
             ).addClass("alert");
+
+          }else if (result.EVALUATE_FLAG == 3) {
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert-red");
           }
+
+          }else{
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert-red");
+            $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
+            .eq(1)
+            .text("ไม่สามารถประมวลผลการทดสอบได้");
+          }
+        
           $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(
             3000
           );
@@ -3287,14 +3316,21 @@ $(function () {
           $(
             `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
           ).removeClass("alert-yellow");
-          var result = { EVALUATE_RESULT: "", EVALUATE_FLAG: 0 };
-          if (RESULTSBP.EVALUATE_FLAG >= RESULTDBP.EVALUATE_FLAG) {
-            result.EVALUATE_RESULT = RESULTSBP.EVALUATE_RESULT;
-            result.EVALUATE_FLAG = RESULTSBP.EVALUATE_FLAG;
-          } else {
-            result.EVALUATE_RESULT = RESULTDBP.EVALUATE_RESULT;
-            result.EVALUATE_FLAG = RESULTDBP.EVALUATE_FLAG;
+          var result = { EVALUATE_RESULT: "ไม่สามารถประมวลผลได้", EVALUATE_FLAG: 0 };
+          if(RESULTSBP &&RESULTDBP){
+            if (RESULTSBP.EVALUATE_FLAG >= RESULTDBP.EVALUATE_FLAG) {
+              result.EVALUATE_RESULT = RESULTSBP.EVALUATE_RESULT;
+              result.EVALUATE_FLAG = RESULTSBP.EVALUATE_FLAG;
+            } else {
+              result.EVALUATE_RESULT = RESULTDBP.EVALUATE_RESULT;
+              result.EVALUATE_FLAG = RESULTDBP.EVALUATE_FLAG;
+            }
+          } else{
+            $(
+              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+            ).addClass("alert-red");
           }
+         
           $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
             .eq(1)
             .text(result.EVALUATE_RESULT);

@@ -1516,7 +1516,7 @@ function renderElderCard(elderData, righticon = true) {
     <div class="card-body-content">
       <h4 class="name">${elderData.ELDER_NAME}</h4>
       <h5 class="age">${getAge(elderData.ELDER_BIRTHDATE)}</h5>
-      <p class="address">${elderData.ELDER_HOUSE_NO}</p>
+      <p class="address"> บ้านเลขที่ ${elderData.ELDER_HOUSE_NO}</p>
     </div>
     ${R_icon}
   </div>

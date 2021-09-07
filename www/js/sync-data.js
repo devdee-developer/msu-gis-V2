@@ -15,6 +15,7 @@ $(function () {
         syncTableToServer("VHV_TR_EVALUATE11","/saveEvaluate11s"),
         syncTableToServer("VHV_TR_EVALUATE12","/saveEvaluate12s"),
         syncTableToServer("VHV_TR_EVALUATE13","/saveEvaluate13s"),
+        syncTableToServer("VHV_TR_ELDER","/saveElders"),
       ]);
       console.log(`sync all result`, result);
       //ถ้า sycn สำเร็จ Initial ใหม่
@@ -41,13 +42,17 @@ $(function () {
     return new Promise(function (resolve, reject) {
       queryALL(table, function (result) {
         let data = result.filter((row) => row.GUID == "" || row.GUID == null);
+        if(table =='VHV_TR_ELDER'){
+           data = result.filter((row) => row.UPDATE_FLAG == 1);
+        }
+      
         console.log(`sync ${table}`, data);
 
         if (data.length != 0) {
           // data[0].ELDER_ID="test"
           console.log(token.getUserToken())
           let postData = {
-            datas:data ,
+            // datas:data ,
             datas: JSON.parse(CryptoJSAesJson.encrypt(data, secret_key_aes)),
             token: token.getUserToken(),
             cybertext: "1",

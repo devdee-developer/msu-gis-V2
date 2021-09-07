@@ -15,8 +15,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="res/icon/playstore.png" />
+    <preference name="orientation" value="portrait" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="android-targetSdkVersion" value="30" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
