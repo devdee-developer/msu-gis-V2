@@ -1254,6 +1254,29 @@ function getInitial() {
             );
           });
         });
+        db.transaction(function (tx) {
+          $.each(data.emcType, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_EMCTYPE (ID,GUID,EMC_NAME,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.EMC_NAME +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
       } else {
         _error("เกิดข้อผิดพลาด");
       }
@@ -1412,11 +1435,10 @@ function listElderEvaluate(_callback) {
       `SELECT distinct elder.rowid, elder.* FROM VHV_TR_ELDER as elder WHERE elder.EVALUATE_STATUS = '0'`,
       [],
       function (tx, results) {
-       
         var len = results.rows.length,
           i;
         for (i = 0; i < len; i++) {
-          console.log(results.rows.item(i))
+          console.log(results.rows.item(i));
           waitForEvaluate.push(results.rows.item(i));
         }
       },
@@ -1429,7 +1451,7 @@ function listElderEvaluate(_callback) {
         var len = results.rows.length,
           i;
         for (i = 0; i < len; i++) {
-          console.log(results.rows.item(i))
+          console.log(results.rows.item(i));
           evaluated.push(results.rows.item(i));
         }
         _callback(waitForEvaluate, evaluated);
@@ -1771,8 +1793,11 @@ function clearInitial() {
   db.transaction(function (tx) {
     tx.executeSql("DELETE FROM VHV_TR_VISIT");
   });
+  db.transaction(function (tx) {
+    tx.executeSql("DELETE FROM VHV_MA_EMCTYPE");
+  });
 }
-function dateStringFormat(date){
+function dateStringFormat(date) {
   var day = date.substring(8, 10);
   var month = date.substring(5, 7).replace("0", "") - 1;
   var year = date.substring(0, 4);
@@ -1787,24 +1812,26 @@ function dateStringFormat(date){
     " เวลา " +
     time +
     " น.";
-  return dateString
+  return dateString;
 }
-function renderElderModal(item,modalId,showEva,showVisit) {
+function renderElderModal(item, modalId, showEva, showVisit) {
   $("#evaluate_recommend,#visit_recommend").hide();
-  $("#"+modalId+" .status-card.evaluate,#"+modalId+" .status-card.visit").html('')
+  $(
+    "#" + modalId + " .status-card.evaluate,#" + modalId + " .status-card.visit"
+  ).html("");
   var maxdate = " ยังไม่มีข้อมูล";
   getMaxDateEva(item.ID, function (res) {
     if (res[0]["MaxDate"] != null) {
       var date = res[0]["MaxDate"];
-      maxdate = dateStringFormat(date)
+      maxdate = dateStringFormat(date);
     }
-    $("#"+modalId+" .status-card").attr("ELDER_ID", item.ID);
-    $("#"+modalId+" .thumbnail").attr("src", item.ELDER_AVATAR);
-    $("#"+modalId+" .name").text(item.ELDER_NAME);
-    $("#"+modalId+" .age").text(getAge(item.ELDER_BIRTHDATE));
-    $("#"+modalId+" .distant").hide();
-    if(showEva ==true){
-      $("#"+modalId+" .status-card.evaluate").html( `
+    $("#" + modalId + " .status-card").attr("ELDER_ID", item.ID);
+    $("#" + modalId + " .thumbnail").attr("src", item.ELDER_AVATAR);
+    $("#" + modalId + " .name").text(item.ELDER_NAME);
+    $("#" + modalId + " .age").text(getAge(item.ELDER_BIRTHDATE));
+    $("#" + modalId + " .distant").hide();
+    if (showEva == true) {
+      $("#" + modalId + " .status-card.evaluate").html(`
               <div class="status-card-header wait-evaluate">
               <p><b>สถานะการประเมิน</b> : **รอประเมิน...</p>
             </div>
@@ -1820,32 +1847,28 @@ function renderElderModal(item,modalId,showEva,showVisit) {
                 <i class="fa fa-chevron-right"></i>
               </div>
             </div>
-         `)
-     
+         `);
+
       if (item.EVALUATE_STATUS == 1) {
-        $("#"+modalId+" .status-card-header").removeClass(
+        $("#" + modalId + " .status-card-header").removeClass(
           "wait-for-evaluate"
         );
-        $("#"+modalId+" .status-card-header").addClass("evaluated");
-        $("#"+modalId+" .status-card-header").html(
+        $("#" + modalId + " .status-card-header").addClass("evaluated");
+        $("#" + modalId + " .status-card-header").html(
           "<p><b>สถานะการประเมิน</b> : ประเมินแล้ว</p>"
         );
-        $("#"+modalId+" .status-card-body-content").html(`
+        $("#" + modalId + " .status-card-body-content").html(`
                 <h3>ประเมินแล้ว</h3>
                 <p style="font-size:11px">
                   <i class="fa fa-clock-o" aria-hidden="true"></i>${maxdate}
                 </p>`);
       } else if (item.EVALUATE_STATUS == 0) {
-        $("#"+modalId+" .status-card-header").removeClass(
-          "evaluated"
-        );
-        $("#"+modalId+" .status-card-header").addClass(
-          "wait-for-evaluate"
-        );
-        $("#"+modalId+" .status-card-header").html(
+        $("#" + modalId + " .status-card-header").removeClass("evaluated");
+        $("#" + modalId + " .status-card-header").addClass("wait-for-evaluate");
+        $("#" + modalId + " .status-card-header").html(
           "<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>"
         );
-        $("#"+modalId+" .status-card-body-content").html(`
+        $("#" + modalId + " .status-card-body-content").html(`
                 <h3>เริ่มประเมิน</h3>
                 <p style="font-size:11px">
                   <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -1853,11 +1876,13 @@ function renderElderModal(item,modalId,showEva,showVisit) {
                 </p>`);
       }
     }
-    if(showVisit==true){
-      queryALL('VHV_TR_VISIT',function(vhv_tr_visit){
-         let visitCount =  vhv_tr_visit.filter(row=>row.ELDER_ID==item.ID).length
-     
-        $("#"+modalId+" .status-card.visit").html(`
+    if (showVisit == true) {
+      queryALL("VHV_TR_VISIT", function (vhv_tr_visit) {
+        let visitCount = vhv_tr_visit.filter(
+          (row) => row.ELDER_ID == item.ID
+        ).length;
+
+        $("#" + modalId + " .status-card.visit").html(`
         <div class="status-card-header">
           <p><b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
         </div>
@@ -1873,32 +1898,41 @@ function renderElderModal(item,modalId,showEva,showVisit) {
             <i class="fa fa-chevron-right"></i>
           </div>
         </div>
-      `)
+      `);
         if (item.EVALUATE_STATUS == 1) {
-          console.log(item.VISIT_STATUS)
-          $("#"+modalId+" .status-card.visit").attr("canvisit",true)
-          if(item.VISIT_STATUS ==1){
-        
-            $("#"+modalId+" .status-card.visit .status-card-header").addClass('visited')
-            $("#"+modalId+" .status-card.visit .status-card-header").html(`<p><b>สถานะออกเยี่ยม</b> : ออกเยี่ยมแล้ว ${visitCount} ครั้ง</p>`)
-          }else{
-
+          console.log(item.VISIT_STATUS);
+          $("#" + modalId + " .status-card.visit").attr("canvisit", true);
+          if (item.VISIT_STATUS == 1) {
+            $(
+              "#" + modalId + " .status-card.visit .status-card-header"
+            ).addClass("visited");
+            $("#" + modalId + " .status-card.visit .status-card-header").html(
+              `<p><b>สถานะออกเยี่ยม</b> : ออกเยี่ยมแล้ว ${visitCount} ครั้ง</p>`
+            );
+          } else {
           }
-        }else{
-          $("#"+modalId+" .status-card.visit .status-card-header").html("<p><b>สถานะออกเยี่ยม</b> : จำเป็นต้องประเมินก่อน</p>")
-          $("#"+modalId+" .status-card.visit .status-card-body").removeClass("ready-for-visit")
-          $("#"+modalId+" .status-card.visit .status-card-body .status-card-body-content").html(`
+        } else {
+          $("#" + modalId + " .status-card.visit .status-card-header").html(
+            "<p><b>สถานะออกเยี่ยม</b> : จำเป็นต้องประเมินก่อน</p>"
+          );
+          $(
+            "#" + modalId + " .status-card.visit .status-card-body"
+          ).removeClass("ready-for-visit");
+          $(
+            "#" +
+              modalId +
+              " .status-card.visit .status-card-body .status-card-body-content"
+          ).html(`
           <h3>รอการออกเยี่ยม</h3>
           <p>
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             ยังไม่มีข้อมูล
-          </p>`)
-          $("#"+modalId+" .status-card-body-btn").remove();
+          </p>`);
+          $("#" + modalId + " .status-card-body-btn").remove();
         }
-      })
+      });
     }
-    
+
     showModal(modalId);
   });
 }
-

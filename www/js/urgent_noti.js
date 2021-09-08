@@ -6,8 +6,9 @@ $(function () {
       setTimeout(function () {
         loading.hide();
         changePage("urgent_noti_page", function () {
-          initialUrgentNotiPageFunc();
           initSlideUrgentNotiPage();
+          initialUrgentNotiPageFunc();
+
           // showModal("modal-tutorial-urgent-noti");
         });
       }, 500);
@@ -57,8 +58,129 @@ function initialUrgentNotiPageFunc() {
   $("#urgent_noti_page .content .backformap .backformap_btn").show();
   $("#urgent_noti_page .urgent_noti_page_header .title").show();
   $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn").show();
-
   disabledElderUrgentNotiPageFunc();
+  queryALL("VHV_TR_ELDER", function (res) {
+    $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
+      // `<div class="swiper swiper_urgent_noti">
+      //         <div class="swiper-wrapper">
+      //           <div class="swiper-slide">Slide 1</div>
+      //           <div class="swiper-slide">Slide 2</div>
+      //           <div class="swiper-slide">Slide 3</div>
+      //           <div class="swiper-slide">Slide 4</div>
+      //           <div class="swiper-slide">Slide 5</div>
+      //           <div class="swiper-slide">Slide 6</div>
+      //           <div class="swiper-slide">Slide 7</div>
+      //           <div class="swiper-slide">Slide 8</div>
+      //           <div class="swiper-slide">Slide 9</div>
+      //         </div>
+      //       </div>`
+      renderElderCardUrgentNoti(res)
+    );
+    // $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
+    //   `<div class="swiper swiper_urgent_noti">
+    //           <div class="swiper-wrapper">
+    //             <div class="swiper-slide">Slide 1</div>
+    //             <div class="swiper-slide">Slide 2</div>
+    //             <div class="swiper-slide">Slide 3</div>
+    //             <div class="swiper-slide">Slide 4</div>
+    //             <div class="swiper-slide">Slide 5</div>
+    //             <div class="swiper-slide">Slide 6</div>
+    //             <div class="swiper-slide">Slide 7</div>
+    //             <div class="swiper-slide">Slide 8</div>
+    //             <div class="swiper-slide">Slide 9</div>
+    //           </div>
+    //         </div>`
+    //   // renderElderCardUrgentNoti(res)
+    // );
+    // $.each(res, function (index, row) {
+    //   $(
+    //     "#urgent_noti_page .content .mapContent .swiper_elder_content .swiper .swiper-wrapper"
+    //   ).append(renderElderCardUrgentNoti(row));
+    // });
+    // renderElderCardUrgentNoti(res);
+    // const output = document.getElementById("swiper_urgent_noti");
+    // output.innerHTML = renderElderCardUrgentNoti(res);
+    // console.log(res);
+    // let _posOrg;
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition((position) => {
+    //     _posOrg = {
+    //       lat: position.coords.latitude,
+    //       lng: position.coords.longitude,
+    //     };
+    //     $.each(res, function (index, row) {
+    //       if (row.ELDER_LAT != "null" && row.ELDER_LONG != "null") {
+    //         row.DISTANCE = getDistanceFromLatLonInKm(
+    //           _posOrg.lat,
+    //           _posOrg.lng,
+    //           row.ELDER_LAT,
+    //           row.ELDER_LONG
+    //         ).toFixed(1);
+    //       }
+    //     });
+    //     $(
+    //       "#urgent_noti_page .content .mapContent .swiper_elder_content .swiper .swiper-wrapper"
+    //     ).html(renderElderCardUrgentNoti(res));
+    //   });
+    // }
+    // var txt = document
+    //   .createElement("div")
+    //   .addClass("swiper-slide")
+    //   .css("background-color", "unset");
+    // txt.innerHTML = renderElderCardUrgentNoti(res);
+  });
+  // function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  //   var R = 6371; // Radius of the earth in km
+  //   var dLat = deg2rad(lat2 - lat1); // deg2rad below
+  //   var dLon = deg2rad(lon2 - lon1);
+  //   var a =
+  //     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+  //     Math.cos(deg2rad(lat1)) *
+  //       Math.cos(deg2rad(lat2)) *
+  //       Math.sin(dLon / 2) *
+  //       Math.sin(dLon / 2);
+  //   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  //   var d = R * c; // Distance in km
+  //   return d;
+  // }
+
+  // function deg2rad(deg) {
+  //   return deg * (Math.PI / 180);
+  // }
+}
+function renderElderCardUrgentNoti(elderData) {
+  let slideHTML = "";
+  $.each(elderData, function (index, row) {
+    slideHTML =
+      slideHTML +
+      `<div class="swiper-slide" style="background-color: unset">
+        <div class="notifications-card-body">
+          <img class="card-body-thumbnail" src="${row.ELDER_AVATAR}" />
+          <div class="card-body-content">
+            <h4 class="name">${row.ELDER_NAME}</h4>
+            <div style="display: flex">
+              <h5 class="urgent">
+                <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                ระยะทาง
+              </h5>
+              <h5
+                class="urgent"
+                style="color: #6f63fd; padding-left: 5px"
+              >
+                ห่างจากคุณ ${row.DISTANCE} km.
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  });
+  return (
+    `<div class="swiper swiper_urgent_noti">
+  <div class="swiper-wrapper">` +
+    slideHTML +
+    `</div>
+  </div>`
+  );
 }
 function disabledElderUrgentNotiPageFunc() {
   $("#urgent_noti_page .DetailElder .elder_btn").prop("disabled", true);
@@ -129,7 +251,7 @@ function initMapUrgentNotiPage() {
   ];
 }
 function initSlideUrgentNotiPage() {
-  var swiper = new Swiper(".swiper", {
+  var swiper = new Swiper(".swiper_urgent_noti", {
     speed: 400,
     spaceBetween: 100,
   });
