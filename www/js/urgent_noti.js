@@ -1,3 +1,4 @@
+var swiper_urgent_noti;
 $(function () {
   $(".main_home_menu_item_wrapper img")
     .eq(3)
@@ -251,7 +252,7 @@ function initMapUrgentNotiPage() {
   ];
 }
 function initSlideUrgentNotiPage() {
-  var swiper = new Swiper(".swiper_urgent_noti", {
+  swiper_urgent_noti = new Swiper(".swiper_urgent_noti", {
     speed: 400,
     spaceBetween: 100,
   });
