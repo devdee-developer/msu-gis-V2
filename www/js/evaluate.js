@@ -467,9 +467,13 @@ $(function () {
                                               evaluate.last_data
                                                   .EVALUATE_FLAG == 1
                                               ? "care_of_doctor-yellow"
-                                              :  evaluate.last_data
-                                              .EVALUATE_FLAG == 2 ? "care_of_doctor":evaluate.last_data
-                                              .EVALUATE_FLAG == 3 ? "care_of_doctor-red":""
+                                              : evaluate.last_data
+                                                  .EVALUATE_FLAG == 2
+                                              ? "care_of_doctor"
+                                              : evaluate.last_data
+                                                  .EVALUATE_FLAG == 3
+                                              ? "care_of_doctor-red"
+                                              : ""
                                           }`
                                     }">
                                         <div class="card_header">
@@ -721,7 +725,7 @@ $(function () {
       if (res.length == 13) {
         sqlUpdate(
           "VHV_TR_ELDER",
-          { EVALUATE_STATUS: 1 ,UPDATE_FLAG:1},
+          { EVALUATE_STATUS: 1, UPDATE_FLAG: 1 },
           $("#evaluate_page .status-card").attr("ELDER_ID"),
           function (res) {}
         );
@@ -735,10 +739,12 @@ $(function () {
 
   function gotoEvaPage1(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_1 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_1 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_1 .evaluate_page_status p`)
-            .eq(1)
-            .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_1 button.choice").removeClass("active");
     $(
       "#evaluate_page_1 input[type='number'],#evaluate_page_1 input[type='text']"
@@ -786,10 +792,17 @@ $(function () {
   var EVALUATE_RESULT1;
   $("#DTX").on("change paste keyup", function () {
     if (validateForm([$("#DTX").val()]) && $("#DTX").val().length > 1) {
-      $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
-        "disabled",
-        false
-      );
+      if ($("#DTX").val() > 59 && $("#DTX").val() <= 200) {
+        $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
+          "disabled",
+          false
+        );
+      }else{
+        $("#evaluate_page_1 .step-footer .btn_group .submit").prop(
+          "disabled",
+          true
+        );
+      }
       let data = setDataEva1();
 
       evaluateResult(data).then((res) => {
@@ -856,10 +869,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_2
   function gotoEvaPage2(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_2 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_2 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_2 .evaluate_page_status p`)
-            .eq(1)
-            .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_2 button.choice").removeClass("active");
     $(
       "#evaluate_page_2 input[type='number'],#evaluate_page_2 input[type='text']"
@@ -918,10 +933,17 @@ $(function () {
           $("#blood_pressure_down").val(),
         ])
       ) {
-        $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
-          "disabled",
-          false
-        );
+        if(  0<$("#blood_pressure_up").val()&&$("#blood_pressure_up").val()<=300&& 0<$("#blood_pressure_down").val()&&$("#blood_pressure_down").val()<=160){
+          $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
+            "disabled",
+            false
+          );
+        }else{
+          $("#evaluate_page_2 .step-footer .btn_group .submit").prop(
+            "disabled",
+            true
+          );
+        }
         let data = setDataEva2();
         evaluateResult(data).then((res) => {
           EVALUATE_RESULT2 = res;
@@ -993,10 +1015,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_3
   function gotoEvaPage3(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_3 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_3 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_3 .evaluate_page_status p`)
-    .eq(1)
-    .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_3 button.choice").removeClass("active");
     $(
       "#evaluate_page_3 input[type='number'],#evaluate_page_3 input[type='text']"
@@ -1159,10 +1183,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_4
   function gotoEvaPage4(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_4 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_4 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_4 .evaluate_page_status p`)
-    .eq(1)
-    .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_4 button.choice").removeClass("active");
     $(
       "#evaluate_page_4 input[type='number'],#evaluate_page_3 input[type='text']"
@@ -1425,10 +1451,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_5
   function gotoEvaPage5(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_5 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_5 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_5 .evaluate_page_status p`)
-    .eq(1)
-    .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_5 button.choice").removeClass("active");
     $(
       "#evaluate_page_5 input[type='number'],#evaluate_page_5 input[type='text']"
@@ -1652,10 +1680,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_6
   function gotoEvaPage6(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_6 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_6 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_6 .evaluate_page_status p`)
-    .eq(1)
-    .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_6 button.choice").removeClass("active");
     $(
       "#evaluate_page_6 input[type='number'],#evaluate_page_6 input[type='text']"
@@ -1801,10 +1831,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_7
   function gotoEvaPage7(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_7 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_7 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_7 .evaluate_page_status p`)
-    .eq(1)
-    .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_7 button.choice").removeClass("active");
     $(
       "#evaluate_page_7 input[type='number'],#evaluate_page_7 input[type='text']"
@@ -1873,15 +1905,16 @@ $(function () {
         "disabled",
         true
       );
-      let data = setDataEva7();
-      evaluateResult(data).then((res) => {
-        EVALUATE_RESULT7 = res;
-      });
+
       $("#evaluate_page_7 .step-footer .btn_group .cancel").prop(
         "disabled",
         true
       );
     }
+    let data = setDataEva7();
+    evaluateResult(data).then((res) => {
+      EVALUATE_RESULT7 = res;
+    });
   });
   // ปุ่ม รีเซ็ต
   $("#evaluate_page_7 .run_time button.btn_reset").on("click", function () {
@@ -1962,8 +1995,10 @@ $(function () {
     } else {
       _addIntervalTimeEva7 = setInterval(function () {
         _countEva7++;
+        let data = setDataEva7();
+        evaluateResult(data).then((res) => {});
         if (_countEva7 == 180) {
-          clearInterval(_addInterval);
+          clearInterval(_addIntervalTimeEva7);
         }
         if (_countEva7 < 10) {
           _timeEva7 = "0" + _countEva7;
@@ -1980,10 +2015,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_8
   function gotoEvaPage8(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_8 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_8 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_8 .evaluate_page_status p`)
-            .eq(1)
-            .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_8 button.choice").removeClass("active");
     $(
       "#evaluate_page_8 input[type='number'],#evaluate_page_8 input[type='text']"
@@ -2149,10 +2186,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_9
   function gotoEvaPage9(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_9 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_9 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_9 .evaluate_page_status p`)
-            .eq(1)
-            .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_9 button.choice").removeClass("active");
     $(
       "#evaluate_page_9 input[type='number'],#evaluate_page_9 input[type='text']"
@@ -2281,10 +2320,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_10
   function gotoEvaPage10(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_10 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_10 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_10 .evaluate_page_status p`)
-            .eq(1)
-            .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_10 button.choice").removeClass("active");
     $(
       "#evaluate_page_10 input[type='number'],#evaluate_page_10 input[type='text']"
@@ -2474,10 +2515,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_11
   function gotoEvaPage11(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_11 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_11 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_11 .evaluate_page_status p`)
-            .eq(1)
-            .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_11 button.choice").removeClass("active");
     $(
       "#evaluate_page_11 input[type='number'],#evaluate_page_11 input[type='text']"
@@ -2696,10 +2739,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_12
   function gotoEvaPage12(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_12 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_12 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_12 .evaluate_page_status p`)
-            .eq(1)
-            .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_12 button.choice").removeClass("active");
     $(
       "#evaluate_page_12 input[type='number'],#evaluate_page_12 input[type='text']"
@@ -3040,10 +3085,12 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_13
   function gotoEvaPage13(lastRecordId) {
     loading.show();
-    $(`#evaluate_page_13 .evaluate_page_status`).removeClass("alert alert-yellow alert-red")
+    $(`#evaluate_page_13 .evaluate_page_status`).removeClass(
+      "alert alert-yellow alert-red"
+    );
     $(`#evaluate_page_13 .evaluate_page_status p`)
-    .eq(1)
-    .text("ยังไม่ได้ทำแบบประเมิน");
+      .eq(1)
+      .text("ยังไม่ได้ทำแบบประเมิน");
     $("#evaluate_page_13 button.choice").removeClass("active");
     $(
       "#evaluate_page_13 input[type='number'],#evaluate_page_13 input[type='text']"
@@ -3228,7 +3275,7 @@ $(function () {
         chkStatusEvaAll();
         sqlUpdate(
           "VHV_TR_ELDER",
-          { HEALTH_STATUS: data.EVALUATE_FLAG ,UPDATE_FLAG:1},
+          { HEALTH_STATUS: data.EVALUATE_FLAG, UPDATE_FLAG: 1 },
           $("#evaluate_page .status-card").attr("ELDER_ID"),
           function (res) {}
         );
@@ -3288,7 +3335,7 @@ $(function () {
     return validate;
   }
   function evaluateResult(data) {
-    console.log(data)
+    console.log(data);
     return new Promise((resolve, reject) => {
       let result;
       queryALL("VHV_MA_EVALUATE", function (evaResultAll) {
@@ -3303,7 +3350,7 @@ $(function () {
                 parseFloat(data.EVALUATE_SCORE) &&
               parseFloat(item.EVALUATE_MAX) >= parseFloat(data.EVALUATE_SCORE)
           );
-        
+
           $(
             `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
           ).removeClass("alert");
@@ -3313,34 +3360,32 @@ $(function () {
           $(
             `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
           ).removeClass("alert-yellow");
-          if(result){
+          if (result) {
             $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
-            .eq(1)
-            .text(result.EVALUATE_RESULT);
-          if (result.EVALUATE_FLAG == 1) {
-            $(
-              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
-            ).addClass("alert-yellow");
-          }else if (result.EVALUATE_FLAG == 2) {
-            $(
-              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
-            ).addClass("alert");
-
-          }else if (result.EVALUATE_FLAG == 3) {
-            $(
-              `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
-            ).addClass("alert-red");
-          }
-
-          }else{
+              .eq(1)
+              .text(result.EVALUATE_RESULT);
+            if (result.EVALUATE_FLAG == 1) {
+              $(
+                `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+              ).addClass("alert-yellow");
+            } else if (result.EVALUATE_FLAG == 2) {
+              $(
+                `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+              ).addClass("alert");
+            } else if (result.EVALUATE_FLAG == 3) {
+              $(
+                `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
+              ).addClass("alert-red");
+            }
+          } else {
             $(
               `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
             ).addClass("alert-red");
             $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
-            .eq(1)
-            .text("ไม่สามารถประมวลผลการทดสอบได้");
+              .eq(1)
+              .text("ไม่สามารถประมวลผลการทดสอบได้");
           }
-        
+
           $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`).fadeIn(
             1000
           );
@@ -3367,8 +3412,11 @@ $(function () {
           $(
             `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
           ).removeClass("alert-yellow");
-          var result = { EVALUATE_RESULT: "ไม่สามารถประมวลผลได้", EVALUATE_FLAG: 0 };
-          if(RESULTSBP &&RESULTDBP){
+          var result = {
+            EVALUATE_RESULT: "ไม่สามารถประมวลผลได้",
+            EVALUATE_FLAG: 0,
+          };
+          if (RESULTSBP && RESULTDBP) {
             if (RESULTSBP.EVALUATE_FLAG >= RESULTDBP.EVALUATE_FLAG) {
               result.EVALUATE_RESULT = RESULTSBP.EVALUATE_RESULT;
               result.EVALUATE_FLAG = RESULTSBP.EVALUATE_FLAG;
@@ -3376,12 +3424,12 @@ $(function () {
               result.EVALUATE_RESULT = RESULTDBP.EVALUATE_RESULT;
               result.EVALUATE_FLAG = RESULTDBP.EVALUATE_FLAG;
             }
-          } else{
+          } else {
             $(
               `#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status`
             ).addClass("alert-red");
           }
-         
+
           $(`#evaluate_page_${data.EVALUATE_NO} .evaluate_page_status p`)
             .eq(1)
             .text(result.EVALUATE_RESULT);
