@@ -1876,8 +1876,9 @@ function renderElderModal(item,modalId,showEva,showVisit) {
       `)
         if (item.EVALUATE_STATUS == 1) {
           console.log(item.VISIT_STATUS)
+          $("#"+modalId+" .status-card.visit").attr("canvisit",true)
           if(item.VISIT_STATUS ==1){
-            $("#"+modalId+" .status-card.visit").attr("canvisit",true)
+        
             $("#"+modalId+" .status-card.visit .status-card-header").addClass('visited')
             $("#"+modalId+" .status-card.visit .status-card-header").html(`<p><b>สถานะออกเยี่ยม</b> : ออกเยี่ยมแล้ว ${visitCount} ครั้ง</p>`)
           }else{
