@@ -1135,6 +1135,125 @@ function getInitial() {
             );
           });
         });
+        db.transaction(function (tx) {
+          $.each(data.visit, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_TR_VISIT (ID,GUID,VHV_ID,ELDER_ID,VISIT_DATE,VISIT_NO,VISIT1,VISIT1_DESC,VISIT2A,VISIT2B,VISIT2B_NAME1,VISIT2B_TEL1,VISIT2B_NAME2,VISIT2B_TEL2,VISIT2C,VISIT2D,VISIT3A_WEIGHT,VISIT3A_HEIGHT,VISIT3A_SBP,VISIT3A_DBP,VISIT3A_PULSE,VISIT3B,VISIT3C,VISIT3DA,VISIT3DB,VISIT3DC,VISIT3DC_DESC,VISIT3EA,VISIT3EB,VISIT3F,VISIT4A,VISIT4B,VISIT4C,VISIT4DA,VISIT4D_DESC,VISIT4EA,VISIT4E_DESC,VISIT5A1,VISIT5A2,VISIT5A3,VISIT5A4,VISIT5A5,VISIT5B1,VISIT5B2,VISIT5B3,VISIT5B4,VISIT5C1,VISIT5C2,VISIT5C3,VISIT5C4,SOLVE0,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.VHV_ID +
+                "','" +
+                row.ELDER_ID +
+                "','" +
+                row.VISIT_DATE +
+                "','" +
+                row.VISIT_NO +
+                "','" +
+                row.VISIT1 +
+                "','" +
+                row.VISIT1_DESC +
+                "','" +
+                row.VISIT2A +
+                "','" +
+                row.VISIT2B +
+                "','" +
+                row.VISIT2B_NAME1 +
+                "','" +
+                row.VISIT2B_TEL1 +
+                "','" +
+                row.VISIT2B_NAME2 +
+                "','" +
+                row.VISIT2B_TEL2 +
+                "','" +
+                row.VISIT2C +
+                "','" +
+                row.VISIT2D +
+                "','" +
+                row.VISIT3A_WEIGHT +
+                "','" +
+                row.VISIT3A_HEIGHT +
+                "','" +
+                row.VISIT3A_SBP +
+                "','" +
+                row.VISIT3A_DBP +
+                "','" +
+                row.VISIT3A_PULSE +
+                "','" +
+                row.VISIT3B +
+                "','" +
+                row.VISIT3C +
+                "','" +
+                row.VISIT3DA +
+                "','" +
+                row.VISIT3DB +
+                "','" +
+                row.VISIT3DC +
+                "','" +
+                row.VISIT3DC_DESC +
+                "','" +
+                row.VISIT3EA +
+                "','" +
+                row.VISIT3EB +
+                "','" +
+                row.VISIT3F +
+                "','" +
+                row.VISIT4A +
+                "','" +
+                row.VISIT4B +
+                "','" +
+                row.VISIT4C +
+                "','" +
+                row.VISIT4DA +
+                "','" +
+                row.VISIT4D_DESC +
+                "','" +
+                row.VISIT4EA +
+                "','" +
+                row.VISIT4E_DESC +
+                "','" +
+                row.VISIT5A1 +
+                "','" +
+                row.VISIT5A2 +
+                "','" +
+                row.VISIT5A3 +
+                "','" +
+                row.VISIT5A4 +
+                "','" +
+                row.VISIT5A5 +
+                "','" +
+                row.VISIT5B1 +
+                "','" +
+                row.VISIT5B2 +
+                "','" +
+                row.VISIT5B3 +
+                "','" +
+                row.VISIT5B4 +
+                "','" +
+                row.VISIT5C1 +
+                "','" +
+                row.VISIT5C2 +
+                "','" +
+                row.VISIT5C3 +
+                "','" +
+                row.VISIT5C4 +
+                "','" +
+                row.SOLVE0 +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
       } else {
         _error("เกิดข้อผิดพลาด");
       }
@@ -1653,3 +1772,132 @@ function clearInitial() {
     tx.executeSql("DELETE FROM VHV_TR_VISIT");
   });
 }
+function dateStringFormat(date){
+  var day = date.substring(8, 10);
+  var month = date.substring(5, 7).replace("0", "") - 1;
+  var year = date.substring(0, 4);
+  var time = date.substring(11, 16);
+  var dateString =
+    " " +
+    day +
+    " " +
+    getMonthThai(month) +
+    " " +
+    year +
+    " เวลา " +
+    time +
+    " น.";
+  return dateString
+}
+function renderElderModal(item,modalId,showEva,showVisit) {
+  $("#evaluate_recommend,#visit_recommend").hide();
+  $("#"+modalId+" .status-card.evaluate,#"+modalId+" .status-card.visit").html('')
+  var maxdate = " ยังไม่มีข้อมูล";
+  getMaxDateEva(item.ID, function (res) {
+    if (res[0]["MaxDate"] != null) {
+      var date = res[0]["MaxDate"];
+      maxdate = dateStringFormat(date)
+    }
+    $("#"+modalId+" .status-card").attr("ELDER_ID", item.ID);
+    $("#"+modalId+" .thumbnail").attr("src", item.ELDER_AVATAR);
+    $("#"+modalId+" .name").text(item.ELDER_NAME);
+    $("#"+modalId+" .age").text(getAge(item.ELDER_BIRTHDATE));
+    $("#"+modalId+" .distant").hide();
+    if(showEva ==true){
+      $("#"+modalId+" .status-card.evaluate").html( `
+              <div class="status-card-header wait-evaluate">
+              <p><b>สถานะการประเมิน</b> : **รอประเมิน...</p>
+            </div>
+            <div class="status-card-body ready-for-evaluate">
+              <div class="status-card-body-content">
+                <h3>เริ่มประเมิน</h3>
+                <p>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  ยังไม่มีข้อมูล
+                </p>
+              </div>
+              <div class="status-card-body-btn-evaluate">
+                <i class="fa fa-chevron-right"></i>
+              </div>
+            </div>
+         `)
+     
+      if (item.EVALUATE_STATUS == 1) {
+        $("#"+modalId+" .status-card-header").removeClass(
+          "wait-for-evaluate"
+        );
+        $("#"+modalId+" .status-card-header").addClass("evaluated");
+        $("#"+modalId+" .status-card-header").html(
+          "<p><b>สถานะการประเมิน</b> : ประเมินแล้ว</p>"
+        );
+        $("#"+modalId+" .status-card-body-content").html(`
+                <h3>ประเมินแล้ว</h3>
+                <p style="font-size:11px">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>${maxdate}
+                </p>`);
+      } else if (item.EVALUATE_STATUS == 0) {
+        $("#"+modalId+" .status-card-header").removeClass(
+          "evaluated"
+        );
+        $("#"+modalId+" .status-card-header").addClass(
+          "wait-for-evaluate"
+        );
+        $("#"+modalId+" .status-card-header").html(
+          "<p><b>สถานะการประเมิน</b> : รอประเมิน...</p>"
+        );
+        $("#"+modalId+" .status-card-body-content").html(`
+                <h3>เริ่มประเมิน</h3>
+                <p style="font-size:11px">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  ยังไม่มีข้อมูล
+                </p>`);
+      }
+    }
+    if(showVisit==true){
+      queryALL('VHV_TR_VISIT',function(vhv_tr_visit){
+         let visitCount =  vhv_tr_visit.filter(row=>row.ELDER_ID==item.ID).length
+     
+        $("#"+modalId+" .status-card.visit").html(`
+        <div class="status-card-header">
+          <p><b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
+        </div>
+        <div class="status-card-body ready-for-visit">
+          <div class="status-card-body-content">
+            <h3>เริ่มออกเยี่ยม</h3>
+            <p>
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              ยังไม่มีข้อมูล
+            </p>
+          </div>
+          <div class="status-card-body-btn">
+            <i class="fa fa-chevron-right"></i>
+          </div>
+        </div>
+      `)
+        if (item.EVALUATE_STATUS == 1) {
+          console.log(item.VISIT_STATUS)
+          if(item.VISIT_STATUS ==1){
+            $("#"+modalId+" .status-card.visit").attr("canvisit",true)
+            $("#"+modalId+" .status-card.visit .status-card-header").addClass('visited')
+            $("#"+modalId+" .status-card.visit .status-card-header").html(`<p><b>สถานะออกเยี่ยม</b> : ออกเยี่ยมแล้ว ${visitCount} ครั้ง</p>`)
+          }else{
+
+          }
+        }else{
+          $("#"+modalId+" .status-card.visit .status-card-header").html("<p><b>สถานะออกเยี่ยม</b> : จำเป็นต้องประเมินก่อน</p>")
+          $("#"+modalId+" .status-card.visit .status-card-body").removeClass("ready-for-visit")
+          $("#"+modalId+" .status-card.visit .status-card-body .status-card-body-content").html(`
+          <h3>รอการออกเยี่ยม</h3>
+          <p>
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            ยังไม่มีข้อมูล
+          </p>`)
+          $("#"+modalId+" .status-card-body-btn").remove();
+        }
+      })
+    }
+    
+    showModal(modalId);
+  });
+}
+

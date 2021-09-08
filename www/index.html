@@ -408,6 +408,7 @@
           <div class="collapse-filter-content">
             <div class="input-group">
               <input
+              id="visitSearchTumbol"
                 type="text"
                 class="input-form lock"
                 value="จังหวัด มหาสารคาม"
@@ -419,6 +420,7 @@
             <div style="display: flex">
               <div class="input-group" style="width: 50%; margin-right: 0.5em">
                 <input
+                  id="visitSearchProvince"
                   type="text"
                   class="input-form lock"
                   value="อบต. สันป่าตอง"
@@ -428,12 +430,13 @@
               </div>
               <div class="input-group" style="width: 50%">
                 <input
+                id="visitSearchMoo"
                   type="text"
-                  class="input-form select"
+                  class="input-form lock"
                   value="หมู่ที่ 5"
                   readonly
                 />
-                <i class="fa fa-chevron-down icons-in-input"></i>
+                <i class="fa fas fa-lock icons-in-input"></i>
               </div>
             </div>
           </div>
@@ -593,8 +596,8 @@
           <p class="distant">
             <i class="fa fa-flag-o"></i> ระยะห่างจากคุณ
             <span style="color: #6f63fd">0.8 กิโลเมตร</span>
-          </p>
-          <div class="status-card">
+          </p> 
+          <div class="status-card visit">
             <div class="status-card-header">
               <p><b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
             </div>
@@ -654,7 +657,8 @@
       <div class="content">
         <div class="visit_status_bar">
           สถานะสุขภาพปัจจุบัน : &nbsp;
-          <div class="homebody">"ติดบ้าน"</div>
+          <img src="img/health_2_icon.png" />
+          &nbsp;<span style="color: #fdebc1"> "ติดบ้าน" </span>
         </div>
         <div style="height: 39px"></div>
         <ul class="contact_items">
@@ -2392,7 +2396,7 @@
             <i class="fa fa-flag-o"></i> ระยะห่างจากคุณ
             <span style="color: #6f63fd">0.8 กิโลเมตร</span>
           </p>
-          <div class="status-card">
+          <div class="status-card evaluate">
             <div class="status-card-header wait-evaluate">
               <p><b>สถานะการประเมิน</b> : **รอประเมิน...</p>
             </div>
@@ -6276,9 +6280,9 @@
     <script src="js/cryptojs-aes-format.js"></script>
     <script src="js/function.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/visit.js"></script>
     <script src="js/evaluate.js?v=1"></script>
+    <script src="js/visit.js"></script>
+    <script src="js/contact.js"></script>
     <script src="js/urgent_noti.js"></script>
     <script src="js/profile.js"></script>
     <script src="js/setting.js"></script>

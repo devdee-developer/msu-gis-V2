@@ -79,8 +79,11 @@ $(function () {
       });
     });
   }
-  let syncDataInterval = setInterval(function () {
+  let syncDataInterval
+  if(sync_data){
+    syncDataInterval = setInterval(function () {
+      syncData();
+    }, 60000 * 5);
     syncData();
-  }, 60000 * 5);
-  syncData();
+  }
 });

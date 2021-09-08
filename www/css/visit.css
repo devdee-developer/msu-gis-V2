@@ -452,6 +452,9 @@ input.input-form.lock:read-only {
 .status-card .status-card-header.evaluated {
   background-color: #ecf8f7;
 }
+.status-card .status-card-header.visited {
+  background-color: #ecf8f7;
+}
 .status-card .status-card-header p {
   vertical-align: middle;
 }

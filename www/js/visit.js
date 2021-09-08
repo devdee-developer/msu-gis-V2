@@ -15,21 +15,45 @@ $(function () {
   function initialVisitPage() {
     queryALL("VHV_TR_ELDER",function(elderList){
       console.log(elderList)
-      // $("#visit_page .waiting_list").html("");
-      // $("#visit_page .visited_list").html("");
-      // $("#visit_page .sort-bar h4 span").html(
-      //   `${elderList.length} คน`
-      // );
-      // $("#visit_page .waiting_list_count").text(`...กำลังรอยู่ ${elderList.length} คน`);
-      // $("#visit_page .visited_list_count").text(`จำนวน ${elderList.length} คน`);
-      // $.each(elderList, function (index, row) {
-      //   $("#visit_page .waiting_list").append(renderElderCard(row));
-      // });
+      let waitingList = elderList.filter((row)=>row.VISIT_STATUS==0)
+      let visitedList = elderList.filter((row)=>row.VISIT_STATUS==1)
+      $("#visit_page .waiting_list").html("");
+      $("#visit_page .visited_list").html("");
+      $("#visit_page .sort-bar h4 span").html(
+        `${elderList.length} คน`
+      );
+      $("#visit_page .waiting_list_count").text(`...กำลังรอยู่ ${waitingList.length} คน`);
+      $("#visit_page .visited_list_count").text(`จำนวน ${visitedList.length} คน`);
+      $.each(waitingList, function (index, row) {
+        $("#visit_page .waiting_list").append(renderElderCard(row));
+      });
+      $.each(visitedList, function (index, row) {
+        $("#visit_page .visited_list").append(renderElderCard(row));
+      });
       loading.hide();
       setTimeout(function () {
-        $("#visit_recommend").show();
-        showModal("modal-visit-detail");
+        let waitingListAndEvaluated =waitingList.filter(row=>row.EVALUATE_STATUS==1)
+        if (waitingListAndEvaluated.length > 0) {
+          renderElderModal(waitingListAndEvaluated[0],"modal-visit-detail",false,true);
+          $("#visit_recommend").show();
+        }
+        // showModal("modal-visit-detail");
       }, 500);
+      queryALL("VHV_MA_GIS_PROVINCE", function (res) {
+        $("#visit_page .content .collapse-filter #visitSearchProvince").val(
+          "จังหวัด " + res[0]["GIS_PROVINCENAME"]
+        );
+      });
+      queryALL("VHV_MA_GIS_TUMBOL", function (res) {
+        $("#visit_page .content .collapse-filter #visitSearchTumbol").val(
+          "ตำบล " + res[0]["GIS_TUMBOLNAME"]
+        );
+      });
+      queryALL("VHV_MA_SHPH_MOO", function (res) {
+        $("#visit_page .content .collapse-filter #visitSearchMoo").val(
+          "หมู่ที่ " + res[0]["SHPH_MOO"]
+        );
+      });
     })
     
   
@@ -44,23 +68,84 @@ $(function () {
   $("#visit_page .btn-sort").on("click", function () {
     showModal("modal-sort-visit");
   });
-  $("#visit_page .contact_items")
-    .find("li")
-    .each(function (index) {
-      $(this).click(function () {
-        $("#visit_recommend").hide();
-        showModal("modal-visit-detail");
+
+    $("#visit_page .contact_items").on("click", "li", function () {
+      queryByID("VHV_TR_ELDER", $(this).attr("ELDER_ID"), function (res) {
+        renderElderModal(res,"modal-visit-detail",false,true);
       });
     });
-
   //visit detail
-  $(".ready-for-visit").on("click", function () {
-    loading.show();
-    setTimeout(function () {
-      loading.hide();
-      changePage("visit_detail_page", function () {});
-    }, 500);
+  $(".status-card.visit").on("click", function () {
+    if($(this).attr("canvisit")=="true"){
+      loading.show();
+      reloadVisitList()
+      setTimeout(function () {
+        loading.hide();
+        changePage("visit_detail_page", function () {
+          readerAfterSaveVisit()
+        });
+      }, 500);
+    }
+    
   });
+  function readerAfterSaveVisit() {
+    $("#visit_detail_page .content .visit_status_bar span").text(
+      " " + $("#visit_detail_page ul li span").eq(0).text()
+    );
+    queryByID(
+      "VHV_TR_ELDER",
+      $("#visit_page .status-card").attr("ELDER_ID"),
+      function (res) {
+        console.log(res);
+        if (res.HEALTH_STATUS == 1) {
+          console.log("แข็งแรง");
+          $("#visit_detail_page .content .visit_status_bar img").attr(
+            "src",
+            "img/health_2_icon.png"
+          );
+          $("#visit_detail_page .content .visit_status_bar span").text(
+            "แข็งแรง"
+          );
+        } else if (res.HEALTH_STATUS == 2) {
+          console.log("พยุงเดิน");
+          $("#visit_detail_page .content .visit_status_bar img").attr(
+            "src",
+            "img/health_3_icon.png"
+          );
+          $("#visit_detail_page .content .visit_status_bar span").text(
+            "พยุงเดิน"
+          );
+        } else if (res.HEALTH_STATUS == 3) {
+          console.log("ติดเตียง");
+          $("#visit_detail_page .content .visit_status_bar img").attr(
+            "src",
+            "img/health_1_icon.png"
+          );
+          $("#visit_detail_page .content .visit_status_bar span").text(
+            "ติดเตียง"
+          );
+        } else {
+          $("#visit_detail_page .content .visit_status_bar span").text(
+            "ไม่มีข้อมูล"
+          );
+        }
+      }
+    );
+   
+  }
+  function reloadVisitList() {
+    let elder_id = $("#modal-visit-detail .status-card").attr("ELDER_ID");
+    let visitData = [];
+    console.log(elder_id);
+    queryALL("VHV_TR_ELDER", function (ELDER) {
+      $("#visit_detail_page .contact_items").html(
+        renderElderCard(
+          ELDER.find((item) => item.ID == elder_id),
+          false
+        )
+      );
+    });
+  }
   function initialVisitFormPage() {
     resetVisitForm();
 
@@ -212,7 +297,7 @@ $(function () {
   });
   $("#visit_detail_page .header .back_header_btn").on("click", function () {
     changePage("visit_page", function () {
-      $("#visit_form_page").destroy();
+      // $("#visit_form_page").destroy();
     });
   });
   $("#visit_form_page .header .back_header_btn,.step-footer .step-btn.cancel").on("click", function () {
