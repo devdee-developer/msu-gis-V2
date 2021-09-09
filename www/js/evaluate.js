@@ -107,7 +107,7 @@ $(function () {
       evaluateData.push({
         evaNo: 1,
         evaName: "ประเมินโรคเบาหวาน",
-        updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+        updateDate: lastData ? dateStringFormat(lastData.EVALUATE_DATE) : "ไม่มีข้อมูล",
 
         last_data: lastData,
         total: total1,
@@ -121,7 +121,7 @@ $(function () {
         evaluateData.push({
           evaNo: 2,
           evaName: "ประเมินโรคความดันโลหิตสูง",
-          updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+          updateDate: lastData ? dateStringFormat(lastData.EVALUATE_DATE) : "ไม่มีข้อมูล",
           // recommend: lastData
           //   ? `ตัวบน: ${lastData.RESULTSBP},ตัวล่าง: ${lastData.RESULTDBP}`
           //   : "",
@@ -169,7 +169,7 @@ $(function () {
           evaluateData.push({
             evaNo: 3,
             evaName: "โรคหัวใจและหลอดเลือด",
-            updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+            updateDate: lastData ? dateStringFormat(lastData.EVALUATE_DATE) : "ไม่มีข้อมูล",
 
             last_data: lastData,
             total: total3,
@@ -183,7 +183,7 @@ $(function () {
             evaluateData.push({
               evaNo: 4,
               evaName: "สมองเสื่อม",
-              updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+              updateDate: lastData ? dateStringFormat(lastData.EVALUATE_DATE) : "ไม่มีข้อมูล",
 
               last_data: lastData,
               total: total4,
@@ -197,7 +197,7 @@ $(function () {
               evaluateData.push({
                 evaNo: 5,
                 evaName: "โรคซึมเศร้า",
-                updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+                updateDate: lastData ? dateStringFormat(lastData.EVALUATE_DATE) : "ไม่มีข้อมูล",
 
                 last_data: lastData,
                 total: total5,
@@ -211,7 +211,7 @@ $(function () {
                 evaluateData.push({
                   evaNo: 6,
                   evaName: "โรคข้อเข่าเสื่อม",
-                  updateDate: lastData ? lastData.EVALUATE_DATE : "ไม่มีข้อมูล",
+                  updateDate: lastData ? dateStringFormat(lastData.EVALUATE_DATE) : "ไม่มีข้อมูล",
 
                   last_data: lastData,
                   total: total6,
@@ -228,7 +228,7 @@ $(function () {
                     evaNo: 7,
                     evaName: "ภาวะหกล้ม",
                     updateDate: lastData
-                      ? lastData.EVALUATE_DATE
+                      ? dateStringFormat(lastData.EVALUATE_DATE)
                       : "ไม่มีข้อมูล",
 
                     last_data: lastData,
@@ -246,7 +246,7 @@ $(function () {
                       evaNo: 8,
                       evaName: "สุขภาวะทางตา",
                       updateDate: lastData
-                        ? lastData.EVALUATE_DATE
+                        ? dateStringFormat(lastData.EVALUATE_DATE)
                         : "ไม่มีข้อมูล",
 
                       last_data: lastData,
@@ -264,7 +264,7 @@ $(function () {
                         evaNo: 9,
                         evaName: "การได้ยิน",
                         updateDate: lastData
-                          ? lastData.EVALUATE_DATE
+                          ? dateStringFormat(lastData.EVALUATE_DATE)
                           : "ไม่มีข้อมูล",
 
                         last_data: lastData,
@@ -282,7 +282,7 @@ $(function () {
                           evaNo: 10,
                           evaName: "การประเมินปัญหาการนอน",
                           updateDate: lastData
-                            ? lastData.EVALUATE_DATE
+                            ? dateStringFormat(lastData.EVALUATE_DATE)
                             : "ไม่มีข้อมูล",
 
                           last_data: lastData,
@@ -300,7 +300,7 @@ $(function () {
                             evaNo: 11,
                             evaName: "การประเมินสุขภาพช่องปาก",
                             updateDate: lastData
-                              ? lastData.EVALUATE_DATE
+                              ? dateStringFormat(lastData.EVALUATE_DATE)
                               : "ไม่มีข้อมูล",
 
                             last_data: lastData,
@@ -320,7 +320,7 @@ $(function () {
                               evaNo: 12,
                               evaName: "ภาวะโภชนาการ",
                               updateDate: lastData
-                                ? lastData.EVALUATE_DATE
+                                ? dateStringFormat(lastData.EVALUATE_DATE)
                                 : "ไม่มีข้อมูล",
 
                               last_data: lastData,
@@ -342,7 +342,7 @@ $(function () {
                                   evaNo: 13,
                                   evaName: "การทํากิจวัตรประจําวัน",
                                   updateDate: lastData
-                                    ? lastData.EVALUATE_DATE
+                                    ? dateStringFormat(lastData.EVALUATE_DATE)
                                     : "ไม่มีข้อมูล",
                                   last_data: lastData,
                                   total: total13,

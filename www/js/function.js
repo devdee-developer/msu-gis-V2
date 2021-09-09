@@ -1611,6 +1611,23 @@ function getMonthThai(month_no) {
   ];
   return monthNamesThai[month_no];
 }
+function getMonthThaiFull(month_no) {
+  var monthNamesThai = [
+    "มกราคม",
+    "กุมภาพันธ์",
+    "มีนาคม",
+    "เมษายน",
+    "พฤษภาคม",
+    "มิถุยายน",
+    "กรกฏาคม",
+    "สิงหาคม",
+    "กันยายน",
+    "ตุลาคม",
+    "พฤศจิกายน",
+    "ธันวาคม",
+  ];
+  return monthNamesThai[month_no];
+}
 function renderElderCard(elderData, righticon = true) {
   console.log(elderData);
   var classhealth = "healthy";
@@ -1808,7 +1825,7 @@ function dateStringFormat(date) {
     " " +
     getMonthThai(month) +
     " " +
-    year +
+    (parseInt(year)+543).toString().substring(2,4) +
     " เวลา " +
     time +
     " น.";
