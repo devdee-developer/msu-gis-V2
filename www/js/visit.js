@@ -199,7 +199,7 @@ $(function () {
         <p>
           <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
           ${dateStringFormat(visit.VISIT_DATE)}</p>
-        <div class="alert_message">
+          ${visit.SOLVE0==1?`<div class="alert_message">
           <svg width="9" height="14" viewBox="0 0 15.177 20.546">
             <defs></defs>
             <g transform="translate(-1267.095 -933.068)">
@@ -218,7 +218,8 @@ $(function () {
             </g>
           </svg>
           มีปัญหาที่ต้องการแก้ไข
-        </div>
+        </div>`:""}
+        
       </div>
       <div class="card_body_right">
         <div class="status-card-body-btn">
@@ -292,7 +293,9 @@ $(function () {
         $(`#visit_form_page input[type="checkbox"]#VISIT5C3`).prop("checked",data.VISIT5C3==1?true:false)
         $(`#visit_form_page input[type="checkbox"]#VISIT5C4`).prop("checked",data.VISIT5C4==1?true:false)
         $(`#visit_form_page input[type="checkbox"][name="VISIT6"]`).prop("checked",true)
-        // data.SOLVE0
+        $(`#visit_form_page input[type="radio"][name="SOLVE0"][value="${data.SOLVE0}"]`).prop("checked",true)
+        $(`#visit_form_page input[type="radio"][name="SOLVE0"][value="${data.SOLVE0}"]`).siblings(".toggle_input_group").show();
+
    
       })
       $(".step-footer .btn_group.add").hide();
