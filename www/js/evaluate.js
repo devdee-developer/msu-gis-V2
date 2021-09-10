@@ -3227,18 +3227,7 @@ $(function () {
       $("button.camera").hide();
     }
   }
-  function validateForm(array) {
-    let validate = true;
-    console.log(array);
-    for (let index = 0; index < array.length; index++) {
-      const value = array[index];
-      if (value == "" || value == undefined || value == null) {
-        validate = false;
-        break;
-      }
-    }
-    return validate;
-  }
+ 
   function evaluateResult(data) {
     console.log(data);
     return new Promise((resolve, reject) => {

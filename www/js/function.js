@@ -198,7 +198,7 @@ function getInitial() {
       response.data = CryptoJSAesJson.decrypt(response.data, secret_key_aes);
       var data = response.data;
       if (response.status == true) {
-        clearInitial();
+        // clearInitial();
         db.transaction(function (tx) {
           $.each(data.elder, function (index, row) {
             tx.executeSql(
@@ -1277,6 +1277,31 @@ function getInitial() {
             );
           });
         });
+        db.transaction(function (tx) {
+          $.each(data.solve, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_TR_SOLVE (ID,GUID,VISIT_ID,SOLVE_NAME,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.VISIT_ID +
+                "','" +
+                row.SOLVE_NAME +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
       } else {
         _error("เกิดข้อผิดพลาด");
       }
@@ -1287,7 +1312,10 @@ function getInitial() {
   });
 }
 function getNewId() {
-  return Date.now();
+  return Date.now()+getRandomInt(50);
+}
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 function sqlInsert(table, data, _callback) {
   var inserted_id = getNewId();
@@ -1952,4 +1980,16 @@ function renderElderModal(item, modalId, showEva, showVisit) {
 
     showModal(modalId);
   });
+}
+function validateForm(array) {
+  let validate = true;
+  console.log(array);
+  for (let index = 0; index < array.length; index++) {
+    const value = array[index];
+    if (value == "" || value == undefined || value == null) {
+      validate = false;
+      break;
+    }
+  }
+  return validate;
 }

@@ -851,6 +851,10 @@ button.step-btn.next:disabled {
   background-color: #e4e1f0;
   box-shadow: none;
 }
+button.step-btn.finish:disabled {
+  background-color: #e4e1f0;
+  box-shadow: none;
+}
 button.step-btn.prev {
   display: flex;
 

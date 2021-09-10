@@ -1253,7 +1253,7 @@
                     <label>น้ำหนัก</label>
                     <div class="input_inline">
                       <input
-                        type="text"
+                        type="number"
                         class="visit_form"
                         placeholder="ใส่ตัวเลข"
                         id="VISIT3A_WEIGHT"
@@ -1265,7 +1265,7 @@
                     <label>ส่วนสูง</label>
                     <div class="input_inline">
                       <input
-                        type="text"
+                        type="number"
                         class="visit_form"
                         placeholder="ใส่ตัวเลข"
                         id="VISIT3A_HEIGHT"
@@ -1276,7 +1276,7 @@
                   <li>
                     <p>ความดันโลหิต</p>
                     <input
-                      type="text"
+                      type="number"
                       class="visit_form"
                       placeholder="ใส่ตัวเลข"
                       style="width: 45%"
@@ -1284,7 +1284,7 @@
                     />
                     /
                     <input
-                      type="text"
+                      type="number"
                       class="visit_form"
                       placeholder="ใส่ตัวเลข"
                       style="width: 45%"
@@ -1293,7 +1293,7 @@
                     <label>ชีพจร</label>
                     <div class="input_inline">
                       <input
-                        type="text"
+                        type="number"
                         class="visit_form"
                         placeholder="ใส่ตัวเลข"
                         id="VISIT3A_PULSE"
@@ -2183,6 +2183,22 @@
 
           <button data-step-action="next" class="step-btn next">ถัดไป</button>
           <button data-step-action="finish" class="step-btn finish">ออก</button>
+        </div>
+      </div>
+      <div id="modal-visit-alert" class="modal">
+        <div class="modal-container-evaluate-alert">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <p style="font-size: 30px; color: #f26e4f">
+            <b>ออกเยี่ยมไม่สมบูรณ์</b>
+          </p>
+          <p style="font-size: 20px; color: #3b3d48">
+            ต้องการออกจากการออกเยี่ยมหรือไม่?
+          </p>
+          <img src="img/evaluate_alret.png" />
+          <div class="btn_group">
+            <button class="cancel_alret">ยกเลิก</button>
+            <button class="submit_alret">ยืนยัน</button>
+          </div>
         </div>
       </div>
     </div>
