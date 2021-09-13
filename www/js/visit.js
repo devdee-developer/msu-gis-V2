@@ -1,6 +1,7 @@
 $(function () {
   //contact list
- 
+ let visit_elder_id
+ let visit_from_page
   $(".main_home_menu_item_wrapper img")
     .eq(2)
     .on("click", function () {
@@ -86,7 +87,10 @@ $(function () {
   });
   //visit detail
   $(".status-card.visit").on("click", function () {
+  
     if ($(this).attr("canvisit") == "true") {
+      visit_from_page = $(this).parent().parent().parent().attr('id')
+      visit_elder_id = $(`#${$(this).parents('.modal').attr('id')} .status-card`).attr("ELDER_ID")
       loading.show();
       reloadVisitList();
       setTimeout(function () {
@@ -103,7 +107,7 @@ $(function () {
     );
     queryByID(
       "VHV_TR_ELDER",
-      $("#visit_page .status-card").attr("ELDER_ID"),
+      visit_elder_id,
       function (res) {
         if (res.HEALTH_STATUS == 1) {
           $("#visit_detail_page .content .visit_status_bar img").attr(
@@ -139,8 +143,8 @@ $(function () {
   }
   function reloadVisitList() {
     
-    let elder_id = $("#modal-visit-detail .status-card").attr("ELDER_ID");
-   
+    let elder_id = visit_elder_id;
+   console.log(visit_elder_id)
     let visitData = [];
     $("#visit_detail_page .content").find(".list_item_group").remove();
     queryALL("VHV_TR_ELDER", function (ELDER) {
@@ -952,7 +956,7 @@ $(function () {
       let SOLVE0 = $('#visit_form_page input[name="SOLVE0"]:checked').val();
       let problem_list = $("#visit_form_page .problem_list").children();
 
-      let elder_id = $("#visit_page .status-card").attr("ELDER_ID")
+      let elder_id = visit_elder_id
       queryALL("VHV_TR_VISIT",function(vhv_tr_visit){
         oldList = vhv_tr_visit.filter(row =>row.ELDER_ID==elder_id && getCurrentDate().substring(0,7)==row.VISIT_DATE.substring(0,7))
         let VISIT_NO = 1;
@@ -1118,7 +1122,7 @@ $(function () {
     $(".menu_home_page").click();
   });
   $("#visit_detail_page .header .back_header_btn").on("click", function () {
-    changePage("visit_page", function () {
+    changePage(visit_from_page, function () {
       // $("#visit_form_page").destroy();
     });
   });

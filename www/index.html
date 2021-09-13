@@ -149,17 +149,118 @@
     </div>
     <div class="pages" id="contact_page">
       <div class="header">
-        <img src="img/logo_header.png" class="logo_header" />
-        <div class="profile_header_wrapper">
-          <img src="img/profile.jpg" />
-          <div class="header_notification">
-            <i class="fa fa-bell" id="notification_icon"></i>
+        <div class="back_header_btn"></div>
+        <div class="map_header_btn"></div>
+      </div>
+      <div class="content">
+        <div class="collapse-filter">
+          <div class="collapse-filter-header">
+            <p>
+              <img src="img/contact_icon_head.png" width="20" height="20" />
+              &nbsp; ตรวจสอบพื้นที่ดูแล เพื่อเลือกรายชื่อ
+            </p>
+            <i class="fa fa-chevron-down toggle"></i>
+          </div>
+          <div class="collapse-filter-content">
+            <div class="input-group">
+              <input
+              id="visitSearchTumbol"
+                type="text"
+                class="input-form lock"
+                value="จังหวัด มหาสารคาม"
+                readonly
+              />
+              <i class="fa fas fa-lock icons-in-input"></i>
+            </div>
+
+            <div style="display: flex">
+              <div class="input-group" style="width: 50%; margin-right: 0.5em">
+                <input
+                  id="visitSearchProvince"
+                  type="text"
+                  class="input-form lock"
+                  value="อบต. สันป่าตอง"
+                  readonly
+                />
+                <i class="fa fas fa-lock icons-in-input"></i>
+              </div>
+              <div class="input-group" style="width: 50%">
+                <input
+                id="visitSearchMoo"
+                  type="text"
+                  class="input-form lock"
+                  value="หมู่ที่ 5"
+                  readonly
+                />
+                <i class="fa fas fa-lock icons-in-input"></i>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="sort-bar">
+          <h4>จำนวนทั้งหมด <span style="color: #6f63fd">0 คน</span></h4>
+          <button class="btn-sort">
+            <p>
+              จัดเรียง &nbsp;
+              <img src="img/icon_sort.png" width="13" height="19" alt="" />
+            </p>
+          </button>
+        </div>
+        <ul class="contact_items">
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status patient-in-bed"><p>ติดเตียง</p> </span>
+              <span class="status inprogress-evaluate"
+                ><p>กำลังประเมิน...</p></span
+              >
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status wait-for-evaluate"><p>รอประเมิน...</p></span>
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+          <li>
+            <div class="card-body">
+              <img class="card-body-thumbnail" src="img/older.png" />
+              <div class="card-body-content">
+                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                <h5 class="age">อายุ 65 ปี, 3 เดือน</h5>
+                <p class="address">99/8 หมู่ 5 ตำบลสันป่าตอง</p>
+              </div>
+              <i class="right-icon fa fa-chevron-right"></i>
+            </div>
+            <div class="card-footer">
+              <span class="status status1 healthy"><p>แข็งแรง</p> </span>
+              <span class="status evaluated"><p>ประเมินแล้ว</p></span>
+              <span class="status wait-for-visit"><p>รอออกเยี่ยม...</p></span>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="content"></div>
       <div class="footer">
-        <div class="footer_item menu_home_page">
+        <div class="footer_item  menu_home_page">
           <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
         </div>
         <div class="footer_item active menu_contact_page">
@@ -175,6 +276,55 @@
           <i class="fa fa-database footer_menu"></i><br /><span
             >สถิติสำรวจ</span
           >
+        </div>
+      </div>
+      <div id="modal-contact-detail" class="modal">
+        <div class="modal-container">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <h1 id="visit_recommend">รายชื่อแนะนำ</h1>
+          <img class="thumbnail" src="img/older.png" />
+          <h3 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h3>
+          <h5 class="age"><i class="fa fa-user-o"></i> อายุ 65 ปี, 3 เดือน</h5>
+          <p class="distant">
+            <i class="fa fa-flag-o"></i> ระยะห่างจากคุณ
+            <span style="color: #6f63fd">0.8 กิโลเมตร</span>
+          </p>  
+          <div class="status-card evaluate"></div>
+          <div class="status-card visit"></div>
+        </div>
+      </div>
+      <div id="modal-sort-contact" class="modal">
+        <div class="modal-container" style="text-align: left">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <div class="sort-header">
+            <h1 style="color: #010979">การเรียงรายชื่อ</h1>
+            <p style="font-size: 20px; color: #3b3d48">
+              ท่านสามารถเลือกได้ตามต้องการ
+            </p>
+          </div>
+          <ul class="sort-list">
+            <li>
+              <input type="radio" name="contact-sort" id="contact-sort-1" checked />
+
+              <label for="contact-sort-1">เรียงตามความแข็งแรง</label>
+            </li>
+            <li>
+              <input type="radio" name="contact-sort" id="contact-sort-2" />
+              <label for="contact-sort-2">เรียงตามอายุ ผู้สูงอายุ</label>
+            </li>
+            <li>
+              <input type="radio" name="contact-sort" id="contact-sort-3" />
+              <label for="contact-sort-3">เรียงตามสถานะการประเมิน</label>
+            </li>
+            <li>
+              <input type="radio" name="contact-sort" id="contact-sort-4" />
+              <label for="contact-sort-4">เรียงตามสถานะออกเยี่ยม</label>
+            </li>
+            <li>
+              <input type="radio" name="contact-sort" id="contact-sort-5" />
+              <label for="contact-sort-5">เรียงตามระยะทางใกล้สุด</label>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

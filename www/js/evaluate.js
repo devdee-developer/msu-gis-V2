@@ -1,4 +1,6 @@
 $(function () {
+  let evaluate_elder_id
+  let evaluate_from_page
   $(".main_home_menu_item_wrapper img")
     .eq(0)
     .on("click", function () {
@@ -89,7 +91,8 @@ $(function () {
   /* ----------------------------------------------------------------------------- start : evaluate_detail_page ----------------------------------------------------------------------------- */
   // StepProgresse
   function reloadEvaluateList() {
-    let elder_id = $("#modal-evaluate-detail .status-card").attr("ELDER_ID");
+    
+    let elder_id = evaluate_elder_id;
     let evaluateData = [];
     console.log(elder_id);
     queryALL("VHV_TR_ELDER", function (ELDER) {
@@ -548,7 +551,7 @@ $(function () {
     );
     queryByID(
       "VHV_TR_ELDER",
-      $("#evaluate_page .status-card").attr("ELDER_ID"),
+      evaluate_elder_id,
       function (res) {
         console.log(res);
         if (res.HEALTH_STATUS == 1) {
@@ -589,20 +592,27 @@ $(function () {
       .eq(1)
       .text(" " + $("#evaluate_detail_page ul li span").eq(1).text());
   }
-  $("#evaluate_page .status-card").on("click", function () {
-    reloadEvaluateList();
-    loading.show();
-    setTimeout(function () {
-      loading.hide();
-      changePage("evaluate_detail_page", function () {
-        readerAfterSaveEva();
-      });
-      // setProgressevaluate(9);
-    }, 500);
+  $(".status-card.evaluate").on("click", function () {
+   
+      evaluate_elder_id =$(`#${$(this).parents('.modal').attr('id')} .status-card`).attr("ELDER_ID")
+      console.log(evaluate_elder_id)
+      evaluate_from_page=$(this).parent().parent().parent().attr('id')
+      console.log(evaluate_from_page)
+      reloadEvaluateList();
+      loading.show();
+      setTimeout(function () {
+        loading.hide();
+        changePage("evaluate_detail_page", function () {
+          readerAfterSaveEva();
+        });
+        // setProgressevaluate(9);
+      }, 500);
+    
+   
   });
   // ปุ่ม back
   $("#evaluate_detail_page .header .back_header_btn").on("click", function () {
-    changePage("evaluate_page", function () {});
+    changePage(evaluate_from_page, function () {});
   });
   // chkStatusEva;
   function chkStatusEva() {
@@ -611,7 +621,7 @@ $(function () {
       $.each([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], function (index, dt) {
         queryByELDER_ID(
           "VHV_TR_EVALUATE" + dt,
-          $("#evaluate_page .status-card").attr("ELDER_ID"),
+          evaluate_elder_id,
           function (res) {
             if (res.length > 0) {
               tempStatusEva.push({ data: dt });
@@ -631,7 +641,7 @@ $(function () {
         sqlUpdate(
           "VHV_TR_ELDER",
           { EVALUATE_STATUS: 1, UPDATE_FLAG: 1 },
-          $("#evaluate_page .status-card").attr("ELDER_ID"),
+          evaluate_elder_id,
           function (res) {}
         );
       }
@@ -737,7 +747,7 @@ $(function () {
 
   function setDataEva1() {
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 1,
       DTX: $("#DTX").val(),
@@ -879,7 +889,7 @@ $(function () {
   // ปุ่ม บันทึก
   function setDataEva2() {
     return {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 2,
       SBP: $("#blood_pressure_up").val(),
@@ -1044,7 +1054,7 @@ $(function () {
     let CVD6 = parseInt($("#CVD6 .choice.active").val());
     let CVD7 = parseInt($("#CVD7 .choice.active").val());
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 3,
       CVD1: CVD1,
@@ -1314,7 +1324,7 @@ $(function () {
     let COG2B = $("#COG2B").prop("checked") ? 1 : 0;
     let COG2C = $("#COG2C").prop("checked") ? 1 : 0;
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 4,
       COG1A: COG1A,
@@ -1527,7 +1537,7 @@ $(function () {
     let P9Q8 = parseInt($('input[name="P9Q8"]:checked').val());
     let P9Q9 = parseInt($('input[name="P9Q9"]:checked').val());
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 5,
       P2Q1: P2Q1,
@@ -1695,7 +1705,7 @@ $(function () {
     let OST4 = parseInt($("#OST4 .choice.active").val());
     let OST5 = parseInt($("#OST5 .choice.active").val());
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 6,
       OST1: OST1,
@@ -1860,7 +1870,7 @@ $(function () {
   function setDataEva7() {
     let TUG = parseInt($("#evaluate_page_7 .time p").text());
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 7,
       TUG: TUG,
@@ -2046,7 +2056,7 @@ $(function () {
     let EYE5L = parseInt($("#EYE5L .choice.active").val());
     let EYE5R = parseInt($("#EYE5R .choice.active").val());
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 8,
       EYE1: EYE1,
@@ -2187,7 +2197,7 @@ $(function () {
     let RUBR = parseInt($("#RUBR .choice.active").val());
 
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 9,
       RUBL: RUBL,
@@ -2372,7 +2382,7 @@ $(function () {
     let OSR2 = parseInt($("#OSR2 .choice.active").val());
 
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 10,
       OSR1A: OSR1A,
@@ -2595,7 +2605,7 @@ $(function () {
         : parseInt($("#ORAL2C .choice.active").val());
 
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 11,
       ORAL1A: ORAL1A,
@@ -2901,7 +2911,7 @@ $(function () {
     let MNA2L = parseFloat($('input[name="MNA2L"]:checked').val());
 
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 12,
       NUTRI1: NUTRI1,
@@ -3148,7 +3158,7 @@ $(function () {
     let ADL9 = parseInt($('input[name="ADL9"]:checked').val());
     let ADL10 = parseInt($('input[name="ADL10"]:checked').val());
     let data = {
-      ELDER_ID: $("#evaluate_page .status-card").attr("ELDER_ID"),
+      ELDER_ID: evaluate_elder_id,
       EVALUATE_DATE: getCurrentDate(),
       EVALUATE_NO: 13,
       ADL1: ADL1,
@@ -3181,7 +3191,7 @@ $(function () {
         sqlUpdate(
           "VHV_TR_ELDER",
           { HEALTH_STATUS: data.EVALUATE_FLAG, UPDATE_FLAG: 1 },
-          $("#evaluate_page .status-card").attr("ELDER_ID"),
+          evaluate_elder_id,
           function (res) {}
         );
         reloadEvaluateList();
