@@ -198,7 +198,7 @@ function getInitial() {
       response.data = CryptoJSAesJson.decrypt(response.data, secret_key_aes);
       var data = response.data;
       if (response.status == true) {
-        // clearInitial();
+        clearInitial();
         db.transaction(function (tx) {
           $.each(data.elder, function (index, row) {
             tx.executeSql(
@@ -1416,6 +1416,7 @@ function sqlUpdate(TABLE, data, ID, _callback) {
   str = str.slice(0, -1);
 
   let update_query = "UPDATE " + TABLE + " SET " + str + " WHERE ID=" + ID;
+  console.log(update_query)
   db.transaction(function (tx) {
     tx.executeSql(update_query);
     _callback(ID);
@@ -1957,6 +1958,7 @@ function renderElderModal(item, modalId, showEva, showVisit) {
           } else {
           }
         } else {
+          $("#" + modalId + " .status-card.visit").attr("canvisit", false);
           $("#" + modalId + " .status-card.visit .status-card-header").html(
             "<p><b>สถานะออกเยี่ยม</b> : จำเป็นต้องประเมินก่อน</p>"
           );

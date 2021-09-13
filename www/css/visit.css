@@ -713,7 +713,7 @@ ul.sort-list li:last-child {
 }
 .visit_card .card_body .card_body_center p:nth-child(2) {
   color: #7f7fa8;
-  font-size: 13px;
+  font-size: 12px;
 }
 .visit_card.current .card_body .card_body_center p:nth-child(1) {
   color: #ffffff;

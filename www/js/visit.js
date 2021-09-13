@@ -1,6 +1,6 @@
 $(function () {
   //contact list
-
+ 
   $(".main_home_menu_item_wrapper img")
     .eq(2)
     .on("click", function () {
@@ -11,27 +11,32 @@ $(function () {
         });
       }, 500);
     });
+    function renderElderListVisit(_callback){
+      queryALL("VHV_TR_ELDER", function (elderList) {
+        console.log(elderList);
+        let waitingList = elderList.filter((row) => row.VISIT_STATUS == 0);
+        let visitedList = elderList.filter((row) => row.VISIT_STATUS == 1);
+        $("#visit_page .waiting_list").html("");
+        $("#visit_page .visited_list").html("");
+        $("#visit_page .sort-bar h4 span").html(`${elderList.length} คน`);
+        $("#visit_page .waiting_list_count").text(
+          `...กำลังรอยู่ ${waitingList.length} คน`
+        );
+        $("#visit_page .visited_list_count").text(
+          `จำนวน ${visitedList.length} คน`
+        );
+        $.each(waitingList, function (index, row) {
+          $("#visit_page .waiting_list").append(renderElderCard(row));
+        });
+        $.each(visitedList, function (index, row) {
+          $("#visit_page .visited_list").append(renderElderCard(row));
+        });
+        loading.hide();
+        _callback(waitingList,visitedList)
+      });
+    }
   function initialVisitPage() {
-    queryALL("VHV_TR_ELDER", function (elderList) {
-      console.log(elderList);
-      let waitingList = elderList.filter((row) => row.VISIT_STATUS == 0);
-      let visitedList = elderList.filter((row) => row.VISIT_STATUS == 1);
-      $("#visit_page .waiting_list").html("");
-      $("#visit_page .visited_list").html("");
-      $("#visit_page .sort-bar h4 span").html(`${elderList.length} คน`);
-      $("#visit_page .waiting_list_count").text(
-        `...กำลังรอยู่ ${waitingList.length} คน`
-      );
-      $("#visit_page .visited_list_count").text(
-        `จำนวน ${visitedList.length} คน`
-      );
-      $.each(waitingList, function (index, row) {
-        $("#visit_page .waiting_list").append(renderElderCard(row));
-      });
-      $.each(visitedList, function (index, row) {
-        $("#visit_page .visited_list").append(renderElderCard(row));
-      });
-      loading.hide();
+    renderElderListVisit(function(waitingList,visitedList){
       setTimeout(function () {
         let waitingListAndEvaluated = waitingList.filter(
           (row) => row.EVALUATE_STATUS == 1
@@ -61,7 +66,8 @@ $(function () {
           "หมู่ที่ " + res[0]["SHPH_MOO"]
         );
       });
-    });
+    })
+   
   }
   $("#visit_page .collapse-filter .collapse-filter-header").click(function () {
     $header = $(this);
@@ -215,8 +221,8 @@ $(function () {
       <div class="card_body_center">
         <p>ออกเยี่ยมสำเร็จ ${current ? "(ล่าสุด)" : ""}</p>
         <p>
-          <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ :
-          ${dateStringFormat(visit.VISIT_DATE)}</p>
+          <i class="fa fa-clock-o" aria-hidden="true"></i> อัพเดทเมื่อ:
+          ${dateStringFormat(visit.VISIT_DATE)}${visit.GUID!=""&&visit.GUID!= null?' <i class="fa fa-check" aria-hidden="true"></i>':""}</p>
           ${
             visit.SOLVE0 == 1
               ? `<div class="alert_message">
@@ -575,6 +581,9 @@ $(function () {
         visitSubmit();
       },
       onChange: function (currentIndex, newIndex, stepDirection) {
+        $('.content').animate({
+          scrollTop: $(".content").offset().top
+        },0);
         $(".progress_complete").hide();
         $(".step-btn.next").addClass("arrow");
         $(".step-btn.prev").addClass("arrow");
@@ -639,6 +648,7 @@ $(function () {
     steps_api = steps.data("plugin_Steps");
     steps_api.setStepIndex(0);
     disableNextVisit(!allowNext);
+    $("#visit_form_page .step-steps > li").off()
   }
   function validateVisitFormSummarize() {
     let SOLVE0 = $('#visit_form_page input[name="SOLVE0"]:checked').val();
@@ -1009,10 +1019,8 @@ $(function () {
               }
               console.log($(this).find("label").text())
               sqlInsert("VHV_TR_SOLVE", detailData, function (inserted_id) {
-              
+
               })
-             
-            
             })
             showModal('modal-profile-save-success')
             setTimeout(function(){
@@ -1026,7 +1034,18 @@ $(function () {
             },2000)
             $(".status-card.visit").click();
           }
-          
+          sqlUpdate(
+            "VHV_TR_ELDER",
+            { VISIT_STATUS: 1, UPDATE_FLAG: 1 },
+            elder_id,
+            function (res) {
+              readerAfterSaveVisit()
+              reloadVisitList();
+              renderElderListVisit(function(){
+              })
+
+            }
+          );
         })
       })
       
