@@ -41,6 +41,42 @@ function calHomeButtonPosition() {
   $(".main_home_menu_item_wrapper img").eq(1).css("margin-left", "10px");
   $(".main_home_menu_item_wrapper img").eq(3).css("margin-left", "10px");
 }
+function setProfile() {
+  queryALL('VHV_TR_VHV',function(vhv_tr_vhv){
+    let vhv = vhv_tr_vhv[0]
+    function id_card_format (idcard){
+      idcard = idcard.split("")
+      let return_text=`${idcard[0]}-${idcard[1]}${idcard[2]}${idcard[3]}${idcard[4]}-${idcard[5]}${idcard[6]}${idcard[7]}${idcard[8]}${idcard[9]}-${idcard[10]}${idcard[11]}-${idcard[12]}`
+
+
+      return return_text
+    }
+    if(vhv.VHV_SEX==2){
+      $('.profile_header_wrapper img').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9BIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NiIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjUiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjUiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzg5IiBkYXRhLW5hbWU9IlBhdGggNDE3ODkiIGQ9Ik03OTAsNTM0Ljk5MWMxLjIxNC05LjA3NC0uMTM3LTIwLjEtNS4zNTgtMjguMTkyYTY5LjAyMSw2OS4wMjEsMCwwLDAtMTAuNi05LjFjLTExLjY0Mi04Ljg0Ny0yNy4wODMtMTUuMTU1LTQ0LjUtMTcuNTkyVjQ3NmMxMi4yLS43MjUsMjQuNzUtMy4xMTUsMzYuMiwxLjAwOGExNjEuNzgzLDE2MS43ODMsMCwwLDEtOC40NTEtNDEuNmMtLjc4Ni0xMS40MjUtLjQtMjMuMTUxLTQuMDczLTM0LTQuMTMxLTEyLjE4OC0xMy42NDYtMjIuNjA5LTI1LjcwOC0yNy4wOTJzLTI2LjQ2LTIuNjM1LTM2LjUzOSw1LjM2NmMtMy41MzEsMi44LTYuNzA3LDYuODI2LTYuMzUxLDExLjMyMi02LjEyMS0yLjA3Mi0xMi45NDYsMi4yNzYtMTUuODA3LDguMDcxUzY2Ni4xLDQxMS42NSw2NjYuNSw0MTguMWMxLjE5MSwxOC45LDQuMDczLDM4LjI3OS0xLjAzOSw1Ni41cTE1Ljg3Ni40OCwzMS43NTMuOTYydjQuNTQ3Yy0xNS44MzcsMi4yMTctMzAuMDM4LDcuNjM2LTQxLjIzOSwxNS4yNTEtLjI3OC4xODgtLjU1OS4zNzMtLjgzMy41NjQtLjUyNS4zNjgtMS4wMzguNzQzLTEuNTQ5LDEuMTItLjM3Ni4yNzctLjc1LjU1NS0xLjExOS44MzYtLjQ0NC4zNC0uODgxLjY4NC0xLjMxNCwxLjAzMnMtLjg1LjY5My0xLjI2OCwxLjA0NGMtLjM3MS4zMTQtLjc0My42MjUtMS4xLjk0My0uNDg5LjQzLS45NjUuODY4LTEuNDM5LDEuMzEtLjI3OC4yNTktLjU2NC41MTQtLjgzNy43NzctLjc0MS43MTUtMS40NjUsMS40NC0yLjE2MSwyLjE3OC01LjU0Miw4LjU5MS02LjcyMiwyMC40NzQtNS4xMDcsMjkuODMxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYxMy4wMzggLTMzNC41MTcpIiBmaWxsPSIjZmZmIi8+CiAgPC9nPgo8L3N2Zz4K')
+      $('.card_header_profile .card_header_thumbnail').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9BIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NiIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjUiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjUiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzg5IiBkYXRhLW5hbWU9IlBhdGggNDE3ODkiIGQ9Ik03OTAsNTM0Ljk5MWMxLjIxNC05LjA3NC0uMTM3LTIwLjEtNS4zNTgtMjguMTkyYTY5LjAyMSw2OS4wMjEsMCwwLDAtMTAuNi05LjFjLTExLjY0Mi04Ljg0Ny0yNy4wODMtMTUuMTU1LTQ0LjUtMTcuNTkyVjQ3NmMxMi4yLS43MjUsMjQuNzUtMy4xMTUsMzYuMiwxLjAwOGExNjEuNzgzLDE2MS43ODMsMCwwLDEtOC40NTEtNDEuNmMtLjc4Ni0xMS40MjUtLjQtMjMuMTUxLTQuMDczLTM0LTQuMTMxLTEyLjE4OC0xMy42NDYtMjIuNjA5LTI1LjcwOC0yNy4wOTJzLTI2LjQ2LTIuNjM1LTM2LjUzOSw1LjM2NmMtMy41MzEsMi44LTYuNzA3LDYuODI2LTYuMzUxLDExLjMyMi02LjEyMS0yLjA3Mi0xMi45NDYsMi4yNzYtMTUuODA3LDguMDcxUzY2Ni4xLDQxMS42NSw2NjYuNSw0MTguMWMxLjE5MSwxOC45LDQuMDczLDM4LjI3OS0xLjAzOSw1Ni41cTE1Ljg3Ni40OCwzMS43NTMuOTYydjQuNTQ3Yy0xNS44MzcsMi4yMTctMzAuMDM4LDcuNjM2LTQxLjIzOSwxNS4yNTEtLjI3OC4xODgtLjU1OS4zNzMtLjgzMy41NjQtLjUyNS4zNjgtMS4wMzguNzQzLTEuNTQ5LDEuMTItLjM3Ni4yNzctLjc1LjU1NS0xLjExOS44MzYtLjQ0NC4zNC0uODgxLjY4NC0xLjMxNCwxLjAzMnMtLjg1LjY5My0xLjI2OCwxLjA0NGMtLjM3MS4zMTQtLjc0My42MjUtMS4xLjk0My0uNDg5LjQzLS45NjUuODY4LTEuNDM5LDEuMzEtLjI3OC4yNTktLjU2NC41MTQtLjgzNy43NzctLjc0MS43MTUtMS40NjUsMS40NC0yLjE2MSwyLjE3OC01LjU0Miw4LjU5MS02LjcyMiwyMC40NzQtNS4xMDcsMjkuODMxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYxMy4wMzggLTMzNC41MTcpIiBmaWxsPSIjZmZmIi8+CiAgPC9nPgo8L3N2Zz4K')
+    }else{
+      $('.profile_header_wrapper img').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9CIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NyIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjYiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjYiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzkwIiBkYXRhLW5hbWU9IlBhdGggNDE3OTAiIGQ9Ik05NDcuOTYyLDUzNi4zMDljNC42OTItOS44ODEsNC43NDUtMjYuNzgyLTMuNzU2LTM4LjExOC0yLjk0OS0yLjY5Mi0zNi0yMi4wODctNTcuNjY1LTI0LjQ1di01Ljc2MWM2LjYxOC01LjgwNywxMS44MDktMTQuNDQ2LDE0LjY4Ni0yNC42OTRhMi42NTMsMi42NTMsMCwwLDAsLjc0NC4yNTljMy4zNTEuNTcsNi45NjMtNS42MTUsOC4wNjktMTMuODEzcy0uNzE2LTE1LjMwOS00LjA2Ny0xNS44NzlhMy41MzIsMy41MzIsMCwwLDAtMi45MjIsMS4xMTVjLS4wNjgtLjQ4Ni0uMTQ1LS45NjgtLjIyMi0xLjQ0OWwxLjE0Mi01LjQzNmMxLjIxNy01LjgsMi40MTctMTEuOTMuNTMtMTcuNTQ3YTIyLjcxMiwyMi43MTIsMCwwLDAtNC44MTMtNy44MWMtNi41LTcuMjM1LTE1LjkyNS0xMS41LTI1LjU3NC0xMi43NXMtMTkuNTEzLjM2NS0yOC43MTEsMy41MzNjLTUuNDksMS44ODktMTEuNzkyLDYuMS0xMC42NjQsMTEuNzktMi44MTUtMS4wNTItNiwxLjE4MS03LjA4MywzLjk4M3MtLjY0OSw1LjkzNi0uMiw4LjkwOHExLjIzMyw4LjEzMywyLjQ2NywxNi4yNjdhMy4xMjgsMy4xMjgsMCwwLDAtMi4yNzEtLjZjLTMuMzUxLjU3LTUuMTcyLDcuNjc5LTQuMDY2LDE1Ljg3OXM0LjcxOCwxNC4zODMsOC4wNjksMTMuODEzYTIuNjYzLDIuNjYzLDAsMCwwLC43NDMtLjI1OWMyLjg3NywxMC4yNDcsOC4wNjgsMTguODg3LDE0LjY4NSwyNC43djUuNjM1Yy0yMi4xNDEsMi4yNjgtNTQuMjE0LDIwLjgyNC01Ni40NywyMi44ODQtOS4wMDksMTIuMDE0LTguNDEyLDMwLjI3NC0yLjg2OCwzOS44MDhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzY3LjE3MyAtMzM1LjgzNSkiIGZpbGw9IiNmZmYiLz4KICA8L2c+Cjwvc3ZnPgo=')
+      $('.card_header_profile .card_header_thumbnail').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9CIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NyIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjYiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjYiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzkwIiBkYXRhLW5hbWU9IlBhdGggNDE3OTAiIGQ9Ik05NDcuOTYyLDUzNi4zMDljNC42OTItOS44ODEsNC43NDUtMjYuNzgyLTMuNzU2LTM4LjExOC0yLjk0OS0yLjY5Mi0zNi0yMi4wODctNTcuNjY1LTI0LjQ1di01Ljc2MWM2LjYxOC01LjgwNywxMS44MDktMTQuNDQ2LDE0LjY4Ni0yNC42OTRhMi42NTMsMi42NTMsMCwwLDAsLjc0NC4yNTljMy4zNTEuNTcsNi45NjMtNS42MTUsOC4wNjktMTMuODEzcy0uNzE2LTE1LjMwOS00LjA2Ny0xNS44NzlhMy41MzIsMy41MzIsMCwwLDAtMi45MjIsMS4xMTVjLS4wNjgtLjQ4Ni0uMTQ1LS45NjgtLjIyMi0xLjQ0OWwxLjE0Mi01LjQzNmMxLjIxNy01LjgsMi40MTctMTEuOTMuNTMtMTcuNTQ3YTIyLjcxMiwyMi43MTIsMCwwLDAtNC44MTMtNy44MWMtNi41LTcuMjM1LTE1LjkyNS0xMS41LTI1LjU3NC0xMi43NXMtMTkuNTEzLjM2NS0yOC43MTEsMy41MzNjLTUuNDksMS44ODktMTEuNzkyLDYuMS0xMC42NjQsMTEuNzktMi44MTUtMS4wNTItNiwxLjE4MS03LjA4MywzLjk4M3MtLjY0OSw1LjkzNi0uMiw4LjkwOHExLjIzMyw4LjEzMywyLjQ2NywxNi4yNjdhMy4xMjgsMy4xMjgsMCwwLDAtMi4yNzEtLjZjLTMuMzUxLjU3LTUuMTcyLDcuNjc5LTQuMDY2LDE1Ljg3OXM0LjcxOCwxNC4zODMsOC4wNjksMTMuODEzYTIuNjYzLDIuNjYzLDAsMCwwLC43NDMtLjI1OWMyLjg3NywxMC4yNDcsOC4wNjgsMTguODg3LDE0LjY4NSwyNC43djUuNjM1Yy0yMi4xNDEsMi4yNjgtNTQuMjE0LDIwLjgyNC01Ni40NywyMi44ODQtOS4wMDksMTIuMDE0LTguNDEyLDMwLjI3NC0yLjg2OCwzOS44MDhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzY3LjE3MyAtMzM1LjgzNSkiIGZpbGw9IiNmZmYiLz4KICA8L2c+Cjwvc3ZnPgo=')
+    }
+   
+   
+    $('.vhv_user').html(`<b>${vhv.VHV_USER}</b>`)
+    $('.vhv_age').text(getAge(vhv.VHV_BIRTHDATE,true))
+    $('.vhv_idcard').text(id_card_format(vhv.VHV_IDCARD))
+    $('.vhv_addr').text(`เลขที่ ${vhv.VHV_ADDR}`)
+    queryALL('VHV_MA_SHPH',function(vhv_ma_shph){
+      let shph = vhv_ma_shph[0]
+      $('.vhv_shph').text(`${shph.SHPH_NAME}`)
+    })
+    queryALL('VHV_MA_SHPH_MOO',function(vhv_ma_shph_moo){
+      let shph_moo = vhv_ma_shph_moo[0]
+      $('.vhv_community').text(`ชุมชน${shph_moo.SHPH_MOONAME}`)
+    })
+  
+  
+  })
+ 
+}
 function showModal(_modal, _callback = function () {}) {
   $("#" + _modal).fadeIn(200, () => {
     $("body").addClass("modal-open");
@@ -1302,6 +1338,43 @@ function getInitial() {
             );
           });
         });
+        db.transaction(function (tx) {
+          $.each(data.shph, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_SHPH (ID,GUID,SHPH_NAME,SHPH_ADDR,SHPH_TEL,GIS_PROVINCE,GIS_DISTRICT,GIS_TUMBOL,SHPH_LAT,SHPH_LONG,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.SHPH_NAME +
+                "','" +
+                row.SHPH_ADDR +
+                "','" +
+                row.SHPH_TEL +
+                "','" +
+                row.GIS_PROVINCE +
+                "','" +
+                row.GIS_DISTRICT +
+                "','" +
+                row.GIS_TUMBOL +
+                "','" +
+                row.SHPH_LAT +
+                "','" +
+                row.SHPH_LONG +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
       } else {
         _error("เกิดข้อผิดพลาด");
       }
@@ -1490,7 +1563,7 @@ function listElderEvaluate(_callback) {
   });
 }
 // yyyy-mm-dd
-function getAge(dateString) {
+function getAge(dateString,yearOnly=false) {
   if (dateString != null) {
     var now = new Date();
     var today = new Date(now.getYear(), now.getMonth(), now.getDate());
@@ -1544,8 +1617,9 @@ function getAge(dateString) {
     else monthString = " month";
     if (age.days > 1) dayString = " days";
     else dayString = " day";
-
-    if (age.years > 0 && age.months > 0)
+    if(yearOnly&&age.years > 0){
+      ageString = "อายุ " + age.years + yearString 
+    }else if (age.years > 0 && age.months > 0)
       ageString =
         "อายุ " + age.years + yearString + ", " + age.months + monthString;
     else if (age.years == 0 && age.months == 0 && age.days > 0)

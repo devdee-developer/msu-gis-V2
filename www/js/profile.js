@@ -2,11 +2,13 @@ $(function () {
   $(".top_menu_wrapper .top_menu_item_wrapper li")
     .eq(0)
     .on("click", function () {
+      
       changePage("profile_page", function () {
         initialProfilePageFunc();
       });
+     
     });
-
+   
   // ปุ่ม back
   $("#profile_page .profile_page_header .back_header_btn").on(
     "click",

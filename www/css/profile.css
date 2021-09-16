@@ -21,7 +21,7 @@
 }
 .card_header_profile {
   margin-left: 2%;
-  margin-right: 2%;
+  /* margin-right: 2%; */
   margin-top: 3%;
   height: 120px;
   background-color: #ffffff;
@@ -70,6 +70,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding-left: 20px;
+  padding-right: 10px;
 }
 .card_header_profile .card_header_body_profile .base_info_title {
   display: flex;
@@ -160,4 +161,11 @@ button.profile_submit {
   background-position: center;
   background-size: 24px;
   margin-right: 10px;
+}
+.vhv_user{
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  width: 100%;
+
 }
