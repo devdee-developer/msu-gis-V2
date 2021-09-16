@@ -411,20 +411,24 @@ input.input-form.lock:read-only {
   color: #97989b;
 }
 #modal-visit-detail .modal-container img.thumbnail,
+#modal-contact-detail .modal-container img.thumbnail,
 #modal-evaluate-detail .modal-container img.thumbnail {
   border-radius: 16px;
   width: 55%;
   margin-bottom: 32px;
 }
 #modal-visit-detail .modal-container .name,
+#modal-contact-detail .modal-container .name,
 #modal-evaluate-detail .modal-container .name {
   color: #010979;
 }
 #modal-visit-detail .modal-container .age,
+#modal-contact-detail .modal-container .age,
 #modal-evaluate-detail .modal-container .age {
   color: #010979;
 }
 #modal-visit-detail .modal-container .distant,
+#modal-contact-detail .modal-container .distant,
 #modal-evaluate-detail .modal-container .distant {
   color: #010979;
 }

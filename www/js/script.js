@@ -8,11 +8,13 @@ var swiper_timer = setInterval(function () {}, 3000);
 var swiper_timer2 = setInterval(function () {}, 3000);
 $(function () {
   FastClick.attach(document.body);
+  $('.profile_header_wrapper img').attr('src','')
   if (!token.getUserToken()) {
     changePage("splash_page", function () {});
   } else {
     changePage("home_page", function () {
       calHomeButtonPosition();
+      setProfile()
       loading.show();
       setTimeout(function () {
         loading.hide();

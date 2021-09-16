@@ -33,7 +33,8 @@ $(function () {
   );
   // ปุ่มเปลี่ยนรหัส
   $("#setting_page #change_pass").on("click", function () {
-    showModal("modal-change-pass");
+    // showModal("modal-change-pass");
+    showModal("modal-in-progress");
   });
   // ปุ่มคู่มือ
   $("#setting_page #manual_setting").on("click", function () {
