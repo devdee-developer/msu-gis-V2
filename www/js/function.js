@@ -1999,10 +1999,11 @@ function renderElderModal(item, modalId, showEva, showVisit) {
     }
     if (showVisit == true) {
       queryALL("VHV_TR_VISIT", function (vhv_tr_visit) {
-        let visitCount = vhv_tr_visit.filter(
+        let visit =  vhv_tr_visit.filter(
           (row) => row.ELDER_ID == item.ID
-        ).length;
-
+        )
+        let visitCount = visit.length;
+      
         $("#" + modalId + " .status-card.visit").html(`
         <div class="status-card-header">
           <p><b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
@@ -2024,12 +2025,23 @@ function renderElderModal(item, modalId, showEva, showVisit) {
           console.log(item.VISIT_STATUS);
           $("#" + modalId + " .status-card.visit").attr("canvisit", true);
           if (item.VISIT_STATUS == 1) {
+            let lastVisit =visit[visit.length-1]
             $(
               "#" + modalId + " .status-card.visit .status-card-header"
             ).addClass("visited");
             $("#" + modalId + " .status-card.visit .status-card-header").html(
               `<p><b>สถานะออกเยี่ยม</b> : ออกเยี่ยมแล้ว ${visitCount} ครั้ง</p>`
             );
+            $(
+              "#" +
+                modalId +
+                " .status-card.visit .status-card-body .status-card-body-content"
+            ).html(`
+            <h3>ออกเยี่ยมแล้ว</h3>
+            <p style="font-size:11px">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+             ${dateStringFormat(lastVisit.VISIT_DATE)}
+            </p>`);
           } else {
           }
         } else {
