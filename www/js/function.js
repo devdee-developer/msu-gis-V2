@@ -1375,6 +1375,7 @@ function getInitial() {
             );
           });
         });
+          setProfile()
       } else {
         _error("เกิดข้อผิดพลาด");
       }
