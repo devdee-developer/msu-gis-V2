@@ -8,6 +8,14 @@ var swiper_timer = setInterval(function () {}, 3000);
 var swiper_timer2 = setInterval(function () {}, 3000);
 $(function () {
   FastClick.attach(document.body);
+  //  window.pushNotification.registration(
+  //     (token) => {
+  //       console.log(token);
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //     }
+  //   );
   $('.profile_header_wrapper img').attr('src','')
   if (!token.getUserToken()) {
     changePage("splash_page", function () {});
