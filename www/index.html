@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/urgent_noti.css" />
     <link rel="stylesheet" href="css/profile.css" />
     <link rel="stylesheet" href="css/setting.css" />
+    <link rel="stylesheet" href="css/analytics.css" />
     <title>VHV</title>
   </head>
 
@@ -148,6 +149,7 @@
     <div class="pages" id="contact_page">
       <div class="header">
         <div class="back_header_btn"></div>
+        <div class="title">รายชื่อทั้งหมด</div>
         <div class="map_header_btn"></div>
       </div>
       <div class="content">
@@ -503,15 +505,53 @@
     </div>
     <div class="pages" id="analytics_page">
       <div class="header">
-        <img src="img/logo_header.png" class="logo_header" />
-        <div class="profile_header_wrapper">
-          <img src="img/profile.jpg" />
-          <div class="header_notification">
-            <i class="fa fa-bell" id="notification_icon"></i>
+        <div class="back_header_btn"></div>
+        <div class="title">สถิติสำรวจ</div>
+      </div>
+      <div class="content">
+        <div class="collapse-filter">
+          <div style="display: inline-flex;
+          justify-items: center;
+          align-items: center;">
+            <i class="fa fa-database"></i>
+            <p>
+              &nbsp; สถิติด้านการประเมินสุขภาพ (ในพื้นที่รับผิดชอบ)
+            </p>
+         
+          </div>
+          <div class="input-group selected_analytics" style="width: 100%">
+            <input type="text" class="input-form" value="ประเมินโรคความดันโลหิตสูง" readonly>
+            <i class="fa fa-angle-down icons-in-input"></i>
           </div>
         </div>
+        <div class="content-card">
+            <div class="content-title">
+        
+              ประเมินโรคความดันโลหิตสูง
+            </div>
+            <div class="content-body">
+                <p class="last-update">อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
+                <div style="display: flex;">
+                  <div class="chart_wrapper" >
+                    <canvas id="chart-analytics-male" ></canvas>
+                    <p class="sex">ชาย</p>
+                    <p class="total">(จากจำนวน 5 คน)</p>
+                  </div>
+                  <div class="chart_wrapper">
+                    <canvas id="chart-analytics-female"></canvas>
+                    <p class="sex">หญิง</p>
+                    <p class="total">(จากจำนวน 7 คน)</p>
+                  </div>
+                </div>
+                <ul class="chart_legend">
+                  <li><span style="background-color: #F53F4D;"></span>มีปัญหา</li>
+                  <li><span style="background-color: #54D5BB;"></span>ปกติ</li>
+                  <li><span style="background-color: rgb(255, 205, 86);"></span>รอประเมิน</li>
+                </ul>
+            </div>
+     
       </div>
-      <div class="content"></div>
+      </div>
       <div class="footer">
         <div class="footer_item menu_home_page">
           <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
@@ -529,6 +569,82 @@
           <i class="fa fa-database footer_menu"></i><br /><span
             >สถิติสำรวจ</span
           >
+        </div>
+      </div>
+      <div id="modal-analytics" class="modal">
+        <div class="modal-container" style="text-align: left;bottom: 10%;overflow: hidden;">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <div class="sort-header">
+            <h1 style="color: #010979">เลือกข้อมูลสถิติ</h1>
+            <p style="font-size: 20px; color: #3b3d48">
+              ท่านสามารถเลือกได้ตามต้องการ
+            </p>
+          </div>
+          <div style="overflow: hidden;
+              position: relative;
+          height: 100%;">
+            <ul class="sort-list" style=" position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: -17px; /* Increase/Decrease this value for cross-browser compatibility */
+            overflow-y: scroll;">
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-1" value="1" checked />
+  
+                <label for="analytics-option-1">ประเมินโรคเบาหวาน</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-2" value="2" />
+                <label for="analytics-option-2">ประเมินโรคความดันโลหิตสูง</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-3" value="3"/>
+                <label for="analytics-option-3">โรคหัวใจและหลอดเลือด</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-4" value="4"/>
+                <label for="analytics-option-4">สมองเสื่อม</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-5" value="5"/>
+                <label for="analytics-option-5">โรคซึมเศร้า</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-6" value="6"/>
+                <label for="analytics-option-6">โรคข้อเข่าเสื่อม</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-7" value="7"/>
+                <label for="analytics-option-7">ภาวะหกล้ม</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-8" value="8"/>
+                <label for="analytics-option-8">สุขภาวะทางตา</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-9" value="9"/>
+                <label for="analytics-option-9">การได้ยิน</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-10" value="10"/>
+                <label for="analytics-option-10">การประเมินปัญหาการนอน</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-11" value="11"/>
+                <label for="analytics-option-11">การประเมินสุขภาพช่องปาก</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-12" value="12"/>
+                <label for="analytics-option-12">ภาวะโภชนาการ</label>
+              </li>
+              <li>
+                <input type="radio" name="analytics-option" id="analytics-option-13" value="13"/>
+                <label for="analytics-option-13">การทำกิจวัตรประจำวัน</label>
+              </li>
+            </ul>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -6468,8 +6584,9 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi3TWM-jofH90T6GMpFFemQ8kUXJdEFz0&callback=initMap&libraries=&v=weekly"
       async
     ></script>
-
     <script src="cordova.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chartjs-plugin-datalabels.js"></script>
     <script src="js/config.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-steps.min.js"></script>
@@ -6487,6 +6604,7 @@
     <script src="js/urgent_noti.js"></script>
     <script src="js/profile.js"></script>
     <script src="js/setting.js"></script>
+    <script src="js/analytics.js"></script>
 
     <script src="js/sync-data.js"></script>
   </body>
