@@ -17,6 +17,9 @@ $(function () {
     });
   function initialSettingPageFunc() {
     topMenu.hide();
+    cordova.getAppVersion.getVersionNumber().then(function (version) {
+      $('.version').text(version);
+  });
     // $("#profile_page .input_profile_role").hide();
   }
   // ปุ่ม back
@@ -42,7 +45,13 @@ $(function () {
   });
   // ปุ่มคู่อัพเดท
   $("#setting_page #update_setting").on("click", function () {
-    showModal("modal-in-progress");
+    var platform  = device.platform;
+    if(platform == 'Android'){
+      window.open("https://play.google.com/store/apps/details?id=com.meedeem.vhvapp");
+    }else{
+      showModal("modal-in-progress");
+    }
+   
   });
   // ปิด modal-change-pass
   $("#modal-change-pass .setting_cancel").on("click", function () {
