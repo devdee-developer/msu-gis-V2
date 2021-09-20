@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.meedeem.vhvapp" version="1.0.24" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.meedeem.vhvapp" version="1.0.25" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>vhvapp</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -20,7 +20,6 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="android-targetSdkVersion" value="30" />
-        <preference name="AndroidXEnabled" value="true" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
