@@ -88,14 +88,7 @@ $(function () {
       }, 500);
     });
   });
-  $(".menu_analytics_page").on("click", function () {
-    changePage("analytics_page", function () {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
-    });
-  });
+ 
   $(".news_item").on("click", function () {
     changePage("news_detail_page", function () {
       loading.show();
