@@ -42,40 +42,47 @@ function calHomeButtonPosition() {
   $(".main_home_menu_item_wrapper img").eq(3).css("margin-left", "10px");
 }
 function setProfile() {
-  queryALL('VHV_TR_VHV',function(vhv_tr_vhv){
-    let vhv = vhv_tr_vhv[0]
-    function id_card_format (idcard){
-      idcard = idcard.split("")
-      let return_text=`${idcard[0]}-${idcard[1]}${idcard[2]}${idcard[3]}${idcard[4]}-${idcard[5]}${idcard[6]}${idcard[7]}${idcard[8]}${idcard[9]}-${idcard[10]}${idcard[11]}-${idcard[12]}`
+  queryALL("VHV_TR_VHV", function (vhv_tr_vhv) {
+    let vhv = vhv_tr_vhv[0];
+    function id_card_format(idcard) {
+      idcard = idcard.split("");
+      let return_text = `${idcard[0]}-${idcard[1]}${idcard[2]}${idcard[3]}${idcard[4]}-${idcard[5]}${idcard[6]}${idcard[7]}${idcard[8]}${idcard[9]}-${idcard[10]}${idcard[11]}-${idcard[12]}`;
 
+      return return_text;
+    }
+    if (vhv.VHV_SEX == 2) {
+      $(".profile_header_wrapper img").attr(
+        "src",
+        "data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9BIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NiIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjUiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjUiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzg5IiBkYXRhLW5hbWU9IlBhdGggNDE3ODkiIGQ9Ik03OTAsNTM0Ljk5MWMxLjIxNC05LjA3NC0uMTM3LTIwLjEtNS4zNTgtMjguMTkyYTY5LjAyMSw2OS4wMjEsMCwwLDAtMTAuNi05LjFjLTExLjY0Mi04Ljg0Ny0yNy4wODMtMTUuMTU1LTQ0LjUtMTcuNTkyVjQ3NmMxMi4yLS43MjUsMjQuNzUtMy4xMTUsMzYuMiwxLjAwOGExNjEuNzgzLDE2MS43ODMsMCwwLDEtOC40NTEtNDEuNmMtLjc4Ni0xMS40MjUtLjQtMjMuMTUxLTQuMDczLTM0LTQuMTMxLTEyLjE4OC0xMy42NDYtMjIuNjA5LTI1LjcwOC0yNy4wOTJzLTI2LjQ2LTIuNjM1LTM2LjUzOSw1LjM2NmMtMy41MzEsMi44LTYuNzA3LDYuODI2LTYuMzUxLDExLjMyMi02LjEyMS0yLjA3Mi0xMi45NDYsMi4yNzYtMTUuODA3LDguMDcxUzY2Ni4xLDQxMS42NSw2NjYuNSw0MTguMWMxLjE5MSwxOC45LDQuMDczLDM4LjI3OS0xLjAzOSw1Ni41cTE1Ljg3Ni40OCwzMS43NTMuOTYydjQuNTQ3Yy0xNS44MzcsMi4yMTctMzAuMDM4LDcuNjM2LTQxLjIzOSwxNS4yNTEtLjI3OC4xODgtLjU1OS4zNzMtLjgzMy41NjQtLjUyNS4zNjgtMS4wMzguNzQzLTEuNTQ5LDEuMTItLjM3Ni4yNzctLjc1LjU1NS0xLjExOS44MzYtLjQ0NC4zNC0uODgxLjY4NC0xLjMxNCwxLjAzMnMtLjg1LjY5My0xLjI2OCwxLjA0NGMtLjM3MS4zMTQtLjc0My42MjUtMS4xLjk0My0uNDg5LjQzLS45NjUuODY4LTEuNDM5LDEuMzEtLjI3OC4yNTktLjU2NC41MTQtLjgzNy43NzctLjc0MS43MTUtMS40NjUsMS40NC0yLjE2MSwyLjE3OC01LjU0Miw4LjU5MS02LjcyMiwyMC40NzQtNS4xMDcsMjkuODMxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYxMy4wMzggLTMzNC41MTcpIiBmaWxsPSIjZmZmIi8+CiAgPC9nPgo8L3N2Zz4K"
+      );
+      $(".card_header_profile .card_header_thumbnail").attr(
+        "src",
+        "data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9BIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NiIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjUiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjUiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzg5IiBkYXRhLW5hbWU9IlBhdGggNDE3ODkiIGQ9Ik03OTAsNTM0Ljk5MWMxLjIxNC05LjA3NC0uMTM3LTIwLjEtNS4zNTgtMjguMTkyYTY5LjAyMSw2OS4wMjEsMCwwLDAtMTAuNi05LjFjLTExLjY0Mi04Ljg0Ny0yNy4wODMtMTUuMTU1LTQ0LjUtMTcuNTkyVjQ3NmMxMi4yLS43MjUsMjQuNzUtMy4xMTUsMzYuMiwxLjAwOGExNjEuNzgzLDE2MS43ODMsMCwwLDEtOC40NTEtNDEuNmMtLjc4Ni0xMS40MjUtLjQtMjMuMTUxLTQuMDczLTM0LTQuMTMxLTEyLjE4OC0xMy42NDYtMjIuNjA5LTI1LjcwOC0yNy4wOTJzLTI2LjQ2LTIuNjM1LTM2LjUzOSw1LjM2NmMtMy41MzEsMi44LTYuNzA3LDYuODI2LTYuMzUxLDExLjMyMi02LjEyMS0yLjA3Mi0xMi45NDYsMi4yNzYtMTUuODA3LDguMDcxUzY2Ni4xLDQxMS42NSw2NjYuNSw0MTguMWMxLjE5MSwxOC45LDQuMDczLDM4LjI3OS0xLjAzOSw1Ni41cTE1Ljg3Ni40OCwzMS43NTMuOTYydjQuNTQ3Yy0xNS44MzcsMi4yMTctMzAuMDM4LDcuNjM2LTQxLjIzOSwxNS4yNTEtLjI3OC4xODgtLjU1OS4zNzMtLjgzMy41NjQtLjUyNS4zNjgtMS4wMzguNzQzLTEuNTQ5LDEuMTItLjM3Ni4yNzctLjc1LjU1NS0xLjExOS44MzYtLjQ0NC4zNC0uODgxLjY4NC0xLjMxNCwxLjAzMnMtLjg1LjY5My0xLjI2OCwxLjA0NGMtLjM3MS4zMTQtLjc0My42MjUtMS4xLjk0My0uNDg5LjQzLS45NjUuODY4LTEuNDM5LDEuMzEtLjI3OC4yNTktLjU2NC41MTQtLjgzNy43NzctLjc0MS43MTUtMS40NjUsMS40NC0yLjE2MSwyLjE3OC01LjU0Miw4LjU5MS02LjcyMiwyMC40NzQtNS4xMDcsMjkuODMxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYxMy4wMzggLTMzNC41MTcpIiBmaWxsPSIjZmZmIi8+CiAgPC9nPgo8L3N2Zz4K"
+      );
+    } else {
+      $(".profile_header_wrapper img").attr(
+        "src",
+        "data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9CIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NyIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjYiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjYiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzkwIiBkYXRhLW5hbWU9IlBhdGggNDE3OTAiIGQ9Ik05NDcuOTYyLDUzNi4zMDljNC42OTItOS44ODEsNC43NDUtMjYuNzgyLTMuNzU2LTM4LjExOC0yLjk0OS0yLjY5Mi0zNi0yMi4wODctNTcuNjY1LTI0LjQ1di01Ljc2MWM2LjYxOC01LjgwNywxMS44MDktMTQuNDQ2LDE0LjY4Ni0yNC42OTRhMi42NTMsMi42NTMsMCwwLDAsLjc0NC4yNTljMy4zNTEuNTcsNi45NjMtNS42MTUsOC4wNjktMTMuODEzcy0uNzE2LTE1LjMwOS00LjA2Ny0xNS44NzlhMy41MzIsMy41MzIsMCwwLDAtMi45MjIsMS4xMTVjLS4wNjgtLjQ4Ni0uMTQ1LS45NjgtLjIyMi0xLjQ0OWwxLjE0Mi01LjQzNmMxLjIxNy01LjgsMi40MTctMTEuOTMuNTMtMTcuNTQ3YTIyLjcxMiwyMi43MTIsMCwwLDAtNC44MTMtNy44MWMtNi41LTcuMjM1LTE1LjkyNS0xMS41LTI1LjU3NC0xMi43NXMtMTkuNTEzLjM2NS0yOC43MTEsMy41MzNjLTUuNDksMS44ODktMTEuNzkyLDYuMS0xMC42NjQsMTEuNzktMi44MTUtMS4wNTItNiwxLjE4MS03LjA4MywzLjk4M3MtLjY0OSw1LjkzNi0uMiw4LjkwOHExLjIzMyw4LjEzMywyLjQ2NywxNi4yNjdhMy4xMjgsMy4xMjgsMCwwLDAtMi4yNzEtLjZjLTMuMzUxLjU3LTUuMTcyLDcuNjc5LTQuMDY2LDE1Ljg3OXM0LjcxOCwxNC4zODMsOC4wNjksMTMuODEzYTIuNjYzLDIuNjYzLDAsMCwwLC43NDMtLjI1OWMyLjg3NywxMC4yNDcsOC4wNjgsMTguODg3LDE0LjY4NSwyNC43djUuNjM1Yy0yMi4xNDEsMi4yNjgtNTQuMjE0LDIwLjgyNC01Ni40NywyMi44ODQtOS4wMDksMTIuMDE0LTguNDEyLDMwLjI3NC0yLjg2OCwzOS44MDhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzY3LjE3MyAtMzM1LjgzNSkiIGZpbGw9IiNmZmYiLz4KICA8L2c+Cjwvc3ZnPgo="
+      );
+      $(".card_header_profile .card_header_thumbnail").attr(
+        "src",
+        "data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9CIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NyIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjYiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjYiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzkwIiBkYXRhLW5hbWU9IlBhdGggNDE3OTAiIGQ9Ik05NDcuOTYyLDUzNi4zMDljNC42OTItOS44ODEsNC43NDUtMjYuNzgyLTMuNzU2LTM4LjExOC0yLjk0OS0yLjY5Mi0zNi0yMi4wODctNTcuNjY1LTI0LjQ1di01Ljc2MWM2LjYxOC01LjgwNywxMS44MDktMTQuNDQ2LDE0LjY4Ni0yNC42OTRhMi42NTMsMi42NTMsMCwwLDAsLjc0NC4yNTljMy4zNTEuNTcsNi45NjMtNS42MTUsOC4wNjktMTMuODEzcy0uNzE2LTE1LjMwOS00LjA2Ny0xNS44NzlhMy41MzIsMy41MzIsMCwwLDAtMi45MjIsMS4xMTVjLS4wNjgtLjQ4Ni0uMTQ1LS45NjgtLjIyMi0xLjQ0OWwxLjE0Mi01LjQzNmMxLjIxNy01LjgsMi40MTctMTEuOTMuNTMtMTcuNTQ3YTIyLjcxMiwyMi43MTIsMCwwLDAtNC44MTMtNy44MWMtNi41LTcuMjM1LTE1LjkyNS0xMS41LTI1LjU3NC0xMi43NXMtMTkuNTEzLjM2NS0yOC43MTEsMy41MzNjLTUuNDksMS44ODktMTEuNzkyLDYuMS0xMC42NjQsMTEuNzktMi44MTUtMS4wNTItNiwxLjE4MS03LjA4MywzLjk4M3MtLjY0OSw1LjkzNi0uMiw4LjkwOHExLjIzMyw4LjEzMywyLjQ2NywxNi4yNjdhMy4xMjgsMy4xMjgsMCwwLDAtMi4yNzEtLjZjLTMuMzUxLjU3LTUuMTcyLDcuNjc5LTQuMDY2LDE1Ljg3OXM0LjcxOCwxNC4zODMsOC4wNjksMTMuODEzYTIuNjYzLDIuNjYzLDAsMCwwLC43NDMtLjI1OWMyLjg3NywxMC4yNDcsOC4wNjgsMTguODg3LDE0LjY4NSwyNC43djUuNjM1Yy0yMi4xNDEsMi4yNjgtNTQuMjE0LDIwLjgyNC01Ni40NywyMi44ODQtOS4wMDksMTIuMDE0LTguNDEyLDMwLjI3NC0yLjg2OCwzOS44MDhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzY3LjE3MyAtMzM1LjgzNSkiIGZpbGw9IiNmZmYiLz4KICA8L2c+Cjwvc3ZnPgo="
+      );
+    }
 
-      return return_text
-    }
-    if(vhv.VHV_SEX==2){
-      $('.profile_header_wrapper img').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9BIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NiIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjUiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjUiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzg5IiBkYXRhLW5hbWU9IlBhdGggNDE3ODkiIGQ9Ik03OTAsNTM0Ljk5MWMxLjIxNC05LjA3NC0uMTM3LTIwLjEtNS4zNTgtMjguMTkyYTY5LjAyMSw2OS4wMjEsMCwwLDAtMTAuNi05LjFjLTExLjY0Mi04Ljg0Ny0yNy4wODMtMTUuMTU1LTQ0LjUtMTcuNTkyVjQ3NmMxMi4yLS43MjUsMjQuNzUtMy4xMTUsMzYuMiwxLjAwOGExNjEuNzgzLDE2MS43ODMsMCwwLDEtOC40NTEtNDEuNmMtLjc4Ni0xMS40MjUtLjQtMjMuMTUxLTQuMDczLTM0LTQuMTMxLTEyLjE4OC0xMy42NDYtMjIuNjA5LTI1LjcwOC0yNy4wOTJzLTI2LjQ2LTIuNjM1LTM2LjUzOSw1LjM2NmMtMy41MzEsMi44LTYuNzA3LDYuODI2LTYuMzUxLDExLjMyMi02LjEyMS0yLjA3Mi0xMi45NDYsMi4yNzYtMTUuODA3LDguMDcxUzY2Ni4xLDQxMS42NSw2NjYuNSw0MTguMWMxLjE5MSwxOC45LDQuMDczLDM4LjI3OS0xLjAzOSw1Ni41cTE1Ljg3Ni40OCwzMS43NTMuOTYydjQuNTQ3Yy0xNS44MzcsMi4yMTctMzAuMDM4LDcuNjM2LTQxLjIzOSwxNS4yNTEtLjI3OC4xODgtLjU1OS4zNzMtLjgzMy41NjQtLjUyNS4zNjgtMS4wMzguNzQzLTEuNTQ5LDEuMTItLjM3Ni4yNzctLjc1LjU1NS0xLjExOS44MzYtLjQ0NC4zNC0uODgxLjY4NC0xLjMxNCwxLjAzMnMtLjg1LjY5My0xLjI2OCwxLjA0NGMtLjM3MS4zMTQtLjc0My42MjUtMS4xLjk0My0uNDg5LjQzLS45NjUuODY4LTEuNDM5LDEuMzEtLjI3OC4yNTktLjU2NC41MTQtLjgzNy43NzctLjc0MS43MTUtMS40NjUsMS40NC0yLjE2MSwyLjE3OC01LjU0Miw4LjU5MS02LjcyMiwyMC40NzQtNS4xMDcsMjkuODMxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYxMy4wMzggLTMzNC41MTcpIiBmaWxsPSIjZmZmIi8+CiAgPC9nPgo8L3N2Zz4K')
-      $('.card_header_profile .card_header_thumbnail').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9BIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NiIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjUiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjUiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzg5IiBkYXRhLW5hbWU9IlBhdGggNDE3ODkiIGQ9Ik03OTAsNTM0Ljk5MWMxLjIxNC05LjA3NC0uMTM3LTIwLjEtNS4zNTgtMjguMTkyYTY5LjAyMSw2OS4wMjEsMCwwLDAtMTAuNi05LjFjLTExLjY0Mi04Ljg0Ny0yNy4wODMtMTUuMTU1LTQ0LjUtMTcuNTkyVjQ3NmMxMi4yLS43MjUsMjQuNzUtMy4xMTUsMzYuMiwxLjAwOGExNjEuNzgzLDE2MS43ODMsMCwwLDEtOC40NTEtNDEuNmMtLjc4Ni0xMS40MjUtLjQtMjMuMTUxLTQuMDczLTM0LTQuMTMxLTEyLjE4OC0xMy42NDYtMjIuNjA5LTI1LjcwOC0yNy4wOTJzLTI2LjQ2LTIuNjM1LTM2LjUzOSw1LjM2NmMtMy41MzEsMi44LTYuNzA3LDYuODI2LTYuMzUxLDExLjMyMi02LjEyMS0yLjA3Mi0xMi45NDYsMi4yNzYtMTUuODA3LDguMDcxUzY2Ni4xLDQxMS42NSw2NjYuNSw0MTguMWMxLjE5MSwxOC45LDQuMDczLDM4LjI3OS0xLjAzOSw1Ni41cTE1Ljg3Ni40OCwzMS43NTMuOTYydjQuNTQ3Yy0xNS44MzcsMi4yMTctMzAuMDM4LDcuNjM2LTQxLjIzOSwxNS4yNTEtLjI3OC4xODgtLjU1OS4zNzMtLjgzMy41NjQtLjUyNS4zNjgtMS4wMzguNzQzLTEuNTQ5LDEuMTItLjM3Ni4yNzctLjc1LjU1NS0xLjExOS44MzYtLjQ0NC4zNC0uODgxLjY4NC0xLjMxNCwxLjAzMnMtLjg1LjY5My0xLjI2OCwxLjA0NGMtLjM3MS4zMTQtLjc0My42MjUtMS4xLjk0My0uNDg5LjQzLS45NjUuODY4LTEuNDM5LDEuMzEtLjI3OC4yNTktLjU2NC41MTQtLjgzNy43NzctLjc0MS43MTUtMS40NjUsMS40NC0yLjE2MSwyLjE3OC01LjU0Miw4LjU5MS02LjcyMiwyMC40NzQtNS4xMDcsMjkuODMxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTYxMy4wMzggLTMzNC41MTcpIiBmaWxsPSIjZmZmIi8+CiAgPC9nPgo8L3N2Zz4K')
-    }else{
-      $('.profile_header_wrapper img').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9CIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NyIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjYiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjYiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzkwIiBkYXRhLW5hbWU9IlBhdGggNDE3OTAiIGQ9Ik05NDcuOTYyLDUzNi4zMDljNC42OTItOS44ODEsNC43NDUtMjYuNzgyLTMuNzU2LTM4LjExOC0yLjk0OS0yLjY5Mi0zNi0yMi4wODctNTcuNjY1LTI0LjQ1di01Ljc2MWM2LjYxOC01LjgwNywxMS44MDktMTQuNDQ2LDE0LjY4Ni0yNC42OTRhMi42NTMsMi42NTMsMCwwLDAsLjc0NC4yNTljMy4zNTEuNTcsNi45NjMtNS42MTUsOC4wNjktMTMuODEzcy0uNzE2LTE1LjMwOS00LjA2Ny0xNS44NzlhMy41MzIsMy41MzIsMCwwLDAtMi45MjIsMS4xMTVjLS4wNjgtLjQ4Ni0uMTQ1LS45NjgtLjIyMi0xLjQ0OWwxLjE0Mi01LjQzNmMxLjIxNy01LjgsMi40MTctMTEuOTMuNTMtMTcuNTQ3YTIyLjcxMiwyMi43MTIsMCwwLDAtNC44MTMtNy44MWMtNi41LTcuMjM1LTE1LjkyNS0xMS41LTI1LjU3NC0xMi43NXMtMTkuNTEzLjM2NS0yOC43MTEsMy41MzNjLTUuNDksMS44ODktMTEuNzkyLDYuMS0xMC42NjQsMTEuNzktMi44MTUtMS4wNTItNiwxLjE4MS03LjA4MywzLjk4M3MtLjY0OSw1LjkzNi0uMiw4LjkwOHExLjIzMyw4LjEzMywyLjQ2NywxNi4yNjdhMy4xMjgsMy4xMjgsMCwwLDAtMi4yNzEtLjZjLTMuMzUxLjU3LTUuMTcyLDcuNjc5LTQuMDY2LDE1Ljg3OXM0LjcxOCwxNC4zODMsOC4wNjksMTMuODEzYTIuNjYzLDIuNjYzLDAsMCwwLC43NDMtLjI1OWMyLjg3NywxMC4yNDcsOC4wNjgsMTguODg3LDE0LjY4NSwyNC43djUuNjM1Yy0yMi4xNDEsMi4yNjgtNTQuMjE0LDIwLjgyNC01Ni40NywyMi44ODQtOS4wMDksMTIuMDE0LTguNDEyLDMwLjI3NC0yLjg2OCwzOS44MDhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzY3LjE3MyAtMzM1LjgzNSkiIGZpbGw9IiNmZmYiLz4KICA8L2c+Cjwvc3ZnPgo=')
-      $('.card_header_profile .card_header_thumbnail').attr('src','data:image/svg+xml;base64,PHN2ZyBpZD0icHJvZmlsZV9CIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIHZpZXdCb3g9IjAgMCAyMDAuNDc0IDIwMC40NzQiPgogIDxnIGlkPSJHcm91cF8xNDg4NyIgZGF0YS1uYW1lPSJHcm91cCAxNDg4NyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSI+CiAgICA8cmVjdCBpZD0iUmVjdGFuZ2xlXzgwNjYiIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDgwNjYiIHdpZHRoPSIyMDAuNDc0IiBoZWlnaHQ9IjIwMC40NzQiIGZpbGw9IiNiOWM0ZTEiLz4KICAgIDxwYXRoIGlkPSJQYXRoXzQxNzkwIiBkYXRhLW5hbWU9IlBhdGggNDE3OTAiIGQ9Ik05NDcuOTYyLDUzNi4zMDljNC42OTItOS44ODEsNC43NDUtMjYuNzgyLTMuNzU2LTM4LjExOC0yLjk0OS0yLjY5Mi0zNi0yMi4wODctNTcuNjY1LTI0LjQ1di01Ljc2MWM2LjYxOC01LjgwNywxMS44MDktMTQuNDQ2LDE0LjY4Ni0yNC42OTRhMi42NTMsMi42NTMsMCwwLDAsLjc0NC4yNTljMy4zNTEuNTcsNi45NjMtNS42MTUsOC4wNjktMTMuODEzcy0uNzE2LTE1LjMwOS00LjA2Ny0xNS44NzlhMy41MzIsMy41MzIsMCwwLDAtMi45MjIsMS4xMTVjLS4wNjgtLjQ4Ni0uMTQ1LS45NjgtLjIyMi0xLjQ0OWwxLjE0Mi01LjQzNmMxLjIxNy01LjgsMi40MTctMTEuOTMuNTMtMTcuNTQ3YTIyLjcxMiwyMi43MTIsMCwwLDAtNC44MTMtNy44MWMtNi41LTcuMjM1LTE1LjkyNS0xMS41LTI1LjU3NC0xMi43NXMtMTkuNTEzLjM2NS0yOC43MTEsMy41MzNjLTUuNDksMS44ODktMTEuNzkyLDYuMS0xMC42NjQsMTEuNzktMi44MTUtMS4wNTItNiwxLjE4MS03LjA4MywzLjk4M3MtLjY0OSw1LjkzNi0uMiw4LjkwOHExLjIzMyw4LjEzMywyLjQ2NywxNi4yNjdhMy4xMjgsMy4xMjgsMCwwLDAtMi4yNzEtLjZjLTMuMzUxLjU3LTUuMTcyLDcuNjc5LTQuMDY2LDE1Ljg3OXM0LjcxOCwxNC4zODMsOC4wNjksMTMuODEzYTIuNjYzLDIuNjYzLDAsMCwwLC43NDMtLjI1OWMyLjg3NywxMC4yNDcsOC4wNjgsMTguODg3LDE0LjY4NSwyNC43djUuNjM1Yy0yMi4xNDEsMi4yNjgtNTQuMjE0LDIwLjgyNC01Ni40NywyMi44ODQtOS4wMDksMTIuMDE0LTguNDEyLDMwLjI3NC0yLjg2OCwzOS44MDhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzY3LjE3MyAtMzM1LjgzNSkiIGZpbGw9IiNmZmYiLz4KICA8L2c+Cjwvc3ZnPgo=')
-    }
-   
-   
-    $('.vhv_user').html(`<b>${vhv.VHV_USER}</b>`)
-    $('.vhv_age').text(getAge(vhv.VHV_BIRTHDATE,true))
-    $('.vhv_idcard').text(id_card_format(vhv.VHV_IDCARD))
-    $('.vhv_addr').text(`เลขที่ ${vhv.VHV_ADDR}`)
-    queryALL('VHV_MA_SHPH',function(vhv_ma_shph){
-      let shph = vhv_ma_shph[0]
-      $('.vhv_shph').text(`${shph.SHPH_NAME}`)
-    })
-    queryALL('VHV_MA_SHPH_MOO',function(vhv_ma_shph_moo){
-      let shph_moo = vhv_ma_shph_moo[0]
-      $('.vhv_community').text(`ชุมชน${shph_moo.SHPH_MOONAME}`)
-    })
-  
-  
-  })
- 
+    $(".vhv_user").html(`<b>${vhv.VHV_USER}</b>`);
+    $(".vhv_age").text(getAge(vhv.VHV_BIRTHDATE, true));
+    $(".vhv_idcard").text(id_card_format(vhv.VHV_IDCARD));
+    $(".vhv_addr").text(`เลขที่ ${vhv.VHV_ADDR}`);
+    queryALL("VHV_MA_SHPH", function (vhv_ma_shph) {
+      let shph = vhv_ma_shph[0];
+      $(".vhv_shph").text(`${shph.SHPH_NAME}`);
+    });
+    queryALL("VHV_MA_SHPH_MOO", function (vhv_ma_shph_moo) {
+      let shph_moo = vhv_ma_shph_moo[0];
+      $(".vhv_community").text(`ชุมชน${shph_moo.SHPH_MOONAME}`);
+    });
+  });
 }
 function showModal(_modal, _callback = function () {}) {
   $("#" + _modal).fadeIn(200, () => {
@@ -97,7 +104,7 @@ function getAccessToken() {
       localStorage.setItem("access_token", response.access_token);
     },
     error: function () {
-      alert("เกิดข้อผิดพลาด");
+      alert("เกิดข้อผิดพลาด1");
     },
   });
 }
@@ -124,7 +131,7 @@ function login(username, password, _success, _error) {
       if (e.responseJSON.status == false) {
         _error("ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง");
       } else {
-        _error("เกิดข้อผิดพลาด");
+        _error("เกิดข้อผิดพลาด2");
       }
     },
   });
@@ -143,7 +150,7 @@ function getAccessToken(_success, _error) {
         resolve(response.access_token);
       },
       error: function () {
-        reject("เกิดข้อผิดพลาด");
+        reject("เกิดข้อผิดพลาด3");
       },
     });
   });
@@ -177,12 +184,12 @@ async function login(username, password, _success, _error) {
         if (e.responseJSON.status == false) {
           _error("ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง");
         } else {
-          _error("เกิดข้อผิดพลาด");
+          _error("เกิดข้อผิดพลาด4");
         }
       },
     });
   } catch (error) {
-    _error("เกิดข้อผิดพลาด");
+    _error("เกิดข้อผิดพลาด5");
   }
 }
 async function callAPI(enpoint, method, data, _success, _error) {
@@ -208,14 +215,14 @@ async function callAPI(enpoint, method, data, _success, _error) {
       },
       error: function (e) {
         if (e.responseJSON.status == false) {
-          _error("เกิดข้อผิดพลาด");
+          _error("เกิดข้อผิดพลาด6");
         } else {
-          _error("เกิดข้อผิดพลาด");
+          _error("เกิดข้อผิดพลาด7");
         }
       },
     });
   } catch (error) {
-    _error("เกิดข้อผิดพลาด");
+    _error("เกิดข้อผิดพลาด8");
   }
 }
 function getInitial() {
@@ -1375,18 +1382,59 @@ function getInitial() {
             );
           });
         });
-          setProfile()
+        db.transaction(function (tx) {
+          $.each(data.office, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_OFFICE (ID,GUID,OFFICE_ID,OFFICE_NAME,OFFICE_ADDR,OFFICE_MOO,OFFICE_TEL,OFFICE_LAT,OFFICE_LONG,GIS_PROVINCE,GIS_DISTRICT,GIS_TUMBOL,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.OFFICE_ID +
+                "','" +
+                row.OFFICE_NAME +
+                "','" +
+                row.OFFICE_ADDR +
+                "','" +
+                row.OFFICE_MOO +
+                "','" +
+                row.OFFICE_TEL +
+                "','" +
+                row.OFFICE_LAT +
+                "','" +
+                row.OFFICE_LONG +
+                "','" +
+                row.GIS_PROVINCE +
+                "','" +
+                row.GIS_DISTRICT +
+                "','" +
+                row.GIS_TUMBOL +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
+        setProfile();
       } else {
-        _error("เกิดข้อผิดพลาด");
+        _error("เกิดข้อผิดพลาด9");
       }
     },
     error: function (e) {
-      _error("เกิดข้อผิดพลาด");
+      _error("เกิดข้อผิดพลาด10");
     },
   });
 }
 function getNewId() {
-  return Date.now()+getRandomInt(50);
+  return Date.now() + getRandomInt(50);
 }
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -1432,6 +1480,28 @@ function queryByID(TABLE, ID, _callback) {
     );
   });
 }
+function queryByIDText(TABLE, ID, _callback) {
+  var arr = [];
+  // console.log(
+  //   "SELECT rowid,* FROM " + TABLE + " WHERE ID='" + parseInt(ID) + "'"
+  // );
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT rowid,* FROM " + TABLE + " WHERE ID='" + parseInt(ID) + "'",
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+
+        for (i = 0; i < len; i++) {
+          // console.log(results.rows.item(i));
+          _callback(results.rows.item(i));
+        }
+      },
+      null
+    );
+  });
+}
 function queryByELDER_ID(TABLE, ELDER_ID, _callback) {
   var arr = [];
   console.log(
@@ -1456,6 +1526,113 @@ function queryByELDER_ID(TABLE, ELDER_ID, _callback) {
       null
     );
   });
+}
+function queryGetDiseaseByELDER_ID(TABLE, ELDER_ID, _callback) {
+  var arr = [];
+  // console.log(
+  //   "SELECT MAX(UPDATE_DATE),rowid,* FROM " +
+  //     TABLE +
+  //     ' WHERE VISIT1 = "1" AND ELDER_ID="' +
+  //     parseInt(ELDER_ID) +
+  //     '"'
+  // );
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT MAX(UPDATE_DATE),rowid,* FROM " +
+        TABLE +
+        ' WHERE VISIT1 = "1" AND ELDER_ID="' +
+        parseInt(ELDER_ID) +
+        '"',
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+        for (i = 0; i < len; i++) {
+          arr.push(results.rows.item(i));
+        }
+        _callback(arr);
+      },
+      null
+    );
+  });
+}
+function queryGetSHPHtelStaff(SHPH_ID, _callback) {
+  var arr = [];
+  console.log(
+    'SELECT rowid,* FROM VHV_MA_SHPH WHERE ID="' + parseInt(SHPH_ID) + '"'
+  );
+  db.transaction(function (tx) {
+    tx.executeSql(
+      'SELECT rowid,* FROM VHV_MA_SHPH WHERE ID="' + parseInt(SHPH_ID) + '"',
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+        for (i = 0; i < len; i++) {
+          arr.push(results.rows.item(i));
+        }
+        _callback(arr);
+      },
+      null
+    );
+  });
+}
+function queryGetOFFICEtelStaff(GIS_PROVINCE, GIS_DISTRICT, _callback) {
+  var arr = [];
+  console.log(
+    'SELECT rowid,* FROM VHV_MA_OFFICE WHERE GIS_DISTRICT= "' +
+      parseInt(GIS_DISTRICT) +
+      '" AND GIS_PROVINCE = "' +
+      parseInt(GIS_PROVINCE) +
+      '"'
+  );
+  db.transaction(function (tx) {
+    tx.executeSql(
+      'SELECT rowid,* FROM VHV_MA_OFFICE WHERE GIS_DISTRICT= "' +
+        parseInt(GIS_DISTRICT) +
+        '" AND GIS_PROVINCE = "' +
+        parseInt(GIS_PROVINCE) +
+        '"',
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+        for (i = 0; i < len; i++) {
+          arr.push(results.rows.item(i));
+        }
+        _callback(arr);
+      },
+      null
+    );
+  });
+}
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2 - lat1); // deg2rad below
+  var dLon = deg2rad(lon2 - lon1);
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
+function searchFunction(arr, item) {
+  let nResult = [];
+  $.each(arr, function (index, row) {
+    var str = row.ELDER_NAME;
+    if (str.includes(item)) {
+      nResult.push(row);
+    }
+  });
+  return nResult;
 }
 function queryByRowID(TABLE, rowID, _callback) {
   var arr = [];
@@ -1490,7 +1667,7 @@ function sqlUpdate(TABLE, data, ID, _callback) {
   str = str.slice(0, -1);
 
   let update_query = "UPDATE " + TABLE + " SET " + str + " WHERE ID=" + ID;
-  console.log(update_query)
+  console.log(update_query);
   db.transaction(function (tx) {
     tx.executeSql(update_query);
     _callback(ID);
@@ -1564,7 +1741,7 @@ function listElderEvaluate(_callback) {
   });
 }
 // yyyy-mm-dd
-function getAge(dateString,yearOnly=false) {
+function getAge(dateString, yearOnly = false) {
   if (dateString != null) {
     var now = new Date();
     var today = new Date(now.getYear(), now.getMonth(), now.getDate());
@@ -1618,9 +1795,9 @@ function getAge(dateString,yearOnly=false) {
     else monthString = " month";
     if (age.days > 1) dayString = " days";
     else dayString = " day";
-    if(yearOnly&&age.years > 0){
-      ageString = "อายุ " + age.years + yearString 
-    }else if (age.years > 0 && age.months > 0)
+    if (yearOnly && age.years > 0) {
+      ageString = "อายุ " + age.years + yearString;
+    } else if (age.years > 0 && age.months > 0)
       ageString =
         "อายุ " + age.years + yearString + ", " + age.months + monthString;
     else if (age.years == 0 && age.months == 0 && age.days > 0)
@@ -1929,7 +2106,7 @@ function dateStringFormat(date) {
     " " +
     getMonthThai(month) +
     " " +
-    (parseInt(year)+543).toString().substring(2,4) +
+    (parseInt(year) + 543).toString().substring(2, 4) +
     " เวลา " +
     time +
     " น.";
@@ -1999,11 +2176,9 @@ function renderElderModal(item, modalId, showEva, showVisit) {
     }
     if (showVisit == true) {
       queryALL("VHV_TR_VISIT", function (vhv_tr_visit) {
-        let visit =  vhv_tr_visit.filter(
-          (row) => row.ELDER_ID == item.ID
-        )
+        let visit = vhv_tr_visit.filter((row) => row.ELDER_ID == item.ID);
         let visitCount = visit.length;
-      
+
         $("#" + modalId + " .status-card.visit").html(`
         <div class="status-card-header">
           <p><b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
@@ -2025,7 +2200,7 @@ function renderElderModal(item, modalId, showEva, showVisit) {
           console.log(item.VISIT_STATUS);
           $("#" + modalId + " .status-card.visit").attr("canvisit", true);
           if (item.VISIT_STATUS == 1) {
-            let lastVisit =visit[visit.length-1]
+            let lastVisit = visit[visit.length - 1];
             $(
               "#" + modalId + " .status-card.visit .status-card-header"
             ).addClass("visited");
