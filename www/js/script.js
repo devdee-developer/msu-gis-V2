@@ -88,7 +88,11 @@ $(function () {
     changePage("news_page", function () {});
   });
   $(".menu_news_page").on("click", function () {
+   
     changePage("news_page", function () {
+      $('.content').animate({
+        scrollTop: $(".content").offset().top
+      },0);
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -99,6 +103,10 @@ $(function () {
  
   $(".news_item").on("click", function () {
     changePage("news_detail_page", function () {
+      $('.content').animate({
+        scrollTop: $(".content").offset().top
+      },0);
+      renderNewsDetailContent()
       loading.show();
       setTimeout(function () {
         loading.hide();
@@ -108,6 +116,7 @@ $(function () {
   $(".swiper-slide.news").on("click", function () {
     changePage("news_detail_page", function () {
       loading.show();
+      renderNewsDetailContent()
       setTimeout(function () {
         loading.hide();
       }, 500);

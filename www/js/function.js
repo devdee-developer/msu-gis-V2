@@ -10,13 +10,14 @@ function initSlideHomePage() {
     slidesPerView: 1,
     spaceBetween: 30,
     loop: true,
+    speed: 500,
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
     },
   });
   swiper_timer = setInterval(function () {
-    $(".swiper-button-next").click();
+    swiper.slideNext();
   }, 5000);
 }
 function initSlideNewsPage() {
@@ -31,8 +32,27 @@ function initSlideNewsPage() {
     },
   });
   swiper_timer2 = setInterval(function () {
-    $(".swiper-button-next2").click();
+    swiper2.slideNext();
   }, 5000);
+  let data = [1,2,3,4,5]
+  $('ul.news_item').html('')
+  data.map((row)=>$('ul.news_item').append(renderNewsCard(row)))
+}
+function renderNewsCard(row){
+  let html = `<li newno=${row}>
+      <img class="news_thumbnail" src="img/news_thumbnail.png">
+      <p class="news_description">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy
+        text ever<br>
+      </p>
+      <p class="news_date"> <i class="fa fa-calendar"></i> 11 ธันวาคม 2564</p>
+      <img class="news_detail_btn" src="img/news_detail_btn.png">
+    </li>`
+  return html
+}
+function renderNewsDetailContent(){
+  $('.news_detail_content').html(`<h2>ผู้ป่วยรายแรกเท่าที่ทราบกันเริ่มมีอากรตั้งแต่วันที่ 1 ธันวาคมและไม่ความเชื่อมโยงกับตลาดต้องสงสัยในเมือง อู่ฮั่น</h2>\n                        <p>มีการเก็บตัวอย่างจากสิ่งแวดล้อมในตลาดไปส่งตรวจและพบเชื้อไวรัสและพบมากที่สุดในบริเวณที่ค้าสัตว์ป่าและสัตว์เลี้ยงในปาร์ม</p>\n                        <p>การเพิ่มจำนวนของไวรัสเกิดขึ้นในระบบทางเดินหายใจส่วนบนและในปอดมีงานวิจัยในช่วงแรกระบุว่าการเพิ่มจำนวนของไวรัสได้ในระบบทางเดินอาหารแต่การติดต่อโดยระบบทางเดินอาหารยังไม่เป็นที่ยืนยันการกักกันคือการจำกัดกิจกรรมต่างๆหรือการแยกผู้ที่ไม่ป่วยแต่อาจมีประวัติสัมผัสใกล้ชิดกับผุ้ป่วยโควิด</p>\n                        <p><img src='http://monplern.com/laravel/img/newsDetail1.png' /></p>\n                        <h2>การกักกันคือการจำกันกิจกรรมต่างๆ หรือการแยกผู้ที่ไม่ป่วยแต่อาจมีประวัติ สัมผัสใกล้ชิดกับผู้ป่วยโควิด<h2/>\n                        <p>การเพิ่มจำนวนของไวรัสเกิดขึ้นในระบบทางเดินหายใจส่วนบนและในปอดมีงานวิจัยในช่วงแรกระบุว่าการเพิ่มจำนวนของไวรัสได้ในระบบทางเดินอาหารแต่ยังไม่เป็นที่ยืนยันทการกักกันคือการจำกัดกิจกรรมต่างๆหรือการแยกผู้ที่ไม่ป่วยแต่อาจมีประวัติสมัผัสใกล้ชิดกับผู้ป่วยโควิด</p>\n                        <p><img src='http://monplern.com/laravel/img/newsDetail2.png' /></p>\n                        <h2>เรามาร่วมกันหยุดยั้งการแพร่ระบาดของโควิด<h2/>\n                        `)
 }
 function calHomeButtonPosition() {
   var total_w = $(".main_home_menu_item_wrapper").width();
