@@ -37,7 +37,8 @@ $(function () {
     });
   });
   $("#analytics_page .header .back_header_btn").on("click", function () {
-    $(".menu_home_page").click();
+    changePage('home_page', function () {
+    });
   });
   $(".selected_analytics").on('click',function(){
     console.log( $("#analytics_page .sort-list"))
