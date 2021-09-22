@@ -9,7 +9,8 @@ $(function () {
     });
   });
   $("#contact_page .header .back_header_btn").on("click", function () {
-    $(".menu_home_page").click();
+    changePage('home_page', function () {
+    });
   });
   $("#contact_page .collapse-filter .collapse-filter-header").click(function () {
     $header = $(this);

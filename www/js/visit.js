@@ -1119,7 +1119,8 @@ $(function () {
     $(".step-btn.next").prop("disabled", disabled);
   }
   $("#visit_page .header .back_header_btn").on("click", function () {
-    $(".menu_home_page").click();
+    changePage('home_page', function () {
+    });
   });
   $("#visit_detail_page .header .back_header_btn").on("click", function () {
     changePage(visit_from_page, function () {
