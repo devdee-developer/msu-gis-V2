@@ -265,7 +265,7 @@ button.cancel_noti {
   border-color: #c9d8d7;
 }
 #urgent_noti_page .content .elder p {
-  font-size: 23px;
+  font-size: 20px;
   color: #010979;
 }
 #urgent_noti_page .content .elder .elder_btn {
@@ -283,6 +283,7 @@ button.cancel_noti {
   margin-right: 10px;
   color: #ffffff;
   border-width: 0px;
+  font-size: 16px;
 }
 #urgent_noti_page .content .elder .elder_btn:disabled {
   background-origin: content-box;
@@ -299,6 +300,7 @@ button.cancel_noti {
   margin-right: 10px;
   color: #ffffff;
   border-width: 0px;
+  font-size: 16px;
 }
 #urgent_noti_page .content .elder .elder_btn.show {
   background-origin: content-box;
@@ -387,7 +389,7 @@ button.cancel_noti {
   padding-right: 10px;
 }
 #urgent_noti_page .content .camera {
-  height: 80px;
+  height: 150px;
   float: right;
   display: flex;
 }
@@ -395,10 +397,15 @@ button.cancel_noti {
   height: 80px;
   float: right;
   display: flex;
+  margin-right: 10px;
 }
 #urgent_noti_page .content .camera_detail .Img {
-  height: 50px;
   width: 50px;
+  height: 50px;
+  border-radius: 11px;
+  border: 1px solid #7f7fa8;
+  margin: 20px 0;
+  position: relative;
   margin-left: 10px;
 }
 #urgent_noti_page .content .camera_detail .Img img {
@@ -407,8 +414,12 @@ button.cancel_noti {
   border-radius: 7px;
 }
 #urgent_noti_page .content .camera .Img {
-  height: 50px;
   width: 50px;
+  height: 50px;
+  border-radius: 11px;
+  border: 1px solid #7f7fa8;
+  margin: 20px 0;
+  position: relative;
   margin-left: 10px;
 }
 #urgent_noti_page .content .camera .Img img {
@@ -416,11 +427,26 @@ button.cancel_noti {
   width: 50px;
   border-radius: 7px;
 }
-#urgent_noti_page .content .camera .Img i {
+/* #urgent_noti_page .content .camera .Img i {
   position: relative;
   padding-left: 45px;
   color: red;
   top: 12px;
+} */
+#urgent_noti_page .content .camera .Img .dismiss {
+  background-color: #f53f4d;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(15%, -50%);
+  border-radius: 50%;
+  color: #ffffff;
+
+  text-align: center;
+  line-height: 19px;
+  font-size: 13px;
 }
 #urgent_noti_page .content .open_camera {
   background-color: #010979;
@@ -433,7 +459,7 @@ button.cancel_noti {
   background-size: 25px;
   margin-right: 10px;
   margin-left: 10px;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 #urgent_noti_page .content .open_camera.disabled {
   background-color: #d7d5e2;
@@ -592,6 +618,15 @@ button.cancel_noti {
   right: 0;
   width: 100%;
 }
+#urgent_noti_page .backformap.to_notifications {
+  margin: 0;
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
 #urgent_noti_page .backformap button {
   width: 100%;
   height: 53px;
@@ -629,6 +664,95 @@ button.cancel_noti {
 
 #urgent_noti_page .backformap .card-body .card-body-content .urgent {
   color: #000000;
+}
+#urgent_noti_page button.submit_noti {
+  min-width: 130px;
+  height: 53px;
+  background: #6f63fd 0% 0% no-repeat padding-box;
+  box-shadow: 0px 8px 12px #9595f273;
+  border-radius: 27px;
+  font-size: 20px;
+  color: #ffffff;
+  border-width: 0;
+  font-family: Prompt;
+  padding: 0 18.5px;
+  position: relative;
+}
+#urgent_noti_page button.submit_save_noti {
+  min-width: 130px;
+  height: 53px;
+  background: #ffffff;
+  border-radius: 27px;
+  font-size: 20px;
+  color: #1bc3a2;
+  border-width: 2px;
+  font-family: Prompt;
+  border-style: solid;
+  border-color: #1bc3a2;
+}
+#urgent_noti_page button.submit_noti:disabled {
+  min-width: 130px;
+  height: 53px;
+  background: #e4e1f0 0% 0% no-repeat padding-box;
+  box-shadow: 0px 8px 12px #9595f273;
+  border-radius: 27px;
+  font-size: 20px;
+  color: #ffffff;
+  border-width: 0;
+  font-family: Prompt;
+  padding: 0 18.5px;
+  position: relative;
+}
+#urgent_noti_page .modal_img_title {
+  margin-bottom: 20px;
+}
+#urgent_noti_page .modal_img_title p:nth-child(1) {
+  color: #010979;
+  font-size: 30px;
+  font-weight: bold;
+}
+#urgent_noti_page .modal_img_title p:nth-child(2) {
+  color: #f53f4d;
+  font-size: 20px;
+}
+#urgent_noti_page button {
+  height: 53px;
+  width: 259px;
+  border-radius: 27px;
+  color: #ffffff;
+  border-width: -0;
+  font-size: 20px;
+  font-weight: 500;
+  box-shadow: 0px 8px 12px #9595f273;
+  font-family: Prompt;
+  margin: 10px 0;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+#urgent_noti_page button.on_camera {
+  background-color: #7676ff;
+}
+#urgent_noti_page button.on_gallery {
+  background-color: #010979;
+}
+#urgent_noti_page .PreImg {
+  display: flex;
+}
+#modal-tel-urgent-noti .modal_tel_name {
+  background-color: #f7f5fc;
+  border-radius: 5px;
+  color: #010979;
+  padding: 5px 5px 5px 15px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#modal-tel-urgent-noti .modal_tel_name p {
+  color: #010979;
+}
+#urgent_noti_page .UrgentDetailElder .camera_detail .imgDetail {
+  display: flex;
 }
 /* ----------------------------------------------------------------------------- end : urgent_noti_page ----------------------------------------------------------------------------- */
 

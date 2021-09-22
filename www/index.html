@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/profile.css" />
     <link rel="stylesheet" href="css/setting.css" />
     <link rel="stylesheet" href="css/analytics.css" />
+    <link rel="stylesheet" href="css/news.css" />
     <title>VHV</title>
   </head>
 
@@ -106,15 +107,15 @@
               <div class="swiper-slide news"><img src="img/slide2.jpg" /></div>
               <div class="swiper-slide news"><img src="img/slide3.jpg" /></div>
             </div>
-            <!-- <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div> -->
+            <!-- <div class="swiper-button-next" style="display: none;"></div>
+                    <div class="swiper-button-prev" style="display: none;"></div> -->
           </div>
           <div class="swiper-pagination"></div>
         </div>
         <div class="home_knowledge_base_wrapper">
           <div class="home_knowledge_base">
             <i class="fa fa-comment-alt comment_icon_home"></i>
-            ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ  เพื่อเพื่อนสมาชิก
+            ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก
           </div>
         </div>
         <div class="main_home_menu_wrapper">
@@ -164,7 +165,7 @@
           <div class="collapse-filter-content">
             <div class="input-group">
               <input
-              id="visitSearchTumbol"
+                id="visitSearchTumbol"
                 type="text"
                 class="input-form lock"
                 value="จังหวัด มหาสารคาม"
@@ -186,7 +187,7 @@
               </div>
               <div class="input-group" style="width: 50%">
                 <input
-                id="visitSearchMoo"
+                  id="visitSearchMoo"
                   type="text"
                   class="input-form lock"
                   value="หมู่ที่ 5"
@@ -260,7 +261,7 @@
         </ul>
       </div>
       <div class="footer">
-        <div class="footer_item  menu_home_page">
+        <div class="footer_item menu_home_page">
           <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
         </div>
         <div class="footer_item active menu_contact_page">
@@ -288,7 +289,7 @@
           <p class="distant">
             <i class="fa fa-flag-o"></i> ระยะห่างจากคุณ
             <span style="color: #6f63fd">0.8 กิโลเมตร</span>
-          </p>  
+          </p>
           <div class="status-card evaluate"></div>
           <div class="status-card visit"></div>
         </div>
@@ -304,7 +305,12 @@
           </div>
           <ul class="sort-list">
             <li>
-              <input type="radio" name="contact-sort" id="contact-sort-1" checked />
+              <input
+                type="radio"
+                name="contact-sort"
+                id="contact-sort-1"
+                checked
+              />
 
               <label for="contact-sort-1">เรียงตามความแข็งแรง</label>
             </li>
@@ -363,13 +369,8 @@
     </div>
     <div class="pages" id="news_page">
       <div class="header">
-        <img src="img/logo_header.png" class="logo_header" />
-        <div class="profile_header_wrapper">
-          <img src="img/profile.jpg" />
-          <div class="header_notification">
-            <i class="fa fa-bell" id="notification_icon"></i>
-          </div>
-        </div>
+        <div class="back_header_btn"></div>
+        <input class="search" id="news_search" type="text"  value="" placeholder="ค้นหา" />
       </div>
       <div class="content">
         <h1 class="news_title_page">ข่าวสารและกิจกรรม</h1>
@@ -379,9 +380,6 @@
         <div class="news_slider_wrapper">
           <div class="swiper-container mySwiper2">
             <div class="swiper-wrapper">
-              <div class="swiper-slide news"><img src="img/slide1.jpg" /></div>
-              <div class="swiper-slide news"><img src="img/slide2.jpg" /></div>
-              <div class="swiper-slide news"><img src="img/slide3.jpg" /></div>
             </div>
             <!-- <div class="swiper-button-next2"></div>
                     <div class="swiper-button-prev2"></div> -->
@@ -394,61 +392,9 @@
             <p class="news_description_page">
               เพื่อไม่พลาดทุกเรื่องราวที่เกิดขึ้น
             </p>
-            <div class="filter_news_btn"></div>
+            <!-- <div class="filter_news_btn"></div> -->
           </div>
           <ul class="news_item">
-            <li>
-              <img class="news_thumbnail" src="img/news_thumbnail.png" />
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever<br />
-                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-              </p>
-              <img class="news_detail_btn" src="img/news_detail_btn.png" />
-            </li>
-            <li>
-              <img class="news_thumbnail" src="img/news_thumbnail.png" />
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever<br />
-                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-              </p>
-              <img class="news_detail_btn" src="img/news_detail_btn.png" />
-            </li>
-            <li>
-              <img class="news_thumbnail" src="img/news_thumbnail.png" />
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever<br />
-                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-              </p>
-              <img class="news_detail_btn" src="img/news_detail_btn.png" />
-            </li>
-
-            <li>
-              <img class="news_thumbnail" src="img/news_thumbnail.png" />
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever<br />
-                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-              </p>
-              <img class="news_detail_btn" src="img/news_detail_btn.png" />
-            </li>
-
-            <li>
-              <img class="news_thumbnail" src="img/news_thumbnail.png" />
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever<br />
-                <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
-              </p>
-              <img class="news_detail_btn" src="img/news_detail_btn.png" />
-            </li>
           </ul>
         </div>
       </div>
@@ -471,36 +417,29 @@
           >
         </div>
       </div>
+      <div class="search_page">
+        <div class="search_match">
+          ตรงกับคำที่ค้นหา <span class="news_match_search_count">0</span> รายการ
+        </div>
+        <ul class="news_item">
+        </ul>
+      </div>
     </div>
     <div class="pages" id="news_detail_page">
       <div class="header">
         <div class="back_header_btn"></div>
-        <div class="profile_header_wrapper">
-          <img src="img/profile.jpg" />
-          <div class="header_notification">
-            <i class="fa fa-bell" id="notification_icon"></i>
-          </div>
-        </div>
       </div>
-      <div class="content"></div>
-      <div class="footer">
-        <div class="footer_item menu_home_page">
-          <i class="fa fa-home footer_menu"></i><br /><span>หน้าหลัก</span>
-        </div>
-        <div class="footer_item menu_contact_page">
-          <i class="fa fa-user footer_menu"></i><br /><span>รายชื่อ</span>
-        </div>
-        <div class="footer_item menu_map_page">
-          <i class="fa fa-map footer_menu"></i><br /><span>แผนที่</span>
-        </div>
-        <div class="footer_item active menu_news_page">
-          <i class="fa fa-newspaper footer_menu"></i><br /><span>ข่าวสาร</span>
-        </div>
-        <div class="footer_item menu_analytics_page">
-          <i class="fa fa-database footer_menu"></i><br /><span
-            >สถิติสำรวจ</span
-          >
-        </div>
+      <div class="content">
+          <h1 class="news_detail_title">เริ่มต้นตรวจเชิงรุกเพื่อค้นหา ผู้มีความเสี่ยง</h1>
+          <p class="news_detail_date"> <i class="fa fa-calendar"></i> 11 ธันวาคม 2564</p>
+          <div class="news_detail_content"></div>
+          <div class="news_vdo">
+            
+          </div>
+          <div class="news_detail_footer">
+            <img src="img/logo_header.png" />
+            <p class="news_detail_date"> <i class="fa fa-calendar"></i> 11 ธันวาคม 2564</p>
+          </div>
       </div>
     </div>
     <div class="pages" id="analytics_page">
@@ -510,47 +449,52 @@
       </div>
       <div class="content">
         <div class="collapse-filter">
-          <div style="display: inline-flex;
-          justify-items: center;
-          align-items: center;">
+          <div
+            style="
+              display: inline-flex;
+              justify-items: center;
+              align-items: center;
+            "
+          >
             <i class="fa fa-database"></i>
-            <p>
-              &nbsp; สถิติด้านการประเมินสุขภาพ (ในพื้นที่รับผิดชอบ)
-            </p>
-         
+            <p>&nbsp; สถิติด้านการประเมินสุขภาพ (ในพื้นที่รับผิดชอบ)</p>
           </div>
           <div class="input-group selected_analytics" style="width: 100%">
-            <input type="text" class="input-form" value="ประเมินโรคความดันโลหิตสูง" readonly>
+            <input
+              type="text"
+              class="input-form"
+              value="ประเมินโรคความดันโลหิตสูง"
+              readonly
+            />
             <i class="fa fa-angle-down icons-in-input"></i>
           </div>
         </div>
         <div class="content-card">
-            <div class="content-title">
-        
-              ประเมินโรคความดันโลหิตสูง
+          <div class="content-title">ประเมินโรคความดันโลหิตสูง</div>
+          <div class="content-body">
+            <p class="last-update">อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
+            <div style="display: flex">
+              <div class="chart_wrapper">
+                <canvas id="chart-analytics-male"></canvas>
+                <p class="sex">ชาย</p>
+                <p class="total">(จากจำนวน 5 คน)</p>
+              </div>
+              <div class="chart_wrapper">
+                <canvas id="chart-analytics-female"></canvas>
+                <p class="sex">หญิง</p>
+                <p class="total">(จากจำนวน 7 คน)</p>
+              </div>
             </div>
-            <div class="content-body">
-                <p class="last-update">อัพเดทเมื่อ : 18 ม.ค. 64, เวลา 14:28 น.</p>
-                <div style="display: flex;">
-                  <div class="chart_wrapper" >
-                    <canvas id="chart-analytics-male" ></canvas>
-                    <p class="sex">ชาย</p>
-                    <p class="total">(จากจำนวน 5 คน)</p>
-                  </div>
-                  <div class="chart_wrapper">
-                    <canvas id="chart-analytics-female"></canvas>
-                    <p class="sex">หญิง</p>
-                    <p class="total">(จากจำนวน 7 คน)</p>
-                  </div>
-                </div>
-                <ul class="chart_legend">
-                  <li><span style="background-color: #F53F4D;"></span>มีปัญหา</li>
-                  <li><span style="background-color: #54D5BB;"></span>ปกติ</li>
-                  <li><span style="background-color: rgb(255, 205, 86);"></span>รอประเมิน</li>
-                </ul>
-            </div>
-     
-      </div>
+            <ul class="chart_legend">
+              <li><span style="background-color: #f53f4d"></span>มีปัญหา</li>
+              <li><span style="background-color: #54d5bb"></span>ปกติ</li>
+              <li>
+                <span style="background-color: rgb(255, 205, 86)"></span
+                >รอประเมิน
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="footer">
         <div class="footer_item menu_home_page">
@@ -572,7 +516,10 @@
         </div>
       </div>
       <div id="modal-analytics" class="modal">
-        <div class="modal-container" style="text-align: left;bottom: 10%;overflow: hidden;">
+        <div
+          class="modal-container"
+          style="text-align: left; bottom: 10%; overflow: hidden"
+        >
           <div class="modal-dismiss"><i class="fa fa-times"></i></div>
           <div class="sort-header">
             <h1 style="color: #010979">เลือกข้อมูลสถิติ</h1>
@@ -580,71 +527,141 @@
               ท่านสามารถเลือกได้ตามต้องการ
             </p>
           </div>
-          <div style="overflow: hidden;
-              position: relative;
-          height: 100%;">
-            <ul class="sort-list" style=" position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: -17px; /* Increase/Decrease this value for cross-browser compatibility */
-            overflow-y: scroll;">
+          <div style="overflow: hidden; position: relative; height: 100%">
+            <ul
+              class="sort-list"
+              style="
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: -17px; /* Increase/Decrease this value for cross-browser compatibility */
+                overflow-y: scroll;
+              "
+            >
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-1" value="1" checked />
-  
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-1"
+                  value="1"
+                  checked
+                />
+
                 <label for="analytics-option-1">ประเมินโรคเบาหวาน</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-2" value="2" />
-                <label for="analytics-option-2">ประเมินโรคความดันโลหิตสูง</label>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-2"
+                  value="2"
+                />
+                <label for="analytics-option-2"
+                  >ประเมินโรคความดันโลหิตสูง</label
+                >
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-3" value="3"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-3"
+                  value="3"
+                />
                 <label for="analytics-option-3">โรคหัวใจและหลอดเลือด</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-4" value="4"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-4"
+                  value="4"
+                />
                 <label for="analytics-option-4">สมองเสื่อม</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-5" value="5"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-5"
+                  value="5"
+                />
                 <label for="analytics-option-5">โรคซึมเศร้า</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-6" value="6"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-6"
+                  value="6"
+                />
                 <label for="analytics-option-6">โรคข้อเข่าเสื่อม</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-7" value="7"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-7"
+                  value="7"
+                />
                 <label for="analytics-option-7">ภาวะหกล้ม</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-8" value="8"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-8"
+                  value="8"
+                />
                 <label for="analytics-option-8">สุขภาวะทางตา</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-9" value="9"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-9"
+                  value="9"
+                />
                 <label for="analytics-option-9">การได้ยิน</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-10" value="10"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-10"
+                  value="10"
+                />
                 <label for="analytics-option-10">การประเมินปัญหาการนอน</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-11" value="11"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-11"
+                  value="11"
+                />
                 <label for="analytics-option-11">การประเมินสุขภาพช่องปาก</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-12" value="12"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-12"
+                  value="12"
+                />
                 <label for="analytics-option-12">ภาวะโภชนาการ</label>
               </li>
               <li>
-                <input type="radio" name="analytics-option" id="analytics-option-13" value="13"/>
+                <input
+                  type="radio"
+                  name="analytics-option"
+                  id="analytics-option-13"
+                  value="13"
+                />
                 <label for="analytics-option-13">การทำกิจวัตรประจำวัน</label>
               </li>
             </ul>
           </div>
-          
         </div>
       </div>
     </div>
@@ -672,7 +689,7 @@
           <div class="collapse-filter-content">
             <div class="input-group">
               <input
-              id="visitSearchTumbol"
+                id="visitSearchTumbol"
                 type="text"
                 class="input-form lock"
                 value="จังหวัด มหาสารคาม"
@@ -694,7 +711,7 @@
               </div>
               <div class="input-group" style="width: 50%">
                 <input
-                id="visitSearchMoo"
+                  id="visitSearchMoo"
                   type="text"
                   class="input-form lock"
                   value="หมู่ที่ 5"
@@ -860,7 +877,7 @@
           <p class="distant">
             <i class="fa fa-flag-o"></i> ระยะห่างจากคุณ
             <span style="color: #6f63fd">0.8 กิโลเมตร</span>
-          </p> 
+          </p>
           <div class="status-card visit">
             <div class="status-card-header">
               <p><b>สถานะออกเยี่ยม</b> : รอการออกเยี่ยม...</p>
@@ -1659,9 +1676,7 @@
                       class="visit_section3_4"
                       id="VISIT3DA"
                     />
-                    <label for="VISIT3DA"
-                      >วิงเวียน เบื่ออาหาร อ่อนเพลีย</label
-                    >
+                    <label for="VISIT3DA">วิงเวียน เบื่ออาหาร อ่อนเพลีย</label>
                   </li>
                   <li>
                     <input
@@ -1892,9 +1907,7 @@
                       class="visit_section4_4"
                       id="VISIT4DA"
                     />
-                    <label for="VISIT4DA"
-                      >ใช้หนังสือสวดมนต์/ธรรมะ</label
-                    >
+                    <label for="VISIT4DA">ใช้หนังสือสวดมนต์/ธรรมะ</label>
                   </li>
                   <li>
                     <input
@@ -1978,9 +1991,7 @@
                       id="VISIT5A1"
                       value="0"
                     />
-                    <label for="VISIT5A1"
-                      >มีแหล่งน้ำในบริเวณบ้าน</label
-                    >
+                    <label for="VISIT5A1">มีแหล่งน้ำในบริเวณบ้าน</label>
                   </li>
                   <li>
                     <input
@@ -1989,9 +2000,7 @@
                       class="visit_section5_1"
                       id="VISIT5A2"
                     />
-                    <label for="VISIT5A2"
-                      >พื้นทางเดินลื่นหรือไม่สม่ำเสมอ</label
-                    >
+                    <label for="VISIT5A2">พื้นทางเดินลื่นหรือไม่สม่ำเสมอ</label>
                   </li>
                   <li>
                     <input
@@ -2000,9 +2009,7 @@
                       class="visit_section5_1"
                       id="VISIT5A3"
                     />
-                    <label for="VISIT5A3"
-                      >ห้องน้ำลื่น/ไม่มีที่เกาะยึด</label
-                    >
+                    <label for="VISIT5A3">ห้องน้ำลื่น/ไม่มีที่เกาะยึด</label>
                   </li>
                   <li>
                     <input
@@ -2020,9 +2027,7 @@
                       class="visit_section5_1"
                       id="VISIT5A5"
                     />
-                    <label for="VISIT5A5"
-                      >บันใดสูงชันไม่มีราวเกาะ</label
-                    >
+                    <label for="VISIT5A5">บันใดสูงชันไม่มีราวเกาะ</label>
                   </li>
                 </ul>
               </div>
@@ -2041,9 +2046,7 @@
                       class="visit_section5_2"
                       id="VISIT5B1"
                     />
-                    <label for="VISIT5B1"
-                      >แออัด ไม่สะอาด ระบายอากาศไม่ดี</label
-                    >
+                    <label for="VISIT5B1">แออัด ไม่สะอาด ระบายอากาศไม่ดี</label>
                   </li>
                   <li>
                     <input
@@ -2116,9 +2119,7 @@
                       class="visit_section5_3"
                       id="VISIT5C4"
                     />
-                    <label for="VISIT5C4"
-                      >ทะลุถึงกันกับบ้านข้างเคียง</label
-                    >
+                    <label for="VISIT5C4">ทะลุถึงกันกับบ้านข้างเคียง</label>
                   </li>
                 </ul>
               </div>
@@ -2160,9 +2161,7 @@
                       class="visit_section6_2"
                       id="VISIT6B"
                     />
-                    <label for="VISIT6B"
-                      >การจัดสิ่งอำนวยความสะดวก</label
-                    >
+                    <label for="VISIT6B">การจัดสิ่งอำนวยความสะดวก</label>
                   </li>
                   <li>
                     <input
@@ -2202,9 +2201,7 @@
                       class="visit_section6_6"
                       id="VISIT6F"
                     />
-                    <label for="VISIT6F"
-                      >การบริหารร่างกาย/กายภาพบำบัด</label
-                    >
+                    <label for="VISIT6F">การบริหารร่างกาย/กายภาพบำบัด</label>
                   </li>
                   <li>
                     <input
@@ -2224,9 +2221,7 @@
                       class="visit_section6_8"
                       id="VISIT6H"
                     />
-                    <label for="VISIT6H"
-                      >การใช้ยา/อาหารเสริมที่เหมาะสม</label
-                    >
+                    <label for="VISIT6H">การใช้ยา/อาหารเสริมที่เหมาะสม</label>
                   </li>
                   <li>
                     <input
@@ -2253,9 +2248,7 @@
                       class="visit_section6_11"
                       id="VISIT6K"
                     />
-                    <label for="VISIT6K"
-                      >การดูแลยาให้ผู้สูงอายุ</label
-                    >
+                    <label for="VISIT6K">การดูแลยาให้ผู้สูงอายุ</label>
                   </li>
                   <li>
                     <input
@@ -2284,9 +2277,7 @@
                       class="visit_section6_14"
                       id="VISIT6N"
                     />
-                    <label for="VISIT6N"
-                      >การจัดปรับสภาพในบ้านให้เหมาะสม</label
-                    >
+                    <label for="VISIT6N">การจัดปรับสภาพในบ้านให้เหมาะสม</label>
                   </li>
                   <li>
                     <input
@@ -2295,9 +2286,7 @@
                       class="visit_section6_15"
                       id="VISIT6O"
                     />
-                    <label for="VISIT6O"
-                      >การจัดปรับสภาพนอกบ้านให้เหมาะสม</label
-                    >
+                    <label for="VISIT6O">การจัดปรับสภาพนอกบ้านให้เหมาะสม</label>
                   </li>
                   <li>
                     <input
@@ -2306,9 +2295,7 @@
                       class="visit_section6_16"
                       id="VISIT6P"
                     />
-                    <label for="VISIT6P"
-                      >ให้กำลังใจผู้สูงอายุและผู้ดูแล</label
-                    >
+                    <label for="VISIT6P">ให้กำลังใจผู้สูงอายุและผู้ดูแล</label>
                   </li>
                 </ul>
               </div>
@@ -3201,7 +3188,9 @@
           <div class="eva_form no_p_v">
             <p class="eva_title bold">วิธีทดสอบ</p>
             <p class="eva_description">
-              &nbsp;&nbsp;การเจาะระดับน้ำาตาลในเลือด โดยเจาะจากเส้นเลือดฝอยที่ปลายนิ้วมือ โดยเจาะที่นิ้วกลาง หรือนิ้วนาง งดอาหารและเครื่องดื่ม อย่างน้อย 8 ชั่วโมง
+              &nbsp;&nbsp;การเจาะระดับน้ำาตาลในเลือด
+              โดยเจาะจากเส้นเลือดฝอยที่ปลายนิ้วมือ โดยเจาะที่นิ้วกลาง
+              หรือนิ้วนาง งดอาหารและเครื่องดื่ม อย่างน้อย 8 ชั่วโมง
             </p>
             <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
@@ -3254,12 +3243,15 @@
           <div class="eva_form no_p_v">
             <p class="eva_title bold">วิธีทดสอบ</p>
             <p class="eva_description">
-              &nbsp;&nbsp;วางข้อศอกบนโต๊ะงอข้อศอกเล็กน้อย และสอดมือเข้าไปในปลอกแขน โดยปลอกแขนอยู่ห่างเหนือจากข้อพับ 2-3 เซนติเมตร พันปลอกแขนให้แน่นพอดี วางแขนตรงและหงายผ่ามือขึ้น ขณะวัดความดันโลหิตไม่กำมือ ไม่พูดคุยหรือขยับตัว
+              &nbsp;&nbsp;วางข้อศอกบนโต๊ะงอข้อศอกเล็กน้อย
+              และสอดมือเข้าไปในปลอกแขน โดยปลอกแขนอยู่ห่างเหนือจากข้อพับ 2-3
+              เซนติเมตร พันปลอกแขนให้แน่นพอดี วางแขนตรงและหงายผ่ามือขึ้น
+              ขณะวัดความดันโลหิตไม่กำมือ ไม่พูดคุยหรือขยับตัว
             </p>
             <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
           <div class="eva_form no_p_v" style="border-width: 0px">
-            <p class="eva_title">ระดับความดันโลหิตตัวบน/ซิสโตลิค (SBP) </p>
+            <p class="eva_title">ระดับความดันโลหิตตัวบน/ซิสโตลิค (SBP)</p>
             <input
               type="number"
               class="input-DTX"
@@ -3316,7 +3308,7 @@
           <div class="eva_form no_p_v">
             <p class="eva_title bold">วิธีทดสอบ</p>
             <p class="eva_description">
-              ประเมินพฤติกรรมสุขภาพของผู้สูงอายุ ดังต่อไปนี 
+              ประเมินพฤติกรรมสุขภาพของผู้สูงอายุ ดังต่อไปนี
             </p>
             <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
@@ -3450,14 +3442,16 @@
           <div class="eva_form no_p_v">
             <p class="eva_title bold">วิธีทดสอบ</p>
             <p class="eva_description">
-              &nbsp;&nbsp;ผู้ทดสอบบอกผู้ถูกทดสอบว่า ให้ตั้งใจฟังดีๆ เดี๋ยว จะบอกคำ 3 คำ คือคำว่า “หลานสาว สวรรค์ ภูเขา” เมื่อพูดจบให้พูดตามและจำไว้ จะกลับมาถามซ้ำ
-            <br/>
-            &nbsp;&nbsp;<b><u>ตัวอย่าง</u></b> รูปนาฬิกา เวลา 11.10 น.
+              &nbsp;&nbsp;ผู้ทดสอบบอกผู้ถูกทดสอบว่า ให้ตั้งใจฟังดีๆ เดี๋ยว
+              จะบอกคำ 3 คำ คือคำว่า “หลานสาว สวรรค์ ภูเขา”
+              เมื่อพูดจบให้พูดตามและจำไว้ จะกลับมาถามซ้ำ
+              <br />
+              &nbsp;&nbsp;<b><u>ตัวอย่าง</u></b> รูปนาฬิกา เวลา 11.10 น.
             </p>
-            <div style="width:100%;text-align:center;">
-              <img src="img/clock.png"/>
+            <div style="width: 100%; text-align: center">
+              <img src="img/clock.png" />
             </div>
-            
+
             <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
           <div class="eva_form_box bold">
@@ -3882,9 +3876,9 @@
           <div class="eva_form no_p_v">
             <p class="eva_title bold">วิธีทดสอบ</p>
             <p class="eva_description">
-              &nbsp;ประเมินผู้สูงอายุที่มีอาการปวดเข่า 
-ค้นหาผู้ที่เสี่ยงต่อการเกิดโรคข้อเข่าเสื่อม 
-เพื่อตรวจวินิจฉัย ส่งต่อแพทย์ทำการรักษา
+              &nbsp;ประเมินผู้สูงอายุที่มีอาการปวดเข่า
+              ค้นหาผู้ที่เสี่ยงต่อการเกิดโรคข้อเข่าเสื่อม เพื่อตรวจวินิจฉัย
+              ส่งต่อแพทย์ทำการรักษา
             </p>
             <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
@@ -4749,7 +4743,8 @@
             </div>
             <div class="eva_form no_p_v">
               <p class="eva_title">
-                1.6. ดัชนีมวลกาย (BMI) = น้ำหนัก (กก.) หาร ส่วนสูง (ม.) ยกกำลัง 2
+                1.6. ดัชนีมวลกาย (BMI) = น้ำหนัก (กก.) หาร ส่วนสูง (ม.) ยกกำลัง
+                2
               </p>
               <ul>
                 <li>
@@ -4759,9 +4754,7 @@
                     id="eva12_radio_1_6_1"
                     value="0"
                   />
-                  <label for="eva12_radio_1_6_1"
-                    >BMI น้อยกว่า 19</label
-                  >
+                  <label for="eva12_radio_1_6_1">BMI น้อยกว่า 19</label>
                 </li>
                 <li>
                   <input
@@ -5276,8 +5269,8 @@
           <div class="eva_form no_p_v">
             <p class="eva_title bold">วิธีทดสอบ</p>
             <p class="eva_description">
-              พุดคุยกับผู้สูงอายุ หรือผู้ดูแล เกี่ยวกับการทำกิจวัตรประจำวันของผู้สูงอายุ
-
+              พุดคุยกับผู้สูงอายุ หรือผู้ดูแล
+              เกี่ยวกับการทำกิจวัตรประจำวันของผู้สูงอายุ
             </p>
             <p class="eva_title bold">แบบบันทึกผล</p>
           </div>
@@ -5683,91 +5676,13 @@
       <div class="content grey">
         <div class="mapContent">
           <div id="mapUrgentNotiPage"></div>
-          <div class="swiper_elder_content">
-            <div class="swiper swiper_urgent_noti" style="height:100%">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 4</div>
-                <div class="swiper-slide">Slide 5</div>
-                <div class="swiper-slide">Slide 6</div>
-                <div class="swiper-slide">Slide 7</div>
-                <div class="swiper-slide">Slide 8</div>
-                <div class="swiper-slide">Slide 9</div>
-              </div>
-            </div>
-            <!-- <div class="swiper swiper_urgent_noti">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-color: unset">
-                  <div class="notifications-card-body">
-                    <img class="card-body-thumbnail" src="img/older.png" />
-                    <div class="card-body-content">
-                      <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                      <div style="display: flex">
-                        <h5 class="urgent">
-                          <i class="fa fa-crosshairs" aria-hidden="true"></i>
-                          ระยะทาง
-                        </h5>
-                        <h5
-                          class="urgent"
-                          style="color: #6f63fd; padding-left: 5px"
-                        >
-                          ห่างจากคุณ 0.5 km.
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide" style="background-color: unset">
-                  <div class="notifications-card-body">
-                    <img class="card-body-thumbnail" src="img/older.png" />
-                    <div class="card-body-content">
-                      <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                      <div style="display: flex">
-                        <h5 class="urgent">
-                          <i class="fa fa-crosshairs" aria-hidden="true"></i>
-                          ระยะทาง
-                        </h5>
-                        <h5
-                          class="urgent"
-                          style="color: #6f63fd; padding-left: 5px"
-                        >
-                          ห่างจากคุณ 0.5 km.
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide" style="background-color: unset">
-                  <div class="notifications-card-body">
-                    <img class="card-body-thumbnail" src="img/older.png" />
-                    <div class="card-body-content">
-                      <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                      <div style="display: flex">
-                        <h5 class="urgent">
-                          <i class="fa fa-crosshairs" aria-hidden="true"></i>
-                          ระยะทาง
-                        </h5>
-                        <h5
-                          class="urgent"
-                          style="color: #6f63fd; padding-left: 5px"
-                        >
-                          ห่างจากคุณ 0.5 km.
-                        </h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-          </div>
+          <div class="swiper_elder_content"></div>
           <div class="swiper_elder_content_fixed">
             <div class="swiper-slide" style="background-color: unset">
               <div class="notifications-card-body">
                 <img class="card-body-thumbnail" src="img/older.png" />
                 <div class="card-body-content">
-                  <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+                  <h4 class="name"></h4>
                   <div style="display: flex">
                     <h5 class="urgent">
                       <i class="fa fa-crosshairs" aria-hidden="true"></i>
@@ -5776,9 +5691,7 @@
                     <h5
                       class="urgent"
                       style="color: #6f63fd; padding-left: 5px"
-                    >
-                      ห่างจากคุณ 0.5 km.
-                    </h5>
+                    ></h5>
                   </div>
                 </div>
               </div>
@@ -5794,20 +5707,20 @@
             <i class="right-icon fa fa-chevron-right"></i>
           </div>
           <div class="elder">
-            <p>ทวีจันทร์ ประสารสิน</p>
+            <p></p>
             <button class="elder_btn">แสดงข้อมูล</button>
           </div>
           <div class="elder_detail">
             <div class="row_elder">
               <div class="col_elder_head"><p>ชื่อผู้สูงอายุ</p></div>
               <div class="col_elder_data">
-                <p style="color: #010979">นาย ทวีจันทร์ ประสารสิน</p>
+                <p style="color: #010979" id="elder_detail_name"></p>
               </div>
             </div>
             <div class="row_elder">
               <div class="col_elder_head"><p>อายุ</p></div>
               <div class="col_elder_data">
-                <p style="color: #010979">อายุ 65 ปี, 3 เดือน</p>
+                <p style="color: #010979" id="elder_detail_age"></p>
               </div>
             </div>
             <div class="row_elder">
@@ -5835,9 +5748,11 @@
             <div class="row_elder">
               <div class="col_elder_head"><p>ผู้ดูแล</p></div>
               <div class="col_elder_data">
-                <p style="color: #010979">089 533 8992</p>
-                <div class="tel">
-                  <p>โทรออก</p>
+                <p style="color: #010979" id="elder_detail_caretaker_tel">
+                  089 533 8992
+                </p>
+                <div class="tel" id="telStaff">
+                  <p><a href="tel:0899999999">โทรออก</a></p>
                 </div>
               </div>
             </div>
@@ -5857,17 +5772,14 @@
               </h4>
             </div>
 
-            <div class="tel">
+            <div class="tel" id="telStaffOffice">
               <p style="padding-top: 5px">
                 <i class="fa fa-phone" aria-hidden="true"></i> โทรช่วยเหลือ
               </p>
             </div>
           </div>
-          <div class="input-icons" style="height: 320px">
-            <select id="type_urgent" class="input-field">
-              <option value="" disabled selected>ประเภทเหตุด่วน</option>
-              <option value="1">โรคประจำตัวกำเริบ</option>
-            </select>
+          <div class="input-icons" style="height: 430px">
+            <select id="type_urgent" class="input-field"></select>
             <input
               id="subject_urgent"
               class="input-field"
@@ -5885,34 +5797,16 @@
             ></textarea>
           </div>
           <div class="camera">
-            <div class="Img">
-              <i class="fa fa-minus-circle" aria-hidden="true"></i
-              ><img src="img/1.jpg" />
-            </div>
-            <div class="Img">
-              <i class="fa fa-minus-circle" aria-hidden="true"></i
-              ><img src="img/1.jpg" />
-            </div>
-            <div class="Img">
-              <i class="fa fa-minus-circle" aria-hidden="true"></i
-              ><img src="img/1.jpg" />
-            </div>
-            <div class="Img">
-              <i class="fa fa-minus-circle" aria-hidden="true"></i
-              ><img src="img/1.jpg" />
-            </div>
-            <div class="Img">
-              <i class="fa fa-minus-circle" aria-hidden="true"></i
-              ><img src="img/1.jpg" />
-            </div>
-            <div class="open_camera"></div>
+            <div class="PreImg"></div>
+
+            <button class="open_camera"></button>
           </div>
           <div style="height: 225px"></div>
 
           <div class="step-footer urgent_noti_page_step-footer">
             <div class="btn_group">
               <button class="cancel_noti">ยกเลิก</button>
-              <button class="submit">ส่งเรื่อง</button>
+              <button class="submit_noti">ส่งเรื่อง</button>
             </div>
           </div>
         </div>
@@ -5936,7 +5830,7 @@
               </h4>
             </div>
             <div style="display: flex; align-items: center; color: #3b3d48">
-              <p>
+              <p id="urgentDetailTime">
                 <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
                 เวลา 14:28 น.
               </p>
@@ -5945,7 +5839,7 @@
           <div
             style="width: 100%; color: #f53f4d; font-size: 23px; padding: 1rem"
           >
-            <p>เหตุด่วน : โรคประจำตัวกำเริบ</p>
+            <p id="urgentDetailDisease">เหตุด่วน : โรคประจำตัวกำเริบ</p>
           </div>
           <div
             style="
@@ -5957,36 +5851,25 @@
               margin-bottom: 20px;
             "
           >
-            <p>
-              สาเหตุของแผลกดทับมักจะมาจากการที่ผู้ป่วยนอน นาน ๆ
-              ทำให้บริเวณที่เป็นปุ่มกระดูกต่าง ๆ ขาดเลือด
-              มาเลี้ยงที่บริเวณผิวหนัง จึงทำให้เกิดแผลที่ผิว
-              ในระยะแรกอาจมีแค่อาการลอกที่ผิวอย่างเดียว
-            </p>
+            <p id="urgentDetailDiseaseDetail"></p>
           </div>
-          <div class="camera_detail">
-            <div class="Img"><img src="img/1.jpg" /></div>
-            <div class="Img"><img src="img/1.jpg" /></div>
-            <div class="Img"><img src="img/1.jpg" /></div>
-            <div class="Img"><img src="img/1.jpg" /></div>
-            <div class="Img"><img src="img/1.jpg" /></div>
-            <div style="width: 30px"></div>
-          </div>
+          <div class="camera_detail"></div>
           <div style="height: 225px"></div>
         </div>
         <div class="backformap">
           <div class="card-body">
             <img class="card-body-thumbnail" src="img/older.png" />
             <div class="card-body-content">
-              <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
+              <h4 class="name"></h4>
               <div style="display: flex">
                 <h5 class="urgent">
                   <i class="fa fa-crosshairs" aria-hidden="true"></i>
                   ระยะทาง
                 </h5>
-                <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                  ห่างจากคุณ 0.5 km.
-                </h5>
+                <h5
+                  class="urgent"
+                  style="color: #6f63fd; padding-left: 5px"
+                ></h5>
               </div>
             </div>
           </div>
@@ -6011,11 +5894,101 @@
           </div>
         </div>
       </div>
-      <div id="modal-tutorial-urgent-noti" class="modal">
+      <div
+        id="modal-tutorial-urgent-noti"
+        class="modal"
+        style="z-index: 99999999999"
+      >
         <div class="modal-container-tutorial-urgent-noti">
-          <img src="img/tutorial.png" />
+          <video width="100%" height="440" id="toturialvideo">
+            <source src="video/ToturialUrgent.mp4" type="video/mp4" />
+          </video>
           <div class="btn_group">
             <button class="cancel_noti">ปิด</button>
+          </div>
+        </div>
+      </div>
+      <div
+        id="modal-save-confirm-urgent-noti"
+        class="modal"
+        style="z-index: 99999999999"
+      >
+        <div class="modal-container-tutorial-urgent-noti">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <p style="font-size: 30px; color: #1bc3a2">
+            <b>ยืนยันการแจ้งเหตุด่วน</b>
+          </p>
+          <p style="font-size: 20px; color: #3b3d48">
+            <b>กรุณาตรวจสอบความถูกต้อง</b>
+          </p>
+          <img
+            id="saveimgurgent"
+            style="width: 120px"
+            src="img/saveungent.png"
+          />
+          <div class="btn_group">
+            <button class="cancel_noti">แก้ไข</button>
+            <button class="submit_save_noti">ยืนยัน</button>
+          </div>
+        </div>
+      </div>
+      <div
+        id="modal-save-urgent-noti"
+        class="modal"
+        style="z-index: 99999999999"
+      >
+        <div class="modal-container-tutorial-urgent-noti">
+          <p style="font-size: 30px; color: #1bc3a2">
+            <b>ดำเนินการสำเร็จ</b>
+          </p>
+          <p style="font-size: 20px; color: #3b3d48">
+            <b>ข้อมูลถูต้องแล้ว</b>
+          </p>
+          <img
+            id="saveimgurgent"
+            style="width: 120px"
+            src="img/evaluate_success.png"
+          />
+        </div>
+      </div>
+      <div
+        id="modal-camera-urgent-noti"
+        class="modal"
+        style="z-index: 99999999999"
+      >
+        <div class="modal-container" style="padding-bottom: 60px">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <div class="modal_img_title">
+            <p>เลือกวิธีเพิ่มรูป</p>
+            <p>*สามารถเพิ่มได้ 5 รูป</p>
+          </div>
+          <button class="on_camera">ถ่ายรูปใหม่</button>
+          <button class="on_gallery">เลือกจากในเครื่อง</button>
+          <input
+            id="on_gallery"
+            type="file"
+            name="filePhoto"
+            value=""
+            style="display: none"
+          />
+        </div>
+      </div>
+      <div
+        id="modal-tel-urgent-noti"
+        class="modal"
+        style="z-index: 99999999999"
+      >
+        <div class="modal-container">
+          <div class="modal-dismiss"><i class="fa fa-times"></i></div>
+          <div class="modal_img_title">
+            <p>เบอร์โทรช่วยเหลือ</p>
+            <p style="color: #3b3d48">เลือกหน่วยงานที่ท่านต้องการ</p>
+          </div>
+          <div id="NAME_TEL">
+            <div class="modal_tel_name">
+              <p>สถานีอนามัย อ.บ้านฉนวน</p>
+              <img src="img/tel_icon.png" />
+            </div>
           </div>
         </div>
       </div>
@@ -6033,148 +6006,7 @@
         <p style="margin-left: 10px; color: #010979; margin-top: 5px">
           ตรงกับที่ค้นหา 1 รายการ
         </p>
-        <ul class="contact_items">
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <div style="display: flex">
-                  <h5 class="urgent">
-                    <i class="fa fa-crosshairs" aria-hidden="true"></i> ระยะทาง
-                  </h5>
-                  <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                    ห่างจากคุณ 0.5 km.
-                  </h5>
-                </div>
-              </div>
-              <i
-                class="right-icon fa fa-map-marker fa-lg"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <div style="display: flex">
-                  <h5 class="urgent">
-                    <i class="fa fa-crosshairs" aria-hidden="true"></i> ระยะทาง
-                  </h5>
-                  <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                    ห่างจากคุณ 0.5 km.
-                  </h5>
-                </div>
-              </div>
-              <i
-                class="right-icon fa fa-map-marker fa-lg"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <div style="display: flex">
-                  <h5 class="urgent">
-                    <i class="fa fa-crosshairs" aria-hidden="true"></i> ระยะทาง
-                  </h5>
-                  <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                    ห่างจากคุณ 0.5 km.
-                  </h5>
-                </div>
-              </div>
-              <i
-                class="right-icon fa fa-map-marker fa-lg"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <div style="display: flex">
-                  <h5 class="urgent">
-                    <i class="fa fa-crosshairs" aria-hidden="true"></i> ระยะทาง
-                  </h5>
-                  <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                    ห่างจากคุณ 0.5 km.
-                  </h5>
-                </div>
-              </div>
-              <i
-                class="right-icon fa fa-map-marker fa-lg"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <div style="display: flex">
-                  <h5 class="urgent">
-                    <i class="fa fa-crosshairs" aria-hidden="true"></i> ระยะทาง
-                  </h5>
-                  <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                    ห่างจากคุณ 0.5 km.
-                  </h5>
-                </div>
-              </div>
-              <i
-                class="right-icon fa fa-map-marker fa-lg"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <div style="display: flex">
-                  <h5 class="urgent">
-                    <i class="fa fa-crosshairs" aria-hidden="true"></i> ระยะทาง
-                  </h5>
-                  <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                    ห่างจากคุณ 0.5 km.
-                  </h5>
-                </div>
-              </div>
-              <i
-                class="right-icon fa fa-map-marker fa-lg"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <div style="display: flex">
-                  <h5 class="urgent">
-                    <i class="fa fa-crosshairs" aria-hidden="true"></i> ระยะทาง
-                  </h5>
-                  <h5 class="urgent" style="color: #6f63fd; padding-left: 5px">
-                    ห่างจากคุณ 0.5 km.
-                  </h5>
-                </div>
-              </div>
-              <i
-                class="right-icon fa fa-map-marker fa-lg"
-                aria-hidden="true"
-              ></i>
-            </div>
-          </li>
-        </ul>
+        <ul class="contact_items"></ul>
       </div>
     </div>
     <div class="pages" id="notifications_urgent_noti_page">
@@ -6190,184 +6022,14 @@
             &nbsp;ภายใน 1 วัน
           </h2>
         </div>
-        <ul class="contact_items">
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status">
-                <p style="float: right; padding-left: 30px">รอตอบรับ</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status">
-                <p style="float: right; padding-left: 30px">รอตอบรับ</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body answered">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer answered">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status answered">
-                <p style="float: right; padding-left: 30px">ตอบรับแล้ว</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body answered">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer answered">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status answered">
-                <p style="float: right; padding-left: 30px">ตอบรับแล้ว</p>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <ul class="contact_items" id="Current"></ul>
         <div class="list-header">
           <h2 style="align-items: center; display: flex">
             <img src="img/calendar_icon.png" />
             &nbsp;ก่อนหน้านี้
           </h2>
         </div>
-        <ul class="contact_items">
-          <li>
-            <div class="notifications-card-body answered">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer answered">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status answered">
-                <p style="float: right; padding-left: 30px">ตอบรับแล้ว</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body answered">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer answered">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status answered">
-                <p style="float: right; padding-left: 30px">ตอบรับแล้ว</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body answered">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer answered">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status answered">
-                <p style="float: right; padding-left: 30px">ตอบรับแล้ว</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="notifications-card-body answered">
-              <img class="card-body-thumbnail" src="img/older.png" />
-              <div class="card-body-content">
-                <h4 class="name">นาย ชัยสิทธิ์ มิตรมงคลกุล</h4>
-                <h5 class="urgent">เหตุด่วน : โรคประจำตัวกำเริบ</h5>
-              </div>
-              <i class="right-icon fa fa-chevron-right"></i>
-            </div>
-            <div class="notifications-card-footer answered">
-              <div class="noti_time">
-                <p>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i> 18 ม.ค. 64,
-                  เวลา 14:28 น.
-                </p>
-              </div>
-              <div class="noti_status answered">
-                <p style="float: right; padding-left: 30px">ตอบรับแล้ว</p>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <ul class="contact_items" id="Last"></ul>
       </div>
     </div>
     <div class="pages" id="profile_page">
@@ -6384,10 +6046,15 @@
               <img src="img/edit_profile_icon.png" />
               <p style="font-size: 20px">ข้อมูลเบื้องต้น</p>
             </div>
-            <p   class="vhv_user" style="font-size: 23px">
+            <p class="vhv_user" style="font-size: 23px">
               <b>นายน้ำใจ รักสังคม</b>
             </p>
-            <p style="font-size: 16px"><span class="vhv_age">อายุ 45 ปี</span>,<span class="vhv_community">ชุมชนบ้านป่าตาล</span> </p>
+            <p style="font-size: 16px">
+              <span class="vhv_age">อายุ 45 ปี</span>,<span
+                class="vhv_community"
+                >ชุมชนบ้านป่าตาล</span
+              >
+            </p>
           </div>
         </div>
         <div class="card_body_profile">
@@ -6403,8 +6070,7 @@
           </div>
           <div class="profile_detail">
             <p class="title">รพสต.</p>
-            <p class="detail vhv_shph">
-            </p>
+            <p class="detail vhv_shph"></p>
           </div>
           <!-- <div class="profile_detail">
             <p class="title">อาชีพหลัก</p>
@@ -6477,7 +6143,9 @@
           <img src="img/gear_icon.png" />
           <p style="margin-left: 15px">อัพเดทแอพพลิเคชั่น</p>
         </div>
-        <p style="text-align: center;margin-top: 15px;color: #010979;">แอพพลิเคชั่น เวอร์ชั่น <span  class="version">1.0.0</span></p>
+        <p style="text-align: center; margin-top: 15px; color: #010979">
+          แอพพลิเคชั่น เวอร์ชั่น <span class="version">1.0.0</span>
+        </p>
       </div>
       <div id="modal-change-pass" class="modal">
         <div class="modal-container-setting-pass">
@@ -6606,6 +6274,7 @@
     <script src="js/profile.js"></script>
     <script src="js/setting.js"></script>
     <script src="js/analytics.js"></script>
+    <script src="js/news.js"></script>
 
     <script src="js/sync-data.js"></script>
   </body>

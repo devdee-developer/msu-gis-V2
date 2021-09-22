@@ -186,13 +186,14 @@ select.input-field:disabled {
   height: 60px;
   background: white;
   top: 0px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #EEEAFD;
 }
 .header .logo_header {
   display: block;
   float: left;
   height: 40px;
   margin-top: 10px;
+  margin-left: 10px;
 }
 .header .profile_header_wrapper {
   float: right;
@@ -228,7 +229,8 @@ select.input-field:disabled {
   right: 0px;
   height: 70px;
   bottom: 0px;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 6px #9595F273;
+  /* border-top: 1px solid rgba(0, 0, 0, 0.2); */
 }
 .content {
   position: absolute;
@@ -238,6 +240,9 @@ select.input-field:disabled {
   top: 60px;
   overflow: hidden;
   overflow-y: scroll;
+}
+#home_page .content {
+  background: transparent linear-gradient(145deg, #FDF3EF 0%, #F6F5FA 100%) 0% 0% no-repeat padding-box;
 }
 #map {
   position: absolute;
@@ -449,7 +454,7 @@ select.input-field:disabled {
 .home_knowledge_base {
   width: 90%;
   background: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
   margin: auto;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 17px 2px rgb(0 0 0 / 16%);
@@ -460,21 +465,23 @@ select.input-field:disabled {
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  padding: 15px;
+  padding: 8px 15px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   font-size: 13px;
   padding-left: 50px;
   position: relative;
-  color: #040d7b;
-  height: 77px;
+  color: #000979;
+  height: 57px;
+  box-shadow: 0px 2px 8px #9595F240;
 }
 .comment_icon_home {
   position: absolute;
-  left: 10px;
-  top: 15px;
-  font-size: 35px !important;
+  left: 15px;
+  top:50%;
+  transform: translate(0,-50%);
+  font-size: 25px !important;
   color: #7676ff;
 }
 .main_home_menu_wrapper {
@@ -491,9 +498,9 @@ select.input-field:disabled {
   margin-bottom: 10px;
   border-radius: 15px;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 17px 2px rgb(0 0 0 / 16%);
-  -moz-box-shadow: 0px 0px 17px 2px rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 0px 17px 2px rgb(0 0 0 / 16%);
+  -webkit-box-shadow: 0px 8px 12px #9595F273;
+  -moz-box-shadow: 0px 8px 12px #9595F273;
+  box-shadow: 0px 8px 12px #9595F273;
 }
 .main_home_menu_item_wrapper {
   width: 90%;
@@ -502,25 +509,24 @@ select.input-field:disabled {
 .news_title_page {
   float: left;
   width: 100%;
-  padding-left: 10px;
+  padding-left: 20px;
   color: #01087a;
   margin: 0px;
   margin-top: 10px;
-  font-size: 22px;
-  margin-bottom: 10px;
+  font-size: 30px;
 }
 .news_description_page {
   float: left;
   width: 100%;
-  padding-left: 10px;
-  color: grey;
-  margin-top: 0px;
+  padding-left: 20px;
+  color: #3B3D48;
+  margin-bottom: 10px;
   font-size: 13px;
 }
 .news_content_wrapper {
   width: 100%;
   float: left;
-  margin-top: 20px;
+  margin-top: 5px;
   min-height: 100px;
   background: #f7f5fc;
 }
@@ -534,7 +540,7 @@ select.input-field:disabled {
   width: 100px;
   height: 37px;
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 10px;
   background: url(../img/btn_filter.png);
   background-size: 100px 37px;
@@ -551,31 +557,42 @@ select.input-field:disabled {
   width: 95%;
   display: block;
   margin: auto;
-  background: white;
-  height: 100px;
+  height: 120px;
   border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 10px #C9C9E273;
   margin-bottom: 10px;
   position: relative;
+  padding: 12px;
 }
 .news_item li img.news_thumbnail {
   display: block;
   float: left;
   border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
   width: 100px;
+  margin-right: 10px;
 }
 .news_item li img.news_detail_btn {
   position: absolute;
   right: 10px;
   bottom: 10px;
-  width: 80px;
-  height: 20px;
+  width: 109px;
+  height: 25px;
 }
-.news_item li p {
-  margin-top: 10px;
+.news_item li p.news_description {
+  color: #0D0E12;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.news_item li p.news_date {
+  position: absolute;
+  left: 121px;
+  bottom: 13px;
+  color: #97989B;
   font-size: 13px;
 }
 .back_header_btn {
@@ -628,3 +645,10 @@ select.input-field:disabled {
   font-size: 23px;
   font-weight: bold;
 }
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  margin: 0 2px;
+}
+.swiper-pagination-bullet-active {
+  background-color: #7676FF;
+}
+
