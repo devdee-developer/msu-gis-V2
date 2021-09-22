@@ -32,3 +32,6 @@
 .news_detail_content{
     margin: 20px;
 }
+.news_detail_content img{
+   max-width: 100%;
+}

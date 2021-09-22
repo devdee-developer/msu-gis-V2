@@ -5,54 +5,144 @@ function changePage(_page, _callback = function () {}) {
 }
 
 function initSlideHomePage() {
-  clearInterval(swiper_timer);
-  swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    speed: 500,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-  swiper_timer = setInterval(function () {
-    swiper.slideNext();
-  }, 5000);
+  $(".home_slider_wrapper .swiper-wrapper").html('')
+  getNews().then(news=>{
+    clearInterval(swiper_timer);
+    swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      speed: 500,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+    swiper_timer = setInterval(function () {
+      swiper.slideNext();
+    }, 5000);
+  })
+ 
 }
 function initSlideNewsPage() {
-  clearInterval(swiper_timer2);
-  swiper2 = new Swiper(".mySwiper2", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination2",
-      clickable: true,
-    },
-  });
-  swiper_timer2 = setInterval(function () {
-    swiper2.slideNext();
-  }, 5000);
-  let data = [1,2,3,4,5]
-  $('ul.news_item').html('')
-  data.map((row)=>$('ul.news_item').append(renderNewsCard(row)))
+  $(".news_slider_wrapper .swiper-wrapper").html('')
+  getNews().then(news=>{
+    clearInterval(swiper_timer2);
+    swiper2 = new Swiper(".mySwiper2", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination2",
+        clickable: true,
+      },
+    });
+    swiper_timer2 = setInterval(function () {
+      swiper2.slideNext();
+    }, 5000);
+    let data = news.data
+    $('ul.news_item').html('')
+    if(news.status==false){
+  
+    }else{
+      data.map((row,index)=>$('ul.news_item').append(renderNewsCard(row,index)))
+    }
+   
+    $("ul.news_item li").on("click", function () {
+      let newsno = $(this).attr('newsno')
+      if(newsno>0){
+        gotoNewsDetailPage(newsno,'news_page')
+      }
+    });
+  })
+  
 }
-function renderNewsCard(row){
-  let html = `<li newno=${row}>
-      <img class="news_thumbnail" src="img/news_thumbnail.png">
+function gotoNewsDetailPage(newsno,from_page){
+  $("#news_detail_page .header .back_header_btn").on("click", function () {
+    changePage(from_page, function () {});
+  });
+  changePage("news_detail_page", function () {
+    loading.show();
+    $('.content').animate({
+      scrollTop: $(".content").offset().top
+    },0);
+    renderNewsDetailContent(newsno)
+    setTimeout(function () {
+      loading.hide();
+    }, 500);
+  });
+}
+function getNews(){
+  loading.show()
+  return new Promise((resolve,reject)=>{
+    callAPI(`${api_base_url}/getNews`,'POST', JSON.stringify({token:token.getUserToken()})
+    , success=>{
+      news_data_list = success.Data.newsList.map((row,index)=>({...row,newsno:index+1}))
+      let slideNews = news_data_list.filter(row=>row.slide==true)
+      let rapidNews =  news_data_list.find(row=>row.reddit==true)
+      if(rapidNews){
+        $('.home_knowledge_base').attr('newsno',rapidNews.newsno)
+        $('.home_knowledge_base').html(` <i class="fa fa-comment-alt comment_icon_home"></i>${rapidNews.header}`)
+        $(".home_knowledge_base").on("click", function () {
+          let newsno= $(this).attr('newsno')
+          if(newsno>0){
+            gotoNewsDetailPage(newsno,'home_page')
+          }
+        })
+      }else{
+        $('.home_knowledge_base').html(` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`)
+      }
+      slideNews.map((row,index)=>{
+        $(".home_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`)
+        $(".news_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`)
+      })
+      $(".home_slider_wrapper .swiper-slide.news,.home_slider_wrapper .swiper-slide.news img").on("click", function () {
+        let newsno= $(this).attr('newsno')
+        if(newsno>0){
+          gotoNewsDetailPage(newsno,'home_page')
+        }
+      });
+      $(".news_slider_wrapper .swiper-slide.news,.news_slider_wrapper .swiper-slide.news img").on("click", function () {
+        let newsno= $(this).attr('newsno')
+        if(newsno>0){
+          gotoNewsDetailPage(newsno,'news_page')
+        }
+      });
+      loading.hide()
+      resolve({status:true,data:news_data_list})
+    },
+    error=>{
+      $('.home_knowledge_base').html(` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`)
+      news_data_list=[{banner:"img/news-no-network2.jpg"},{banner:"img/news-no-network.jpg"}]
+      news_data_list.map(row=>{
+        $(".home_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news"><img src="${row.banner}" /></div>`)
+        $(".news_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news"><img src="${row.banner}" /></div>`)
+      })
+      loading.hide()
+      resolve({status:false,data:news_data_list})
+    })
+  })
+ 
+}
+function renderNewsCard(row,index){
+  let html = `<li newsno="${row.newsno}">
+      <img class="news_thumbnail" src="${row.thumbnail}">
       <p class="news_description">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy
-        text ever<br>
+        ${row.header}
       </p>
-      <p class="news_date"> <i class="fa fa-calendar"></i> 11 ธันวาคม 2564</p>
+      <p class="news_date"> <i class="fa fa-calendar"></i> ${row.publicDate}</p>
       <img class="news_detail_btn" src="img/news_detail_btn.png">
     </li>`
   return html
 }
-function renderNewsDetailContent(){
-  $('.news_detail_content').html(`<h2>ผู้ป่วยรายแรกเท่าที่ทราบกันเริ่มมีอากรตั้งแต่วันที่ 1 ธันวาคมและไม่ความเชื่อมโยงกับตลาดต้องสงสัยในเมือง อู่ฮั่น</h2>\n                        <p>มีการเก็บตัวอย่างจากสิ่งแวดล้อมในตลาดไปส่งตรวจและพบเชื้อไวรัสและพบมากที่สุดในบริเวณที่ค้าสัตว์ป่าและสัตว์เลี้ยงในปาร์ม</p>\n                        <p>การเพิ่มจำนวนของไวรัสเกิดขึ้นในระบบทางเดินหายใจส่วนบนและในปอดมีงานวิจัยในช่วงแรกระบุว่าการเพิ่มจำนวนของไวรัสได้ในระบบทางเดินอาหารแต่การติดต่อโดยระบบทางเดินอาหารยังไม่เป็นที่ยืนยันการกักกันคือการจำกัดกิจกรรมต่างๆหรือการแยกผู้ที่ไม่ป่วยแต่อาจมีประวัติสัมผัสใกล้ชิดกับผุ้ป่วยโควิด</p>\n                        <p><img src='http://monplern.com/laravel/img/newsDetail1.png' /></p>\n                        <h2>การกักกันคือการจำกันกิจกรรมต่างๆ หรือการแยกผู้ที่ไม่ป่วยแต่อาจมีประวัติ สัมผัสใกล้ชิดกับผู้ป่วยโควิด<h2/>\n                        <p>การเพิ่มจำนวนของไวรัสเกิดขึ้นในระบบทางเดินหายใจส่วนบนและในปอดมีงานวิจัยในช่วงแรกระบุว่าการเพิ่มจำนวนของไวรัสได้ในระบบทางเดินอาหารแต่ยังไม่เป็นที่ยืนยันทการกักกันคือการจำกัดกิจกรรมต่างๆหรือการแยกผู้ที่ไม่ป่วยแต่อาจมีประวัติสมัผัสใกล้ชิดกับผู้ป่วยโควิด</p>\n                        <p><img src='http://monplern.com/laravel/img/newsDetail2.png' /></p>\n                        <h2>เรามาร่วมกันหยุดยั้งการแพร่ระบาดของโควิด<h2/>\n                        `)
+function renderNewsDetailContent(newsno){
+  $('.news_detail_title').html('')
+  $('.news_detail_date').html('')
+  $('.news_detail_content').html('')
+  let news_detail = news_data_list.find(row=>row.newsno==newsno)
+  $('.news_detail_title').text(news_detail.header)
+  $('.news_detail_date').text(news_detail.publicDate)
+  $('.news_detail_content').html(news_detail.detail)
 }
 function calHomeButtonPosition() {
   var total_w = $(".main_home_menu_item_wrapper").width();
@@ -234,11 +324,12 @@ async function callAPI(enpoint, method, data, _success, _error) {
         }
       },
       error: function (e) {
-        if (e.responseJSON.status == false) {
-          _error("เกิดข้อผิดพลาด6");
-        } else {
-          _error("เกิดข้อผิดพลาด7");
-        }
+        _error("เกิดข้อผิดพลาด6");
+        // if (e.responseJSON.status == false) {
+        //   _error("เกิดข้อผิดพลาด6");
+        // } else {
+        //   _error("เกิดข้อผิดพลาด7");
+        // }
       },
     });
   } catch (error) {

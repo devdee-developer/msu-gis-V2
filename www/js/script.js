@@ -6,6 +6,7 @@ var topMenu = new TopMenu();
 var token = new Token();
 var swiper_timer = setInterval(function () {}, 3000);
 var swiper_timer2 = setInterval(function () {}, 3000);
+var news_data_list =[];
 $(function () {
   FastClick.attach(document.body);
   //  window.pushNotification.registration(
@@ -24,9 +25,6 @@ $(function () {
       calHomeButtonPosition();
       setProfile()
       loading.show();
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
       initSlideHomePage();
     });
   }
@@ -61,9 +59,6 @@ $(function () {
     changePage("home_page", function () {
       calHomeButtonPosition();
       loading.show();
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
       swiper.destroy();
       initSlideHomePage();
     });
@@ -84,9 +79,6 @@ $(function () {
       }, 500);
     });
   });
-  $("#news_detail_page .header .back_header_btn").on("click", function () {
-    changePage("news_page", function () {});
-  });
   $(".menu_news_page").on("click", function () {
    
     changePage("news_page", function () {
@@ -95,33 +87,13 @@ $(function () {
       },0);
       loading.show();
       setTimeout(function () {
-        loading.hide();
         initSlideNewsPage();
       }, 500);
     });
   });
  
-  $(".news_item").on("click", function () {
-    changePage("news_detail_page", function () {
-      $('.content').animate({
-        scrollTop: $(".content").offset().top
-      },0);
-      renderNewsDetailContent()
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
-    });
-  });
-  $(".swiper-slide.news").on("click", function () {
-    changePage("news_detail_page", function () {
-      loading.show();
-      renderNewsDetailContent()
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
-    });
-  });
+  
+ 
   $(".profile_header_wrapper").on("click", function () {
     topMenu.show();
   });
