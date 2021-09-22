@@ -45,10 +45,10 @@ function initSlideNewsPage() {
     if(news.status==false){
   
     }else{
-      data.map((row,index)=>$('ul.news_item').append(renderNewsCard(row,index)))
+      data.map((row,index)=>$('.content ul.news_item').append(renderNewsCard(row,index)))
     }
    
-    $("ul.news_item li").on("click", function () {
+    $(".content ul.news_item li").on("click", function () {
       let newsno = $(this).attr('newsno')
       if(newsno>0){
         gotoNewsDetailPage(newsno,'news_page')
@@ -2367,4 +2367,13 @@ function validateForm(array) {
     }
   }
   return validate;
+}
+const debounce = (callback, wait) => {
+  let timeoutId = null;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      callback.apply(null, args);
+    }, wait);
+  };
 }

@@ -82,6 +82,7 @@ $(function () {
   $(".menu_news_page").on("click", function () {
    
     changePage("news_page", function () {
+      $('#news_page .back_header_btn').hide()
       $('.content').animate({
         scrollTop: $(".content").offset().top
       },0);

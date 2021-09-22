@@ -369,13 +369,8 @@
     </div>
     <div class="pages" id="news_page">
       <div class="header">
-        <img src="img/logo_header.png" class="logo_header" />
-        <div class="profile_header_wrapper">
-          <img src="img/profile.jpg" />
-          <div class="header_notification">
-            <i class="fa fa-bell" id="notification_icon"></i>
-          </div>
-        </div>
+        <div class="back_header_btn"></div>
+        <input class="search" id="news_search" type="text"  value="" placeholder="ค้นหา" />
       </div>
       <div class="content">
         <h1 class="news_title_page">ข่าวสารและกิจกรรม</h1>
@@ -397,7 +392,7 @@
             <p class="news_description_page">
               เพื่อไม่พลาดทุกเรื่องราวที่เกิดขึ้น
             </p>
-            <div class="filter_news_btn"></div>
+            <!-- <div class="filter_news_btn"></div> -->
           </div>
           <ul class="news_item">
           </ul>
@@ -421,6 +416,13 @@
             >สถิติสำรวจ</span
           >
         </div>
+      </div>
+      <div class="search_page">
+        <div class="search_match">
+          ตรงกับคำที่ค้นหา <span class="news_match_search_count">0</span> รายการ
+        </div>
+        <ul class="news_item">
+        </ul>
       </div>
     </div>
     <div class="pages" id="news_detail_page">
