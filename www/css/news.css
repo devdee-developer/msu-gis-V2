@@ -87,3 +87,8 @@
   font-size: 18px;
   margin: 10px 15px;
 }
+.news_vdo{
+  max-width: 100%;
+  width: 90%;
+  margin: 0 auto;
+}

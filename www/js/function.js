@@ -136,13 +136,36 @@ function renderNewsCard(row,index){
   return html
 }
 function renderNewsDetailContent(newsno){
-  $('.news_detail_title').html('')
-  $('.news_detail_date').html('')
-  $('.news_detail_content').html('')
-  let news_detail = news_data_list.find(row=>row.newsno==newsno)
-  $('.news_detail_title').text(news_detail.header)
-  $('.news_detail_date').text(news_detail.publicDate)
-  $('.news_detail_content').html(news_detail.detail)
+    function getYoutubeId(url) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+
+      return (match && match[2].length === 11)
+        ? match[2]
+        : null;
+    }
+    $('.news_detail_title').html('')
+    $('.news_detail_date').html('')
+    $('.news_detail_content').html('')
+    $(".news_vdo iframe").remove();
+   
+    let news_detail = news_data_list.find(row=>row.newsno==newsno)
+    $('.news_detail_title').text(news_detail.header)
+    $('.news_detail_date').text(news_detail.publicDate)
+    $('.news_detail_content').html(news_detail.detail)
+      
+    news_detail.vdoLink.map(row=>{
+      var videoid = getYoutubeId(row);
+
+      let  obj = $(".news_vdo");
+      let height = (Math.floor(obj.width() * 9 / 16))
+      let width = obj.width()
+      $(`<iframe width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`)
+      .attr("src", "http://www.youtube.com/embed/" + videoid)
+      .appendTo(".news_vdo");
+      console.log('Video ID:', videoid)
+    })
+    
 }
 function calHomeButtonPosition() {
   var total_w = $(".main_home_menu_item_wrapper").width();
