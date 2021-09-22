@@ -156,14 +156,14 @@ function renderNewsDetailContent(newsno){
       
     news_detail.vdoLink.map(row=>{
       var videoid = getYoutubeId(row);
-
       let  obj = $(".news_vdo");
       let height = (Math.floor(obj.width() * 9 / 16))
       let width = obj.width()
       $(`<iframe width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`)
-      .attr("src", "http://www.youtube.com/embed/" + videoid)
-      .appendTo(".news_vdo");
-      console.log('Video ID:', videoid)
+      .attr("src", "https://www.youtube.com/embed/" + videoid)
+      .appendTo(".news_vdo");    
+
+      
     })
     
 }
