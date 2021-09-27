@@ -628,19 +628,19 @@ $("#modal-save-confirm-urgent-noti button.submit_save_noti").on(
           EMC_PIC4: SaveData["EMC_PIC4"],
           EMC_PIC5: SaveData["EMC_PIC5"],
         };
-        // callAPI(
-        //   `${api_base_url}/saveEmergency`,
-        //   "POST",
-        //   JSON.stringify(ModelSaveData),
-        //   (res) => {
-        //     console.log(`save success`, res);
-        //     // resolve(res);
-        //   },
-        //   (err) => {
-        //     console.log(`save error`, err);
-        //     // reject(err);
-        //   }
-        // );
+        callAPI(
+          `${api_base_url}/saveEmergency`,
+          "POST",
+          JSON.stringify(ModelSaveData),
+          (res) => {
+            console.log(`save success`, res);
+            // resolve(res);
+          },
+          (err) => {
+            console.log(`save error`, err);
+            // reject(err);
+          }
+        );
 
         showModal("modal-save-urgent-noti");
         setTimeout(function () {
