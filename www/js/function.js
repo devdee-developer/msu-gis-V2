@@ -160,7 +160,7 @@ function renderNewsCard(row, index) {
       <p class="news_description">
         ${row.header}
       </p>
-      <p class="news_date"> <i class="fa fa-calendar"></i> ${row.publicDate}</p>
+      <p class="news_date"> <i class="fa fa-calendar"></i> ${dateFullStringFormat(row.publicDate)}</p>
       <img class="news_detail_btn" src="img/news_detail_btn.png">
     </li>`;
   return html;
