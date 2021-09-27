@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/setting.css" />
     <link rel="stylesheet" href="css/analytics.css" />
     <link rel="stylesheet" href="css/news.css" />
+    <link rel="stylesheet" href="css/knowledge.css" />
     <title>VHV</title>
   </head>
 
@@ -370,7 +371,13 @@
     <div class="pages" id="news_page">
       <div class="header">
         <div class="back_header_btn"></div>
-        <input class="search" id="news_search" type="text"  value="" placeholder="ค้นหา" />
+        <input
+          class="search"
+          id="news_search"
+          type="text"
+          value=""
+          placeholder="ค้นหา"
+        />
       </div>
       <div class="content">
         <h1 class="news_title_page">ข่าวสารและกิจกรรม</h1>
@@ -379,8 +386,7 @@
         </p>
         <div class="news_slider_wrapper">
           <div class="swiper-container mySwiper2">
-            <div class="swiper-wrapper">
-            </div>
+            <div class="swiper-wrapper"></div>
             <!-- <div class="swiper-button-next2"></div>
                     <div class="swiper-button-prev2"></div> -->
           </div>
@@ -394,8 +400,7 @@
             </p>
             <!-- <div class="filter_news_btn"></div> -->
           </div>
-          <ul class="news_item">
-          </ul>
+          <ul class="news_item"></ul>
         </div>
       </div>
       <div class="footer">
@@ -421,8 +426,7 @@
         <div class="search_match">
           ตรงกับคำที่ค้นหา <span class="news_match_search_count">0</span> รายการ
         </div>
-        <ul class="news_item">
-        </ul>
+        <ul class="news_item"></ul>
       </div>
     </div>
     <div class="pages" id="news_detail_page">
@@ -430,16 +434,21 @@
         <div class="back_header_btn"></div>
       </div>
       <div class="content">
-          <h1 class="news_detail_title">เริ่มต้นตรวจเชิงรุกเพื่อค้นหา ผู้มีความเสี่ยง</h1>
-          <p class="news_detail_date"> <i class="fa fa-calendar"></i> 11 ธันวาคม 2564</p>
-          <div class="news_detail_content"></div>
-          <div class="news_vdo">
-            
-          </div>
-          <div class="news_detail_footer">
-            <img src="img/logo_header.png" />
-            <p class="news_detail_date"> <i class="fa fa-calendar"></i> 11 ธันวาคม 2564</p>
-          </div>
+        <h1 class="news_detail_title">
+          เริ่มต้นตรวจเชิงรุกเพื่อค้นหา ผู้มีความเสี่ยง
+        </h1>
+        <p class="news_detail_date">
+          <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+        </p>
+        <div class="news_detail_banner"></div>
+        <div class="news_detail_content"></div>
+        <div class="news_vdo"></div>
+        <div class="news_detail_footer">
+          <img src="img/logo_header.png" />
+          <p class="news_detail_date">
+            <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+          </p>
+        </div>
       </div>
     </div>
     <div class="pages" id="analytics_page">
@@ -6210,6 +6219,61 @@
         </div>
       </div>
     </div>
+    <div class="pages" id="knowledge_page">
+      <div class="urgent_noti_page_header">
+        <div class="back_header_btn"></div>
+        <div class="title"></div>
+        <div class="search_header">
+          <i class="fa fa-search icon" aria-hidden="true"></i>
+          <input class="input-field" type="text" placeholder="ค้นหา" />
+        </div>
+      </div>
+      <div class="content grey">
+        <p
+          id="qtyitemsearch"
+          style="margin-left: 10px; color: #010979; margin-top: 5px"
+        >
+          ตรงกับที่ค้นหา 1 รายการ
+        </p>
+        <div class="title-bar knowledge-title">
+          <img class="img-title" src="img/menu_button_knowledge.png" />
+          <div>
+            <h2 style="color: #010979">คลังความรู้</h2>
+            <p style="color: #3b3d48">รวบรวมองค์ความรู้ด้านต่างๆ ไว้ที่นี่</p>
+          </div>
+        </div>
+        <div class="slide-bar"></div>
+        <div
+          class="sort-bar"
+          style="background-color: #f7f5fc; padding-bottom: unset"
+        >
+          <h4>ทั้งหมด <span style="color: #6f63fd">0 รายการ</span></h4>
+        </div>
+        <div style="height: 15px"></div>
+        <ul class="news_item"></ul>
+      </div>
+    </div>
+    <div class="pages" id="knowledge_detail_page">
+      <div class="header">
+        <div class="back_header_btn"></div>
+      </div>
+      <div class="content" style="bottom: 0px">
+        <h1 class="news_detail_title">
+          เริ่มต้นตรวจเชิงรุกเพื่อค้นหา ผู้มีความเสี่ยง
+        </h1>
+        <p class="news_detail_date">
+          <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+        </p>
+        <div class="news_detail_content"></div>
+        <div class="news_vdo"></div>
+        <div class="news_detail_footer">
+          <img src="img/logo_header.png" />
+          <p class="news_detail_date">
+            <i class="fa fa-calendar"></i> 11 ธันวาคม 2564
+          </p>
+        </div>
+      </div>
+    </div>
     <div id="modal-profile-save-success" class="modal">
       <div class="modal-container-evaluate-alert">
         <p style="font-size: 30px; color: #1bc3a2">
@@ -6275,7 +6339,7 @@
     <script src="js/setting.js"></script>
     <script src="js/analytics.js"></script>
     <script src="js/news.js"></script>
-
+    <script src="js/knowledge.js"></script>
     <script src="js/sync-data.js"></script>
   </body>
 </html>
