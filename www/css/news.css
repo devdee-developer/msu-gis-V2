@@ -32,9 +32,13 @@
 .news_detail_content{
     margin: 20px;
 }
-.news_detail_content img{
+.news_detail_banner{
+  margin: 10px 0;
+}
+.news_detail_content img,.news_detail_banner img{
    max-width: 100%;
 }
+
 .header input.search{
   height: 40px;
     width: 100px;

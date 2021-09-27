@@ -82,7 +82,8 @@ function getNews() {
       "POST",
       JSON.stringify({ token: token.getUserToken() }),
       (success) => {
-        news_data_list = success.Data.newsList.map((row, index) => ({
+        console.log(success)
+        news_data_list = success.data.newsList.map((row, index) => ({
           ...row,
           newsno: index + 1,
         }));
@@ -173,13 +174,16 @@ function renderNewsDetailContent(newsno) {
     return match && match[2].length === 11 ? match[2] : null;
   }
   $(".news_detail_title").html("");
+  $(".news_detail_banner img").remove();
+  
   $(".news_detail_date").html("");
   $(".news_detail_content").html("");
   $(".news_vdo iframe").remove();
 
   let news_detail = news_data_list.find((row) => row.newsno == newsno);
   $(".news_detail_title").text(news_detail.header);
-  $(".news_detail_date").text(news_detail.publicDate);
+  $(".news_detail_banner").append(`<img src="${news_detail.banner}"/>`)
+  $(".news_detail_date").text(dateFullStringFormat(news_detail.publicDate));
   $(".news_detail_content").html(news_detail.detail);
 
   news_detail.vdoLink.map((row) => {
@@ -2318,6 +2322,20 @@ function dateStringFormat(date) {
     " เวลา " +
     time +
     " น.";
+  return dateString;
+}
+function dateFullStringFormat(date) {
+  var day = date.substring(8, 10);
+  var month = date.substring(5, 7).replace("0", "") - 1;
+  var year = date.substring(0, 4);
+  var time = date.substring(11, 16);
+  var dateString =
+    " " +
+    day +
+    " " +
+    getMonthThaiFull(month) +
+    " " +
+    (parseInt(year) + 543).toString();
   return dateString;
 }
 function renderElderModal(item, modalId, showEva, showVisit) {
