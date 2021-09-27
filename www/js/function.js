@@ -5,8 +5,8 @@ function changePage(_page, _callback = function () {}) {
 }
 
 function initSlideHomePage() {
-  $(".home_slider_wrapper .swiper-wrapper").html('')
-  getNews().then(news=>{
+  $(".home_slider_wrapper .swiper-wrapper").html("");
+  getNews().then((news) => {
     clearInterval(swiper_timer);
     swiper = new Swiper(".mySwiper", {
       slidesPerView: 1,
@@ -21,12 +21,11 @@ function initSlideHomePage() {
     swiper_timer = setInterval(function () {
       swiper.slideNext();
     }, 5000);
-  })
- 
+  });
 }
 function initSlideNewsPage() {
-  $(".news_slider_wrapper .swiper-wrapper").html('')
-  getNews().then(news=>{
+  $(".news_slider_wrapper .swiper-wrapper").html("");
+  getNews().then((news) => {
     clearInterval(swiper_timer2);
     swiper2 = new Swiper(".mySwiper2", {
       slidesPerView: 1,
@@ -40,91 +39,121 @@ function initSlideNewsPage() {
     swiper_timer2 = setInterval(function () {
       swiper2.slideNext();
     }, 5000);
-    let data = news.data
-    $('ul.news_item').html('')
-    if(news.status==false){
-  
-    }else{
-      data.map((row,index)=>$('.content ul.news_item').append(renderNewsCard(row,index)))
+    let data = news.data;
+    $("ul.news_item").html("");
+    if (news.status == false) {
+    } else {
+      data.map((row, index) =>
+        $(".content ul.news_item").append(renderNewsCard(row, index))
+      );
     }
-   
+
     $(".content ul.news_item li").on("click", function () {
-      let newsno = $(this).attr('newsno')
-      if(newsno>0){
-        gotoNewsDetailPage(newsno,'news_page')
+      let newsno = $(this).attr("newsno");
+      if (newsno > 0) {
+        gotoNewsDetailPage(newsno, "news_page");
       }
     });
-  })
-  
+  });
 }
-function gotoNewsDetailPage(newsno,from_page){
+function gotoNewsDetailPage(newsno, from_page) {
   $("#news_detail_page .header .back_header_btn").on("click", function () {
     changePage(from_page, function () {});
   });
   changePage("news_detail_page", function () {
     loading.show();
-    $('.content').animate({
-      scrollTop: $(".content").offset().top
-    },0);
-    renderNewsDetailContent(newsno)
+    $(".content").animate(
+      {
+        scrollTop: $(".content").offset().top,
+      },
+      0
+    );
+    renderNewsDetailContent(newsno);
     setTimeout(function () {
       loading.hide();
     }, 500);
   });
 }
-function getNews(){
-  loading.show()
-  return new Promise((resolve,reject)=>{
-    callAPI(`${api_base_url}/getNews`,'POST', JSON.stringify({token:token.getUserToken()})
-    , success=>{
-      news_data_list = success.Data.newsList.map((row,index)=>({...row,newsno:index+1}))
-      let slideNews = news_data_list.filter(row=>row.slide==true)
-      let rapidNews =  news_data_list.find(row=>row.reddit==true)
-      if(rapidNews){
-        $('.home_knowledge_base').attr('newsno',rapidNews.newsno)
-        $('.home_knowledge_base').html(` <i class="fa fa-comment-alt comment_icon_home"></i>${rapidNews.header}`)
-        $(".home_knowledge_base").on("click", function () {
-          let newsno= $(this).attr('newsno')
-          if(newsno>0){
-            gotoNewsDetailPage(newsno,'home_page')
+function getNews() {
+  loading.show();
+  return new Promise((resolve, reject) => {
+    callAPI(
+      `${api_base_url}/getNews`,
+      "POST",
+      JSON.stringify({ token: token.getUserToken() }),
+      (success) => {
+        news_data_list = success.Data.newsList.map((row, index) => ({
+          ...row,
+          newsno: index + 1,
+        }));
+        let slideNews = news_data_list.filter((row) => row.slide == true);
+        let rapidNews = news_data_list.find((row) => row.reddit == true);
+        if (rapidNews) {
+          $(".home_knowledge_base").attr("newsno", rapidNews.newsno);
+          $(".home_knowledge_base").html(
+            ` <i class="fa fa-comment-alt comment_icon_home"></i>${rapidNews.header}`
+          );
+          $(".home_knowledge_base").on("click", function () {
+            let newsno = $(this).attr("newsno");
+            if (newsno > 0) {
+              gotoNewsDetailPage(newsno, "home_page");
+            }
+          });
+        } else {
+          $(".home_knowledge_base").html(
+            ` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`
+          );
+        }
+        slideNews.map((row, index) => {
+          $(".home_slider_wrapper .swiper-wrapper").append(
+            `<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`
+          );
+          $(".news_slider_wrapper .swiper-wrapper").append(
+            `<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`
+          );
+        });
+        $(
+          ".home_slider_wrapper .swiper-slide.news,.home_slider_wrapper .swiper-slide.news img"
+        ).on("click", function () {
+          let newsno = $(this).attr("newsno");
+          if (newsno > 0) {
+            gotoNewsDetailPage(newsno, "home_page");
           }
-        })
-      }else{
-        $('.home_knowledge_base').html(` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`)
+        });
+        $(
+          ".news_slider_wrapper .swiper-slide.news,.news_slider_wrapper .swiper-slide.news img"
+        ).on("click", function () {
+          let newsno = $(this).attr("newsno");
+          if (newsno > 0) {
+            gotoNewsDetailPage(newsno, "news_page");
+          }
+        });
+        loading.hide();
+        resolve({ status: true, data: news_data_list });
+      },
+      (error) => {
+        $(".home_knowledge_base").html(
+          ` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`
+        );
+        news_data_list = [
+          { banner: "img/news-no-network2.jpg" },
+          { banner: "img/news-no-network.jpg" },
+        ];
+        news_data_list.map((row) => {
+          $(".home_slider_wrapper .swiper-wrapper").append(
+            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+          );
+          $(".news_slider_wrapper .swiper-wrapper").append(
+            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+          );
+        });
+        loading.hide();
+        resolve({ status: false, data: news_data_list });
       }
-      slideNews.map((row,index)=>{
-        $(".home_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`)
-        $(".news_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`)
-      })
-      $(".home_slider_wrapper .swiper-slide.news,.home_slider_wrapper .swiper-slide.news img").on("click", function () {
-        let newsno= $(this).attr('newsno')
-        if(newsno>0){
-          gotoNewsDetailPage(newsno,'home_page')
-        }
-      });
-      $(".news_slider_wrapper .swiper-slide.news,.news_slider_wrapper .swiper-slide.news img").on("click", function () {
-        let newsno= $(this).attr('newsno')
-        if(newsno>0){
-          gotoNewsDetailPage(newsno,'news_page')
-        }
-      });
-      loading.hide()
-      resolve({status:true,data:news_data_list})
-    },
-    error=>{
-      $('.home_knowledge_base').html(` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`)
-      news_data_list=[{banner:"img/news-no-network2.jpg"},{banner:"img/news-no-network.jpg"}]
-      news_data_list.map(row=>{
-        $(".home_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news"><img src="${row.banner}" /></div>`)
-        $(".news_slider_wrapper .swiper-wrapper").append(`<div class="swiper-slide news"><img src="${row.banner}" /></div>`)
-      })
-      loading.hide()
-      resolve({status:false,data:news_data_list})
-    })
-  })
- 
+    );
+  });
 }
-function renderNewsCard(row,index){
+function renderNewsCard(row, index) {
   let html = `<li newsno="${row.newsno}">
       <img class="news_thumbnail" src="${row.thumbnail}">
       <p class="news_description">
@@ -132,40 +161,38 @@ function renderNewsCard(row,index){
       </p>
       <p class="news_date"> <i class="fa fa-calendar"></i> ${row.publicDate}</p>
       <img class="news_detail_btn" src="img/news_detail_btn.png">
-    </li>`
-  return html
+    </li>`;
+  return html;
 }
-function renderNewsDetailContent(newsno){
-    function getYoutubeId(url) {
-      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = url.match(regExp);
+function renderNewsDetailContent(newsno) {
+  function getYoutubeId(url) {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
 
-      return (match && match[2].length === 11)
-        ? match[2]
-        : null;
-    }
-    $('.news_detail_title').html('')
-    $('.news_detail_date').html('')
-    $('.news_detail_content').html('')
-    $(".news_vdo iframe").remove();
-   
-    let news_detail = news_data_list.find(row=>row.newsno==newsno)
-    $('.news_detail_title').text(news_detail.header)
-    $('.news_detail_date').text(news_detail.publicDate)
-    $('.news_detail_content').html(news_detail.detail)
-      
-    news_detail.vdoLink.map(row=>{
-      var videoid = getYoutubeId(row);
-      let  obj = $(".news_vdo");
-      let height = (Math.floor(obj.width() * 9 / 16))
-      let width = obj.width()
-      $(`<iframe width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`)
+    return match && match[2].length === 11 ? match[2] : null;
+  }
+  $(".news_detail_title").html("");
+  $(".news_detail_date").html("");
+  $(".news_detail_content").html("");
+  $(".news_vdo iframe").remove();
+
+  let news_detail = news_data_list.find((row) => row.newsno == newsno);
+  $(".news_detail_title").text(news_detail.header);
+  $(".news_detail_date").text(news_detail.publicDate);
+  $(".news_detail_content").html(news_detail.detail);
+
+  news_detail.vdoLink.map((row) => {
+    var videoid = getYoutubeId(row);
+    let obj = $(".news_vdo");
+    let height = Math.floor((obj.width() * 9) / 16);
+    let width = obj.width();
+    $(
+      `<iframe width="${width}" height="${height}" frameborder="0" allowfullscreen></iframe>`
+    )
       .attr("src", "https://www.youtube.com/embed/" + videoid)
-      .appendTo(".news_vdo");    
-
-      
-    })
-    
+      .appendTo(".news_vdo");
+  });
 }
 function calHomeButtonPosition() {
   var total_w = $(".main_home_menu_item_wrapper").width();
@@ -339,7 +366,7 @@ async function callAPI(enpoint, method, data, _success, _error) {
       },
       data: data,
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         if (response.status == true) {
           _success(response);
         } else {
@@ -1557,6 +1584,31 @@ function getInitial() {
             );
           });
         });
+        db.transaction(function (tx) {
+          $.each(data.header, function (index, row) {
+            tx.executeSql(
+              "INSERT INTO VHV_MA_HEADER (ID,GUID,HEADER,TYPE_ARTICLE,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES ('" +
+                row.ID +
+                "','" +
+                row.GUID +
+                "','" +
+                row.HEADER +
+                "','" +
+                row.TYPE_ARTICLE +
+                "','" +
+                row.DELETE_FLAG +
+                "','" +
+                row.CREATE_USER +
+                "','" +
+                row.CREATE_DATE +
+                "','" +
+                row.UPDATE_USER +
+                "','" +
+                row.UPDATE_DATE +
+                "')"
+            );
+          });
+        });
         setProfile();
       } else {
         _error("เกิดข้อผิดพลาด9");
@@ -1606,7 +1658,7 @@ function queryByID(TABLE, ID, _callback) {
           i;
 
         for (i = 0; i < len; i++) {
-          console.log(results.rows.item(i));
+          // console.log(results.rows.item(i));
           _callback(results.rows.item(i));
         }
       },
@@ -1690,6 +1742,28 @@ function queryGetDiseaseByELDER_ID(TABLE, ELDER_ID, _callback) {
     );
   });
 }
+function queryKnowledgeHEADER(_callback) {
+  var arr = [];
+  // console.log(
+  //   'SELECT rowid,* FROM VHV_MA_HEADER WHERE TYPE_ARTICLE = "2" AND DELETE_FLAG = "0"'
+  // );
+  db.transaction(function (tx) {
+    tx.executeSql(
+      'SELECT rowid,* FROM VHV_MA_HEADER WHERE TYPE_ARTICLE = "2" AND DELETE_FLAG = "0"',
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+
+        for (i = 0; i < len; i++) {
+          arr.push(results.rows.item(i));
+        }
+        _callback(arr);
+      },
+      null
+    );
+  });
+}
 function queryGetSHPHtelStaff(SHPH_ID, _callback) {
   var arr = [];
   console.log(
@@ -1758,14 +1832,14 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
-function searchFunction(arr, item) {
+function searchFunction(arr, column, item) {
   let nResult = [];
-  $.each(arr, function (index, row) {
-    var str = row.ELDER_NAME;
-    if (str.includes(item)) {
-      nResult.push(row);
+  for (let i = 0; i < arr.length; i++) {
+    var str = arr[i][column].toLowerCase();
+    if (str.includes(item.toLowerCase())) {
+      nResult.push(arr[i]);
     }
-  });
+  }
   return nResult;
 }
 function queryByRowID(TABLE, rowID, _callback) {
@@ -2399,4 +2473,11 @@ const debounce = (callback, wait) => {
       callback.apply(null, args);
     }, wait);
   };
+};
+function initialSearchHeaderFunc() {
+  $(".search_header input").removeClass("active");
+  $(".search_header input").prop("disabled", true);
+  $(".search_header").removeClass("active");
+  $("#qtyitemsearch").hide();
+  $(".search_header input").val("");
 }

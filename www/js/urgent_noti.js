@@ -5,16 +5,22 @@ $(function () {
     .eq(3)
     .on("click", function () {
       loading.show();
-      setTimeout(function () {
+      var status = navigator.onLine;
+      if (status) {
+        setTimeout(function () {
+          loading.hide();
+          changePage("urgent_noti_page", function () {
+            initialUrgentNotiPageFunc();
+            toturialvideo.currentTime = 0;
+            toturialvideo.play();
+            toturialvideo.loop = true;
+            showModal("modal-tutorial-urgent-noti");
+          });
+        }, 500);
+      } else {
+        alert("No internet Available !!");
         loading.hide();
-        changePage("urgent_noti_page", function () {
-          initialUrgentNotiPageFunc();
-          toturialvideo.currentTime = 0;
-          toturialvideo.play();
-          toturialvideo.loop = true;
-          showModal("modal-tutorial-urgent-noti");
-        });
-      }, 500);
+      }
     });
 });
 var markerOriginal;
@@ -32,6 +38,13 @@ var imgPreviewArr = [];
 var telStaffArr = [];
 let SaveData = {};
 function initialUrgentNotiPageFunc() {
+  $(".content").animate(
+    {
+      scrollTop: $(".content").offset().top,
+    },
+    0
+  );
+  initialSearchHeaderFunc();
   initMapUrgentNotiPage();
   if (directionsRenderer) {
     directionsRenderer.setDirections({ routes: [] });
@@ -67,10 +80,21 @@ function initialUrgentNotiPageFunc() {
   $("#urgent_noti_page .urgent_noti_page_header .title").show();
   $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn").show();
   $("#type_urgent").empty();
+  $("#urgent_noti_page .DetailElder .camera .PreImg").empty();
+  ListEmcType;
+  imgPreviewArr = [];
+  telStaffArr = [];
+  SaveData = {};
   queryALL("VHV_TR_EMERGENCY", function (res) {
-    $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn p").text(
-      res.length
-    );
+    let countEmc = 0;
+    $.each(res, function (key, row) {
+      if (row["DELETE_FLAG"] == "0") {
+        countEmc += 1;
+      }
+      $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn p").text(
+        countEmc
+      );
+    });
   });
   queryALL("VHV_MA_EMCTYPE", function (res) {
     ListEmcType = res;
@@ -81,9 +105,13 @@ function initialUrgentNotiPageFunc() {
         .prop("selected", true)
     );
     $.each(ListEmcType, function (key, value) {
-      $("#type_urgent").append(
-        $("<option></option>").attr("value", key).text(value["EMC_NAME"])
-      );
+      if (value["DELETE_FLAG"] == "0") {
+        $("#type_urgent").append(
+          $("<option></option>")
+            .attr("value", value["ID"])
+            .text(value["EMC_NAME"])
+        );
+      }
     });
   });
   disabledElderUrgentNotiPageFunc();
@@ -561,13 +589,14 @@ $(
     EMC_TYPE: $("#type_urgent").val(),
     EMC_TOPIC: $("#subject_urgent").val(),
     EMC_DESC: $("#detail_urgent").val(),
-    EMC_PIC1: imgPreviewArr.length > 0 ? imgPreviewArr[0]["src"] : "",
-    EMC_PIC2: imgPreviewArr.length > 0 ? imgPreviewArr[1]["src"] : "",
-    EMC_PIC3: imgPreviewArr.length > 0 ? imgPreviewArr[2]["src"] : "",
-    EMC_PIC4: imgPreviewArr.length > 0 ? imgPreviewArr[3]["src"] : "",
-    EMC_PIC5: imgPreviewArr.length > 0 ? imgPreviewArr[4]["src"] : "",
+    EMC_PIC1: imgPreviewArr[0] ? imgPreviewArr[0]["src"] : "",
+    EMC_PIC2: imgPreviewArr[1] ? imgPreviewArr[1]["src"] : "",
+    EMC_PIC3: imgPreviewArr[2] ? imgPreviewArr[2]["src"] : "",
+    EMC_PIC4: imgPreviewArr[3] ? imgPreviewArr[3]["src"] : "",
+    EMC_PIC5: imgPreviewArr[4] ? imgPreviewArr[4]["src"] : "",
     CREATE_DATE: EMC_DATE_TEXT,
     UPDATE_DATE: EMC_DATE_TEXT,
+    DELETE_FLAG: "0",
   };
   if (SaveData["EMC_TYPE"] == "") {
     alert("กรุณาเลือกประเภทเหตุด่วน");
@@ -583,6 +612,7 @@ $("#modal-save-confirm-urgent-noti button.submit_save_noti").on(
   "click",
   function () {
     $(".modal-dismiss").click();
+    console.log(SaveData);
     sqlInsert("VHV_TR_EMERGENCY", SaveData, function (res) {
       if (res > 0) {
         let ModelSaveData = {
@@ -598,19 +628,19 @@ $("#modal-save-confirm-urgent-noti button.submit_save_noti").on(
           EMC_PIC4: SaveData["EMC_PIC4"],
           EMC_PIC5: SaveData["EMC_PIC5"],
         };
-        callAPI(
-          `${api_base_url}/saveEmergency`,
-          "POST",
-          JSON.stringify(ModelSaveData),
-          (res) => {
-            console.log(`save success`, res);
-            // resolve(res);
-          },
-          (err) => {
-            console.log(`save error`, err);
-            // reject(err);
-          }
-        );
+        // callAPI(
+        //   `${api_base_url}/saveEmergency`,
+        //   "POST",
+        //   JSON.stringify(ModelSaveData),
+        //   (res) => {
+        //     console.log(`save success`, res);
+        //     // resolve(res);
+        //   },
+        //   (err) => {
+        //     console.log(`save error`, err);
+        //     // reject(err);
+        //   }
+        // );
 
         showModal("modal-save-urgent-noti");
         setTimeout(function () {
@@ -920,9 +950,16 @@ var notiCurrent = [];
 var notiLast = [];
 /* ----------------------------------------------------------------------------- start : notifications_urgent_noti_page ----------------------------------------------------------------------------- */
 function initialNotificationUrgentNotiPageFunc() {
+  $(".content").animate(
+    {
+      scrollTop: $(".content").offset().top,
+    },
+    0
+  );
   notiLast = [];
   notiCurrent = [];
   queryALL("VHV_TR_EMERGENCY", function (res) {
+    res.sort((a, b) => (a.ID < b.ID ? 1 : -1));
     var d = new Date();
     var month = d.getMonth() + 1;
     var day = d.getDate();
@@ -935,32 +972,35 @@ function initialNotificationUrgentNotiPageFunc() {
       (("" + day).length < 2 ? "0" : "") +
       day;
     $.each(res, function (index, row) {
-      queryByIDText("VHV_MA_EMCTYPE", row.EMC_TYPE, function (emc_res) {
-        let EMC_NAME = emc_res.EMC_NAME;
-        if (dateText == row.EMC_DATE.substring(0, 10)) {
-          queryByID("VHV_TR_ELDER", row.ELDER_ID, function (res) {
-            if (res) {
-              notiCurrent.push(
-                mapDataNotifications(res, row, EMC_NAME, "Current")
-              );
-              renderNotificationsList(notiCurrent, "Current");
-            }
-          });
-        } else {
-          queryByID("VHV_TR_ELDER", row.ELDER_ID, function (res) {
-            if (res) {
-              notiLast.push(mapDataNotifications(res, row, EMC_NAME, "Last"));
-              renderNotificationsList(notiLast, "Last");
-            }
-          });
-        }
-      });
+      if (row["DELETE_FLAG"] == "0") {
+        queryByIDText("VHV_MA_EMCTYPE", row.EMC_TYPE, function (emc_res) {
+          let EMC_NAME = emc_res.EMC_NAME;
+          if (dateText == row.EMC_DATE.substring(0, 10)) {
+            queryByID("VHV_TR_ELDER", row.ELDER_ID, function (res) {
+              if (res) {
+                notiCurrent.push(
+                  mapDataNotifications(res, row, EMC_NAME, "Current")
+                );
+                renderNotificationsList(notiCurrent, "Current");
+              }
+            });
+          } else {
+            queryByID("VHV_TR_ELDER", row.ELDER_ID, function (res) {
+              if (res) {
+                notiLast.push(mapDataNotifications(res, row, EMC_NAME, "Last"));
+                renderNotificationsList(notiLast, "Last");
+              }
+            });
+          }
+        });
+      }
     });
   });
 }
 function renderNotificationsList(arr, id) {
   let NotificationsListHTML = "";
   $.each(arr, function (index, row) {
+    // console.log(row);
     let answered = "";
     let answeredText = "รอตอบรับ";
     let dateShow = dateStringFormat(row.EMC_DATE);
@@ -974,7 +1014,7 @@ function renderNotificationsList(arr, id) {
     NotificationsListHTML =
       NotificationsListHTML +
       `<li>
-      <div class="notifications-card-body${answered}" onclick='selectElderNotifications(${row.ID},"${row.EMC_FLAG}")'>
+      <div class="notifications-card-body${answered}" onclick='selectElderNotifications(${row.ID},"${row.EMC_FLAG}","${row.EMC_DATE}")'>
         <img class="card-body-thumbnail" src="${row.ELDER_AVATAR}" />
         <div class="card-body-content">
           <h4 class="name">${row.ELDER_NAME}</h4>
@@ -1041,9 +1081,9 @@ function mapDataNotifications(res, row, EMC_NAME, FLAG) {
   res.EMC_NAME = EMC_NAME;
   return res;
 }
-function selectElderNotifications(ID, FLAG) {
+function selectElderNotifications(ID, FLAG, EMC_DATE) {
   changePage("urgent_noti_page", function () {
-    initialNotificationDetailUrgentNotiPageFunc(ID, FLAG);
+    initialNotificationDetailUrgentNotiPageFunc(ID, FLAG, EMC_DATE);
   });
 }
 // เปลี่ยนหน้าไป notifications_urgent_noti_page
@@ -1107,7 +1147,11 @@ $("#urgent_noti_elder_list_page .urgent_noti_page_header .search_header").on(
   }
 );
 function inputChange(e) {
-  var sreachArr = searchFunction(ListElderUrgentNoti, e.target.value);
+  var sreachArr = searchFunction(
+    ListElderUrgentNoti,
+    "ELDER_NAME",
+    e.target.value
+  );
   renderurgent_noti_elder_list_page(sreachArr);
   if (sreachArr.length > 0) {
     $("#urgent_noti_elder_list_page .content p").show();
@@ -1163,7 +1207,13 @@ function getSlideIndexByELDER_ID(ID) {
 
 /* ----------------------------------------------------------------------------- start : notifications_detail_urgent_noti_page ----------------------------------------------------------------------------- */
 
-function initialNotificationDetailUrgentNotiPageFunc(ID, FLAG) {
+function initialNotificationDetailUrgentNotiPageFunc(ID, FLAG, EMC_DATE) {
+  $(".content").animate(
+    {
+      scrollTop: $(".content").offset().top,
+    },
+    0
+  );
   $("#urgent_noti_page .urgent_noti_page_header").hide();
   $("#urgent_noti_page .urgent_detail_noti_page_header").show();
   $("#urgent_noti_page .mapContent").removeClass("active");
@@ -1182,11 +1232,15 @@ function initialNotificationDetailUrgentNotiPageFunc(ID, FLAG) {
   $("#urgent_noti_page .content .backformap .card-body").eq(0).hide();
 
   if (FLAG == "Last") {
-    TempElderUrgentNoti = notiLast.filter((x) => x.ID == ID)[0];
+    TempElderUrgentNoti = notiLast.filter(
+      (x) => x.ID == ID && x.EMC_DATE == EMC_DATE
+    )[0];
   } else {
-    TempElderUrgentNoti = notiCurrent.filter((x) => x.ID == ID)[0];
+    TempElderUrgentNoti = notiCurrent.filter(
+      (x) => x.ID == ID && x.EMC_DATE == EMC_DATE
+    )[0];
   }
-
+  console.log(TempElderUrgentNoti);
   renderElderCardNotificationDetailUrgentNoti(TempElderUrgentNoti);
   MarkerUrgentNotiPage(
     TempElderUrgentNoti["ELDER_NAME"],
@@ -1312,7 +1366,8 @@ $("#urgent_noti_page .content .backformap .backformap_urgent_detail_btn").on(
   function () {
     initialNotificationDetailUrgentNotiPageFunc(
       TempElderUrgentNoti["ID"],
-      TempElderUrgentNoti["EMC_FLAG"]
+      TempElderUrgentNoti["EMC_FLAG"],
+      TempElderUrgentNoti["EMC_DATE"]
     );
   }
 );
