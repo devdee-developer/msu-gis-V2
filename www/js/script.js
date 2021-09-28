@@ -17,7 +17,8 @@ $(function () {
   //       console.error(error);
   //     }
   //   );
-  $('.profile_header_wrapper img').attr('src','')
+  $('.header_notification').hide()
+  $('.profile_header_wrapper img').remove()
   if (!token.getUserToken()) {
     changePage("splash_page", function () {});
   } else {
