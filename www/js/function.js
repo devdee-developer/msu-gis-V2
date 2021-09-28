@@ -24,6 +24,7 @@ function initSlideHomePage() {
   });
 }
 function initSlideNewsPage() {
+  $(".home_slider_wrapper .swiper-wrapper").html("");
   $(".news_slider_wrapper .swiper-wrapper").html("");
   getNews().then((news) => {
     clearInterval(swiper_timer2);
@@ -83,6 +84,8 @@ function getNews() {
       JSON.stringify({ token: token.getUserToken() }),
       (success) => {
         console.log(success)
+        $(".home_slider_wrapper .swiper-wrapper").html("");
+        $(".news_slider_wrapper .swiper-wrapper").html("");
         news_data_list = success.data.newsList.map((row, index) => ({
           ...row,
           newsno: index + 1,
@@ -92,7 +95,7 @@ function getNews() {
         if (rapidNews) {
           $(".home_knowledge_base").attr("newsno", rapidNews.newsno);
           $(".home_knowledge_base").html(
-            ` <i class="fa fa-comment-alt comment_icon_home"></i>${rapidNews.header}`
+            ` <i class="fa fa-comment-alt comment_icon_home"></i><p>${rapidNews.header}</p>`
           );
           $(".home_knowledge_base").on("click", function () {
             let newsno = $(this).attr("newsno");
@@ -214,6 +217,7 @@ function setProfile() {
 
       return return_text;
     }
+    console.log(vhv_tr_vhv)
     if (vhv.VHV_SEX == 2) {
       $(".profile_header_wrapper img").attr(
         "src",
@@ -1615,10 +1619,14 @@ function getInitial() {
         });
         setProfile();
       } else {
+        alert("เกิดข้อผิดพลาด")
+        $("#logout").click()
         _error("เกิดข้อผิดพลาด9");
       }
     },
     error: function (e) {
+      alert("เกิดข้อผิดพลาด")
+      $("#logout").click()
       _error("เกิดข้อผิดพลาด10");
     },
   });
