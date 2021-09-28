@@ -17,7 +17,8 @@ $(function () {
   //       console.error(error);
   //     }
   //   );
-  $('.profile_header_wrapper img').attr('src','')
+  $('.header_notification').hide()
+  $('.profile_header_wrapper img').remove()
   if (!token.getUserToken()) {
     changePage("splash_page", function () {});
   } else {
@@ -58,9 +59,23 @@ $(function () {
   $(".menu_home_page").on("click", function () {
     changePage("home_page", function () {
       calHomeButtonPosition();
-      loading.show();
-      swiper.destroy();
-      initSlideHomePage();
+      // loading.show();
+      // swiper.destroy();
+      // initSlideHomePage();
+      clearInterval(swiper_timer);
+      swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        speed: 500,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+      swiper_timer = setInterval(function () {
+        swiper.slideNext();
+      }, 5000);
     });
   });
   $(".menu_contact_page").on("click", function () {
@@ -87,9 +102,7 @@ $(function () {
         scrollTop: $(".content").offset().top
       },0);
       loading.show();
-      setTimeout(function () {
         initSlideNewsPage();
-      }, 500);
     });
   });
  
