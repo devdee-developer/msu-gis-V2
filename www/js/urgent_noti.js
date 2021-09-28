@@ -114,120 +114,120 @@ function initialUrgentNotiPageFunc() {
     });
   });
   disabledElderUrgentNotiPageFunc();
-  // document.addEventListener("deviceready", onDeviceReady, false);
-  // function onDeviceReady() {
-  //   navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-  //     enableHighAccuracy: true,
-  //   });
-  // }
-  // function onSuccess(pos) {
-  //   CurrentPosUrgentNoti = pos;
-  //   queryALL("VHV_TR_ELDER", function (res) {
-  //     ListElderUrgentNoti = res;
-  //     $.each(ListElderUrgentNoti, function (index, row) {
-  //       if (row.ELDER_LAT != "null" && row.ELDER_LONG != "null") {
-  //         row.DISTANCE = getDistanceFromLatLonInKm(
-  //           CurrentPosUrgentNoti.coords.latitude,
-  //           CurrentPosUrgentNoti.coords.longitude,
-  //           row.ELDER_LAT,
-  //           row.ELDER_LONG
-  //         ).toFixed(1);
-  //       } else {
-  //         row.DISTANCE = "N/A";
-  //       }
-  //       row.CURRENT_LAT = CurrentPosUrgentNoti.coords.latitude;
-  //       row.CURRENT_LONG = CurrentPosUrgentNoti.coords.longitude;
-  //     });
-  //     $("#urgent_noti_page .content .mapContent .swiper_elder_content").empty();
-  //     $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
-  //       renderElderCardUrgentNoti(ListElderUrgentNoti)
-  //     );
-  //     // กดเลือกผู้สูงอายุตรง map
-  //     $("#urgent_noti_page .swiper_elder_content .notifications-card-body").on(
-  //       "click",
-  //       function () {
-  //         if (markerDestination) {
-  //           markerDestination.setOptions({ visible: false });
-  //         }
-  //         if (infowindowDestination) {
-  //           infowindowDestination.close();
-  //         }
-  //         let ID = $(this).attr("ELDER_ID");
-  //         TempElderUrgentNoti = ListElderUrgentNoti.filter(
-  //           (x) => x.ID == ID
-  //         )[0];
-  //         $("#urgent_noti_page .notifications-card-body").removeClass("active");
-  //         if (
-  //           TempElderUrgentNoti["ELDER_LAT"] != "null" &&
-  //           TempElderUrgentNoti["ELDER_LONG"]
-  //         ) {
-  //           $(this).addClass("active");
-  //           MarkerUrgentNotiPage(
-  //             TempElderUrgentNoti["ELDER_NAME"],
-  //             new google.maps.LatLng(
-  //               TempElderUrgentNoti["ELDER_LAT"],
-  //               TempElderUrgentNoti["ELDER_LONG"]
-  //             )
-  //           );
-  //           enabledElderUrgentNotiPageFunc();
-  //         }
-  //       }
-  //     );
-  //     initSlideUrgentNotiPage();
-  //   });
-  // }
-  // function onError(error) {}
-  queryALL("VHV_TR_ELDER", function (res) {
-    ListElderUrgentNoti = res;
-    $.each(ListElderUrgentNoti, function (index, row) {
-      if (row.ELDER_LAT != "null" && row.ELDER_LONG != "null") {
-        row.DISTANCE = getDistanceFromLatLonInKm(
-          16.442611448372272,
-          102.82001846528836,
-          row.ELDER_LAT,
-          row.ELDER_LONG
-        ).toFixed(1);
-      } else {
-        row.DISTANCE = "N/A";
-      }
-      row.CURRENT_LAT = 16.442611448372272;
-      row.CURRENT_LONG = 102.82001846528836;
+  document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady() {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+      enableHighAccuracy: true,
     });
-    $("#urgent_noti_page .content .mapContent .swiper_elder_content").empty();
-    $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
-      renderElderCardUrgentNoti(ListElderUrgentNoti)
-    );
-    // กดเลือกผู้สูงอายุตรง map
-    $("#urgent_noti_page .swiper_elder_content .notifications-card-body").on(
-      "click",
-      function () {
-        if (markerDestination) {
-          markerDestination.setOptions({ visible: false });
+  }
+  function onSuccess(pos) {
+    CurrentPosUrgentNoti = pos;
+    queryALL("VHV_TR_ELDER", function (res) {
+      ListElderUrgentNoti = res;
+      $.each(ListElderUrgentNoti, function (index, row) {
+        if (row.ELDER_LAT != "null" && row.ELDER_LONG != "null") {
+          row.DISTANCE = getDistanceFromLatLonInKm(
+            CurrentPosUrgentNoti.coords.latitude,
+            CurrentPosUrgentNoti.coords.longitude,
+            row.ELDER_LAT,
+            row.ELDER_LONG
+          ).toFixed(1);
+        } else {
+          row.DISTANCE = "N/A";
         }
-        if (infowindowDestination) {
-          infowindowDestination.close();
+        row.CURRENT_LAT = CurrentPosUrgentNoti.coords.latitude;
+        row.CURRENT_LONG = CurrentPosUrgentNoti.coords.longitude;
+      });
+      $("#urgent_noti_page .content .mapContent .swiper_elder_content").empty();
+      $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
+        renderElderCardUrgentNoti(ListElderUrgentNoti)
+      );
+      // กดเลือกผู้สูงอายุตรง map
+      $("#urgent_noti_page .swiper_elder_content .notifications-card-body").on(
+        "click",
+        function () {
+          if (markerDestination) {
+            markerDestination.setOptions({ visible: false });
+          }
+          if (infowindowDestination) {
+            infowindowDestination.close();
+          }
+          let ID = $(this).attr("ELDER_ID");
+          TempElderUrgentNoti = ListElderUrgentNoti.filter(
+            (x) => x.ID == ID
+          )[0];
+          $("#urgent_noti_page .notifications-card-body").removeClass("active");
+          if (
+            TempElderUrgentNoti["ELDER_LAT"] != "null" &&
+            TempElderUrgentNoti["ELDER_LONG"]
+          ) {
+            $(this).addClass("active");
+            MarkerUrgentNotiPage(
+              TempElderUrgentNoti["ELDER_NAME"],
+              new google.maps.LatLng(
+                TempElderUrgentNoti["ELDER_LAT"],
+                TempElderUrgentNoti["ELDER_LONG"]
+              )
+            );
+            enabledElderUrgentNotiPageFunc();
+          }
         }
-        let ID = $(this).attr("ELDER_ID");
-        TempElderUrgentNoti = ListElderUrgentNoti.filter((x) => x.ID == ID)[0];
-        $("#urgent_noti_page .notifications-card-body").removeClass("active");
-        if (
-          TempElderUrgentNoti["ELDER_LAT"] != "null" &&
-          TempElderUrgentNoti["ELDER_LONG"]
-        ) {
-          $(this).addClass("active");
-          MarkerUrgentNotiPage(
-            TempElderUrgentNoti["ELDER_NAME"],
-            new google.maps.LatLng(
-              TempElderUrgentNoti["ELDER_LAT"],
-              TempElderUrgentNoti["ELDER_LONG"]
-            )
-          );
-          enabledElderUrgentNotiPageFunc();
-        }
-      }
-    );
-    initSlideUrgentNotiPage();
-  });
+      );
+      initSlideUrgentNotiPage();
+    });
+  }
+  function onError(error) {}
+  // queryALL("VHV_TR_ELDER", function (res) {
+  //   ListElderUrgentNoti = res;
+  //   $.each(ListElderUrgentNoti, function (index, row) {
+  //     if (row.ELDER_LAT != "null" && row.ELDER_LONG != "null") {
+  //       row.DISTANCE = getDistanceFromLatLonInKm(
+  //         16.442611448372272,
+  //         102.82001846528836,
+  //         row.ELDER_LAT,
+  //         row.ELDER_LONG
+  //       ).toFixed(1);
+  //     } else {
+  //       row.DISTANCE = "N/A";
+  //     }
+  //     row.CURRENT_LAT = 16.442611448372272;
+  //     row.CURRENT_LONG = 102.82001846528836;
+  //   });
+  //   $("#urgent_noti_page .content .mapContent .swiper_elder_content").empty();
+  //   $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
+  //     renderElderCardUrgentNoti(ListElderUrgentNoti)
+  //   );
+  //   // กดเลือกผู้สูงอายุตรง map
+  //   $("#urgent_noti_page .swiper_elder_content .notifications-card-body").on(
+  //     "click",
+  //     function () {
+  //       if (markerDestination) {
+  //         markerDestination.setOptions({ visible: false });
+  //       }
+  //       if (infowindowDestination) {
+  //         infowindowDestination.close();
+  //       }
+  //       let ID = $(this).attr("ELDER_ID");
+  //       TempElderUrgentNoti = ListElderUrgentNoti.filter((x) => x.ID == ID)[0];
+  //       $("#urgent_noti_page .notifications-card-body").removeClass("active");
+  //       if (
+  //         TempElderUrgentNoti["ELDER_LAT"] != "null" &&
+  //         TempElderUrgentNoti["ELDER_LONG"]
+  //       ) {
+  //         $(this).addClass("active");
+  //         MarkerUrgentNotiPage(
+  //           TempElderUrgentNoti["ELDER_NAME"],
+  //           new google.maps.LatLng(
+  //             TempElderUrgentNoti["ELDER_LAT"],
+  //             TempElderUrgentNoti["ELDER_LONG"]
+  //           )
+  //         );
+  //         enabledElderUrgentNotiPageFunc();
+  //       }
+  //     }
+  //   );
+  //   initSlideUrgentNotiPage();
+  // });
 }
 function renderElderCardUrgentNoti(elderData) {
   let slideHTML = "";
@@ -1080,20 +1080,20 @@ function mapDataNotifications(res, row, EMC_NAME, FLAG) {
   res.ADMIN_SEND = row.ADMIN_SEND;
   if (res.ELDER_LAT != "null" && res.ELDER_LONG != "null") {
     res.DISTANCE = getDistanceFromLatLonInKm(
-      // CurrentPosUrgentNoti.coords.latitude,
-      // CurrentPosUrgentNoti.coords.longitude,
-      16.442611448372272,
-      102.82001846528836,
+      CurrentPosUrgentNoti.coords.latitude,
+      CurrentPosUrgentNoti.coords.longitude,
+      // 16.442611448372272,
+      // 102.82001846528836,
       res.ELDER_LAT,
       res.ELDER_LONG
     ).toFixed(1);
   } else {
     res.DISTANCE = "N/A";
   }
-  // res.CURRENT_LAT = CurrentPosUrgentNoti.coords.latitude;
-  // res.CURRENT_LONG = CurrentPosUrgentNoti.coords.longitude;
-  res.CURRENT_LAT = 16.442611448372272;
-  res.CURRENT_LONG = 102.82001846528836;
+  res.CURRENT_LAT = CurrentPosUrgentNoti.coords.latitude;
+  res.CURRENT_LONG = CurrentPosUrgentNoti.coords.longitude;
+  // res.CURRENT_LAT = 16.442611448372272;
+  // res.CURRENT_LONG = 102.82001846528836;
   res.EMC_NAME = EMC_NAME;
   return res;
 }
