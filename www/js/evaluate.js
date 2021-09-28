@@ -37,19 +37,37 @@ $(function () {
       }, 500);
     });
     queryALL("VHV_MA_GIS_PROVINCE", function (res) {
-      $("#evaluate_page .content .collapse-filter #evaSearchProvince").val(
-        "จังหวัด " + res[0]["GIS_PROVINCENAME"]
-      );
+      if(res){
+        $("#evaluate_page .content .collapse-filter #evaSearchProvince").val(
+          "จังหวัด " + res[0]["GIS_PROVINCENAME"]
+        );
+      }else{
+        $("#evaluate_page .content .collapse-filter #evaSearchProvince").val(
+          "จังหวัด "
+        );
+      }
     });
     queryALL("VHV_MA_GIS_TUMBOL", function (res) {
-      $("#evaluate_page .content .collapse-filter #evaSearchTumbol").val(
-        "ตำบล " + res[0]["GIS_TUMBOLNAME"]
-      );
+      if(res){
+        $("#evaluate_page .content .collapse-filter #evaSearchTumbol").val(
+          "ตำบล " + res[0]["GIS_TUMBOLNAME"]
+        );
+      }else{
+        $("#evaluate_page .content .collapse-filter #evaSearchTumbol").val(
+          "ตำบล "
+        );
+      }
     });
     queryALL("VHV_MA_SHPH_MOO", function (res) {
-      $("#evaluate_page .content .collapse-filter #evaSearchMoo").val(
-        "หมู่ที่ " + res[0]["SHPH_MOO"]
-      );
+      if(res){
+        $("#evaluate_page .content .collapse-filter #evaSearchMoo").val(
+          "หมู่ที่ " + res[0]["SHPH_MOO"]
+        );
+      }else{
+        $("#evaluate_page .content .collapse-filter #evaSearchMoo").val(
+          "หมู่ที่ "
+        );
+      }
     });
   }
   $("#evaluate_page .collapse-filter .collapse-filter-header").click(
