@@ -53,19 +53,41 @@ $(function () {
         }
       }, 500);
       queryALL("VHV_MA_GIS_PROVINCE", function (res) {
-        $("#visit_page .content .collapse-filter #visitSearchProvince").val(
-          "จังหวัด " + res[0]["GIS_PROVINCENAME"]
-        );
+        if(res){
+          $("#visit_page .content .collapse-filter #visitSearchProvince").val(
+            "จังหวัด " + res[0]["GIS_PROVINCENAME"]
+          );
+        }else{
+          $("#visit_page .content .collapse-filter #visitSearchProvince").val(
+            "จังหวัด "
+          );
+        }
+        
       });
+      
       queryALL("VHV_MA_GIS_TUMBOL", function (res) {
-        $("#visit_page .content .collapse-filter #visitSearchTumbol").val(
-          "ตำบล " + res[0]["GIS_TUMBOLNAME"]
-        );
+        if(res){
+          $("#visit_page .content .collapse-filter #visitSearchTumbol").val(
+            "ตำบล " + res[0]["GIS_TUMBOLNAME"]
+          );
+        }else{
+          $("#visit_page .content .collapse-filter #visitSearchTumbol").val(
+            "ตำบล "
+          );
+        }
+       
       });
       queryALL("VHV_MA_SHPH_MOO", function (res) {
-        $("#visit_page .content .collapse-filter #visitSearchMoo").val(
-          "หมู่ที่ " + res[0]["SHPH_MOO"]
-        );
+        if(res){
+          $("#visit_page .content .collapse-filter #visitSearchMoo").val(
+            "หมู่ที่ " + res[0]["SHPH_MOO"]
+          );
+        }else{
+          $("#visit_page .content .collapse-filter #visitSearchMoo").val(
+            "หมู่ที่ "
+          );
+        }
+        
       });
     })
    

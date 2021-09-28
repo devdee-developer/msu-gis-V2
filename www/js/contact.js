@@ -41,19 +41,40 @@ $(function () {
   function initialContactPage() {
     renderElderListContact(function (elderList) {
       queryALL("VHV_MA_GIS_PROVINCE", function (res) {
-        $("#contact_page .content .collapse-filter #visitSearchProvince").val(
-          "จังหวัด " + res[0]["GIS_PROVINCENAME"]
-        );
+        if(res){
+          $("#contact_page .content .collapse-filter #visitSearchProvince").val(
+            "จังหวัด " + res[0]["GIS_PROVINCENAME"]
+          );
+        }else{
+          $("#contact_page .content .collapse-filter #visitSearchProvince").val(
+            "จังหวัด "
+          );
+        }
+        
       });
       queryALL("VHV_MA_GIS_TUMBOL", function (res) {
-        $("#contact_page .content .collapse-filter #visitSearchTumbol").val(
-          "ตำบล " + res[0]["GIS_TUMBOLNAME"]
-        );
+        if(res){
+          $("#contact_page .content .collapse-filter #visitSearchTumbol").val(
+            "ตำบล " + res[0]["GIS_TUMBOLNAME"]
+          );
+        }else{
+          $("#contact_page .content .collapse-filter #visitSearchTumbol").val(
+            "ตำบล "
+          );
+        }
+       
       });
       queryALL("VHV_MA_SHPH_MOO", function (res) {
-        $("#contact_page .content .collapse-filter #visitSearchMoo").val(
-          "หมู่ที่ " + res[0]["SHPH_MOO"]
-        );
+        if(res){
+          $("#contact_page .content .collapse-filter #visitSearchMoo").val(
+            "หมู่ที่ " + res[0]["SHPH_MOO"]
+          );
+        }else{
+          $("#contact_page .content .collapse-filter #visitSearchMoo").val(
+            "หมู่ที่ "
+          );
+        }
+        
       });
     });
   }
