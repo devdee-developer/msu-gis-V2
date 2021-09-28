@@ -1,6 +1,6 @@
 var swiper_knowledge;
 let knowledgeArr;
-let knowledgeCategoryArr;
+let knowledgeCategoryArr = [];
 let knowledgeQty = 0;
 let arrKm;
 $(function () {
@@ -12,12 +12,12 @@ $(function () {
       if (status) {
         getKnowledge()
           .then((res) => {
-            knowledgeArr = res.Data.data.map((row, index) => ({
+            knowledgeArr = res.data.data.map((row, index) => ({
               ...row,
               knowledgeNo: index + 1,
             }));
 
-            knowledgeCategoryArr = res.Data.categoryList;
+            knowledgeCategoryArr = res.data.categoryList;
             loading.hide();
             changePage("knowledge_page", function () {
               initialKnowledgePageFunc();
