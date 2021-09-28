@@ -116,22 +116,38 @@ function getNews() {
             `<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`
           );
         });
-        $(
-          ".home_slider_wrapper .swiper-slide.news,.home_slider_wrapper .swiper-slide.news img"
-        ).on("click", function () {
-          let newsno = $(this).attr("newsno");
-          if (newsno > 0) {
-            gotoNewsDetailPage(newsno, "home_page");
-          }
-        });
-        $(
-          ".news_slider_wrapper .swiper-slide.news,.news_slider_wrapper .swiper-slide.news img"
-        ).on("click", function () {
-          let newsno = $(this).attr("newsno");
-          if (newsno > 0) {
-            gotoNewsDetailPage(newsno, "news_page");
-          }
-        });
+        if(slideNews.length!=0){
+          $(
+            ".home_slider_wrapper .swiper-slide.news,.home_slider_wrapper .swiper-slide.news img"
+          ).on("click", function () {
+            let newsno = $(this).attr("newsno");
+            if (newsno > 0) {
+              gotoNewsDetailPage(newsno, "home_page");
+            }
+          });
+          $(
+            ".news_slider_wrapper .swiper-slide.news,.news_slider_wrapper .swiper-slide.news img"
+          ).on("click", function () {
+            let newsno = $(this).attr("newsno");
+            if (newsno > 0) {
+              gotoNewsDetailPage(newsno, "news_page");
+            }
+          });
+        }else{
+          news_data_list = [
+            { banner: "img/no_news.jpg" },
+            { banner: "img/no_news2.jpg" },
+          ];
+          news_data_list.map((row) => {
+            $(".home_slider_wrapper .swiper-wrapper").append(
+              `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+            );
+            $(".news_slider_wrapper .swiper-wrapper").append(
+              `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+            );
+          });
+        }
+        
         loading.hide();
         resolve({ status: true, data: news_data_list });
       },
