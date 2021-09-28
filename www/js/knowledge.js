@@ -32,7 +32,7 @@ $(function () {
             });
           });
       } else {
-        alert("No internet Available !!");
+        alert("กรุณาเชื่อมต่ออินเตอร์เน็ต");
         loading.hide();
       }
     });
