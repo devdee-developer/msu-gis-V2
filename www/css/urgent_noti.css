@@ -73,6 +73,8 @@
 }
 .gm-style-iw-d {
   padding: unset !important;
+  margin: -7px;
+  margin-right: -11px;
 }
 .gm-style .gm-style-iw-d::-webkit-scrollbar-track,
 .gm-style .gm-style-iw-d::-webkit-scrollbar-track-piece {
