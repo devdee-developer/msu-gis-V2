@@ -6,7 +6,9 @@ function changePage(_page, _callback = function () {}) {
 
 function initSlideHomePage() {
   $(".home_slider_wrapper .swiper-wrapper").html("");
+  loading.show();
   getNews().then((news) => {
+    loading.hide();
     clearInterval(swiper_timer);
     swiper = new Swiper(".mySwiper", {
       slidesPerView: 1,
@@ -26,7 +28,10 @@ function initSlideHomePage() {
 function initSlideNewsPage() {
   $(".home_slider_wrapper .swiper-wrapper").html("");
   $(".news_slider_wrapper .swiper-wrapper").html("");
+  loading.show();
+
   getNews().then((news) => {
+    loading.hide();
     clearInterval(swiper_timer2);
     swiper2 = new Swiper(".mySwiper2", {
       slidesPerView: 1,
@@ -48,7 +53,7 @@ function initSlideNewsPage() {
         $(".content ul.news_item").append(renderNewsCard(row, index))
       );
     }
-
+    
     $(".content ul.news_item li").on("click", function () {
       let newsno = $(this).attr("newsno");
       if (newsno > 0) {
@@ -76,7 +81,6 @@ function gotoNewsDetailPage(newsno, from_page) {
   });
 }
 function getNews() {
-  loading.show();
   return new Promise((resolve, reject) => {
     callAPI(
       `${api_base_url}/getNews`,
@@ -147,8 +151,6 @@ function getNews() {
             );
           });
         }
-        
-        loading.hide();
         resolve({ status: true, data: news_data_list });
       },
       (error) => {
@@ -406,7 +408,7 @@ async function callAPI(enpoint, method, data, _success, _error) {
     _error("เกิดข้อผิดพลาด8");
   }
 }
-function getInitial() {
+function getInitial(_callback) {
   $.ajax({
     url: api_base_url + "/getIntial",
     type: "POST",
@@ -418,6 +420,7 @@ function getInitial() {
     },
     success: function (response) {
       console.log(response);
+      
       //  response.data = CryptoJS.AES.decrypt(response.data, "MsU2021APPlcation");
       response.data = CryptoJSAesJson.decrypt(response.data, secret_key_aes);
       var data = response.data;
@@ -1635,6 +1638,7 @@ function getInitial() {
         $("#logout").click()
         _error("เกิดข้อผิดพลาด9");
       }
+      _callback&&_callback()
     },
     error: function (e) {
       alert("เกิดข้อผิดพลาด")
