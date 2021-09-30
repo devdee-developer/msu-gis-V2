@@ -84,17 +84,40 @@ function initialUrgentNotiPageFunc() {
   imgPreviewArr = [];
   telStaffArr = [];
   SaveData = {};
-  queryALL("VHV_TR_EMERGENCY", function (res) {
-    let countEmc = 0;
-    $.each(res, function (key, row) {
-      if (row["DELETE_FLAG"] == "0") {
-        countEmc += 1;
+  // queryALL("VHV_TR_EMERGENCY", function (res) {
+  //   let countEmc = 0;
+  //   $.each(res, function (key, row) {
+  //     if (row["DELETE_FLAG"] == "0") {
+  //       countEmc += 1;
+  //     }
+  //     $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn p").text(
+  //       countEmc
+  //     );
+  //   });
+  // });
+  let countEmc = 0;
+  callAPI(
+    `${api_base_url}/getCountEmergency`,
+    "POST",
+    JSON.stringify({ token: token.getUserToken() }),
+    (res) => {
+      if (res.data) {
+        countEmc = res.data;
+        $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn p").text(
+          countEmc
+        );
+      } else {
+        $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn p").text(
+          countEmc
+        );
       }
+    },
+    (err) => {
       $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn p").text(
         countEmc
       );
-    });
-  });
+    }
+  );
   queryALL("VHV_MA_EMCTYPE", function (res) {
     ListEmcType = res;
     $("#type_urgent").append(
@@ -1016,7 +1039,6 @@ function initialNotificationUrgentNotiPageFunc() {
 function renderNotificationsList(arr, id) {
   let NotificationsListHTML = "";
   $.each(arr, function (index, row) {
-    // console.log(row);
     let answered = "";
     let answeredText = "รอตอบรับ";
     let dateShow = dateStringFormat(row.EMC_DATE);
@@ -1030,7 +1052,7 @@ function renderNotificationsList(arr, id) {
     NotificationsListHTML =
       NotificationsListHTML +
       `<li>
-      <div class="notifications-card-body${answered}" onclick='selectElderNotifications(${row.ID},"${row.EMC_FLAG}","${row.EMC_DATE}")'>
+      <div class="notifications-card-body${answered}" onclick='selectElderNotifications(${row.ID},"${row.EMC_FLAG}","${row.EMC_DATE}","${row.EMC_GUID}")'>
         <img class="card-body-thumbnail" src="${row.ELDER_AVATAR}" />
         <div class="card-body-content">
           <h4 class="name">${row.ELDER_NAME}</h4>
@@ -1095,20 +1117,94 @@ function mapDataNotifications(res, row, EMC_NAME, FLAG) {
   // res.CURRENT_LAT = 16.442611448372272;
   // res.CURRENT_LONG = 102.82001846528836;
   res.EMC_NAME = EMC_NAME;
+  res.EMC_GUID = row.GUID;
   return res;
 }
-function selectElderNotifications(ID, FLAG, EMC_DATE) {
+function selectElderNotifications(ID, FLAG, EMC_DATE, EMC_GUID) {
   changePage("urgent_noti_page", function () {
-    initialNotificationDetailUrgentNotiPageFunc(ID, FLAG, EMC_DATE);
+    loading.show();
+    initialNotificationDetailUrgentNotiPageFunc(ID, FLAG, EMC_DATE, EMC_GUID);
   });
 }
 // เปลี่ยนหน้าไป notifications_urgent_noti_page
 $("#urgent_noti_page .urgent_noti_page_header .noti_header_btn").on(
   "click",
   function () {
-    changePage("notifications_urgent_noti_page", function () {
-      initialNotificationUrgentNotiPageFunc();
-    });
+    loading.show();
+    callAPI(
+      `${api_base_url}/getAllEmergency`,
+      "POST",
+      JSON.stringify({ token: token.getUserToken() }),
+      (res) => {
+        if (res.status == true) {
+          db.transaction(function (tx) {
+            tx.executeSql("DELETE FROM VHV_TR_EMERGENCY ");
+          });
+          db.transaction(function (tx) {
+            $.each(res.data, function (index, row) {
+              tx.executeSql(
+                "INSERT INTO VHV_TR_EMERGENCY (ID,GUID,VHV_ID,ELDER_ID,EMC_DATE,EMC_TYPE,EMC_TOPIC,EMC_DESC,EMC_PIC1,EMC_PIC2,EMC_PIC3,EMC_PIC4,EMC_PIC5,ADMIN_ID,ADMIN_DATE,ADMIN_DESC,ADMIN_SEND,DELETE_FLAG,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) VALUES (" +
+                  row.ID +
+                  ",'" +
+                  row.GUID +
+                  "','" +
+                  row.VHV_ID +
+                  "','" +
+                  row.ELDER_ID +
+                  "','" +
+                  row.EMC_DATE +
+                  "','" +
+                  row.EMC_TYPE +
+                  "','" +
+                  row.EMC_TOPIC +
+                  "','" +
+                  row.EMC_DESC +
+                  "','null','null','null','null','null','" +
+                  row.ADMIN_ID +
+                  "','" +
+                  row.ADMIN_DATE +
+                  "','" +
+                  "null','" +
+                  row.ADMIN_SEND +
+                  "','" +
+                  row.DELETE_FLAG +
+                  "','" +
+                  row.CREATE_USER +
+                  "','" +
+                  row.CREATE_DATE +
+                  "','" +
+                  row.UPDATE_USER +
+                  "','" +
+                  row.UPDATE_DATE +
+                  "')",
+                [],
+                function (tx, results) {
+                  // console.log("success", results);
+                },
+                function (tx, error) {
+                  // console.log("unsuccess", error);
+                }
+              );
+            });
+          });
+          loading.hide();
+          changePage("notifications_urgent_noti_page", function () {
+            initialNotificationUrgentNotiPageFunc();
+          });
+        } else {
+          loading.hide();
+          changePage("notifications_urgent_noti_page", function () {
+            initialNotificationUrgentNotiPageFunc();
+          });
+        }
+      },
+      (err) => {
+        loading.hide();
+        changePage("notifications_urgent_noti_page", function () {
+          initialNotificationUrgentNotiPageFunc();
+        });
+      }
+    );
   }
 );
 // ปุ่ม back
@@ -1223,7 +1319,12 @@ function getSlideIndexByELDER_ID(ID) {
 
 /* ----------------------------------------------------------------------------- start : notifications_detail_urgent_noti_page ----------------------------------------------------------------------------- */
 
-function initialNotificationDetailUrgentNotiPageFunc(ID, FLAG, EMC_DATE) {
+function initialNotificationDetailUrgentNotiPageFunc(
+  ID,
+  FLAG,
+  EMC_DATE,
+  EMC_GUID
+) {
   $(".content").animate(
     {
       scrollTop: $(".content").offset().top,
@@ -1256,7 +1357,7 @@ function initialNotificationDetailUrgentNotiPageFunc(ID, FLAG, EMC_DATE) {
       (x) => x.ID == ID && x.EMC_DATE == EMC_DATE
     )[0];
   }
-  console.log(TempElderUrgentNoti);
+
   renderElderCardNotificationDetailUrgentNoti(TempElderUrgentNoti);
   MarkerUrgentNotiPage(
     TempElderUrgentNoti["ELDER_NAME"],
@@ -1294,7 +1395,49 @@ function initialNotificationDetailUrgentNotiPageFunc(ID, FLAG, EMC_DATE) {
   $("#urgent_noti_page .UrgentDetailElder #urgentDetailDiseaseDetail").text(
     TempElderUrgentNoti["EMC_DESC"]
   );
-  renderElderImgNotificationDetailUrgentNoti(TempElderUrgentNoti["EMC_PIC"]);
+  if (TempElderUrgentNoti.EMC_PIC.length == 0) {
+    callAPI(
+      `${api_base_url}/getAllEmergency`,
+      "POST",
+      JSON.stringify({ token: token.getUserToken(), GUID: EMC_GUID }),
+      (res) => {
+        if (res.status) {
+          // console.log(res.data[0]["EMC_PIC1"]);
+          res.data[0]["EMC_PIC1"] != "null"
+            ? TempElderUrgentNoti.EMC_PIC.push(res.data[0]["EMC_PIC1"])
+            : "";
+          res.data[0]["EMC_PIC2"] != "null"
+            ? TempElderUrgentNoti.EMC_PIC.push(res.data[0]["EMC_PIC2"])
+            : "";
+          res.data[0]["EMC_PIC3"] != "null"
+            ? TempElderUrgentNoti.EMC_PIC.push(res.data[0]["EMC_PIC3"])
+            : "";
+          res.data[0]["EMC_PIC4"] != "null"
+            ? TempElderUrgentNoti.EMC_PIC.push(res.data[0]["EMC_PIC4"])
+            : "";
+          res.data[0]["EMC_PIC5"] != "null"
+            ? TempElderUrgentNoti.EMC_PIC.push(res.data[0]["EMC_PIC5"])
+            : "";
+          loading.hide();
+          renderElderImgNotificationDetailUrgentNoti(
+            TempElderUrgentNoti["EMC_PIC"]
+          );
+        } else {
+          loading.hide();
+          renderElderImgNotificationDetailUrgentNoti(
+            TempElderUrgentNoti["EMC_PIC"]
+          );
+        }
+      },
+      (err) => {
+        loading.hide();
+        renderElderImgNotificationDetailUrgentNoti(
+          TempElderUrgentNoti["EMC_PIC"]
+        );
+      }
+    );
+  }
+  // renderElderImgNotificationDetailUrgentNoti(TempElderUrgentNoti["EMC_PIC"]);
 
   $("#urgent_noti_page .UrgentDetailElder #edit_title_text").addClass(
     "edit_title_text"
@@ -1386,7 +1529,8 @@ $("#urgent_noti_page .content .backformap .backformap_urgent_detail_btn").on(
     initialNotificationDetailUrgentNotiPageFunc(
       TempElderUrgentNoti["ID"],
       TempElderUrgentNoti["EMC_FLAG"],
-      TempElderUrgentNoti["EMC_DATE"]
+      TempElderUrgentNoti["EMC_DATE"],
+      TempElderUrgentNoti["EMC_GUID"]
     );
   }
 );
