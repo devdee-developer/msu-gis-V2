@@ -46,8 +46,10 @@ $(function () {
         loading.hide();
         changePage("home_page", function () {
           calHomeButtonPosition();
-          initSlideHomePage();
-          getInitial();
+          loading.show()
+          getInitial(function(){
+            initSlideHomePage();
+          });
         });
       },
       function (err) {
