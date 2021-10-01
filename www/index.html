@@ -6345,5 +6345,20 @@
     <script src="js/news.js"></script>
     <script src="js/knowledge.js"></script>
     <script src="js/sync-data.js"></script>
+        <script>
+      document.addEventListener('backbutton', function(e) { 
+        if($(".pages:visible").attr("id")=="home_page"){
+          var c = confirm("คุณต้องการออกจากแอปใช่หรือไม่?");
+          if(c){
+            navigator.app.exitApp();
+          }else{
+            e.preventDefault();
+            return false;
+          }
+        }else{
+          $(".pages:visible").find(".back_header_btn").click();
+        }
+      });
+    </script>
   </body>
 </html>
