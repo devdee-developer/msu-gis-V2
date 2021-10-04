@@ -131,8 +131,8 @@ $(function () {
     }, 500);
   });
   $(window).resize(function () {
-    initSlideHomePage();
-    calHomeButtonPosition();
+    // initSlideHomePage();
+    // calHomeButtonPosition();
   });
   $(".modal-dismiss").on("click", function () {
     $(".modal").hide();
