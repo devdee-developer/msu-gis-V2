@@ -20,7 +20,9 @@
      <allow-navigation href="*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="AndroidXEnabled" value="true" />
         <preference name="android-targetSdkVersion" value="30" />
+        <resource-file src="google-services.json" target="app/google-services.json" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

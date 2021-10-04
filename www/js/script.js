@@ -36,6 +36,10 @@ $(function () {
     });
   });
   $(".btn_submit_login").on("click", function () {
+    cordova.plugins.firebase.messaging.getToken().then(function(token) {
+      console.log("Got device token: ", token);
+  });
+  
     let username = $("#username").val();
     let password = $("#password").val();
     loading.show();
