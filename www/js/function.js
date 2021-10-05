@@ -339,7 +339,7 @@ function getAccessToken(_success, _error) {
     });
   });
 }
-async function login(username, password, lat, long, _success, _error) {
+async function login(username, password, lat, long,noti_token, _success, _error) {
   try {
     await getAccessToken();
     $.ajax({
@@ -356,10 +356,12 @@ async function login(username, password, lat, long, _success, _error) {
         pass: password,
         lat: lat,
         long: long,
+        noti_token:noti_token
       },
       success: function (response) {
         console.log(response);
         if (response.status == true) {
+          localStorage.setItem("noti_token", noti_token);
           localStorage.setItem("user_token", response.data);
           _success(response);
         } else {

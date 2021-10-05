@@ -24,6 +24,28 @@ $(function () {
     changePage("splash_page", function () {});
   } else {
     changePage("home_page", function () {
+      if(!token.getDeviceToken()){
+        cordova.plugins.firebase.messaging.getToken().then(function(token) {
+
+          let postData = {
+            noti_token: token,
+            token: token.getUserToken(),
+          };
+          callAPI(
+            `${api_base_url}/updateNotiToken`,
+            "POST",
+            JSON.stringify(postData),
+            (res) => {
+              console.log(`device token success`);
+              localStorage.setItem("noti_token", token);
+            },
+            (err) => {
+              console.log(` error `);
+            }
+          );
+         
+        })
+      }
       calHomeButtonPosition();
       setProfile();
       loading.show();
@@ -42,7 +64,7 @@ $(function () {
   //   loading.show();
   //   login(
   //     username,
-  //     password,
+  //     password,0,0,
   //     function (res) {
   //       loading.hide();
   //       changePage("home_page", function () {
@@ -73,33 +95,39 @@ $(function () {
     }
     function onSuccess(pos) {
       CurrentPosUrgentNoti = pos;
-      login(
-        username,
-        password,
-        CurrentPosUrgentNoti.coords.latitude,
-        CurrentPosUrgentNoti.coords.longitude,
-        function (res) {
-          loading.hide();
-          changePage("home_page", function () {
-            calHomeButtonPosition();
-            loading.show();
-            getInitial(function () {
-              initSlideHomePage();
+      cordova.plugins.firebase.messaging.getToken().then(function(token) {
+        console.log("Got device token: ", token);
+      
+        login(
+          username,
+          password,
+          CurrentPosUrgentNoti.coords.latitude,
+          CurrentPosUrgentNoti.coords.longitude,
+          token,
+          function (res) {
+            loading.hide();
+            changePage("home_page", function () {
+              calHomeButtonPosition();
+              loading.show();
+              getInitial(function () {
+                initSlideHomePage();
+              });
             });
-          });
-        },
-        function (err) {
-          loading.hide();
-          alert(err);
-        }
-      );
+          },
+          function (err) {
+            loading.hide();
+            alert(err);
+          }
+        );
+     });
+      
     }
     function onError(error) {
       login(
         username,
         password,
         0,
-        0,
+        0,0,
         function (res) {
           loading.hide();
           changePage("home_page", function () {
