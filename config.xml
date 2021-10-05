@@ -23,9 +23,16 @@
         <preference name="AndroidXEnabled" value="true" />
         <preference name="android-targetSdkVersion" value="30" />
         <resource-file src="google-services.json" target="app/google-services.json" />
+         <resource-file src="res/notification_icon/drawable-mdpi/notification_icon.png" target="app/src/main/res/drawable/notification_icon.png" />
+         <resource-file src="res/notification_icon/drawable-mdpi/notification_icon.png" target="app/src/main/res/drawable-mdpi/notification_icon.png" />
+        <resource-file src="res/notification_icon/drawable-hdpi/notification_icon.png" target="app/src/main/res/drawable-hdpi/notification_icon.png" />
+        <resource-file src="res/notification_icon/drawable-xhdpi/notification_icon.png" target="app/src/main/res/drawable-xhdpi/notification_icon.png" />
+        <resource-file src="res/notification_icon/drawable-xxhdpi/notification_icon.png" target="app/src/main/res/drawable-xxhdpi/notification_icon.png" />
+        <resource-file src="res/notification_icon/drawable-xxxhdpi/notification_icon.png" target="app/src/main/res/drawable-xxxhdpi/notification_icon.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    
 </widget>
