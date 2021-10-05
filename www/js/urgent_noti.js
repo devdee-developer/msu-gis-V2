@@ -30,7 +30,7 @@ var infowindowDestination;
 
 var directionsService;
 var directionsRenderer;
-var CurrentPosUrgentNoti;
+// var CurrentPosUrgentNoti;
 var ListElderUrgentNoti;
 var TempElderUrgentNoti;
 var ListEmcType;
@@ -137,69 +137,67 @@ function initialUrgentNotiPageFunc() {
     });
   });
   disabledElderUrgentNotiPageFunc();
-  document.addEventListener("deviceready", onDeviceReady, false);
-  function onDeviceReady() {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-      enableHighAccuracy: true,
+  // document.addEventListener("deviceready", onDeviceReady, false);
+  // function onDeviceReady() {
+  //   navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+  //     enableHighAccuracy: true,
+  //   });
+  // }
+  // function onSuccess(pos) {
+  //   CurrentPosUrgentNoti = pos;
+  queryALL("VHV_TR_ELDER", function (res) {
+    ListElderUrgentNoti = res;
+    $.each(ListElderUrgentNoti, function (index, row) {
+      if (row.ELDER_LAT != "null" && row.ELDER_LONG != "null") {
+        row.DISTANCE = getDistanceFromLatLonInKm(
+          CurrentPosUrgentNoti.coords.latitude,
+          CurrentPosUrgentNoti.coords.longitude,
+          row.ELDER_LAT,
+          row.ELDER_LONG
+        ).toFixed(1);
+      } else {
+        row.DISTANCE = "N/A";
+      }
+      row.CURRENT_LAT = CurrentPosUrgentNoti.coords.latitude;
+      row.CURRENT_LONG = CurrentPosUrgentNoti.coords.longitude;
     });
-  }
-  function onSuccess(pos) {
-    CurrentPosUrgentNoti = pos;
-    queryALL("VHV_TR_ELDER", function (res) {
-      ListElderUrgentNoti = res;
-      $.each(ListElderUrgentNoti, function (index, row) {
-        if (row.ELDER_LAT != "null" && row.ELDER_LONG != "null") {
-          row.DISTANCE = getDistanceFromLatLonInKm(
-            CurrentPosUrgentNoti.coords.latitude,
-            CurrentPosUrgentNoti.coords.longitude,
-            row.ELDER_LAT,
-            row.ELDER_LONG
-          ).toFixed(1);
-        } else {
-          row.DISTANCE = "N/A";
+    $("#urgent_noti_page .content .mapContent .swiper_elder_content").empty();
+    $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
+      renderElderCardUrgentNoti(ListElderUrgentNoti)
+    );
+    // กดเลือกผู้สูงอายุตรง map
+    $("#urgent_noti_page .swiper_elder_content .notifications-card-body").on(
+      "click",
+      function () {
+        if (markerDestination) {
+          markerDestination.setOptions({ visible: false });
         }
-        row.CURRENT_LAT = CurrentPosUrgentNoti.coords.latitude;
-        row.CURRENT_LONG = CurrentPosUrgentNoti.coords.longitude;
-      });
-      $("#urgent_noti_page .content .mapContent .swiper_elder_content").empty();
-      $("#urgent_noti_page .content .mapContent .swiper_elder_content").append(
-        renderElderCardUrgentNoti(ListElderUrgentNoti)
-      );
-      // กดเลือกผู้สูงอายุตรง map
-      $("#urgent_noti_page .swiper_elder_content .notifications-card-body").on(
-        "click",
-        function () {
-          if (markerDestination) {
-            markerDestination.setOptions({ visible: false });
-          }
-          if (infowindowDestination) {
-            infowindowDestination.close();
-          }
-          let ID = $(this).attr("ELDER_ID");
-          TempElderUrgentNoti = ListElderUrgentNoti.filter(
-            (x) => x.ID == ID
-          )[0];
-          $("#urgent_noti_page .notifications-card-body").removeClass("active");
-          if (
-            TempElderUrgentNoti["ELDER_LAT"] != "null" &&
-            TempElderUrgentNoti["ELDER_LONG"]
-          ) {
-            $(this).addClass("active");
-            MarkerUrgentNotiPage(
-              TempElderUrgentNoti["ELDER_NAME"],
-              new google.maps.LatLng(
-                TempElderUrgentNoti["ELDER_LAT"],
-                TempElderUrgentNoti["ELDER_LONG"]
-              )
-            );
-            enabledElderUrgentNotiPageFunc();
-          }
+        if (infowindowDestination) {
+          infowindowDestination.close();
         }
-      );
-      initSlideUrgentNotiPage();
-    });
-  }
-  function onError(error) {}
+        let ID = $(this).attr("ELDER_ID");
+        TempElderUrgentNoti = ListElderUrgentNoti.filter((x) => x.ID == ID)[0];
+        $("#urgent_noti_page .notifications-card-body").removeClass("active");
+        if (
+          TempElderUrgentNoti["ELDER_LAT"] != "null" &&
+          TempElderUrgentNoti["ELDER_LONG"]
+        ) {
+          $(this).addClass("active");
+          MarkerUrgentNotiPage(
+            TempElderUrgentNoti["ELDER_NAME"],
+            new google.maps.LatLng(
+              TempElderUrgentNoti["ELDER_LAT"],
+              TempElderUrgentNoti["ELDER_LONG"]
+            )
+          );
+          enabledElderUrgentNotiPageFunc();
+        }
+      }
+    );
+    initSlideUrgentNotiPage();
+  });
+  // }
+  // function onError(error) {}
   // queryALL("VHV_TR_ELDER", function (res) {
   //   ListElderUrgentNoti = res;
   //   $.each(ListElderUrgentNoti, function (index, row) {
