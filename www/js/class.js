@@ -25,4 +25,11 @@ class Token{
       return localStorage.getItem("user_token");
     }
   }
+  getDeviceToken(){
+    if (localStorage.getItem("noti_token") === null) {
+      return false;
+    }else{
+      return localStorage.getItem("noti_token");
+    }
+  }
 }

@@ -6,7 +6,8 @@ var topMenu = new TopMenu();
 var token = new Token();
 var swiper_timer = setInterval(function () {}, 3000);
 var swiper_timer2 = setInterval(function () {}, 3000);
-var news_data_list =[];
+var news_data_list = [];
+var CurrentPosUrgentNoti;
 $(function () {
   FastClick.attach(document.body);
   //  window.pushNotification.registration(
@@ -17,14 +18,36 @@ $(function () {
   //       console.error(error);
   //     }
   //   );
-  $('.header_notification').hide()
-  $('.profile_header_wrapper img').remove()
+  $(".header_notification").hide();
+  $(".profile_header_wrapper img").remove();
   if (!token.getUserToken()) {
     changePage("splash_page", function () {});
   } else {
     changePage("home_page", function () {
+      if(!token.getDeviceToken()){
+        cordova.plugins.firebase.messaging.getToken().then(function(token) {
+
+          let postData = {
+            noti_token: token,
+            token: token.getUserToken(),
+          };
+          callAPI(
+            `${api_base_url}/updateNotiToken`,
+            "POST",
+            JSON.stringify(postData),
+            (res) => {
+              console.log(`device token success`);
+              localStorage.setItem("noti_token", token);
+            },
+            (err) => {
+              console.log(` error `);
+            }
+          );
+         
+        })
+      }
       calHomeButtonPosition();
-      setProfile()
+      setProfile();
       loading.show();
       initSlideHomePage();
     });
@@ -35,29 +58,94 @@ $(function () {
       $(".form_login").css("top", _h + "px");
     });
   });
+  // $(".btn_submit_login").on("click", function () {
+  //   let username = $("#username").val();
+  //   let password = $("#password").val();
+  //   loading.show();
+  //   login(
+  //     username,
+  //     password,0,0,
+  //     function (res) {
+  //       loading.hide();
+  //       changePage("home_page", function () {
+  //         calHomeButtonPosition();
+  //         loading.show()
+  //         getInitial(function(){
+  //           initSlideHomePage();
+  //         });
+  //       });
+  //     },
+  //     function (err) {
+  //       loading.hide();
+  //       alert(err);
+  //     }
+  //   );
+  // });
   $(".btn_submit_login").on("click", function () {
+
+  
     let username = $("#username").val();
     let password = $("#password").val();
     loading.show();
-    login(
-      username,
-      password,
-      function (res) {
-        loading.hide();
-        changePage("home_page", function () {
-          calHomeButtonPosition();
-          loading.show()
-          getInitial(function(){
-            initSlideHomePage();
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+        enableHighAccuracy: true,
+      });
+    }
+    function onSuccess(pos) {
+      CurrentPosUrgentNoti = pos;
+      cordova.plugins.firebase.messaging.getToken().then(function(token) {
+        console.log("Got device token: ", token);
+      
+        login(
+          username,
+          password,
+          CurrentPosUrgentNoti.coords.latitude,
+          CurrentPosUrgentNoti.coords.longitude,
+          token,
+          function (res) {
+            loading.hide();
+            changePage("home_page", function () {
+              calHomeButtonPosition();
+              loading.show();
+              getInitial(function () {
+                initSlideHomePage();
+              });
+            });
+          },
+          function (err) {
+            loading.hide();
+            alert(err);
+          }
+        );
+     });
+      
+    }
+    function onError(error) {
+      login(
+        username,
+        password,
+        0,
+        0,0,
+        function (res) {
+          loading.hide();
+          changePage("home_page", function () {
+            calHomeButtonPosition();
+            loading.show();
+            getInitial(function () {
+              initSlideHomePage();
+            });
           });
-        });
-      },
-      function (err) {
-        loading.hide();
-        alert(err);
-      }
-    );
+        },
+        function (err) {
+          loading.hide();
+          alert(err);
+        }
+      );
+    }
   });
+
   $(".menu_home_page").on("click", function () {
     changePage("home_page", function () {
       calHomeButtonPosition();
@@ -97,19 +185,19 @@ $(function () {
     });
   });
   $(".menu_news_page").on("click", function () {
-   
     changePage("news_page", function () {
-      $('#news_page .back_header_btn').hide()
-      $('.content').animate({
-        scrollTop: $(".content").offset().top
-      },0);
+      $("#news_page .back_header_btn").hide();
+      $(".content").animate(
+        {
+          scrollTop: $(".content").offset().top,
+        },
+        0
+      );
       loading.show();
-        initSlideNewsPage();
+      initSlideNewsPage();
     });
   });
- 
-  
- 
+
   $(".profile_header_wrapper").on("click", function () {
     topMenu.show();
   });

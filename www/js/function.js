@@ -53,7 +53,7 @@ function initSlideNewsPage() {
         $(".content ul.news_item").append(renderNewsCard(row, index))
       );
     }
-    
+
     $(".content ul.news_item li").on("click", function () {
       let newsno = $(this).attr("newsno");
       if (newsno > 0) {
@@ -87,7 +87,7 @@ function getNews() {
       "POST",
       JSON.stringify({ token: token.getUserToken() }),
       (success) => {
-        console.log(success)
+        console.log(success);
         $(".home_slider_wrapper .swiper-wrapper").html("");
         $(".news_slider_wrapper .swiper-wrapper").html("");
         news_data_list = success.data.newsList.map((row, index) => ({
@@ -120,7 +120,7 @@ function getNews() {
             `<div class="swiper-slide news" newsno="${row.newsno}"><img newsno="${row.newsno}" src="${row.banner}" /></div>`
           );
         });
-        if(slideNews.length!=0){
+        if (slideNews.length != 0) {
           $(
             ".home_slider_wrapper .swiper-slide.news,.home_slider_wrapper .swiper-slide.news img"
           ).on("click", function () {
@@ -137,7 +137,7 @@ function getNews() {
               gotoNewsDetailPage(newsno, "news_page");
             }
           });
-        }else{
+        } else {
           news_data_list = [
             { banner: "img/no_news.jpg" },
             { banner: "img/no_news2.jpg" },
@@ -181,7 +181,9 @@ function renderNewsCard(row, index) {
       <p class="news_description">
         ${row.header}
       </p>
-      <p class="news_date"> <i class="fa fa-calendar"></i> ${dateFullStringFormat(row.publicDate)}</p>
+      <p class="news_date"> <i class="fa fa-calendar"></i> ${dateFullStringFormat(
+        row.publicDate
+      )}</p>
       <img class="news_detail_btn" src="img/news_detail_btn.png">
     </li>`;
   return html;
@@ -196,14 +198,14 @@ function renderNewsDetailContent(newsno) {
   }
   $(".news_detail_title").html("");
   $(".news_detail_banner img").remove();
-  
+
   $(".news_detail_date").html("");
   $(".news_detail_content").html("");
   $(".news_vdo iframe").remove();
 
   let news_detail = news_data_list.find((row) => row.newsno == newsno);
   $(".news_detail_title").text(news_detail.header);
-  $(".news_detail_banner").append(`<img src="${news_detail.banner}"/>`)
+  $(".news_detail_banner").append(`<img src="${news_detail.banner}"/>`);
   $(".news_detail_date").text(dateFullStringFormat(news_detail.publicDate));
   $(".news_detail_content").html(news_detail.detail);
 
@@ -235,7 +237,7 @@ function setProfile() {
 
       return return_text;
     }
-    console.log(vhv_tr_vhv)
+    console.log(vhv_tr_vhv);
     if (vhv.VHV_SEX == 2) {
       $(".profile_header_wrapper").append('<img src ="img/osomo-w.png"/>');
       $(".card_header_profile .card_header_thumbnail").attr(
@@ -244,18 +246,18 @@ function setProfile() {
       );
     } else {
       $(".profile_header_wrapper").append('<img src ="img/osomo-m.png"/>');
-     
+
       $(".card_header_profile .card_header_thumbnail").attr(
         "src",
         "img/osomo-m.png"
       );
     }
-   
+
     $(".vhv_user").html(`<b>${vhv.VHV_USER}</b>`);
     $(".vhv_age").text(getAge(vhv.VHV_BIRTHDATE, true));
     $(".vhv_idcard").text(id_card_format(vhv.VHV_IDCARD));
     $(".vhv_addr").text(`เลขที่ ${vhv.VHV_ADDR}`);
-    $('.header_notification').show()
+    $(".header_notification").show();
     queryALL("VHV_MA_SHPH", function (vhv_ma_shph) {
       let shph = vhv_ma_shph[0];
       $(".vhv_shph").text(`${shph.SHPH_NAME}`);
@@ -290,34 +292,34 @@ function getAccessToken() {
     },
   });
 }
-function login(username, password, _success, _error) {
-  $.ajax({
-    url: api_base_url + "/vhvLogin",
-    type: "POST",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Authorization", "Bearer " + token.getAccessToken());
-    },
-    data: {
-      user: username,
-      pass: password,
-    },
-    success: function (response) {
-      if (response.status == true) {
-        localStorage.setItem("user_token", response.data);
-        _success(response);
-      } else {
-        _error(response.status);
-      }
-    },
-    error: function (e) {
-      if (e.responseJSON.status == false) {
-        _error("ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง");
-      } else {
-        _error("เกิดข้อผิดพลาด2");
-      }
-    },
-  });
-}
+// function login(username, password, _success, _error) {
+//   $.ajax({
+//     url: api_base_url + "/vhvLogin",
+//     type: "POST",
+//     beforeSend: function (xhr) {
+//       xhr.setRequestHeader("Authorization", "Bearer " + token.getAccessToken());
+//     },
+//     data: {
+//       user: username,
+//       pass: password,
+//     },
+//     success: function (response) {
+//       if (response.status == true) {
+//         localStorage.setItem("user_token", response.data);
+//         _success(response);
+//       } else {
+//         _error(response.status);
+//       }
+//     },
+//     error: function (e) {
+//       if (e.responseJSON.status == false) {
+//         _error("ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง");
+//       } else {
+//         _error("เกิดข้อผิดพลาด2");
+//       }
+//     },
+//   });
+// }
 function getAccessToken(_success, _error) {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -337,7 +339,7 @@ function getAccessToken(_success, _error) {
     });
   });
 }
-async function login(username, password, _success, _error) {
+async function login(username, password, lat, long,noti_token, _success, _error) {
   try {
     await getAccessToken();
     $.ajax({
@@ -352,10 +354,14 @@ async function login(username, password, _success, _error) {
       data: {
         user: username,
         pass: password,
+        lat: lat,
+        long: long,
+        noti_token:noti_token
       },
       success: function (response) {
         console.log(response);
         if (response.status == true) {
+          localStorage.setItem("noti_token", noti_token);
           localStorage.setItem("user_token", response.data);
           _success(response);
         } else {
@@ -420,7 +426,7 @@ function getInitial(_callback) {
     },
     success: function (response) {
       console.log(response);
-      
+
       //  response.data = CryptoJS.AES.decrypt(response.data, "MsU2021APPlcation");
       response.data = CryptoJSAesJson.decrypt(response.data, secret_key_aes);
       var data = response.data;
@@ -1634,15 +1640,15 @@ function getInitial(_callback) {
         });
         setProfile();
       } else {
-        alert("เกิดข้อผิดพลาด")
-        $("#logout").click()
+        alert("เกิดข้อผิดพลาด");
+        $("#logout").click();
         _error("เกิดข้อผิดพลาด9");
       }
-      _callback&&_callback()
+      _callback && _callback();
     },
     error: function (e) {
-      alert("เกิดข้อผิดพลาด")
-      $("#logout").click()
+      alert("เกิดข้อผิดพลาด");
+      $("#logout").click();
       _error("เกิดข้อผิดพลาด10");
     },
   });
