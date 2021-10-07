@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/analytics.css" />
     <link rel="stylesheet" href="css/news.css" />
     <link rel="stylesheet" href="css/knowledge.css" />
+    <link rel="stylesheet" href="css/map.css" />
     <title>VHV</title>
   </head>
 
@@ -201,12 +202,12 @@
         </div>
         <div class="sort-bar">
           <h4>จำนวนทั้งหมด <span style="color: #6f63fd">0 คน</span></h4>
-          <button class="btn-sort">
+          <!-- <button class="btn-sort">
             <p>
               จัดเรียง &nbsp;
               <img src="img/icon_sort.png" width="13" height="19" alt="" />
             </p>
-          </button>
+          </button> -->
         </div>
         <ul class="contact_items">
           <li>
@@ -336,17 +337,87 @@
       </div>
     </div>
     <div class="pages" id="map_page">
-      <div class="header">
-        <img src="img/logo_header.png" class="logo_header" />
-        <div class="profile_header_wrapper">
-          <img src="img/profile.jpg" />
-          <div class="header_notification">
-            <i class="fa fa-bell" id="notification_icon"></i>
+      <div class="content" style="top: 0px">
+        <div id="map"></div>
+        <div class="filterPosition" id="selecePosition">
+          <div class="card-body" id="filterShow">
+            <img src="img/logo_header.png" />
+            <div class="filter_group">
+              <div class="default_position disabled" id="default_position">
+                <p style="font-size: 12px">กำหนดจุดเริ่มต้น</p>
+              </div>
+              <div class="default_position" id="destination_position">
+                <p style="font-size: 12px">กำหนดจุดหมาย</p>
+              </div>
+            </div>
+            <div
+              id="filterBar"
+              style="width: 100%; padding-left: 135px; padding-right: 135px"
+            >
+              <div class="filterBar"></div>
+            </div>
+          </div>
+          <div
+            class="card-body-filter-hide"
+            id="filterHide"
+            style="display: none"
+          >
+            <img src="img/logo_msu.png" style="width: 30px" />
+            <div class="filter_group_hide">
+              <div class="default_position" id="destination_position">
+                <p>กำหนดจุดหมาย</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="content">
-        <div id="map"></div>
+        <div class="selecePosition" id="selecePosition">
+          <div class="card-body">
+            <p>เลือกการแสดงตำแหน่ง</p>
+            <div class="btn_select_group">
+              <button
+                class="btn_select"
+                style="background-color: #f53f4d; border-color: #f53f4d"
+                id="elder"
+              >
+                <p>ผู้สูงอายุ</p>
+              </button>
+              <button
+                class="btn_select"
+                style="background-color: #ea940c; border-color: #ea940c"
+                id="office"
+              >
+                <p>อบต</p>
+              </button>
+              <button
+                class="btn_select"
+                style="background-color: #0146c9; border-color: #0146c9"
+                id="shph"
+              >
+                <p>โรงพยาบาล</p>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="elder_content_fixed" id="elderContentFixed">
+          <div class="card-body">
+            <img class="card-body-thumbnail" src="img/older.png" />
+            <div class="card-body-content">
+              <h4 class="name">นางจันทร์สอน จันสงคราม</h4>
+              <div style="display: flex">
+                <h5 class="urgent">
+                  <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                  ระยะทาง
+                </h5>
+                <h5
+                  class="urgent"
+                  style="color: #6f63fd; padding-left: 5px"
+                ></h5>
+              </div>
+            </div>
+            <img class="card-body-close" src="img/close_icon.png" />
+            <i class="right-icon fa fa-map-marker fa-lg" aria-hidden="true"></i>
+          </div>
+        </div>
       </div>
       <div class="footer">
         <div class="footer_item menu_home_page">
@@ -366,6 +437,22 @@
             >สถิติสำรวจ</span
           >
         </div>
+      </div>
+    </div>
+    <div class="pages" id="map_elder_list_page">
+      <div class="urgent_noti_page_header">
+        <div class="back_header_btn"></div>
+        <div class="title">รายชื่อทั้งหมด</div>
+        <div class="search_header">
+          <i class="fa fa-search icon" aria-hidden="true"></i>
+          <input class="input-field" type="text" placeholder="ค้นหา" />
+        </div>
+      </div>
+      <div class="content grey">
+        <p style="margin-left: 10px; color: #010979; margin-top: 5px">
+          ตรงกับที่ค้นหา 1 รายการ
+        </p>
+        <ul class="contact_items"></ul>
       </div>
     </div>
     <div class="pages" id="news_page">
@@ -733,12 +820,12 @@
         </div>
         <div class="sort-bar">
           <h4>จำนวนทั้งหมด <span style="color: #6f63fd">0 คน</span></h4>
-          <button class="btn-sort">
+          <!-- <button class="btn-sort">
             <p>
               จัดเรียง &nbsp;
               <img src="img/icon_sort.png" width="13" height="19" alt="" />
             </p>
-          </button>
+          </button> -->
         </div>
         <div class="list-header">
           <h2>
@@ -2521,12 +2608,12 @@
         </div>
         <div class="sort-bar">
           <h4>จำนวนทั้งหมด <span style="color: #6f63fd">0 คน</span></h4>
-          <button class="btn-sort">
+          <!-- <button class="btn-sort">
             <p>
               จัดเรียง &nbsp;
               <img src="img/icon_sort.png" width="13" height="19" alt="" />
             </p>
-          </button>
+          </button> -->
         </div>
         <div class="list-header">
           <h2>
@@ -6321,7 +6408,7 @@
       </div>
     </div>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi3TWM-jofH90T6GMpFFemQ8kUXJdEFz0&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi3TWM-jofH90T6GMpFFemQ8kUXJdEFz0"
       async
     ></script>
     <script src="cordova.js"></script>
@@ -6348,17 +6435,18 @@
     <script src="js/news.js"></script>
     <script src="js/knowledge.js"></script>
     <script src="js/sync-data.js"></script>
-        <script>
-      document.addEventListener('backbutton', function(e) { 
-        if($(".pages:visible").attr("id")=="home_page"){
+    <script src="js/map.js"></script>
+    <script>
+      document.addEventListener("backbutton", function (e) {
+        if ($(".pages:visible").attr("id") == "home_page") {
           var c = confirm("คุณต้องการออกจากแอปใช่หรือไม่?");
-          if(c){
+          if (c) {
             navigator.app.exitApp();
-          }else{
+          } else {
             e.preventDefault();
             return false;
           }
-        }else{
+        } else {
           $(".pages:visible").find(".back_header_btn").click();
         }
       });
