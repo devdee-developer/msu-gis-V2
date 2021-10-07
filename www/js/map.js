@@ -3,21 +3,21 @@ $(".menu_map_page").on("click", function () {
   loading.show();
   var status = navigator.onLine;
   if (status) {
-    // if (CurrentPosUrgentNoti) {
-    changePage("map_page", function () {
-      initialMapPageFunc();
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
-    });
-    // } else {
-    //   loading.hide();
-    //   let chkPos = confirm("กรุณาอุนญาติตำแหน่ง");
-    //   if (chkPos) {
-    //     document.addEventListener("deviceready", onDeviceMapPageReady, false);
-    //   } else {
-    //   }
-    // }
+    if (CurrentPosUrgentNoti) {
+      changePage("map_page", function () {
+        initialMapPageFunc();
+        setTimeout(function () {
+          loading.hide();
+        }, 500);
+      });
+    } else {
+      loading.hide();
+      let chkPos = confirm("กรุณาอุนญาติตำแหน่ง");
+      if (chkPos) {
+        document.addEventListener("deviceready", onDeviceMapPageReady, false);
+      } else {
+      }
+    }
   } else {
     alert("กรุณาเชื่อมต่ออินเตอร์เน็ต");
     loading.hide();
