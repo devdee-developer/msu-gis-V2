@@ -415,7 +415,7 @@ async function callAPI(enpoint, method, data, _success, _error) {
         if (response.status == true) {
           _success(response);
         } else {
-          _error(response.status);
+          _error(response);
         }
       },
       error: function (e) {
