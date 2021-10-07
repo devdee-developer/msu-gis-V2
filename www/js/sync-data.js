@@ -106,6 +106,23 @@ $(function () {
                 resolve(res);
               },
               (err) => {
+                let errData = {
+                  URL: `${api_base_url}${url}`, 
+                  DESC_LOG: typeof err === 'object'? JSON.stringify(err):0,
+                  MOBILE_TOKEN:token.getDeviceToken(),
+                  token: token.getUserToken(),
+                };
+                callAPI(
+                  `${api_base_url}/addTempLog`,
+                  "POST",
+                  JSON.stringify(errData),
+                  (res) => {
+                 console.log(res)
+                  },
+                  (err) => {
+                    console.log(err);
+                  }
+                );
                 console.log(`sync error VHV_TR_VISIT`, err);
                 reject(err);
               }
