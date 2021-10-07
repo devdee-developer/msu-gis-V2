@@ -56,10 +56,16 @@ $(function () {
             }
           }
         }else{
-          if(dialog){
-            alert('ไม่มีข้อมูลปรับปรุง')
-            _callback && _callback();
-          }
+          // if(dialog){
+          //   alert('ไม่มีข้อมูลปรับปรุง')
+          //   _callback && _callback();
+          // }
+          getInitial(function(){
+            if(dialog){
+              alert('ปรับปรุงข้อมูลสำเร็จ')
+              _callback && _callback();
+            }
+          });
         }
         
       });

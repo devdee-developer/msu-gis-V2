@@ -29,12 +29,12 @@ $(function () {
         $("#eva_evaluated_list").append(renderElderCard(row));
       });
 
-      setTimeout(function () {
-        if (waitList.length > 0) {
-          renderElderModal(waitList[0],"modal-evaluate-detail",true,false);
-          $("#evaluate_recommend").show();
-        }
-      }, 500);
+      // setTimeout(function () {
+      //   if (waitList.length > 0) {
+      //     renderElderModal(waitList[0],"modal-evaluate-detail",true,false);
+      //     $("#evaluate_recommend").show();
+      //   }
+      // }, 500);
     });
     queryALL("VHV_MA_GIS_PROVINCE", function (res) {
       if(res){
