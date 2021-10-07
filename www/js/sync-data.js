@@ -21,6 +21,7 @@ $(function () {
       console.log(`sync all result`, result);
       //ถ้า sycn สำเร็จ Initial ใหม่
       queryALL("VHV_TR_VHV", function (vhv_tr_vhv) {
+        // console.log(vhv_tr_vhv)
         let serverVersion = result.find((item) => item.status == true);
         let clientVersion =
           vhv_tr_vhv[0].MB_VERSION != "null" ? vhv_tr_vhv[0].MB_VERSION : 0;

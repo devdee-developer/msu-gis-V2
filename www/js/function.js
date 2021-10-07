@@ -394,11 +394,11 @@ async function callAPI(enpoint, method, data, _success, _error) {
       },
       data: data,
       success: function (response) {
-        // console.log(response);
+        console.log(response);
         if (response.status == true) {
           _success(response);
         } else {
-          _error(response.status);
+          _error(response);
         }
       },
       error: function (e) {
