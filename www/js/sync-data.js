@@ -60,12 +60,14 @@ $(function () {
           //   alert('ไม่มีข้อมูลปรับปรุง')
           //   _callback && _callback();
           // }
+          if(dialog){
           getInitial(function(){
-            if(dialog){
+          
               alert('ปรับปรุงข้อมูลสำเร็จ')
               _callback && _callback();
-            }
+           
           });
+          }
         }
         
       });
