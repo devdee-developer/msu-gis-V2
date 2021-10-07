@@ -157,6 +157,21 @@ function getNews() {
         $(".home_knowledge_base").html(
           ` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`
         );
+       if(error.status==500){
+        news_data_list = [
+          { banner: "img/no_news.jpg" },
+          { banner: "img/no_news2.jpg" },
+        ];
+        news_data_list.map((row) => {
+          $(".home_slider_wrapper .swiper-wrapper").append(
+            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+          );
+          $(".news_slider_wrapper .swiper-wrapper").append(
+            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+          );
+        });
+       }else{
+     
         news_data_list = [
           { banner: "img/news-no-network2.jpg" },
           { banner: "img/news-no-network.jpg" },
@@ -169,6 +184,8 @@ function getNews() {
             `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
           );
         });
+       }
+     
         loading.hide();
         resolve({ status: false, data: news_data_list });
       }
@@ -394,15 +411,15 @@ async function callAPI(enpoint, method, data, _success, _error) {
       },
       data: data,
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         if (response.status == true) {
           _success(response);
         } else {
-          _error(response);
+          _error(response.status);
         }
       },
       error: function (e) {
-        _error("เกิดข้อผิดพลาด6");
+        _error(e);
         // if (e.responseJSON.status == false) {
         //   _error("เกิดข้อผิดพลาด6");
         // } else {
