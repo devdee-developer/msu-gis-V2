@@ -128,7 +128,7 @@ $(function () {
 
         console.log(`sync ${table}`, data);
 
-        if (data.length == 0) {
+        if (data.length != 0) {
           // data[0].ELDER_ID="test"
           console.log(token.getUserToken());
           let postData = {
