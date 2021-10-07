@@ -157,35 +157,34 @@ function getNews() {
         $(".home_knowledge_base").html(
           ` <i class="fa fa-comment-alt comment_icon_home"></i>ข่าวสารข้อมูลระบบเพื่อการเฝ้าระวังด้านสุขภาพ เพื่อเพื่อนสมาชิก`
         );
-       if(error.status==500){
-        news_data_list = [
-          { banner: "img/no_news.jpg" },
-          { banner: "img/no_news2.jpg" },
-        ];
-        news_data_list.map((row) => {
-          $(".home_slider_wrapper .swiper-wrapper").append(
-            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
-          );
-          $(".news_slider_wrapper .swiper-wrapper").append(
-            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
-          );
-        });
-       }else{
-     
-        news_data_list = [
-          { banner: "img/news-no-network2.jpg" },
-          { banner: "img/news-no-network.jpg" },
-        ];
-        news_data_list.map((row) => {
-          $(".home_slider_wrapper .swiper-wrapper").append(
-            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
-          );
-          $(".news_slider_wrapper .swiper-wrapper").append(
-            `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
-          );
-        });
-       }
-     
+        if (error.status == 500) {
+          news_data_list = [
+            { banner: "img/no_news.jpg" },
+            { banner: "img/no_news2.jpg" },
+          ];
+          news_data_list.map((row) => {
+            $(".home_slider_wrapper .swiper-wrapper").append(
+              `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+            );
+            $(".news_slider_wrapper .swiper-wrapper").append(
+              `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+            );
+          });
+        } else {
+          news_data_list = [
+            { banner: "img/news-no-network2.jpg" },
+            { banner: "img/news-no-network.jpg" },
+          ];
+          news_data_list.map((row) => {
+            $(".home_slider_wrapper .swiper-wrapper").append(
+              `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+            );
+            $(".news_slider_wrapper .swiper-wrapper").append(
+              `<div class="swiper-slide news"><img src="${row.banner}" /></div>`
+            );
+          });
+        }
+
         loading.hide();
         resolve({ status: false, data: news_data_list });
       }
@@ -356,7 +355,15 @@ function getAccessToken(_success, _error) {
     });
   });
 }
-async function login(username, password, lat, long,noti_token, _success, _error) {
+async function login(
+  username,
+  password,
+  lat,
+  long,
+  noti_token,
+  _success,
+  _error
+) {
   try {
     await getAccessToken();
     $.ajax({
@@ -373,7 +380,7 @@ async function login(username, password, lat, long,noti_token, _success, _error)
         pass: password,
         lat: lat,
         long: long,
-        noti_token:noti_token
+        noti_token: noti_token,
       },
       success: function (response) {
         console.log(response);
@@ -1823,6 +1830,27 @@ function queryGetSHPHtelStaff(SHPH_ID, _callback) {
   db.transaction(function (tx) {
     tx.executeSql(
       'SELECT rowid,* FROM VHV_MA_SHPH WHERE ID="' + parseInt(SHPH_ID) + '"',
+      [],
+      function (tx, results) {
+        var len = results.rows.length,
+          i;
+        for (i = 0; i < len; i++) {
+          arr.push(results.rows.item(i));
+        }
+        _callback(arr);
+      },
+      null
+    );
+  });
+}
+function queryGetIdProvinceByVhv(_callback) {
+  var arr = [];
+  // console.log(
+  //   'SELECT DISTINCT VHV_MA_SHPH.GIS_PROVINCE FROM VHV_TR_VHV LEFT JOIN VHV_MA_SHPH ON VHV_TR_VHV.SHPH_ID = VHV_MA_SHPH.ID WHERE VHV_TR_VHV.DELETE_FLAG = "0" AND VHV_MA_SHPH.DELETE_FLAG = "0"'
+  // );
+  db.transaction(function (tx) {
+    tx.executeSql(
+      'SELECT DISTINCT VHV_MA_SHPH.GIS_PROVINCE FROM VHV_TR_VHV LEFT JOIN VHV_MA_SHPH ON VHV_TR_VHV.SHPH_ID = VHV_MA_SHPH.ID WHERE VHV_TR_VHV.DELETE_FLAG = "0" AND VHV_MA_SHPH.DELETE_FLAG = "0"',
       [],
       function (tx, results) {
         var len = results.rows.length,

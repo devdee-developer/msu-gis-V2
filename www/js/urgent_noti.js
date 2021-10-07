@@ -137,14 +137,6 @@ function initialUrgentNotiPageFunc() {
     });
   });
   disabledElderUrgentNotiPageFunc();
-  // document.addEventListener("deviceready", onDeviceReady, false);
-  // function onDeviceReady() {
-  //   navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-  //     enableHighAccuracy: true,
-  //   });
-  // }
-  // function onSuccess(pos) {
-  //   CurrentPosUrgentNoti = pos;
   queryALL("VHV_TR_ELDER", function (res) {
     ListElderUrgentNoti = res;
     $.each(ListElderUrgentNoti, function (index, row) {
@@ -196,8 +188,6 @@ function initialUrgentNotiPageFunc() {
     );
     initSlideUrgentNotiPage();
   });
-  // }
-  // function onError(error) {}
   // queryALL("VHV_TR_ELDER", function (res) {
   //   ListElderUrgentNoti = res;
   //   $.each(ListElderUrgentNoti, function (index, row) {
