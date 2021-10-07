@@ -1,5 +1,11 @@
 $(function () {
-  async function syncData() {
+  $('#sync_setting').on('click', function(){
+    loading.show()
+    syncData(true,function(){
+      loading.hide()
+    })
+  })
+  async function syncData(dialog = false,_callback) {
     try {
       let result = await Promise.all([
         syncTableToServer("VHV_TR_EVALUATE1", "/saveEvaluate1s"),
@@ -23,20 +29,47 @@ $(function () {
       queryALL("VHV_TR_VHV", function (vhv_tr_vhv) {
         // console.log(vhv_tr_vhv)
         let serverVersion = result.find((item) => item.status == true);
-        let clientVersion =
-          vhv_tr_vhv[0].MB_VERSION != "null" ? vhv_tr_vhv[0].MB_VERSION : 0;
+        let clientVersion 
+        if(vhv_tr_vhv.length>0){
+          clientVersion = vhv_tr_vhv[0].MB_VERSION != "null" ? vhv_tr_vhv[0].MB_VERSION : 0;
+        }else{
+          clientVersion = 0
+        }
+         
         if (serverVersion) {
           console.log(
             `local version :${clientVersion} ,server version:${serverVersion.CURRENT_VERSION}`
           );
           //ถ้า version ไม่เท่ากัน Initial ใหม่
           if (clientVersion < serverVersion.CURRENT_VERSION) {
-            getInitial();
+            getInitial(function(){
+              if(dialog){
+                alert('ปรับปรุงข้อมูลสำเร็จ')
+                _callback && _callback();
+              }
+            });
+           
+          }else{
+            if(dialog){
+              alert('ไม่มีข้อมูลปรับปรุง')
+              _callback && _callback();
+            }
+          }
+        }else{
+          if(dialog){
+            alert('ไม่มีข้อมูลปรับปรุง')
+            _callback && _callback();
           }
         }
+        
       });
+      
     } catch (error) {
       console.log(`sync all result error`, error);
+     
+      if(dialog){
+        alert('ปรับปรุงข้อมูลไม่สำเร็จ')
+      }
     }
   }
   function syncTableVisitSolves() {
@@ -95,7 +128,7 @@ $(function () {
 
         console.log(`sync ${table}`, data);
 
-        if (data.length != 0) {
+        if (data.length == 0) {
           // data[0].ELDER_ID="test"
           console.log(token.getUserToken());
           let postData = {
@@ -114,6 +147,24 @@ $(function () {
               resolve(res);
             },
             (err) => {
+              console.log(err)
+              let errData = {
+                URL: `${api_base_url}${url}`, 
+                DESC_LOG: typeof err === 'object'? JSON.stringify(err):0,
+                MOBILE_TOKEN:token.getDeviceToken(),
+                token: token.getUserToken(),
+              };
+              callAPI(
+                `${api_base_url}/addTempLog`,
+                "POST",
+                JSON.stringify(errData),
+                (res) => {
+               console.log(res)
+                },
+                (err) => {
+                  console.log(err);
+                }
+              );
               console.log(`sync error ${table}`, err);
               reject(err);
             }

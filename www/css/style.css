@@ -657,4 +657,7 @@ select.input-field:disabled {
 .swiper-pagination-bullet-active {
   background-color: #7676FF;
 }
-
+#sync_setting{
+  background-color: #19BD9B;
+  color: #FFFFFF;
+}

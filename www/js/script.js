@@ -64,7 +64,7 @@ $(function () {
   //   loading.show();
   //   login(
   //     username,
-  //     password,0,0,
+  //     password,0,0,0,
   //     function (res) {
   //       loading.hide();
   //       changePage("home_page", function () {
