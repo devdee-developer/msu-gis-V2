@@ -24,9 +24,8 @@ $(function () {
     changePage("splash_page", function () {});
   } else {
     changePage("home_page", function () {
-      if(!token.getDeviceToken()){
-        cordova.plugins.firebase.messaging.getToken().then(function(token) {
-
+      if (!token.getDeviceToken()) {
+        cordova.plugins.firebase.messaging.getToken().then(function (token) {
           let postData = {
             noti_token: token,
             token: token.getUserToken(),
@@ -43,8 +42,7 @@ $(function () {
               console.log(` error `);
             }
           );
-         
-        })
+        });
       }
       calHomeButtonPosition();
       setProfile();
@@ -64,13 +62,16 @@ $(function () {
   //   loading.show();
   //   login(
   //     username,
-  //     password,0,0,0,
+  //     password,
+  //     0,
+  //     0,
+  //     0,
   //     function (res) {
   //       loading.hide();
   //       changePage("home_page", function () {
   //         calHomeButtonPosition();
-  //         loading.show()
-  //         getInitial(function(){
+  //         loading.show();
+  //         getInitial(function () {
   //           initSlideHomePage();
   //         });
   //       });
@@ -82,8 +83,6 @@ $(function () {
   //   );
   // });
   $(".btn_submit_login").on("click", function () {
-
-  
     let username = $("#username").val();
     let password = $("#password").val();
     loading.show();
@@ -95,9 +94,9 @@ $(function () {
     }
     function onSuccess(pos) {
       CurrentPosUrgentNoti = pos;
-      cordova.plugins.firebase.messaging.getToken().then(function(token) {
+      cordova.plugins.firebase.messaging.getToken().then(function (token) {
         console.log("Got device token: ", token);
-      
+
         login(
           username,
           password,
@@ -119,15 +118,15 @@ $(function () {
             alert(err);
           }
         );
-     });
-      
+      });
     }
     function onError(error) {
       login(
         username,
         password,
         0,
-        0,0,
+        0,
+        0,
         function (res) {
           loading.hide();
           changePage("home_page", function () {
@@ -176,14 +175,14 @@ $(function () {
       }, 500);
     });
   });
-  $(".menu_map_page").on("click", function () {
-    changePage("map_page", function () {
-      loading.show();
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
-    });
-  });
+  // $(".menu_map_page").on("click", function () {
+  //   changePage("map_page", function () {
+  //     loading.show();
+  //     setTimeout(function () {
+  //       loading.hide();
+  //     }, 500);
+  //   });
+  // });
   $(".menu_news_page").on("click", function () {
     changePage("news_page", function () {
       $("#news_page .back_header_btn").hide();
@@ -228,116 +227,116 @@ $(function () {
   });
 });
 
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {}
+// document.addEventListener("deviceready", onDeviceReady, false);
+// function onDeviceReady() {}
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(-33.91722, 151.23064),
-    zoom: 16,
-    disableDefaultUI: true,
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      position: google.maps.ControlPosition.LEFT_CENTER,
-    },
-  });
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     center: new google.maps.LatLng(-33.91722, 151.23064),
+//     zoom: 16,
+//     disableDefaultUI: true,
+//     mapTypeControl: true,
+//     mapTypeControlOptions: {
+//       position: google.maps.ControlPosition.LEFT_CENTER,
+//     },
+//   });
 
-  const icons = {
-    parking: {
-      icon: "img/pin_marker.png",
-    },
-    library: {
-      icon: "img/pin_marker.png",
-    },
-    info: {
-      icon: "img/pin_marker.png",
-    },
-  };
-  const features = [
-    {
-      position: new google.maps.LatLng(-33.91721, 151.2263),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91539, 151.2282),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91747, 151.22912),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.9191, 151.22907),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91725, 151.23011),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91872, 151.23089),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91784, 151.23094),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91682, 151.23149),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.9179, 151.23463),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91666, 151.23468),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.916988, 151.23364),
-      type: "info",
-    },
-    {
-      position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-      type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-      type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-      type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-      type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-      type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-      type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-      type: "parking",
-    },
-    {
-      position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-      type: "library",
-    },
-  ];
+//   const icons = {
+//     parking: {
+//       icon: "img/pin_marker.png",
+//     },
+//     library: {
+//       icon: "img/pin_marker.png",
+//     },
+//     info: {
+//       icon: "img/pin_marker.png",
+//     },
+//   };
+//   const features = [
+//     {
+//       position: new google.maps.LatLng(-33.91721, 151.2263),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91539, 151.2282),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91747, 151.22912),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.9191, 151.22907),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91725, 151.23011),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91872, 151.23089),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91784, 151.23094),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91682, 151.23149),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.9179, 151.23463),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91666, 151.23468),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.916988, 151.23364),
+//       type: "info",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
+//       type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
+//       type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
+//       type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
+//       type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
+//       type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
+//       type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
+//       type: "parking",
+//     },
+//     {
+//       position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
+//       type: "library",
+//     },
+//   ];
 
-  // Create markers.
-  for (let i = 0; i < features.length; i++) {
-    const marker = new google.maps.Marker({
-      position: features[i].position,
-      icon: icons[features[i].type].icon,
-      map: map,
-    });
-  }
-}
+//   // Create markers.
+//   for (let i = 0; i < features.length; i++) {
+//     const marker = new google.maps.Marker({
+//       position: features[i].position,
+//       icon: icons[features[i].type].icon,
+//       map: map,
+//     });
+//   }
+// }

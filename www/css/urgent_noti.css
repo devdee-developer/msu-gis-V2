@@ -57,20 +57,22 @@
   width: 350px !important;
   top: 0 !important;
   left: 0 !important;
-  background-color: #f53f4d !important;
+  /* background-color: #f53f4d !important; */
+  background-color: #ffffff !important;
   box-shadow: unset !important;
   border: unset !important;
   border-radius: 2px 2px 0 0;
 }
-.gm-style-iw {
+.gm-style-iw.office {
   width: 350px !important;
   top: 0 !important;
   left: 0 !important;
-  background-color: #f53f4d !important;
+  /* background-color: #ea940c !important; */
   box-shadow: unset !important;
   border: unset !important;
   border-radius: 2px 2px 0 0;
 }
+
 .gm-style-iw-d {
   padding: unset !important;
   margin: -7px;
@@ -94,9 +96,15 @@
   width: 165px !important;
 }
 .gm-style .gm-style-iw-t::after {
-  background: linear-gradient(
+  /* background: linear-gradient(
     45deg,
     #f53f4d 50%,
+    rgba(255, 255, 255, 0) 51%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important; */
+  background: linear-gradient(
+    45deg,
+    #ffffff 50%,
     rgba(255, 255, 255, 0) 51%,
     rgba(255, 255, 255, 0) 100%
   ) !important;
@@ -589,10 +597,12 @@ button.cancel_noti {
   background-image: url(../img/maker_route.png);
   background-position-x: right;
   background-position-y: center;
-  background-size: 15px 20px;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-origin: padding-box;
-  height: 22px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 5px;
 }
 #bodyMarkerContent img {
   width: 20px;
