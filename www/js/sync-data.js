@@ -203,9 +203,15 @@ $(function () {
   }
   let syncDataInterval;
   if (sync_data) {
+   
     syncDataInterval = setInterval(function () {
-      syncData();
+      if (token.getUserToken()) {
+        syncData();
+      }
     }, 60000 * 5);
-    syncData();
+    if (token.getUserToken()) {
+      syncData();
+    }
+   
   }
 });
