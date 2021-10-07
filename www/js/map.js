@@ -358,6 +358,9 @@ function toggleFilter() {
   }
 }
 function MarkerDirectionsMap(_posOriginal, _posDestination, ID, NAME) {
+  if (infowindowDestination) {
+    infowindowDestination.close();
+  }
   for (let i = 0; i < markers.length; i++) {
     if (ID != markers[i]["id"]) {
       markers[i].setOptions({ visible: false });
@@ -395,6 +398,13 @@ function MarkerDirectionsMap(_posOriginal, _posDestination, ID, NAME) {
     strokeColor = "blue";
   }
   map.setCenter(_posOriginal);
+  map.setOptions({
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.LEFT_CENTER,
+    },
+  });
   MapPagedirectionsRenderer.setOptions({
     suppressPolylines: false,
     suppressMarkers: true,
