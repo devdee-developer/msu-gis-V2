@@ -404,7 +404,10 @@ function enabledElderUrgentNotiPageFunc() {
 
 function initMapUrgentNotiPage() {
   map = new google.maps.Map(document.getElementById("mapUrgentNotiPage"), {
-    center: new google.maps.LatLng(-33.91722, 151.2263),
+    center: new google.maps.LatLng(
+      CurrentPosUrgentNoti.coords.latitude,
+      CurrentPosUrgentNoti.coords.longitude
+    ), //new google.maps.LatLng(-33.91722, 151.2263),
     zoom: 16,
     disableDefaultUI: true,
     mapTypeControl: false,
