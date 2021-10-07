@@ -3,17 +3,43 @@ $(".menu_map_page").on("click", function () {
   loading.show();
   var status = navigator.onLine;
   if (status) {
+    // if (CurrentPosUrgentNoti) {
     changePage("map_page", function () {
       initialMapPageFunc();
       setTimeout(function () {
         loading.hide();
       }, 500);
     });
+    // } else {
+    //   loading.hide();
+    //   let chkPos = confirm("กรุณาอุนญาติตำแหน่ง");
+    //   if (chkPos) {
+    //     document.addEventListener("deviceready", onDeviceMapPageReady, false);
+    //   } else {
+    //   }
+    // }
   } else {
     alert("กรุณาเชื่อมต่ออินเตอร์เน็ต");
     loading.hide();
   }
 });
+function onDeviceMapPageReady() {
+  navigator.geolocation.getCurrentPosition(onSuccessMapPage, onErrorMapPage, {
+    enableHighAccuracy: true,
+  });
+}
+function onSuccessMapPage(pos) {
+  CurrentPosUrgentNoti = pos;
+  changePage("map_page", function () {
+    initialMapPageFunc();
+    setTimeout(function () {
+      loading.hide();
+    }, 500);
+  });
+}
+function onErrorMapPage(error) {
+  alert("ไม่สามารถเข้าถึงตำแหน่งได้");
+}
 let typeDataMap = "";
 let gisProvinces = "";
 let ListElderMap = [];
@@ -43,7 +69,7 @@ function initialMapPageFunc() {
       });
     }
   });
-  let PosLocal = false;
+  let PosLocal = true;
   if (PosLocal) {
     PosCurrent = {
       lat: 16.442611448372272,
@@ -358,6 +384,9 @@ function toggleFilter() {
   }
 }
 function MarkerDirectionsMap(_posOriginal, _posDestination, ID, NAME) {
+  if (infowindowDestination) {
+    infowindowDestination.close();
+  }
   for (let i = 0; i < markers.length; i++) {
     if (ID != markers[i]["id"]) {
       markers[i].setOptions({ visible: false });
@@ -395,6 +424,13 @@ function MarkerDirectionsMap(_posOriginal, _posDestination, ID, NAME) {
     strokeColor = "blue";
   }
   map.setCenter(_posOriginal);
+  map.setOptions({
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.LEFT_BOTTOM,
+    },
+  });
   MapPagedirectionsRenderer.setOptions({
     suppressPolylines: false,
     suppressMarkers: true,

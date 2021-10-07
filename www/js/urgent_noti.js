@@ -7,22 +7,56 @@ $(function () {
       loading.show();
       var status = navigator.onLine;
       if (status) {
-        setTimeout(function () {
+        if (CurrentPosUrgentNoti) {
+          setTimeout(function () {
+            loading.hide();
+            changePage("urgent_noti_page", function () {
+              initialUrgentNotiPageFunc();
+              toturialvideo.currentTime = 0;
+              toturialvideo.play();
+              toturialvideo.loop = true;
+              showModal("modal-tutorial-urgent-noti");
+            });
+          }, 500);
+        } else {
           loading.hide();
-          changePage("urgent_noti_page", function () {
-            initialUrgentNotiPageFunc();
-            toturialvideo.currentTime = 0;
-            toturialvideo.play();
-            toturialvideo.loop = true;
-            showModal("modal-tutorial-urgent-noti");
-          });
-        }, 500);
+          let chkPos = confirm("กรุณาอุนญาติตำแหน่ง");
+          if (chkPos) {
+            document.addEventListener(
+              "deviceready",
+              onDeviceUrgentPageReady,
+              false
+            );
+          } else {
+          }
+        }
       } else {
         alert("กรุณาเชื่อมต่ออินเตอร์เน็ต");
         loading.hide();
       }
     });
 });
+function onDeviceUrgentPageReady() {
+  navigator.geolocation.getCurrentPosition(
+    onSuccessUrgentPage,
+    onErrorUrgentPage,
+    {
+      enableHighAccuracy: true,
+    }
+  );
+}
+function onSuccessUrgentPage(pos) {
+  CurrentPosUrgentNoti = pos;
+  changePage("map_page", function () {
+    initialMapPageFunc();
+    setTimeout(function () {
+      loading.hide();
+    }, 500);
+  });
+}
+function onErrorUrgentPage(error) {
+  alert("ไม่สามารถเข้าถึงตำแหน่งได้");
+}
 var markerOriginal;
 var infowindowOriginal;
 var markerDestination;
