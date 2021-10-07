@@ -9,7 +9,7 @@ $(function () {
     }
   );
   $(".top_menu_wrapper .top_menu_item_wrapper li")
-    .eq(3)
+    .eq(2)
     .on("click", function () {
       changePage("setting_page", function () {
         initialSettingPageFunc();
