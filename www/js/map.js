@@ -106,7 +106,7 @@ function initialelderFunc() {
 
 function MarkerMap(arr) {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(15.816036, 103.267594),
+    center: new google.maps.LatLng(PosCurrent.lat, PosCurrent.long), //new google.maps.LatLng(15.816036, 103.267594),
     zoom: 16,
     disableDefaultUI: true,
     mapTypeControl: false,
