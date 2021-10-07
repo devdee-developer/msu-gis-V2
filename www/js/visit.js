@@ -38,20 +38,20 @@ $(function () {
     }
   function initialVisitPage() {
     renderElderListVisit(function(waitingList,visitedList){
-      setTimeout(function () {
-        let waitingListAndEvaluated = waitingList.filter(
-          (row) => row.EVALUATE_STATUS == 1
-        );
-        if (waitingListAndEvaluated.length > 0) {
-          renderElderModal(
-            waitingListAndEvaluated[0],
-            "modal-visit-detail",
-            false,
-            true
-          );
-          $("#visit_recommend").show();
-        }
-      }, 500);
+      // setTimeout(function () {
+      //   let waitingListAndEvaluated = waitingList.filter(
+      //     (row) => row.EVALUATE_STATUS == 1
+      //   );
+      //   if (waitingListAndEvaluated.length > 0) {
+      //     renderElderModal(
+      //       waitingListAndEvaluated[0],
+      //       "modal-visit-detail",
+      //       false,
+      //       true
+      //     );
+      //     $("#visit_recommend").show();
+      //   }
+      // }, 500);
       queryALL("VHV_MA_GIS_PROVINCE", function (res) {
         if(res){
           $("#visit_page .content .collapse-filter #visitSearchProvince").val(
