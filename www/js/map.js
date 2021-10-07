@@ -3,21 +3,21 @@ $(".menu_map_page").on("click", function () {
   loading.show();
   var status = navigator.onLine;
   if (status) {
-    // if (CurrentPosUrgentNoti) {
-    changePage("map_page", function () {
-      initialMapPageFunc();
-      setTimeout(function () {
-        loading.hide();
-      }, 500);
-    });
-    // } else {
-    //   loading.hide();
-    //   let chkPos = confirm("กรุณาอุนญาติตำแหน่ง");
-    //   if (chkPos) {
-    //     document.addEventListener("deviceready", onDeviceMapPageReady, false);
-    //   } else {
-    //   }
-    // }
+    if (CurrentPosUrgentNoti) {
+      changePage("map_page", function () {
+        initialMapPageFunc();
+        setTimeout(function () {
+          loading.hide();
+        }, 500);
+      });
+    } else {
+      loading.hide();
+      let chkPos = confirm("กรุณาอุนญาติตำแหน่ง");
+      if (chkPos) {
+        document.addEventListener("deviceready", onDeviceMapPageReady, false);
+      } else {
+      }
+    }
   } else {
     alert("กรุณาเชื่อมต่ออินเตอร์เน็ต");
     loading.hide();
@@ -906,4 +906,9 @@ $("#map_elder_list_page .urgent_noti_page_header .back_header_btn").on(
     });
   }
 );
+
+
+$('.map_header_btn').on('click',function(){
+    $('.footer_item.menu_map_page').click()
+})
 /* ----------------------------------------------------------------------------- end : map_elder_list_page ----------------------------------------------------------------------------- */
