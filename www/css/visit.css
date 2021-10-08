@@ -384,6 +384,7 @@ input.input-form.lock:read-only {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.65);
   overflow-y: scroll;
+  z-index: 999;
 }
 .modal .modal-container {
   position: absolute;
