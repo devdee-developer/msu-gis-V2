@@ -174,7 +174,8 @@
   position: absolute;
   width: 100%;
   height: 60px;
-  bottom: 40px;
+  bottom: 100px;
+  /* bottom: 40px; */
   display: none;
   padding-left: 15px;
   padding-right: 15px;
@@ -189,7 +190,7 @@
   border-radius: 10px;
   border-right-color: #f7f5fc;
   border-right-style: solid;
-  border-right-width: 44px;
+  /* border-right-width: 44px; */
   background-color: #ffffff;
 }
 #map_page .elder_content_fixed .card-body-thumbnail {
@@ -200,7 +201,7 @@
   width: 25px;
   height: 25px;
   position: absolute;
-  right: -35px;
+  right: 0px;
   top: -15px;
 }
 #map_page .elder_content_fixed .card-body-content {
