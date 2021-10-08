@@ -44,28 +44,33 @@ $(function () {
           if (clientVersion < serverVersion.CURRENT_VERSION) {
             getInitial(function(){
               if(dialog){
-                alert('ปรับปรุงข้อมูลสำเร็จ')
+               
+                // alert('ปรับปรุงข้อมูลสำเร็จ')
                 _callback && _callback();
+                modalDialog('ดำเนินการสำเร็จ','ปรับปรุงข้อมูลสำเร็จ')
               }
             });
            
           }else{
             if(dialog){
-              alert('ไม่มีข้อมูลปรับปรุง')
+              
+              // alert('ไม่มีข้อมูลปรับปรุง')
               _callback && _callback();
+              modalDialog('ดำเนินการสำเร็จ','ไม่มีข้อมูลปรับปรุง')
             }
           }
         }else{
           // if(dialog){
+            // modalDialog('ดำเนินการสำเร็จ','ไม่มีข้อมูลปรับปรุง')
           //   alert('ไม่มีข้อมูลปรับปรุง')
           //   _callback && _callback();
           // }
           if(dialog){
-          getInitial(function(){
+            getInitial(function(){
           
-              alert('ปรับปรุงข้อมูลสำเร็จ')
+              // alert('ปรับปรุงข้อมูลสำเร็จ')
               _callback && _callback();
-           
+              modalDialog('ดำเนินการสำเร็จ','ปรับปรุงข้อมูลสำเร็จ')
           });
           }
         }
@@ -76,7 +81,7 @@ $(function () {
       console.log(`sync all result error`, error);
      
       if(dialog){
-        alert('ปรับปรุงข้อมูลไม่สำเร็จ')
+        modalDialog('ดำเนินการไม่สำเร็จ','โปรดลองอีกครั้ง หรือติดต่อเจ้าหน้าที่','alert')
       }
     }
   }

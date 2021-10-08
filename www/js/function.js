@@ -2574,3 +2574,15 @@ function initialSearchHeaderFunc() {
   $("#qtyitemsearch").hide();
   $(".search_header input").val("");
 }
+function modalDialog(title,sub_title,mode){
+      $('#modal-dialog .title').text(title)
+      $('#modal-dialog .sub-title').text(sub_title)
+    if(mode =='alert'){
+      $('#modal-dialog .title').css("color", "#f26e4f") ;
+      // $('#modal-dialog img').attr('src','')
+    }else{
+      $('#modal-dialog .title').css("color", "#1bc3a2")
+      // $('#modal-dialog img').attr('src','img/evaluate_success.png')
+    }
+    showModal('modal-dialog')
+}

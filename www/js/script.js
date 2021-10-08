@@ -18,6 +18,7 @@ $(function () {
   //       console.error(error);
   //     }
   //   );
+  
   $(".header_notification").hide();
   $(".profile_header_wrapper img").remove();
   if (!token.getUserToken()) {
