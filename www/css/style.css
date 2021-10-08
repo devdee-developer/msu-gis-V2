@@ -36,13 +36,17 @@ div {
 #splash_page .btn_splash {
   width: 300px;
   height: 55px;
-  background: url(../img/btn1.png);
+  background: url(../img/btn1-n.png);
+  border-radius: 25px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: absolute;
   left: 50%;
   margin-left: -150px;
-  bottom: 30px;
+  bottom: 45px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px,
+    rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px,
+    rgb(0 0 0 / 9%) 0px -3px 5px;
 }
 
 #login_page {
@@ -186,7 +190,7 @@ select.input-field:disabled {
   height: 60px;
   background: white;
   top: 0px;
-  border-bottom: 1px solid #EEEAFD;
+  border-bottom: 1px solid #eeeafd;
 }
 .header .logo_header {
   display: block;
@@ -229,7 +233,7 @@ select.input-field:disabled {
   right: 0px;
   height: 70px;
   bottom: 0px;
-  box-shadow: 0px 3px 6px #9595F273;
+  box-shadow: 0px 3px 6px #9595f273;
   /* border-top: 1px solid rgba(0, 0, 0, 0.2); */
 }
 .content {
@@ -242,7 +246,8 @@ select.input-field:disabled {
   overflow-y: scroll;
 }
 #home_page .content {
-  background: transparent linear-gradient(145deg, #FDF3EF 0%, #F6F5FA 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(145deg, #fdf3ef 0%, #f6f5fa 100%) 0%
+    0% no-repeat padding-box;
 }
 #map {
   position: absolute;
@@ -474,9 +479,9 @@ select.input-field:disabled {
   position: relative;
   color: #000979;
   height: 57px;
-  box-shadow: 0px 2px 8px #9595F240;
+  box-shadow: 0px 2px 8px #9595f240;
 }
-.home_knowledge_base p{
+.home_knowledge_base p {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -485,8 +490,8 @@ select.input-field:disabled {
 .comment_icon_home {
   position: absolute;
   left: 15px;
-  top:50%;
-  transform: translate(0,-50%);
+  top: 50%;
+  transform: translate(0, -50%);
   font-size: 25px !important;
   color: #7676ff;
 }
@@ -504,9 +509,9 @@ select.input-field:disabled {
   margin-bottom: 10px;
   border-radius: 15px;
   overflow: hidden;
-  -webkit-box-shadow: 0px 8px 12px #9595F273;
-  -moz-box-shadow: 0px 8px 12px #9595F273;
-  box-shadow: 0px 8px 12px #9595F273;
+  -webkit-box-shadow: 0px 8px 12px #9595f273;
+  -moz-box-shadow: 0px 8px 12px #9595f273;
+  box-shadow: 0px 8px 12px #9595f273;
 }
 .main_home_menu_item_wrapper {
   width: 90%;
@@ -525,7 +530,7 @@ select.input-field:disabled {
   float: left;
   width: 100%;
   padding-left: 20px;
-  color: #3B3D48;
+  color: #3b3d48;
   margin-bottom: 10px;
   font-size: 13px;
 }
@@ -565,8 +570,8 @@ select.input-field:disabled {
   margin: auto;
   height: 120px;
   border-radius: 10px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 2px 10px #C9C9E273;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 10px #c9c9e273;
   margin-bottom: 10px;
   position: relative;
   padding: 12px;
@@ -586,7 +591,7 @@ select.input-field:disabled {
   height: 25px;
 }
 .news_item li p.news_description {
-  color: #0D0E12;
+  color: #0d0e12;
   font-size: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -598,7 +603,7 @@ select.input-field:disabled {
   position: absolute;
   left: 121px;
   bottom: 13px;
-  color: #97989B;
+  color: #97989b;
   font-size: 13px;
 }
 .back_header_btn {
@@ -642,11 +647,11 @@ select.input-field:disabled {
 #map {
   height: 100%;
 }
-.pages .header .title{
+.pages .header .title {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   color: #010979;
   font-size: 23px;
   font-weight: bold;
@@ -655,18 +660,18 @@ select.input-field:disabled {
   margin: 0 2px;
 }
 .swiper-pagination-bullet-active {
-  background-color: #7676FF;
+  background-color: #7676ff;
 }
-#sync_setting{
-  background-color: #19BD9B;
-  color: #FFFFFF;
+#sync_setting {
+  background-color: #19bd9b;
+  color: #ffffff;
 }
 .modal .modal-container-dialog {
   position: fixed;
   border-radius: 18px;
-  top:50%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-color: #ffffff;
   width: 92%;
   max-width: 384px;
