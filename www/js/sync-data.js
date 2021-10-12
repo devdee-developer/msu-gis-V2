@@ -122,7 +122,7 @@ $(function () {
                 let errData = {
                   URL: `${api_base_url}${url}`, 
                   POST_DATA:data,
-                  DESC_LOG: typeof err === 'object'? JSON.stringify(err):err,
+                  DESC_LOG: typeof err === 'object'? JSON.stringify(err):0,
                   MOBILE_TOKEN:token.getDeviceToken(),
                   token: token.getUserToken(),
                 };
@@ -182,7 +182,7 @@ $(function () {
               let errData = {
                 URL: `${api_base_url}${url}`, 
                 POST_DATA:data,
-                DESC_LOG: typeof err === 'object'? JSON.stringify(err):err,
+                DESC_LOG: typeof err === 'object'? JSON.stringify(err):0,
                 MOBILE_TOKEN:token.getDeviceToken(),
                 token: token.getUserToken(),
               };
