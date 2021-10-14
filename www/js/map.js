@@ -907,8 +907,7 @@ $("#map_elder_list_page .urgent_noti_page_header .back_header_btn").on(
   }
 );
 
-
-$('.map_header_btn').on('click',function(){
-    $('#map_page .footer_item.menu_map_page').click()
-})
+$(".map_header_btn").on("click", function () {
+  $("#map_page .footer_item.menu_map_page").click();
+});
 /* ----------------------------------------------------------------------------- end : map_elder_list_page ----------------------------------------------------------------------------- */
