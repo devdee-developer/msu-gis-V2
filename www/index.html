@@ -4847,12 +4847,39 @@
                 2
               </p>
               <ul>
+                <li class = "group_input_cal_bmi">
+                  <label>น้ำหนัก</label>
+                  <div class="input_inline">
+                    <input
+                      type="number"
+                      style="width:60%"
+                      class="visit_form input_cal_bmi"
+                      placeholder="ใส่ตัวเลข"
+                      id="input_cal_bmi_weight"
+                    />
+                    <label>กิโลกรัม</label>
+                  </div>
+                </li>
+                <li  class = "group_input_cal_bmi">
+                  <label>ส่วนสูง</label>
+                  <div class="input_inline">
+                    <input
+                    style="width:60%"
+                      type="number"
+                      class="visit_form input_cal_bmi"
+                      placeholder="ใส่ตัวเลข"
+                      id="input_cal_bmi_heigth"
+                    />
+                    <label>เซนติเมตร</label>
+                  </div>
+                </li>
                 <li>
                   <input
                     type="radio"
                     name="MNA1F"
                     id="eva12_radio_1_6_1"
                     value="0"
+                    disabled
                   />
                   <label for="eva12_radio_1_6_1">BMI น้อยกว่า 19</label>
                 </li>
@@ -4862,6 +4889,7 @@
                     name="MNA1F"
                     id="eva12_radio_1_6_2"
                     value="1"
+                    disabled
                   />
                   <label for="eva12_radio_1_6_2"
                     >BMI ตั้งแต่ 19 แต่น้อยกว่า 21</label
@@ -4873,6 +4901,7 @@
                     name="MNA1F"
                     id="eva12_radio_1_6_3"
                     value="2"
+                    disabled
                   />
                   <label for="eva12_radio_1_6_3"
                     >BMI ตั้งแต่ 21 แต่น้อยกว่า 23</label
@@ -4884,6 +4913,7 @@
                     name="MNA1F"
                     id="eva12_radio_1_6_4"
                     value="3"
+                    disabled
                   />
                   <label for="eva12_radio_1_6_4">BMI ตั้งแต่ 23 ขึ้นไป</label>
                 </li>

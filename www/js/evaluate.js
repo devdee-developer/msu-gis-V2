@@ -2673,6 +2673,7 @@ $(function () {
   // เปลี่ยนหน้าไป evaluate_page_12
   function gotoEvaPage12(lastRecordId) {
     loading.show();
+    $("#evaluate_page_12 .group_input_cal_bmi").hide()
     $(`#evaluate_page_12 .evaluate_page_status`).removeClass(
       "alert alert-yellow alert-red"
     );
@@ -2804,9 +2805,11 @@ $(function () {
   );
   // ปุ่ม เริ่มประเมินใหม่
   $("#evaluate_page_12 .footer .btn_create_evaluate").on("click", function () {
+    $("#evaluate_page_12 .group_input_cal_bmi").show()
     $("#evaluate_page_12 button.choice").prop("disabled", false);
     $("#evaluate_page_12 button.choice").removeClass("active");
     $("#evaluate_page_12 input[type='radio']").prop("disabled", false);
+    $("#evaluate_page_12 input[type='radio'][name='MNA1F']").prop("disabled", true);
     $("#evaluate_page_12 input[type='radio']").prop("checked", false);
     $("#evaluate_page_12 .evaluate_page_status ").hide();
     $("#evaluate_page_12 .footer").hide();
@@ -2825,72 +2828,75 @@ $(function () {
   $(
     "#evaluate_page_12 .btn-group button,#evaluate_page_12 input[type='radio']"
   ).on("click", function () {
-    let vaidateValue = [];
-    let NUTRI1 = $("#NUTRI1 .choice.active").val();
-    let NUTRI2 = $("#NUTRI2 .choice.active").val();
-    let MNA1A = $('input[name="MNA1A"]:checked').val();
-    let MNA1B = $('input[name="MNA1B"]:checked').val();
-    let MNA1C = $('input[name="MNA1C"]:checked').val();
-    let MNA1D = $('input[name="MNA1D"]:checked').val();
-    let MNA1E = $('input[name="MNA1E"]:checked').val();
-    let MNA1F = $('input[name="MNA1F"]:checked').val();
-    let MNA1G = $('input[name="MNA1G"]:checked').val();
-    let MNA2A = $('input[name="MNA2A"]:checked').val();
-    let MNA2B = $('input[name="MNA2B"]:checked').val();
-    let MNA2C = $('input[name="MNA2C"]:checked').val();
-    let MNA2D = $('input[name="MNA2D"]:checked').val();
-    let MNA2EA = $('input[name="MNA2EA"]:checked').val();
-    let MNA2EB = $('input[name="MNA2EB"]:checked').val();
-    let MNA2EC = $('input[name="MNA2EC"]:checked').val();
-    let MNA2F = $('input[name="MNA2F"]:checked').val();
-    let MNA2G = $('input[name="MNA2G"]:checked').val();
-    let MNA2H = $('input[name="MNA2H"]:checked').val();
-    let MNA2I = $('input[name="MNA2I"]:checked').val();
-    let MNA2J = $('input[name="MNA2J"]:checked').val();
-    let MNA2K = $('input[name="MNA2K"]:checked').val();
-    let MNA2L = $('input[name="MNA2L"]:checked').val();
-    vaidateValue = [
-      NUTRI1,
-      NUTRI2,
-      MNA1A,
-      MNA1B,
-      MNA1C,
-      MNA1D,
-      MNA1E,
-      MNA1F,
-      MNA1G,
-      MNA2A,
-      MNA2B,
-      MNA2C,
-      MNA2D,
-      MNA2EA,
-      MNA2EB,
-      MNA2EC,
-      MNA2F,
-      MNA2G,
-      MNA2H,
-      MNA2I,
-      MNA2J,
-      MNA2K,
-      MNA2L,
-    ];
-    if (validateForm(vaidateValue)) {
-      $("#evaluate_page_12 .step-footer .btn_group .submit").prop(
-        "disabled",
-        false
-      );
-      let data = setDataEva12();
-      evaluateResult(data).then((res) => {
-        EVALUATE_RESULT12 = res;
-      });
-    } else {
-      $("#evaluate_page_12 .step-footer .btn_group .submit").prop(
-        "disabled",
-        true
-      );
-      $("#evaluate_page_12 .evaluate_page_status ").hide();
-    }
+    validateEva12()
   });
+ function validateEva12(){
+  let vaidateValue = [];
+  let NUTRI1 = $("#NUTRI1 .choice.active").val();
+  let NUTRI2 = $("#NUTRI2 .choice.active").val();
+  let MNA1A = $('input[name="MNA1A"]:checked').val();
+  let MNA1B = $('input[name="MNA1B"]:checked').val();
+  let MNA1C = $('input[name="MNA1C"]:checked').val();
+  let MNA1D = $('input[name="MNA1D"]:checked').val();
+  let MNA1E = $('input[name="MNA1E"]:checked').val();
+  let MNA1F = $('input[name="MNA1F"]:checked').val();
+  let MNA1G = $('input[name="MNA1G"]:checked').val();
+  let MNA2A = $('input[name="MNA2A"]:checked').val();
+  let MNA2B = $('input[name="MNA2B"]:checked').val();
+  let MNA2C = $('input[name="MNA2C"]:checked').val();
+  let MNA2D = $('input[name="MNA2D"]:checked').val();
+  let MNA2EA = $('input[name="MNA2EA"]:checked').val();
+  let MNA2EB = $('input[name="MNA2EB"]:checked').val();
+  let MNA2EC = $('input[name="MNA2EC"]:checked').val();
+  let MNA2F = $('input[name="MNA2F"]:checked').val();
+  let MNA2G = $('input[name="MNA2G"]:checked').val();
+  let MNA2H = $('input[name="MNA2H"]:checked').val();
+  let MNA2I = $('input[name="MNA2I"]:checked').val();
+  let MNA2J = $('input[name="MNA2J"]:checked').val();
+  let MNA2K = $('input[name="MNA2K"]:checked').val();
+  let MNA2L = $('input[name="MNA2L"]:checked').val();
+  vaidateValue = [
+    NUTRI1,
+    NUTRI2,
+    MNA1A,
+    MNA1B,
+    MNA1C,
+    MNA1D,
+    MNA1E,
+    MNA1F,
+    MNA1G,
+    MNA2A,
+    MNA2B,
+    MNA2C,
+    MNA2D,
+    MNA2EA,
+    MNA2EB,
+    MNA2EC,
+    MNA2F,
+    MNA2G,
+    MNA2H,
+    MNA2I,
+    MNA2J,
+    MNA2K,
+    MNA2L,
+  ];
+  if (validateForm(vaidateValue)) {
+    $("#evaluate_page_12 .step-footer .btn_group .submit").prop(
+      "disabled",
+      false
+    );
+    let data = setDataEva12();
+    evaluateResult(data).then((res) => {
+      EVALUATE_RESULT12 = res;
+    });
+  } else {
+    $("#evaluate_page_12 .step-footer .btn_group .submit").prop(
+      "disabled",
+      true
+    );
+    $("#evaluate_page_12 .evaluate_page_status ").hide();
+  }
+ }
   // ปุ่ม ยกเลิก
   $("#evaluate_page_12 .step-footer .btn_group .cancel").on(
     "click",
@@ -3013,6 +3019,26 @@ $(function () {
       $("#eva12_sub_" + $(this).attr("target")).show();
     }
   });
+  $('#evaluate_page_12 .input_cal_bmi').on('keydown',debounce(()=>{
+    let height = $('#input_cal_bmi_heigth').val()/100
+    let weight = $('#input_cal_bmi_weight').val()
+    if(height>0&&weight>0){
+      let bmi = (weight/(height*height)).toFixed(2)
+      console.log(bmi)
+      if(bmi<19){
+        $('#eva12_radio_1_6_1').prop('checked',true)
+      }else if(bmi>=19&&bmi<21){
+        $('#eva12_radio_1_6_2').prop('checked',true)
+      }else if (bmi>=21&&bmi<23){
+        $('#eva12_radio_1_6_3').prop('checked',true)
+      }else{
+        $('#eva12_radio_1_6_4').prop('checked',true)
+      }
+    }else{
+      $("#evaluate_page_12 input[type='radio'][name='MNA1F']").prop("checked", false);
+    }
+    validateEva12()
+  },500))
   /* ----------------------------------------------------------------------------- end : evaluate_page_12 ----------------------------------------------------------------------------- */
 
   /* ----------------------------------------------------------------------------- start : evaluate_page_13 ----------------------------------------------------------------------------- */
