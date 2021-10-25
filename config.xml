@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
+<<<<<<< HEAD
 <widget id="com.meedeem.vhvapp" version="1.0.29" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>vhvapp</name>
+=======
+<widget id="com.meedeem.vhvapp" version="1.0.273" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>อสม.พร้อม</name>
+>>>>>>> main
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
