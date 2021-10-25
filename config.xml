@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
+<<<<<<< HEAD
 
 <widget id="com.devdee.osomoprom" version="1.0.301" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
 
+=======
+<widget id="com.devdee.osomoprom" version="1.0.302" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+>>>>>>> main
     <name>อสม.พร้อม</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
