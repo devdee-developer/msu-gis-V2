@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^9.1.0",
+    "cordova-ios": "^6.2.0",
     "cordova-plugin-androidx-adapter": "^1.1.3",
     "cordova-plugin-app-version": "^0.1.12",
     "cordova-plugin-camera": "^5.0.3",
@@ -22,6 +23,7 @@
     "cordova-plugin-firebase-analytics": "^6.0.1",
     "cordova-plugin-firebase-messaging": "^6.0.0",
     "cordova-plugin-geolocation": "^4.1.0",
+    "cordova-plugin-sqlite": "^1.0.3",
     "cordova-plugin-whitelist": "^1.3.5",
     "cordova-support-android-plugin": "^1.0.2"
   },
@@ -39,12 +41,19 @@
       },
       "cordova-plugin-firebase-messaging": {
         "ANDROID_FIREBASE_MESSAGING_VERSION": "22.0.+",
-        "ANDROIDX_CORE_VERSION": "1.6.+"
+        "ANDROIDX_CORE_VERSION": "1.6.+",
+        "IOS_FIREBASE_MESSAGING_VERSION": "~> 8.2.0"
       },
-      "cordova-plugin-androidx-adapter": {}
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-ios-location-permissions": {},
+      "cordova-plugin-sqlite": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
+  },
+  "dependencies": {
+    "cordova-plugin-ios-location-permissions": "1.0.0"
   }
 }
