@@ -52,7 +52,8 @@ $(function () {
     if(platform == 'Android'){
       window.open("https://play.google.com/store/apps/details?id=com.devdee.osomoprom");
     }else{
-      showModal("modal-in-progress");
+      window.open(" https://apps.apple.com/us/app/%E0%B8%AD%E0%B8%AA%E0%B8%A1-%E0%B8%9E%E0%B8%A3-%E0%B8%AD%E0%B8%A1/id1593181376");
+     
     }
    
   });

@@ -25,30 +25,36 @@ $(function () {
     changePage("splash_page", function () {});
   } else {
     changePage("home_page", function () {
-      if (!token.getDeviceToken()) {
-        cordova.plugins.firebase.messaging.getToken().then(function (token) {
-          let postData = {
-            noti_token: token,
-            token: token.getUserToken(),
-          };
-          callAPI(
-            `${api_base_url}/updateNotiToken`,
-            "POST",
-            JSON.stringify(postData),
-            (res) => {
-              console.log(`device token success`);
-              localStorage.setItem("noti_token", token);
-            },
-            (err) => {
-              console.log(` error `);
-            }
-          );
-        });
-      }
-      calHomeButtonPosition();
-      setProfile();
       loading.show();
-      initSlideHomePage();
+      setTimeout(()=>{
+        if (!token.getDeviceToken()) {
+          cordova.plugins.firebase.messaging.getToken().then(function (token) {
+            let postData = {
+              noti_token: token,
+              token: token.getUserToken(),
+            };
+            callAPI(
+              `${api_base_url}/updateNotiToken`,
+              "POST",
+              JSON.stringify(postData),
+              (res) => {
+                console.log(`device token success`);
+                localStorage.setItem("noti_token", token);
+              },
+              (err) => {
+                console.log(` error `);
+              }
+            );
+          });
+        }
+        console.log('test')
+        calHomeButtonPosition();
+        setProfile();
+       
+        initSlideHomePage();
+
+      },500)
+
     });
   }
   $(".btn_splash").on("click", function () {
