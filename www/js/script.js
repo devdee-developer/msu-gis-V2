@@ -25,8 +25,7 @@ $(function () {
     changePage("splash_page", function () {});
   } else {
     changePage("home_page", function () {
-      loading.show();
-      setTimeout(()=>{
+      document.addEventListener('deviceready', function() {
         if (!token.getDeviceToken()) {
           cordova.plugins.firebase.messaging.getToken().then(function (token) {
             let postData = {
@@ -50,8 +49,12 @@ $(function () {
         console.log('test')
         calHomeButtonPosition();
         setProfile();
-       
+        loading.show();
         initSlideHomePage();
+      })
+      
+      setTimeout(()=>{
+       
 
       },500)
 
