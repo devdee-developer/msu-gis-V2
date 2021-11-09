@@ -4,13 +4,16 @@ let knowledgeCategoryArr = [];
 let knowledgeQty = 0;
 let arrKm;
 $(function () {
+  $("#qtyitemsearch").hide();
   $(".main_home_menu_item_wrapper img")
     .eq(1)
     .on("click", function () {
-      loading.show();
+    
       var status = navigator.onLine;
       if (status) {
-        getKnowledge()
+        loading.show();
+        changePage("knowledge_page", function () {
+          getKnowledge()
           .then((res) => {
             knowledgeArr = res.data.data.map((row, index) => ({
               ...row,
@@ -18,25 +21,26 @@ $(function () {
             }));
 
             knowledgeCategoryArr = res.data.categoryList;
+            initialKnowledgePageFunc();
             loading.hide();
-            changePage("knowledge_page", function () {
-              initialKnowledgePageFunc();
-            });
+           
           })
           .catch((err) => {
             knowledgeArr = [];
             knowledgeCategoryArr = [];
+            initialKnowledgePageFunc();
             loading.hide();
-            changePage("knowledge_page", function () {
-              initialKnowledgePageFunc();
-            });
+          
           });
+         
+        });
+       
       } else {
         alert("กรุณาเชื่อมต่ออินเตอร์เน็ต");
         loading.hide();
       }
     });
-});
+
 //getKnowledge
 function getKnowledge() {
   return new Promise((resolve, reject) => {
@@ -57,7 +61,7 @@ function getKnowledge() {
 $("#knowledge_page .urgent_noti_page_header .back_header_btn").on(
   "click",
   function () {
-    if ($(".search_header").hasClass("active")) {
+    if ($("#knowledge_page .search_header").hasClass("active")) {
       initialKnowledgePageFunc();
       searchremoveClass();
     } else {
@@ -68,6 +72,7 @@ $("#knowledge_page .urgent_noti_page_header .back_header_btn").on(
 
 // initialKnowledgePageFunc
 function initialKnowledgePageFunc() {
+ 
   $(".content").animate(
     {
       scrollTop: $(".content").offset().top,
@@ -82,7 +87,9 @@ function initialKnowledgePageFunc() {
   $("#knowledge_page .content .slide-bar .swiper-slide")
     .eq(0)
     .addClass("active");
+
   initSlideKnowledgePage();
+  
   filterKnowledgeCard(
     $("#knowledge_page .content .slide-bar .swiper-slide").eq(0).text()
   );
@@ -96,6 +103,7 @@ function initialKnowledgePageFunc() {
       filterKnowledgeCard($(this).text());
     }
   );
+
 }
 
 function filterKnowledgeCard(category) {
@@ -216,7 +224,7 @@ function renderKnowledgeDetailContent(knowledgeNo) {
 $("#knowledge_page .urgent_noti_page_header .search_header").on(
   "click",
   function () {
-    if ($(".search_header").hasClass("active")) {
+    if ($("#knowledge_page .search_header").hasClass("active")) {
       searchremoveClass();
     } else {
       $("#knowledge_page ul.news_item").html("");
@@ -265,6 +273,7 @@ function inputChangeKnowledge(e) {
   }
 }
 function searchremoveClass() {
+  alert('test')
   $("#knowledge_page .content .title-bar").show();
   $("#knowledge_page .content .slide-bar").show();
   $("#knowledge_page .content .sort-bar").show();
@@ -274,3 +283,4 @@ function searchremoveClass() {
   $("#qtyitemsearch").hide();
   $(".urgent_noti_page_header .title").show();
 }
+});
