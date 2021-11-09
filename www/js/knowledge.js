@@ -40,7 +40,7 @@ $(function () {
         loading.hide();
       }
     });
-});
+
 //getKnowledge
 function getKnowledge() {
   return new Promise((resolve, reject) => {
@@ -273,6 +273,7 @@ function inputChangeKnowledge(e) {
   }
 }
 function searchremoveClass() {
+  alert('test')
   $("#knowledge_page .content .title-bar").show();
   $("#knowledge_page .content .slide-bar").show();
   $("#knowledge_page .content .sort-bar").show();
@@ -282,3 +283,4 @@ function searchremoveClass() {
   $("#qtyitemsearch").hide();
   $(".urgent_noti_page_header .title").show();
 }
+});
