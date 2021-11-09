@@ -273,7 +273,6 @@ function inputChangeKnowledge(e) {
   }
 }
 function searchremoveClass() {
-  alert('test')
   $("#knowledge_page .content .title-bar").show();
   $("#knowledge_page .content .slide-bar").show();
   $("#knowledge_page .content .sort-bar").show();
