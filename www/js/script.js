@@ -27,9 +27,10 @@ $(function () {
     changePage("home_page", function () {
       document.addEventListener('deviceready', function() {
         if (!token.getDeviceToken()) {
-          cordova.plugins.firebase.messaging.getToken().then(function (token) {
+          FCMPlugin.getToken(function(dToken){
+            
             let postData = {
-              noti_token: token,
+              noti_token: dToken,
               token: token.getUserToken(),
             };
             callAPI(
@@ -104,15 +105,16 @@ $(function () {
     }
     function onSuccess(pos) {
       CurrentPosUrgentNoti = pos;
-      cordova.plugins.firebase.messaging.getToken().then(function (token) {
-        console.log("Got device token: ", token);
+      FCMPlugin.getToken(function(dToken){
+        
+        console.log("Got device token: ", dToken);
 
         login(
           username,
           password,
           CurrentPosUrgentNoti.coords.latitude,
           CurrentPosUrgentNoti.coords.longitude,
-          token,
+          dToken,
           function (res) {
             loading.hide();
             changePage("home_page", function () {

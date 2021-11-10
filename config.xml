@@ -31,9 +31,17 @@
         <resource-file src="res/notification_icon/drawable-xxxhdpi/notification_icon.png" target="app/src/main/res/drawable-xxxhdpi/notification_icon.png" />
     </platform>
     <platform name="ios">
+    <array>
+        <dict>
+        	<key>NSLocationWhenInUseUsageDescription</key>
+            <string>This app needs location access for help user to go them destination</string>
+            <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+            <string>This app needs location access for help user to go them destination</string>
+        </dict>
+    </array>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-         <resource-file src="GoogleService-Info.plist" />
+         <!--<resource-file src="GoogleService-Info.plist" />-->
          <!-- iOS 8.0+ -->
         <!-- iPhone 6 Plus  -->
         <icon src="res/icon/Assets.xcassets/AppIcon.appiconset/_/180.png" width="180" height="180" />
