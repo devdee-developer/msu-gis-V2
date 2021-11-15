@@ -120,13 +120,18 @@ $(function () {
           dToken,
           function (res) {
             loading.hide();
-            changePage("home_page", function () {
-              calHomeButtonPosition();
-              loading.show();
-              getInitial(function () {
+            getInitial(function () {
+              initSlideHomePage();
+            });
+            
+            loading.show();
+            setTimeout(function(){
+              changePage("home_page", function () {
+                calHomeButtonPosition();
                 initSlideHomePage();
               });
-            });
+            },1500)
+            
           },
           function (err) {
             loading.hide();
@@ -224,6 +229,9 @@ $(function () {
   });
   $("#logout").on("click", function () {
     $(".close_top_menu").click();
+    db.transaction(function (tx) {
+      tx.executeSql("DELETE FROM VHV_TR_VHV ");
+    });
     // clearInterval(syncDataInterval)
     localStorage.clear();
     loading.show();

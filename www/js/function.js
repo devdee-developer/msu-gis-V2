@@ -244,11 +244,16 @@ function calHomeButtonPosition() {
   $(".main_home_menu_item_wrapper img").width(_w);
   $(".main_home_menu_item_wrapper img").eq(1).css("margin-left", "10px");
   $(".main_home_menu_item_wrapper img").eq(3).css("margin-left", "10px");
+  console.log('vhv')
   queryALL("VHV_TR_VHV", function (vhv_tr_vhv) {
     let vhv = vhv_tr_vhv[0];
-    if(vhv.VHV_USER=='070926'){
+    console.log(vhv)
+    if(vhv.VHV_USERID=='070926'){
       $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").hide()
       $(".footer .footer_item").css("width","33%")
+    }else{
+      $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").show()
+      $(".footer .footer_item").css("width","20%")
     }
   })
 
@@ -464,6 +469,14 @@ function getInitial(_callback) {
       //  response.data = CryptoJS.AES.decrypt(response.data, "MsU2021APPlcation");
       response.data = CryptoJSAesJson.decrypt(response.data, secret_key_aes);
       var data = response.data;
+      let vhv = data.userInfo[0];
+      if(vhv.VHV_USERID=='070926'){
+        $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").hide()
+        $(".footer .footer_item").css("width","33%")
+      }else{
+        $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").show()
+        $(".footer .footer_item").css("width","20%")
+      }
       if (response.status == true) {
         clearInitial();
         db.transaction(function (tx) {
