@@ -183,6 +183,27 @@ select.input-field:disabled {
   line-height: 50px;
   font-size: 23px;
 }
+.btn_register {
+  width: 80%;
+  text-align: center;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  color: white;
+ 
+  background: #968fe9;
+  -webkit-box-shadow: 0px 0px 19px 0px rgb(111 99 253 / 35%);
+  -moz-box-shadow: 0px 0px 19px 0px rgba(111, 99, 253, 0.35);
+  box-shadow: 0px 0px 19px 0px rgb(111 99 253 / 35%);
+  height: 50px;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  line-height: 50px;
+  font-size: 23px;
+}
 .header {
   position: absolute;
   left: 0px;

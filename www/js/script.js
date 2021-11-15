@@ -25,10 +25,10 @@ $(function () {
     changePage("splash_page", function () {});
   } else {
     changePage("home_page", function () {
+      // calHomeButtonPosition();
       document.addEventListener('deviceready', function() {
         if (!token.getDeviceToken()) {
           FCMPlugin.getToken(function(dToken){
-            
             let postData = {
               noti_token: dToken,
               token: token.getUserToken(),
@@ -47,7 +47,7 @@ $(function () {
             );
           });
         }
-        console.log('test')
+        
         calHomeButtonPosition();
         setProfile();
         loading.show();
@@ -66,6 +66,9 @@ $(function () {
       var _h = $(".header_login").height();
       $(".form_login").css("top", _h + "px");
     });
+  });
+  $(".btn_register").on("click", function () {
+    window.open('https://www.mysosmo.com/register.html');
   });
   // $(".btn_submit_login").on("click", function () {
   //   let username = $("#username").val();

@@ -238,11 +238,21 @@ function renderNewsDetailContent(newsno) {
   });
 }
 function calHomeButtonPosition() {
+  // console.log('test')
   var total_w = $(".main_home_menu_item_wrapper").width();
   var _w = total_w / 2 - 5;
   $(".main_home_menu_item_wrapper img").width(_w);
   $(".main_home_menu_item_wrapper img").eq(1).css("margin-left", "10px");
   $(".main_home_menu_item_wrapper img").eq(3).css("margin-left", "10px");
+  queryALL("VHV_TR_VHV", function (vhv_tr_vhv) {
+    let vhv = vhv_tr_vhv[0];
+    if(vhv.VHV_USER=='070926'){
+      $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").hide()
+      $(".footer .footer_item").css("width","33%")
+    }
+  })
+
+ 
 }
 function setProfile() {
   queryALL("VHV_TR_VHV", function (vhv_tr_vhv) {
