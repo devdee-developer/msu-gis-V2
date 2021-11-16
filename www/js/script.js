@@ -68,7 +68,7 @@ $(function () {
     });
   });
   $(".btn_register").on("click", function () {
-    window.open('https://www.mysosmo.com/register.html');
+    window.open('https://myosomo.com/register/', '_system');
   });
   // $(".btn_submit_login").on("click", function () {
   //   let username = $("#username").val();
