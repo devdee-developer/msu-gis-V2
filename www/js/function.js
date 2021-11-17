@@ -251,9 +251,11 @@ function calHomeButtonPosition() {
     if(vhv.VHV_USERID=='070926'){
       $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").hide()
       $(".footer .footer_item").css("width","33%")
+      $("#profile_menu").hide()
     }else{
       $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").show()
       $(".footer .footer_item").css("width","20%")
+      $("#profile_menu").show()
     }
   })
 
@@ -473,9 +475,11 @@ function getInitial(_callback) {
       if(vhv.VHV_USERID=='070926'){
         $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").hide()
         $(".footer .footer_item").css("width","33%")
+        $("#profile_menu").hide()
       }else{
         $(".footer_item.menu_contact_page,.footer_item.menu_analytics_page").show()
         $(".footer .footer_item").css("width","20%")
+        $("#profile_menu").show()
       }
       if (response.status == true) {
         clearInitial();
