@@ -401,7 +401,9 @@ async function login(
       },
     });
   } catch (error) {
-    _error("การเชื่อมต่อ อินเตอร์เน็ตมีปัญหา โปรดตรวจสอบการเชื่อมต่อ อินเตอร์เน็ต และเข้าระบบใหม่อีกครั้ง");
+    _error(
+      "การเชื่อมต่อ อินเตอร์เน็ตมีปัญหา โปรดตรวจสอบการเชื่อมต่อ อินเตอร์เน็ต และเข้าระบบใหม่อีกครั้ง"
+    );
   }
 }
 async function callAPI(enpoint, method, data, _success, _error) {
@@ -2574,15 +2576,40 @@ function initialSearchHeaderFunc() {
   $("#qtyitemsearch").hide();
   $(".search_header input").val("");
 }
-function modalDialog(title,sub_title,mode){
-      $('#modal-dialog .title').text(title)
-      $('#modal-dialog .sub-title').text(sub_title)
-    if(mode =='alert'){
-      $('#modal-dialog .title').css("color", "#f26e4f") ;
-      // $('#modal-dialog img').attr('src','')
-    }else{
-      $('#modal-dialog .title').css("color", "#1bc3a2")
-      // $('#modal-dialog img').attr('src','img/evaluate_success.png')
-    }
-    showModal('modal-dialog')
+function modalDialog(title, sub_title, mode) {
+  $("#modal-dialog .title").text(title);
+  $("#modal-dialog .sub-title").text(sub_title);
+  if (mode == "alert") {
+    $("#modal-dialog .title").css("color", "#f26e4f");
+    // $('#modal-dialog img').attr('src','')
+  } else {
+    $("#modal-dialog .title").css("color", "#1bc3a2");
+    // $('#modal-dialog img').attr('src','img/evaluate_success.png')
+  }
+  showModal("modal-dialog");
+}
+function getDistanceMatrix(origin, destination, _success, _error) {
+  try {
+    var distanceService = new google.maps.DistanceMatrixService();
+    distanceService.getDistanceMatrix(
+      {
+        origins: [origin],
+        destinations: [destination],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        durationInTraffic: true,
+        avoidHighways: false,
+        avoidTolls: false,
+      },
+      function (response, status) {
+        if (status !== google.maps.DistanceMatrixStatus.OK) {
+          _error(response);
+        } else {
+          _success(response);
+        }
+      }
+    );
+  } catch (error) {
+    _error("เกิดข้อผิดพลาด8");
+  }
 }

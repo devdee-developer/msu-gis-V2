@@ -339,6 +339,13 @@
     <div class="pages" id="map_page">
       <div class="content" style="top: 0px">
         <div id="map"></div>
+        <div class="MapDirectionIcon">
+          <!-- <a
+            href="intent:https://www.google.com/maps/dir/?api=1&origin=16.442611448372272,102.82001846528836&destination=15.81603600,103.26759400&travelmode=driving#Intent;end"
+            target="_blank"
+            >Click here for map</a
+          > -->
+        </div>
         <div class="filterPosition" id="selecePosition">
           <div class="card-body" id="filterShow">
             <img src="img/logo_header.png" />
@@ -407,6 +414,16 @@
                 <h5 class="urgent">
                   <i class="fa fa-crosshairs" aria-hidden="true"></i>
                   ระยะทาง
+                </h5>
+                <h5
+                  class="urgent"
+                  style="color: #6f63fd; padding-left: 5px"
+                ></h5>
+              </div>
+              <div class="DirectionTime" style="display: flex">
+                <h5 class="urgent">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  ระยะเวลา
                 </h5>
                 <h5
                   class="urgent"
@@ -4847,12 +4864,12 @@
                 2
               </p>
               <ul>
-                <li class = "group_input_cal_bmi">
+                <li class="group_input_cal_bmi">
                   <label>น้ำหนัก</label>
                   <div class="input_inline">
                     <input
                       type="number"
-                      style="width:60%"
+                      style="width: 60%"
                       class="visit_form input_cal_bmi"
                       placeholder="ใส่ตัวเลข"
                       id="input_cal_bmi_weight"
@@ -4860,11 +4877,11 @@
                     <label>กิโลกรัม</label>
                   </div>
                 </li>
-                <li  class = "group_input_cal_bmi">
+                <li class="group_input_cal_bmi">
                   <label>ส่วนสูง</label>
                   <div class="input_inline">
                     <input
-                    style="width:60%"
+                      style="width: 60%"
                       type="number"
                       class="visit_form input_cal_bmi"
                       placeholder="ใส่ตัวเลข"
@@ -5828,6 +5845,7 @@
             </div>
           </div>
         </div>
+        <div class="MapDirection"></div>
         <div class="DetailElder">
           <div class="elder_list">
             <div style="flex: 2; display: flex">
@@ -5995,6 +6013,16 @@
                 <h5 class="urgent">
                   <i class="fa fa-crosshairs" aria-hidden="true"></i>
                   ระยะทาง
+                </h5>
+                <h5
+                  class="urgent"
+                  style="color: #6f63fd; padding-left: 5px"
+                ></h5>
+              </div>
+              <div class="DirectionTime" style="display: flex">
+                <h5 class="urgent">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  ระยะเวลา
                 </h5>
                 <h5
                   class="urgent"
@@ -6427,11 +6455,13 @@
       </div>
     </div>
     <div id="modal-dialog" class="modal">
-      <div class="modal-container-dialog" >
+      <div class="modal-container-dialog">
         <div class="modal-dismiss"><i class="fa fa-times"></i></div>
-        <p class="title" style="font-size: 30px;    font-weight: bold; color: #1bc3a2">
-        </p>
-        <p  class="sub-title" style="font-size: 20px; color: #3b3d48"></p>
+        <p
+          class="title"
+          style="font-size: 30px; font-weight: bold; color: #1bc3a2"
+        ></p>
+        <p class="sub-title" style="font-size: 20px; color: #3b3d48"></p>
         <!-- <img src="img/evaluate_success.png" /> -->
       </div>
     </div>
