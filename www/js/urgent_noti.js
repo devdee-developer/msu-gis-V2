@@ -97,6 +97,10 @@ function initialUrgentNotiPageFunc() {
   }
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer();
+  $("#urgent_noti_page .content .MapDirection").hide();
+  $(
+    "#urgent_noti_page .content .backformap .card-body .card-body-content .DirectionTime"
+  ).hide();
   $("#urgent_noti_page .content .elder_detail").hide();
   $("#urgent_noti_page .DetailElder").show();
   $("#urgent_noti_page .mapContent").removeClass("active");
@@ -441,7 +445,8 @@ function initMapUrgentNotiPage() {
     center: new google.maps.LatLng(
       CurrentPosUrgentNoti.coords.latitude,
       CurrentPosUrgentNoti.coords.longitude
-    ), //new google.maps.LatLng(-33.91722, 151.2263),
+    ),
+    // new google.maps.LatLng(-33.91722, 151.2263),
     zoom: 16,
     disableDefaultUI: true,
     mapTypeControl: false,
@@ -507,6 +512,10 @@ function MarkerDirectionsUrgentNotiPage(_name, _posDestination) {
   infowindowOriginal.open(map, markerOriginal);
   // ปุ่ม กลับหน้า map
   $("#urgent_noti_page .backformap .backformap_btn").on("click", function () {
+    $("#urgent_noti_page .content .MapDirection").hide();
+    $(
+      "#urgent_noti_page .content .backformap .card-body .card-body-content .DirectionTime"
+    ).hide();
     $("#urgent_noti_page .urgent_noti_page_header").show();
     $("#urgent_noti_page .urgent_detail_noti_page_header").show();
     $("#urgent_noti_page .content").css("top", "60px");
@@ -568,7 +577,7 @@ function showFullMap() {
   $("#urgent_noti_page .urgent_noti_page_header").hide();
   $("#urgent_noti_page .urgent_detail_noti_page_header").hide();
   $("#urgent_noti_page .content").css("top", "0px");
-
+  $("#urgent_noti_page .content .MapDirection").show();
   $("#urgent_noti_page .content .backformap").removeClass("to_notifications");
   if ($(".backformap_to_notifications_page_btn").is(":visible")) {
     $("#urgent_noti_page .content .backformap button").hide();
@@ -606,6 +615,31 @@ function showFullMap() {
     $("#urgent_noti_page .content .backformap").show();
     $("#urgent_noti_page .swiper_elder_content_fixed").hide();
     $("#urgent_noti_page .content .backformap .card-body").eq(0).show();
+    getDistanceMatrix(
+      new google.maps.LatLng(
+        TempElderUrgentNoti["CURRENT_LAT"],
+        TempElderUrgentNoti["CURRENT_LONG"]
+      ),
+      new google.maps.LatLng(
+        TempElderUrgentNoti["ELDER_LAT"],
+        TempElderUrgentNoti["ELDER_LONG"]
+      ),
+      (response) => {
+        $(
+          "#urgent_noti_page .content .backformap .card-body .card-body-content .DirectionTime"
+        ).show();
+        $(
+          "#urgent_noti_page .content .backformap .card-body .card-body-content .DirectionTime h5"
+        )
+          .eq(1)
+          .text(response["rows"][0]["elements"][0]["duration"]["text"]);
+      },
+      (err) => {
+        $(
+          "#urgent_noti_page .content .backformap .card-body .card-body-content .DirectionTime"
+        ).hide();
+      }
+    );
   }
 }
 // ปุ่มยกเลิก
@@ -1559,4 +1593,26 @@ $("#urgent_noti_page .content .backformap .backformap_urgent_detail_btn").on(
     );
   }
 );
+$("#urgent_noti_page .content .MapDirection").on("click", function () {
+  var url =
+    "://www.google.com/maps/dir/?api=1&origin=" +
+    TempElderUrgentNoti["CURRENT_LAT"] +
+    "," +
+    TempElderUrgentNoti["CURRENT_LONG"] +
+    "&destination=" +
+    TempElderUrgentNoti["ELDER_LAT"] +
+    "," +
+    TempElderUrgentNoti["ELDER_LONG"] +
+    "&travelmode=driving";
+  window.open(url, "_system");
+  if (
+    navigator.platform.indexOf("iPhone") != -1 ||
+    navigator.platform.indexOf("iPod") != -1 ||
+    navigator.platform.indexOf("iPad") != -1
+  ) {
+    navigator.app.loadUrl("maps" + url, { openExternal: true });
+  } else {
+    navigator.app.loadUrl("https" + url, { openExternal: true });
+  }
+});
 /* ----------------------------------------------------------------------------- end : notifications_detail_urgent_noti_page ----------------------------------------------------------------------------- */

@@ -126,6 +126,18 @@
   border-style: solid;
   border-radius: 20px;
 }
+#urgent_noti_page .content .MapDirection {
+  /* display: none; */
+  position: absolute;
+  background-image: url(../img/Direction_icon1.png);
+  background-repeat: no-repeat;
+  height: 70px;
+  width: 50px;
+  /* top: 30px;
+  right: 10px; */
+  bottom: 210px;
+  left: 10px;
+}
 #urgent_noti_page .edit_title_text {
   color: #d7d5e2 !important;
 }
