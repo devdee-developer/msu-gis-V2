@@ -4,6 +4,7 @@
 //});
 var db
 document.addEventListener('deviceready', function() {
+  window.open = cordova.InAppBrowser.open;
   db = window.sqlitePlugin.openDatabase({
     name: 'appdb',
     location: 'default',
